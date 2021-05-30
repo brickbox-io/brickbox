@@ -1,3 +1,5 @@
+[![Code Quality](https://github.com/brickbox-io/brickbox/actions/workflows/pylint.yml/badge.svg)](https://github.com/brickbox-io/brickbox/actions/workflows/pylint.yml)
+
 Framework: Django
 
 # Getting Started
