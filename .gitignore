@@ -1,2 +1,8 @@
 # env
 brickbox-env/*
+
+# python
+*/__pycache__/*
+
+# Django
+db.sqlite3
