@@ -28,10 +28,10 @@ jobs:
 
     - name: Lint Project Level
       run: |
-       find . -type f -name "*.py" | xargs pylint --load-plugins pylint_django --ignore-patterns=manage.py
+       find . -type f -name "*.py" | xargs pylint --load-plugins pylint_django --disable=django-not-configured  --ignore-patterns=manage.py
 
     - name: Lint brickbox
       run: |
        cd brickbox/
-       find . -type f -name "*.py" | xargs pylint --load-plugins pylint_django --ignore-patterns=settings.py,wsgi.py
+       find . -type f -name "*.py" | xargs pylint --load-plugins pylint_django --disable=django-not-configured  --ignore-patterns=settings.py,wsgi.py
 
