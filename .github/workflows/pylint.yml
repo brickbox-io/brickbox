@@ -28,4 +28,4 @@ jobs:
 
     - name: Lint Project
       run: |
-	find . -type f -name "*.py" | xargs pylint --load-plugins pylint_django
+       find . -type f -name "*.py" | xargs pylint --load-plugins pylint_django
