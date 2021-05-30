@@ -26,6 +26,12 @@ jobs:
         pip3 install pylint-django
         if [ -f requirements.txt ]; then pip3 install -r requirements.txt; fi
 
-    - name: Lint Project
+    - name: Lint Project Level
       run: |
-       find . -type f -name "*.py" | xargs pylint --load-plugins pylint_django
+       find . -type f -name "*.py" | xargs pylint --load-plugins pylint_django --ignore-patterns=manage.py
+
+    - name: Lint brickbox
+      run: |
+       cd brickbox/
+       find . -type f -name "*.py" | xargs pylint --load-plugins pylint_django --ignore-patterns=settings.py,wsgi.py
+
