@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_dash_black',    # https://appseed.us/admin-dashboards/django-dashboard-black
+    'bb_public',            # Public landing pages.
+    'bb_accounts',          # Account creation and login
+    'bb_dashboard',         # Users dashboard
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+
+{% load static %}
+
+<!--
+	Spectral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+
+
+
+
+<!--
+	TODO:
+	Optimize images
+	convet png -> jpg unless transparency required
+	build subpages
+	prep for django
+-->
+
+
+<html>
+
+<head>
+    <title>{% block title %}brickbox.io | upload your mind{% endblock %}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <!--	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">-->
+    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+
+    <!--<link href="/{% static 'css/fontawesome-all.min.css' %}" rel="stylesheet">-->
+
+    <noscript>
+        <link rel="stylesheet" href="{% static 'css/noscript.css' %}" />
+    </noscript>
+</head>
+
+<body class="{% block body_class %}landing is-preload{% endblock %}">
+
+    <div id="page-wrapper">
+
+        <!-- Header -->
+        <header id="header" class="alt">
+            <h1><a href="{% url 'landing_page' %}">{% block menu_title %}brickbox.io{% endblock %}</a></h1>
+            <nav id="nav">
+                <ul>
+                    <li class="special">
+                        <a href="#menu" class="menuToggle"><span>Menu</span></a>
+                        <div id="menu">
+                            <ul>
+                                <li><a href="{% url 'landing_page' %}">Home</a></li>
+                                <li><a href="{% url 'about_page' %}">About</a></li>
+                                <li><a href="{% url 'contact_page' %}">Contact</a></li>
+                                <!--<li><a href="generic.html">Generic</a></li>
+											<li><a href="elements.html">Elements</a></li>>
+											<li><a href="#">Sign Up</a></li>-->
+                                <li><a href="{% url 'login' %}">Log In</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        {% block content %}{% endblock %}
+
+        <!-- Footer -->
+        <footer id="footer">
+            <ul class="icons">
+                <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+                <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+                <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+                <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+            </ul>
+            <ul class="copyright">
+                <li>&copy; brickbox.io</li>
+            </ul>
+        </footer>
+
+    </div>
+
+
+    <!-- Scripts -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/jquery.scrollex.min.js' %}"></script>
+    <script src="{% static 'js/jquery.scrolly.min.js' %}"></script>
+    <script src="{% static 'js/browser.min.js' %}"></script>
+    <script src="{% static 'js/breakpoints.min.js' %}"></script>
+    <script src="{% static 'js/util.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script>
+
+</body>
+
+</html>

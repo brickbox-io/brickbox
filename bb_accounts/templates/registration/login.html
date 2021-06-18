@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Login | brickbox.io{% endblock %}
+{% block menu_title %}Login{% endblock %}
+
+{% block body_class %}is-preload{% endblock %}
+
+{% block content %}
+<!-- Main -->
+<article id="main">
+    <header>
+        <h2>Dashboard</h2>
+    </header>
+    <section class="wrapper style5">
+        <div class="inner">
+            <h3>Enter your username and password.</h3>
+            <!-- <div>
+								    <label for="username">Username:</label>
+								    <input type="text" id="username" name="username">
+								</div> -->
+            {{ form.non_field_errors }}
+            <div class="fieldWrapper">
+                {{ form.username.errors }}
+                <label for="{{ form.username.id_for_label }}">Username:</label>
+                {{ form.username }}
+            </div>
+
+            <!-- <div>
+                        <label for="pass">Password:</label>
+                        <input type="password" id="pass" name="password" minlength="8" required>
+                    </div> -->
+
+            <div class="fieldWrapper">
+                {{ form.password.errors }}
+                <label for="{{ form.password.id_for_label }}">Password:</label>
+                {{ form.password }}
+            </div>
+
+            <input type="submit" value="Log In">
+
+        </div>
+    </section>
+</article>
+
+{% endblock %}
