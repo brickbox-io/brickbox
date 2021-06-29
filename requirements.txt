@@ -3,8 +3,11 @@ certifi==2021.5.30
 chardet==4.0.0
 conventional-commit==0.4.2
 Django==3.2.3
+djangorestframework>=3.12.4
+django-filter>=2.4.0
 enforce-git-message==1.0.1
 idna==2.10
+markdown>=3.3.4
 packaging==19.2
 prompt-toolkit==3.0.18
 pyparsing==2.4.7
