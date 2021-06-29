@@ -1,4 +1,5 @@
-from django.contrib import admin
+'''urls.py for bb_accounts'''
+
 from django.urls import include, path
 
 urlpatterns = [
