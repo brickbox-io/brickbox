@@ -1,5 +1,6 @@
-from django.contrib import admin
-from django.urls import path, include
+'''urls.py for bb_public'''
+
+from django.urls import path
 
 from bb_public import views
 
