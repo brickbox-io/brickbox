@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'bb_public',            # Public landing pages.
     'bb_accounts',          # Account creation and login
     'bb_dashboard',         # Users dashboard
+    'bb_data',              # Collection of data
 ]
 
 MIDDLEWARE = [

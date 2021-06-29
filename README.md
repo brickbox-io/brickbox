@@ -17,6 +17,10 @@ To update requirements.txt after a new package is installed
 python3 -m pip freeze -l >requirements.txt
 ```
 
+# Deploy
+
+[Uvicorn](https://www.uvicorn.org/) is used as the ASGI server to provide async capabilities.
+
 ## Dashboard Framework
 https://appseed.us/admin-dashboards/django-dashboard-black
 https://docs.appseed.us/products/django-dashboards/black-dashboard

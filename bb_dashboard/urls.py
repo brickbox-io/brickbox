@@ -1,6 +1,6 @@
 '''urls.py for bb_dashboard'''
 
-from django.urls import include, path
+from django.urls import path
 
 from bb_dashboard import views
 
