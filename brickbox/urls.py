@@ -18,6 +18,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include('bb_api.urls')),
     path('', include('bb_public.urls')),
     path('', include('bb_accounts.urls')),
     path('dashboard/', include('bb_dashboard.urls')),

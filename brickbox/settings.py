@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',       # https://www.django-rest-framework.org/#installation
     'django_dash_black',    # https://appseed.us/admin-dashboards/django-dashboard-black
-    'bb_public',            # Public landing pages.
+    'bb_api',               # API endpoints and handlers
+    'bb_public',            # Public landing pages
     'bb_accounts',          # Account creation and login
     'bb_dashboard',         # Users dashboard
     'bb_data',              # Collection of data
