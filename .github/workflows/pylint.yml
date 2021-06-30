@@ -33,4 +33,4 @@ jobs:
     - name: Lint brickbox
       run: |
        cd brickbox/
-       find . -type f -name "*.py" | xargs pylint --load-plugins pylint_django,pylint_django.checkers.migrations --disable=django-not-configured  --ignore-patterns=settings.py,wsgi.py,**/migrations/**
+       find . -type f -name "*.py" | xargs pylint --load-plugins pylint_django,pylint_django.checkers.migrations --disable=django-not-configured  --ignore-patterns=settings.py,wsgi.py,**/migrations/*
