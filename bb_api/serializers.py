@@ -1,26 +1,26 @@
 ''' serializers.py for bb_api '''
 
-from django.contrib.auth.models import User, Group
+# from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 
 from bb_data.models import ColocationClient, CryptoSnapshot, FiatSnapshot
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-    '''
-    The User Model Serializer
-    '''
-    class Meta:
-        model = User
-        fields = ['url', 'username', 'email', 'groups']
+# class UserSerializer(serializers.HyperlinkedModelSerializer):
+#     '''
+#     The User Model Serializer
+#     '''
+#     class Meta:
+#         model = User
+#         fields = ['url', 'username', 'email', 'groups']
 
 
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
-    '''
-    The Group Model Serializer
-    '''
-    class Meta:
-        model = Group
-        fields = ['url', 'name']
+# class GroupSerializer(serializers.HyperlinkedModelSerializer):
+#     '''
+#     The Group Model Serializer
+#     '''
+#     class Meta:
+#         model = Group
+#         fields = ['url', 'name']
 
 
 class ColocationClientSerializer(serializers.ModelSerializer):
