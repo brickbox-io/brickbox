@@ -80,10 +80,21 @@ WSGI_APPLICATION = 'brickbox.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+# Using DigitalOcean managed database, name provided
+
+if DEBUG:
+    db_name = 'debug-brickbox-db'
+else:
+    db_name = 'brickbox-db'
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': db_name,
+        'USER': 'doadmin',
+        'PASSWORD': 'dadi8xb2jd71ffx9',
+        'HOST': 'brickbox-db-postgresql-do-user-9465762-0.b.db.ondigitalocean.com',
+        'PORT': '25060'
     }
 }
 
