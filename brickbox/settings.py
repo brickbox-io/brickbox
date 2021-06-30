@@ -135,4 +135,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/static/' # Refrenced via HTML
+
+STATIC_ROOT = '/var/www/brickbox/static/' # Directory/Path where static files will be located
