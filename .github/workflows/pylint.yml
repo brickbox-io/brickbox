@@ -28,9 +28,9 @@ jobs:
 
     - name: Lint Project Level
       run: |
-       find . -type f -name "*.py" | xargs pylint --load-plugins pylint_django,pylint_django.checkers.migrations --disable=django-not-configured  --ignore-patterns=manage.py
+       find . -type f -name "*.py" | xargs pylint --load-plugins pylint_django,pylint_django.checkers.migrations --disable=django-not-configured,R0901  --ignore-patterns=manage.py,migrations
 
     - name: Lint brickbox
       run: |
        cd brickbox/
-       find . -type f -name "*.py" | xargs pylint --load-plugins pylint_django,pylint_django.checkers.migrations --disable=django-not-configured  --ignore-patterns=settings.py,wsgi.py
+       find . -type f -name "*.py" | xargs pylint --load-plugins pylint_django,pylint_django.checkers.migrations --disable=django-not-configured  --ignore-patterns=settings.py,wsgi.py,migrations

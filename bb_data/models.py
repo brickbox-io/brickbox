@@ -44,6 +44,7 @@ def grab_crypto_price(sender, instance, created, **kwargs):
     '''
     On new snapshot, auto adds the value of the crypto.
     '''
+    print(f"Send by {sender}")
     if created:
         eth = requests.get('https://api.etherscan.io/api?module=stats&action=ethprice').json()
         eth_price = eth['result']['ethusd']
