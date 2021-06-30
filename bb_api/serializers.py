@@ -38,7 +38,8 @@ class CryptoSnapshotSerializer(serializers.ModelSerializer):
     '''
     class Meta:
         model = CryptoSnapshot
-        fields = ['id', 'account_holder', 'balance', 'currency']
+        fields = ['id', 'recorded', 'account_holder', 'balance', 'currency', 'dollar_price',]
+        read_only_fields = ['dollar_price',]
 
 
 class FiatSnapshotSerializer(serializers.ModelSerializer):
@@ -47,4 +48,4 @@ class FiatSnapshotSerializer(serializers.ModelSerializer):
     '''
     class Meta:
         model = FiatSnapshot
-        fields = ['id', 'account_holder', 'balance', 'currency']
+        fields = ['id', 'recorded', 'account_holder', 'balance', 'currency']

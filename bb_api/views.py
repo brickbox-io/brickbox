@@ -35,3 +35,18 @@ class ColocationClientViewSet(viewsets.ModelViewSet):
     '''
     queryset = ColocationClient.objects.all()
     serializer_class = ColocationClientSerializer
+
+
+class CryptoSnapshotViewSet(viewsets.ModelViewSet):
+    '''
+    API endpoint to add a crypto holdings amount.
+    '''
+    queryset = CryptoSnapshot.objects.all()
+    serializer_class = CryptoSnapshotSerializer
+
+class FiatSnapshotViewSet(viewsets.ModelViewSet):
+    '''
+    API endpoing to add fiat holdings amount.
+    '''
+    queryset = FiatSnapshot.objects.all()
+    serializer_class = FiatSnapshotSerializer
