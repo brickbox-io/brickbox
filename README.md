@@ -23,4 +23,7 @@ python3 -m pip freeze -l >requirements.txt
 
 ## Dashboard Framework
 https://appseed.us/admin-dashboards/django-dashboard-black
+<br>
 https://docs.appseed.us/products/django-dashboards/black-dashboard
+<br>
+https://demos.creative-tim.com/black-dashboard-django/docs/1.0/getting-started/getting-started-django.html
