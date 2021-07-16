@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 
 {% load static %}
+{% csrf_token %}
 
 <!--
 	Spectral by HTML5 UP
@@ -56,7 +57,11 @@
                                 <!--<li><a href="generic.html">Generic</a></li>
 											<li><a href="elements.html">Elements</a></li>>
 											<li><a href="#">Sign Up</a></li>-->
+                                {%  if user.is_authenticated %}
+                                <li><a href="{% url 'dash' %}">View Dashboard</a></li>
+                                {% else %}
                                 <li><a href="{% url 'login' %}">Log In</a></li>
+                                {% endif %}
                             </ul>
                         </div>
                     </li>
@@ -90,6 +95,7 @@
     <script src="{% static 'js/breakpoints.min.js' %}"></script>
     <script src="{% static 'js/util.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/csrf.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script>
 
 </body>

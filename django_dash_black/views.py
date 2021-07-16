@@ -8,12 +8,22 @@ from django.template import loader
 from django.http import HttpResponse
 from django import template
 
+from bb_data.models import UserProfile
+
 @login_required(login_url="/login/")
 def index(request):
     '''
     Dashboard index
     '''
     context = {}
+    context['profile'] = UserProfile.objects.get(user = request.user)
+
+    # Only grabs the first client for now until there is a proper way to dysplay multiple.
+    try:
+        context['client'] = UserProfile.objects.get(user = request.user).clients.all()[0]
+    except IndexError as e:
+        context['client'] = None
+
     context['segment'] = 'index'
 
     html_template = loader.get_template( 'index.html' )

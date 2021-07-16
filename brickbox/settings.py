@@ -138,3 +138,8 @@ USE_TZ = True
 STATIC_URL = '/static/' # Refrenced via HTML
 
 STATIC_ROOT = '/var/www/brickbox/static/' # Directory/Path where static files will be located
+
+# Login OPTIONS
+
+LOGIN_REDIRECT_URL = '/dash/'
+LOGOUT_REDIRECT_URL = ''
