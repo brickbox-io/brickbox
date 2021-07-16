@@ -5,11 +5,9 @@ Returns formated data for the dashboard charts.
 from decimal import Decimal
 
 from django.http import JsonResponse
-
-from bb_data.models import UserProfile, CryptoSnapshot, FiatSnapshot
-
 from django.views.decorators.csrf import csrf_exempt
 
+from bb_data.models import UserProfile, CryptoSnapshot, FiatSnapshot
 
 
 @csrf_exempt
@@ -108,22 +106,22 @@ def fiat_balance_chart(request):
 
     return JsonResponse(formated_data, safe=False)
 
-@csrf_exempt
-def cumulative_earned(request):
-    try:
-        user_client = UserProfile.objects.get(user = request.user).clients.all()[0]
+# @csrf_exempt
+# def cumulative_earned(request):
+#     try:
+#         user_client = UserProfile.objects.get(user = request.user).clients.all()[0]
 
-        crypto_transactions = CryptoSnapshot.objects.filter(account_holder = user_client)
+#         crypto_transactions = CryptoSnapshot.objects.filter(account_holder = user_client)
 
-        cryto_running_total = 0
-        for transaction in crypto_transactions:
-            cryto_running_total = cryto_running_total + transaction.dollar_price
+#         cryto_running_total = 0
+#         for transaction in crypto_transactions:
+#             cryto_running_total = cryto_running_total + transaction.dollar_price
 
-        fiat_transactions = FiatSnapshot.objects.filter(account_holder = user_client)
+#         fiat_transactions = FiatSnapshot.objects.filter(account_holder = user_client)
 
-        fiat_running_total = 0
-        for transaction in fiat_transactions:
-            fiat_running_total = fiat_running_total + transaction.balance
+#         fiat_running_total = 0
+#         for transaction in fiat_transactions:
+#             fiat_running_total = fiat_running_total + transaction.balance
 
-    except IndexError:
-        user_client = None
+#     except IndexError:
+#         user_client = None
