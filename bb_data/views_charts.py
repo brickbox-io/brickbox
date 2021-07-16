@@ -2,12 +2,9 @@
 Returns formated data for the dashboard charts.
 '''
 
-import json
 from decimal import Decimal
 
 from django.http import JsonResponse
-
-from django.core.serializers.json import DjangoJSONEncoder
 
 from bb_data.models import UserProfile, CryptoSnapshot, FiatSnapshot
 
@@ -17,12 +14,17 @@ from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt
 def crypto_balance_chart(request):
-    print(request.POST.get('client'))
+    '''
+    URL: /data/cryptochart/
+    METHOD: AJAX
+    Returns json formatted data of the crypto balance since last payout.
+    '''
 
     try:
         user_client = UserProfile.objects.get(user = request.user).clients.all()[0]
 
-        check_last_reset = CryptoSnapshot.objects.filter(account_holder = user_client).order_by('-id')
+        check_last_reset = CryptoSnapshot.objects.filter(
+            account_holder = user_client).order_by('-id')
         starting_point = check_last_reset.count()
         total_balance = 0
         for check in check_last_reset:
@@ -34,7 +36,8 @@ def crypto_balance_chart(request):
         if starting_point > 0:
             starting_point = starting_point - 1
 
-        crypto_balance = CryptoSnapshot.objects.filter(account_holder = user_client).values()[starting_point:]
+        crypto_balance = CryptoSnapshot.objects.filter(
+            account_holder = user_client).values()[starting_point:]
 
         formated_balances = []
         formated_dates = []
@@ -51,7 +54,7 @@ def crypto_balance_chart(request):
 
         print(formated_data)
 
-    except IndexError as e:
+    except IndexError:
         user_client = None
 
 
@@ -60,7 +63,11 @@ def crypto_balance_chart(request):
 
 @csrf_exempt
 def fiat_balance_chart(request):
-    print(request.POST.get('client'))
+    '''
+    URL: /data/fiatchart/
+    METHOD: AJAX
+    Returns json formatted data of the dollar balance since last payout.
+    '''
 
     try:
         user_client = UserProfile.objects.get(user = request.user).clients.all()[0]
@@ -77,7 +84,8 @@ def fiat_balance_chart(request):
         if starting_point > 0:
             starting_point = starting_point - 1
 
-        crypto_balance = FiatSnapshot.objects.filter(account_holder = user_client).values()[starting_point:]
+        crypto_balance = FiatSnapshot.objects.filter(
+            account_holder = user_client).values()[starting_point:]
 
         formated_balances = []
         formated_dates = []
@@ -94,7 +102,7 @@ def fiat_balance_chart(request):
 
         print(formated_data)
 
-    except IndexError as e:
+    except IndexError:
         user_client = None
 
 
@@ -117,5 +125,5 @@ def cumulative_earned(request):
         for transaction in fiat_transactions:
             fiat_running_total = fiat_running_total + transaction.balance
 
-    except IndexError as e:
+    except IndexError:
         user_client = None

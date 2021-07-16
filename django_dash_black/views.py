@@ -21,7 +21,7 @@ def index(request):
     # Only grabs the first client for now until there is a proper way to dysplay multiple.
     try:
         context['client'] = UserProfile.objects.get(user = request.user).clients.all()[0]
-    except IndexError as e:
+    except IndexError::
         context['client'] = None
 
     context['segment'] = 'index'

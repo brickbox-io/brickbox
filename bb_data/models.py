@@ -24,7 +24,11 @@ class UserProfile(models.Model):
     Any user related settings, prefrences.
     '''
     user = models.OneToOneField(User, related_name='profile', on_delete=models.CASCADE)
-    clients = models.ManyToManyField('ColocationClient', through='ColocationClientOwner', related_name='clients_owned')
+    clients = models.ManyToManyField(
+                                    'ColocationClient',
+                                    through='ColocationClientOwner',
+                                    related_name='clients_owned'
+                                    )
 
 
 class ColocationClient(models.Model):
@@ -32,7 +36,11 @@ class ColocationClient(models.Model):
     The business or individual that owns the equipment under management.
     '''
     account_name = models.CharField(max_length = 124)
-    owners = models.ManyToManyField('UserProfile', through='ColocationClientOwner', related_name='client_owners')
+    owners = models.ManyToManyField(
+                                    'UserProfile',
+                                    through='ColocationClientOwner',
+                                    related_name='client_owners'
+                                    )
 
     vast_api_key = models.CharField(max_length = 64, blank=True, null=True)
     eth_deposit_address = models.CharField(max_length = 64, blank=True, null=True)
@@ -75,7 +83,7 @@ def grab_crypto_price(sender, instance, created, **kwargs):
         instance.save()
 
 @receiver(post_save, sender=CryptoSnapshot)
-def check_new_period(sender, instance, created, **kwargs):
+def check_new_period_crypto(sender, instance, created, **kwargs):
     '''
     Marks snapshot as starting period if balance is lower than previous entry.
     '''
@@ -101,7 +109,7 @@ class FiatSnapshot(models.Model):
     start_period = models.BooleanField(default=False)
 
 @receiver(post_save, sender=FiatSnapshot)
-def check_new_period(sender, instance, created, **kwargs):
+def check_new_period_fiat(sender, instance, created, **kwargs):
     '''
     Marks snapshot as starting period if balance is lower than previous entry.
     '''
