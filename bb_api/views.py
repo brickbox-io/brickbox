@@ -7,10 +7,14 @@ from rest_framework import viewsets
 
 from bb_api.serializers import (
     # UserSerializer, GroupSerializer,
-    ColocationClientSerializer, CryptoSnapshotSerializer, FiatSnapshotSerializer
+    ColocationClientSerializer, CryptoSnapshotSerializer, FiatSnapshotSerializer,
+    CryptoPayoutSerializer, FiatPayoutSerializer
 )
 
-from bb_data.models import ColocationClient, CryptoSnapshot, FiatSnapshot
+from bb_data.models import (
+        ColocationClient, CryptoSnapshot, FiatSnapshot,
+        CryptoPayout, FiatPayout
+    )
 
 # class UserViewSet(viewsets.ModelViewSet):
 #     """
@@ -50,3 +54,19 @@ class FiatSnapshotViewSet(viewsets.ModelViewSet):
     '''
     queryset = FiatSnapshot.objects.all()
     serializer_class = FiatSnapshotSerializer
+
+
+class CryptoPayoutViewSet(viewsets.ModelViewSet):
+    '''
+    API endpoint to record crypto balance payouts to clients.
+    '''
+    queryset = CryptoPayout.objects.all()
+    serializer_class = CryptoPayoutSerializer
+
+
+class FiatPayoutViewSet(viewsets.ModelViewSet):
+    '''
+    API endpoint to record fiat balance payouts to clients.
+    '''
+    queryset = FiatPayout.objects.all()
+    serializer_class = FiatPayoutSerializer

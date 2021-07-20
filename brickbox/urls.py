@@ -16,6 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+# --------------------------- Admin Customizations --------------------------- #
+admin.site.site_header = "brickbox.io"
+admin.site.site_title = "brickbox.io"
+admin.site.index_title = "Admin Interface"
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('bb_api.urls')),

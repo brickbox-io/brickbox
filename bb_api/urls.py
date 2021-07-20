@@ -11,6 +11,8 @@ router = routers.DefaultRouter()
 router.register(r'clients', views.ColocationClientViewSet)
 router.register(r'cryptosnapshot', views.CryptoSnapshotViewSet)
 router.register(r'fiatsnapshot', views.FiatSnapshotViewSet)
+router.register(r'cryptopayout', views.CryptoPayoutViewSet)
+router.register(r'fiatpayout', views.FiatPayoutViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

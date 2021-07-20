@@ -1,17 +1,5 @@
 <!DOCTYPE HTML>
 
-{% load static %}
-{% csrf_token %}
-
-<!--
-	Spectral by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-
-
-
-
 <!--
 	TODO:
 	Optimize images
@@ -20,6 +8,8 @@
 	prep for django
 -->
 
+{% load static %}
+{% csrf_token %}
 
 <html>
 
@@ -36,6 +26,25 @@
     <noscript>
         <link rel="stylesheet" href="{% static 'css/noscript.css' %}" />
     </noscript>
+
+    <link rel="shortcut icon" type="image/png" href="{% static 'brickbox_icon/favicon.ico' %}" />
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'brickbox_icon/apple-icon-57x57.png' %}" />
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'brickbox_icon/apple-icon-60x60.png' %}" />
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'brickbox_icon/apple-icon-72x72.png' %}" />
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'brickbox_icon/apple-icon-76x76.png' %}" />
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'brickbox_icon/apple-icon-114x114.png' %}" />
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'brickbox_icon/apple-icon-120x120.png' %}" />
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'brickbox_icon/apple-icon-144x144.png' %}" />
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'brickbox_icon/apple-icon-152x152.png' %}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'brickbox_icon/apple-icon-180x180.png' %}" />
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'brickbox_icon/android-icon-192x192.png' %}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'brickbox_icon/favicon-32x32.png' %}" />
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'brickbox_icon/favicon-96x96.png' %}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'brickbox_icon/favicon-16x16.png' %}" />
+    <link rel="manifest" href="{% static 'brickbox_icon/manifest.json' %}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{% static 'brickbox_icon/ms-icon-144x144.png' %}">
+    <meta name="theme-color" content="#ffffff">
 </head>
 
 <body class="{% block body_class %}landing is-preload{% endblock %}">

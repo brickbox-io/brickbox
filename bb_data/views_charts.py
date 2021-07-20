@@ -24,9 +24,12 @@ def crypto_balance_chart(request):
         check_last_reset = CryptoSnapshot.objects.filter(
             account_holder = user_client).order_by('-id')
         starting_point = check_last_reset.count()
-        total_balance = 0
+
+        total_balance = check_last_reset[0].balance
+
+        # total_balance = 0
         for check in check_last_reset:
-            total_balance = total_balance + check.balance
+            # total_balance = total_balance + check.balance
             if check.start_period:
                 break
             starting_point = starting_point - 1
@@ -72,9 +75,12 @@ def fiat_balance_chart(request):
 
         check_last_reset = FiatSnapshot.objects.filter(account_holder = user_client).order_by('-id')
         starting_point = check_last_reset.count()
-        total_balance = 0
+
+        total_balance = check_last_reset[0].balance
+
+        # total_balance = 0
         for check in check_last_reset:
-            total_balance = total_balance + check.balance
+            # total_balance = total_balance + check.balance
             if check.start_period:
                 break
             starting_point = starting_point - 1

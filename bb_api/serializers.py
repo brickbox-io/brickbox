@@ -3,7 +3,10 @@
 # from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 
-from bb_data.models import ColocationClient, CryptoSnapshot, FiatSnapshot
+from bb_data.models import (
+        ColocationClient, CryptoSnapshot, FiatSnapshot,
+        CryptoPayout, FiatPayout
+    )
 
 # class UserSerializer(serializers.HyperlinkedModelSerializer):
 #     '''
@@ -39,7 +42,7 @@ class CryptoSnapshotSerializer(serializers.ModelSerializer):
     class Meta:
         model = CryptoSnapshot
         fields = ['id', 'recorded', 'account_holder', 'balance', 'currency', 'dollar_price',]
-        read_only_fields = ['dollar_price',]
+        read_only_fields = ['dollar_price', 'start_period']
 
 
 class FiatSnapshotSerializer(serializers.ModelSerializer):
@@ -49,3 +52,22 @@ class FiatSnapshotSerializer(serializers.ModelSerializer):
     class Meta:
         model = FiatSnapshot
         fields = ['id', 'recorded', 'account_holder', 'balance', 'currency']
+        read_only_fields = ['start_period']
+
+
+class CryptoPayoutSerializer(serializers.ModelSerializer):
+    '''
+    Serializer for the Cryptopayout Model.
+    '''
+    class Meta:
+        model = CryptoPayout
+        fields = ['id', 'recorded', 'account_holder', 'amount', 'currency', 'tx_hash']
+
+
+class FiatPayoutSerializer(serializers.ModelSerializer):
+    '''
+    Serializer for the Fiat Model.
+    '''
+    class Meta:
+        model = FiatPayout
+        fields = ['id', 'recorded', 'account_holder', 'amount', 'currency']
