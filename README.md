@@ -1,7 +1,6 @@
 # brickbox.io Web & Dashboard
 
 [![Django CI](https://github.com/brickbox-io/brickbox/actions/workflows/Dajango.yml/badge.svg)](https://github.com/brickbox-io/brickbox/actions/workflows/Dajango.yml)
-
 [![Code Quality](https://github.com/brickbox-io/brickbox/actions/workflows/pylint.yml/badge.svg)](https://github.com/brickbox-io/brickbox/actions/workflows/pylint.yml)
 
 Framework: Django
