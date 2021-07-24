@@ -5,6 +5,7 @@ conventional-commit==0.4.2
 Django==3.2.3
 djangorestframework>=3.12.4
 django-filter>=2.4.0
+django-pwa>=1.0.10
 enforce-git-message==1.0.1
 gunicorn>=20.1.0
 idna==2.10

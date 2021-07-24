@@ -1,0 +1,56 @@
+name: master -> master-ci
+on:
+  push:
+    branches: [ master ]
+
+  workflow_dispatch:
+
+jobs:
+  # NOTE Split into two jobs while testing trying to get it to read build. Should work as one now.
+  pull_request:
+    runs-on: ubuntu-latest
+    name: start master-ci
+    steps:
+    - uses: actions/checkout@master
+
+    - name: Wait on check
+      uses: fountainhead/action-wait-for-check@v1.0.0
+      id: wait-for-lint
+
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        checkName: lint
+        ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+    - name: Create Pull Request
+
+      if: steps.wait-for-lint.outputs.conclusion == 'success'
+      uses: repo-sync/pull-request@v2
+      with:
+        destination_branch: "master-ci"
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+
+
+  merge:
+    runs-on: ubuntu-latest
+    name: Wait For Build To Merge
+    steps:
+    - uses: actions/checkout@master
+
+    - name: Wait on build check
+      uses: fountainhead/action-wait-for-check@v1.0.0
+      id: wait-for-build
+
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        checkName: build
+        ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+    - name: Merge master -> master-ci
+
+      if: steps.wait-for-build.outputs.conclusion == 'success'
+      uses: devmasx/merge-branch@v1.3.1
+      with:
+        type: now
+        target_branch: master-ci
+        github_token: ${{ secrets.GITHUB_TOKEN }}

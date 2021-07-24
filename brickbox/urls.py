@@ -16,12 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from django.conf.urls import url
+
 # --------------------------- Admin Customizations --------------------------- #
 admin.site.site_header = "brickbox.io"
 admin.site.site_title = "brickbox.io"
 admin.site.index_title = "Admin Interface"
 
 urlpatterns = [
+    url('', include('pwa.urls')),  # Progressive Web App (PWA)
     path('admin/', admin.site.urls),
     path('api/', include('bb_api.urls')),
     path('', include('bb_public.urls')),
