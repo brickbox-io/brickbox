@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-ADMINS = [('Justin Merrell', 'merrelljustin@gmail.com),]
+ADMINS = [('Justin Merrell', 'merrelljustin@gmail.com'),]
 
 # ------------------------------- Applications ------------------------------- #
 INSTALLED_APPS = [
@@ -163,9 +163,9 @@ DEFAULT_FROM_EMAIL = 'info@brickbox.io'
 SERVER_EMAIL = 'info@brickbox.io'
 EMAIL_USE_TLS = True
 if DEBUG == True:
-    EMAIL_HOST_PASSWORD = '' #Secure Single App Password
+    EMAIL_HOST_PASSWORD = 'r0flduqu' #Secure Single App Password
 else:
-    EMAIL_HOST_PASSWORD = ''
+    EMAIL_HOST_PASSWORD = 'r0flduqu'
 
 PASSWORD_RESET_MAIL_FROM_USER = 'info@brickbox.io'    #CRM
 
