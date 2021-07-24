@@ -1,3 +1,7 @@
+{% load pwa %}
+
+{% load static %}
+
 <!DOCTYPE HTML>
 
 <!--
@@ -8,12 +12,10 @@
 	prep for django
 -->
 
-{% load static %}
-{% csrf_token %}
-
 <html>
 
 <head>
+    {% progressive_web_app_meta %}
     <title>{% block title %}brickbox.io{% endblock %}</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -104,7 +106,6 @@
     <script src="{% static 'js/breakpoints.min.js' %}"></script>
     <script src="{% static 'js/util.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
-    <script src="{% static 'js/csrf.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script>
 
 </body>
