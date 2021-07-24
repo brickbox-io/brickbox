@@ -162,7 +162,8 @@ EMAIL_HOST_USER = 'info@brickbox.io' #Email used for system admin notification p
 DEFAULT_FROM_EMAIL = 'info@brickbox.io'
 SERVER_EMAIL = 'info@brickbox.io'
 EMAIL_USE_TLS = True
-if DEBUG == True:
+
+if DEBUG:
     EMAIL_HOST_PASSWORD = 'r0flduqu' #Secure Single App Password
 else:
     EMAIL_HOST_PASSWORD = 'r0flduqu'
