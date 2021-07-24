@@ -27,9 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+ADMINS = [('Justin Merrell', 'merrelljustin@gmail.com),]
 
-# Application definition
-
+# ------------------------------- Applications ------------------------------- #
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'bb_data',              # Collection of data
 ]
 
+# -------------------------------- Middleware -------------------------------- #
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -59,6 +60,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'brickbox.urls'
 
+# --------------------------------- Template --------------------------------- #
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -78,7 +80,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'brickbox.wsgi.application'
 
 
-# Database
+# ---------------------------------------------------------------------------- #
+#                            Database Configuration                            #
+# ---------------------------------------------------------------------------- #
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 # Using DigitalOcean managed database, name provided
@@ -134,7 +138,9 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
+# ---------------------------------------------------------------------------- #
+#                                 Static Files                                 #
+# ---------------------------------------------------------------------------- #
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/' # Refrenced via HTML
@@ -145,6 +151,23 @@ STATIC_ROOT = '/var/www/brickbox/static/' # Directory/Path where static files wi
 
 LOGIN_REDIRECT_URL = '/dash/'
 LOGOUT_REDIRECT_URL = ''
+
+# ---------------------------------------------------------------------------- #
+#                              Email Configuration                             #
+# ---------------------------------------------------------------------------- #
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'info@brickbox.io' #Email used for system admin notification purpouses aswell.
+DEFAULT_FROM_EMAIL = 'info@brickbox.io'
+SERVER_EMAIL = 'info@brickbox.io'
+EMAIL_USE_TLS = True
+if DEBUG == True:
+    EMAIL_HOST_PASSWORD = '' #Secure Single App Password
+else:
+    EMAIL_HOST_PASSWORD = ''
+
+PASSWORD_RESET_MAIL_FROM_USER = 'info@brickbox.io'    #CRM
 
 # ---------------------------------------------------------------------------- #
 #                           Progressive Web App (PWA)                          #
