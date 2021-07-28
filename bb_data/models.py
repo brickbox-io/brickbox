@@ -148,11 +148,12 @@ class CryptoPayout(models.Model):
     Records a timestamp and ammount when a client recives a distribution of crypto.
     '''
     recorded = models.DateTimeField(auto_now_add=True)
+    dated = models.DateTimeField(null=True)
     account_holder = models.ForeignKey(ColocationClient, on_delete=models.DO_NOTHING)
     amount = models.DecimalField(max_digits=64, decimal_places=32)
     currency = models.CharField(max_length=3, choices=crypto_options)
 
-    tx_hash = models.CharField(max_length = 64)
+    tx_hash = models.CharField(max_length = 66, unique=True)
 
     dollar_price = models.DecimalField(max_digits=32, decimal_places=2, blank=True, null=True)
 
@@ -165,6 +166,7 @@ class FiatPayout(models.Model):
     Records a timestamp and ammount when a client recives a distribution of fiat.
     '''
     recorded = models.DateTimeField(auto_now_add=True)
+    dated = models.DateTimeField(null=True)
     account_holder = models.ForeignKey(ColocationClient, on_delete=models.DO_NOTHING)
     amount = models.DecimalField(max_digits=32, decimal_places=2, blank=True, null=True)
     currency = models.CharField(max_length=1, choices=fiat_options)

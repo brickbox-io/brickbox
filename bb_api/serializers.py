@@ -61,7 +61,7 @@ class CryptoPayoutSerializer(serializers.ModelSerializer):
     '''
     class Meta:
         model = CryptoPayout
-        fields = ['id', 'recorded', 'account_holder', 'amount', 'currency', 'tx_hash']
+        fields = ['id', 'recorded', 'dated', 'account_holder', 'amount', 'currency', 'tx_hash']
 
 
 class FiatPayoutSerializer(serializers.ModelSerializer):
@@ -70,4 +70,4 @@ class FiatPayoutSerializer(serializers.ModelSerializer):
     '''
     class Meta:
         model = FiatPayout
-        fields = ['id', 'recorded', 'account_holder', 'amount', 'currency']
+        fields = ['id', 'recorded', 'dated', 'account_holder', 'amount', 'currency']
