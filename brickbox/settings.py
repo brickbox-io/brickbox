@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'pwa',                  # https://github.com/silviolleite/django-pwa
     'rest_framework',       # https://www.django-rest-framework.org/#installation
     'django_dash_black',    # https://appseed.us/admin-dashboards/django-dashboard-black
