@@ -1,6 +1,7 @@
 {% extends "layouts/base.html" %}
 
 {% csrf_token %}
+{% load humanize %}
 
 {% block title %} Dashboard {% endblock %}
 
@@ -69,7 +70,7 @@
 
 
 <!-- --------------------------- Payment History --------------------------- -->
-<!-- <div class="row">
+<div class="row">
     <div class="col-lg-12 col-md-12">
         <div class="card ">
             <div class="card-header">
@@ -95,48 +96,24 @@
                             </tr>
                         </thead>
                         <tbody>
+
+                            {% for payout in history %}
                             <tr>
                                 <td>
-                                    7/1/21
+                                    {{ payout.dated.date }}
                                 </td>
                                 <td>
-                                    0.209281431 ETH
+                                    {{ payout.amount|floatformat }} {{ payout.currency|upper }}
                                 </td>
                                 <td>
                                     Cryptocurrency
                                 </td>
                                 <td class="text-center">
-                                    $1,000
+                                    $ {{ payout.dollar_price|intcomma }}
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    6/30/21
-                                </td>
-                                <td>
-                                    $31.00
-                                </td>
-                                <td>
-                                    AI/ML
-                                </td>
-                                <td class="text-center">
-                                    $969.00
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    6/28/21
-                                </td>
-                                <td>
-                                    $301
-                                </td>
-                                <td>
-                                    Cryptocurrency
-                                </td>
-                                <td class="text-center">
-                                    $668
-                                </td>
-                            </tr>
+                            {% endfor %}
+
                         </tbody>
                     </table>
                 </div>
@@ -160,7 +137,7 @@
     </div>
 </div>
 
-{% endif %} -->
+{% endif %}
 
 {% endblock content %}
 

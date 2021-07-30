@@ -8,7 +8,7 @@ from django.template import loader
 from django.http import HttpResponse
 from django import template
 
-from bb_data.models import UserProfile
+from bb_data.models import UserProfile, CryptoPayout
 
 @login_required(login_url="/login/")
 def index(request):
@@ -23,6 +23,9 @@ def index(request):
         context['client'] = UserProfile.objects.get(user = request.user).clients.all()[0]
     except IndexError:
         context['client'] = None
+
+    # ------------------------------ Payout History ------------------------------ #
+    context['history'] = CryptoPayout.objects.filter(account_holder=context['client'])
 
     context['segment'] = 'index'
 
