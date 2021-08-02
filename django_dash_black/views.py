@@ -31,7 +31,11 @@ def index(request):
     crypto_payout = CryptoPayout.objects.filter(account_holder=context['client'])
     fiat_payout = FiatPayout.objects.filter(account_holder=context['client'])
 
-    context['history'] = sorted(chain(crypto_payout, fiat_payout), key=attrgetter('dated'), reverse=True)
+    context['history'] = sorted(chain(
+                                        crypto_payout, fiat_payout),
+                                        key=attrgetter('dated'),
+                                        reverse=True
+                                    )
 
     context['segment'] = 'index'
 
