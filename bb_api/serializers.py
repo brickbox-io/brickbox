@@ -41,7 +41,7 @@ class CryptoSnapshotSerializer(serializers.ModelSerializer):
     '''
     class Meta:
         model = CryptoSnapshot
-        fields = ['id', 'recorded', 'account_holder', 'balance', 'currency', 'dollar_price',]
+        fields = ['id', 'recorded', 'account_holder', 'balance', 'currency']
         read_only_fields = ['dollar_price', 'start_period']
 
 
@@ -62,7 +62,7 @@ class CryptoPayoutSerializer(serializers.ModelSerializer):
     class Meta:
         model = CryptoPayout
         fields = ['id', 'recorded', 'dated', 'account_holder', 'amount', 'currency', 'tx_hash']
-
+        read_only_fields = ['dollar_price']
 
 class FiatPayoutSerializer(serializers.ModelSerializer):
     '''

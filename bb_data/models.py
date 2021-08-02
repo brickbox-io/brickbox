@@ -11,7 +11,7 @@ User = get_user_model()
 
 # ----------------------------- Selection Options ---------------------------- #
 crypto_options = (
-    ('eth', 'ethereum'),
+    ('eth', 'Ethereum'),
 )
 
 fiat_options = (

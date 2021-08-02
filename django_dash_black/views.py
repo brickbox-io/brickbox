@@ -3,12 +3,15 @@
 Copyright (c) 2019 - present AppSeed.us
 """
 
+from itertools import chain
+from operator import attrgetter
+
 from django.contrib.auth.decorators import login_required
 from django.template import loader
 from django.http import HttpResponse
 from django import template
 
-from bb_data.models import UserProfile, CryptoPayout
+from bb_data.models import UserProfile, CryptoPayout, FiatPayout
 
 @login_required(login_url="/login/")
 def index(request):
@@ -25,7 +28,10 @@ def index(request):
         context['client'] = None
 
     # ------------------------------ Payout History ------------------------------ #
-    context['history'] = CryptoPayout.objects.filter(account_holder=context['client'])
+    crypto_payout = CryptoPayout.objects.filter(account_holder=context['client'])
+    fiat_payout = FiatPayout.objects.filter(account_holder=context['client'])
+
+    context['history'] = sorted(chain(crypto_payout, fiat_payout), key=attrgetter('dated'))
 
     context['segment'] = 'index'
 

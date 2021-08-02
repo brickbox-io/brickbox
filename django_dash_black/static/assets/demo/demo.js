@@ -469,7 +469,7 @@ demo = {
                 // labels: ['JUL', 'AUG', 'SEP', 'OCT', 'NOV'],
                 labels: FiatBalanceValuesDates,
                 datasets: [{
-                    label: "My First dataset",
+                    label: "Balance",
                     fill: true,
                     backgroundColor: gradientStroke,
                     borderColor: '#00d6b4',

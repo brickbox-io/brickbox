@@ -106,7 +106,13 @@
                                     {{ payout.amount|floatformat }} {{ payout.currency|upper }}
                                 </td>
                                 <td>
-                                    Cryptocurrency
+                                    {% if payout.currency == '$' %}
+                                    AI Rental
+                                    {% endif %}
+
+                                    {% if payout.currency == 'eth' %}
+                                    Mining
+                                    {% endif %}
                                 </td>
                                 <td class="text-center">
                                     $ {{ payout.dollar_price|intcomma }}
