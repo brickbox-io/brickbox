@@ -171,6 +171,8 @@ class FiatPayout(models.Model):
     amount = models.DecimalField(max_digits=32, decimal_places=2, blank=True, null=True)
     currency = models.CharField(max_length=1, choices=fiat_options)
 
+    tx_vast_id = models.CharField(max_length = 66, unique=True, null=True)
+
     class Meta:
         verbose_name_plural = "Fiat Payouts"
 

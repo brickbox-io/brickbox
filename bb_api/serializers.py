@@ -70,4 +70,4 @@ class FiatPayoutSerializer(serializers.ModelSerializer):
     '''
     class Meta:
         model = FiatPayout
-        fields = ['id', 'recorded', 'dated', 'account_holder', 'amount', 'currency']
+        fields = ['id', 'recorded', 'dated', 'account_holder', 'amount', 'currency', 'tx_vast_id']

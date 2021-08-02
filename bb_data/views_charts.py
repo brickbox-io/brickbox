@@ -18,6 +18,8 @@ def crypto_balance_chart(request):
     Returns json formatted data of the crypto balance since last payout.
     '''
 
+    formated_data = None
+
     try:
         user_client = UserProfile.objects.get(user = request.user).clients.all()[0]
 
@@ -69,6 +71,8 @@ def fiat_balance_chart(request):
     METHOD: AJAX
     Returns json formatted data of the dollar balance since last payout.
     '''
+
+    formated_data = None
 
     try:
         user_client = UserProfile.objects.get(user = request.user).clients.all()[0]
