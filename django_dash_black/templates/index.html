@@ -99,12 +99,24 @@
 
                             {% for payout in history %}
                             <tr>
+
+                                <!-- Date -->
                                 <td>
                                     {{ payout.dated.date }}
                                 </td>
+
+                                <!-- Amount -->
                                 <td>
+                                    {% if payout.currency == '$' %}
+                                    $ {{ payout.amount|floatformat }}
+                                    {% endif %}
+
+                                    {% if payout.currency == 'eth' %}
                                     {{ payout.amount|floatformat }} {{ payout.currency|upper }}
+                                    {% endif %}
                                 </td>
+
+                                <!-- Source -->
                                 <td>
                                     {% if payout.currency == '$' %}
                                     AI Rental
@@ -114,8 +126,16 @@
                                     Mining
                                     {% endif %}
                                 </td>
+
+                                <!-- Total -->
                                 <td class="text-center">
-                                    $ {{ payout.dollar_price|intcomma }}
+                                    {% if payout.currency == '$' %}
+                                    $&nbsp;{{ payout.amount|intcomma }}
+                                    {% endif %}
+
+                                    {% if payout.currency == 'eth' %}
+                                    $&nbsp;{{ payout.dollar_price|intcomma }}
+                                    {% endif %}
                                 </td>
                             </tr>
                             {% endfor %}

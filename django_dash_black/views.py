@@ -28,8 +28,8 @@ def index(request):
         context['client'] = None
 
     # ------------------------------ Payout History ------------------------------ #
-    crypto_payout = CryptoPayout.objects.filter(account_holder=context['client'])
-    fiat_payout = FiatPayout.objects.filter(account_holder=context['client'])
+    crypto_payout = CryptoPayout.objects.filter(account_holder=context['client']).order_by('-id')
+    fiat_payout = FiatPayout.objects.filter(account_holder=context['client']).order_by('-id')
 
     context['history'] = sorted(chain(crypto_payout, fiat_payout), key=attrgetter('dated'))
 
