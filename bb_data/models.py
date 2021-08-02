@@ -188,10 +188,10 @@ def grab_crypto_price(sender, instance, created, **kwargs):
         eth = requests.get('https://api.etherscan.io/api?module=stats&action=ethprice').json()
         eth_price = eth['result']['ethusd']
 
-        if sender == "CryptoSnapshot":
-            instance.dollar_price = instance.balance*eth_price
+        if sender == CryptoSnapshot:
+            instance.dollar_price = float(instance.balance)*float(eth_price)
 
-        if sender == "CryptoPayout":
-            instance.dollar_price = instance.amount*eth_price
+        if sender == CryptoPayout:
+            instance.dollar_price = float(instance.amount)*float(eth_price)
 
         instance.save()
