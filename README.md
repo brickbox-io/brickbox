@@ -23,7 +23,7 @@ python3 -m pip freeze -l >requirements.txt
 
 ## Deploy
 
-[Uvicorn](https://www.uvicorn.org/) is used as the ASGI server to provide async capabilities.
+[Uvicorn](https://www.uvicorn.org/) is used as the ASGI server to provide async capabilities. When changes are made use ```systemctl restart gunicorn``` to update the service.
 
 ### Static Files
 
