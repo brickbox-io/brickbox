@@ -25,6 +25,7 @@ admin.site.index_title = "Admin Interface"
 
 urlpatterns = [
     url('', include('pwa.urls')),  # Progressive Web App (PWA)
+    path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('admin/', admin.site.urls),
     path('api/', include('bb_api.urls')),
     path('', include('bb_public.urls')),
