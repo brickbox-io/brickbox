@@ -38,14 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'pwa',                  # https://github.com/silviolleite/django-pwa
-    'rest_framework',       # https://www.django-rest-framework.org/#installation
-    'django_dash_black',    # https://appseed.us/admin-dashboards/django-dashboard-black
-    'bb_api',               # API endpoints and handlers
-    'bb_public',            # Public landing pages
-    'bb_accounts',          # Account creation and login
-    'bb_dashboard',         # Users dashboard
-    'bb_data',              # Collection of data
+    'django.contrib.admindocs', # https://docs.djangoproject.com/en/3.2/ref/contrib/admin/admindocs/
+    'pwa',                      # https://github.com/silviolleite/django-pwa
+    'rest_framework',           # https://www.django-rest-framework.org/#installation
+    'django_dash_black',        # https://appseed.us/admin-dashboards/django-dashboard-black
+    'bb_api',                   # API endpoints and handlers
+    'bb_public',                # Public landing pages
+    'bb_accounts',              # Account creation and login
+    'bb_dashboard',             # Users dashboard
+    'bb_data',                  # Collection of data
 ]
 
 # -------------------------------- Middleware -------------------------------- #
