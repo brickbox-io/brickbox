@@ -6,6 +6,8 @@ Copyright (c) 2019 - present AppSeed.us
 from django.urls import path, re_path
 from django_dash_black import views
 
+app_name = 'django_dash_black'
+
 urlpatterns = [
 
     # The home page
