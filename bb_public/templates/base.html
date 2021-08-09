@@ -55,23 +55,23 @@
 
         <!-- Header -->
         <header id="header" class="alt">
-            <h1><a href="{% url 'landing_page' %}">{% block menu_title %}brickbox.io{% endblock %}</a></h1>
+            <h1><a href="{% url 'bb_public:landing_page' %}">{% block menu_title %}brickbox.io{% endblock %}</a></h1>
             <nav id="nav">
                 <ul>
                     <li class="special">
                         <a href="#menu" class="menuToggle"><span>Menu</span></a>
                         <div id="menu">
                             <ul>
-                                <li><a href="{% url 'landing_page' %}">Home</a></li>
-                                <li><a href="{% url 'about_page' %}">About</a></li>
-                                <li><a href="{% url 'contact_page' %}">Contact</a></li>
+                                <li><a href="{% url 'bb_public:landing_page' %}">Home</a></li>
+                                <li><a href="{% url 'bb_public:about_page' %}">About</a></li>
+                                <li><a href="{% url 'bb_public:contact_page' %}">Contact</a></li>
                                 <!--<li><a href="generic.html">Generic</a></li>
 											<li><a href="elements.html">Elements</a></li>>
 											<li><a href="#">Sign Up</a></li>-->
                                 {%  if user.is_authenticated %}
-                                <li><a href="{% url 'dash' %}">View Dashboard</a></li>
+                                <li><a href="{% url 'django_dash_black:dash' %}">View Dashboard</a></li>
                                 {% else %}
-                                <li><a href="{% url 'login' %}">Log In</a></li>
+                                <li><a href="{% url 'bb_accounts:login' %}">Log In</a></li>
                                 {% endif %}
                             </ul>
                         </div>

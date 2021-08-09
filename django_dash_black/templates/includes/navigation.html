@@ -9,7 +9,7 @@
                     <span class="navbar-toggler-bar bar3"></span>
                 </button>
             </div>
-            <a class="navbar-brand" href="{% url 'landing_page' %}">
+            <a class="navbar-brand" href="{% url 'bb_public:landing_page' %}">
                 brickbox.io
             </a>
         </div>
@@ -64,7 +64,7 @@
                     <ul class="dropdown-menu dropdown-navbar">
                         <!-- <li class="nav-link"><a href="/page-user.html" class="nav-item dropdown-item">Profile</a></li>
                         <li class="dropdown-divider"></li> -->
-                        <li class="nav-link"><a href="{% url 'logout' %}" class="nav-item dropdown-item">Log out</a></li>
+                        <li class="nav-link"><a href="{% url 'bb_accounts:logout' %}" class="nav-item dropdown-item">Log out</a></li>
                     </ul>
                 </li>
                 <li class="separator d-lg-none"></li>

@@ -15,7 +15,7 @@
     </header>
     <section class="wrapper style5">
         <div class="inner">
-            <form id="login-form" method="post" action="{% url 'login' %}">
+            <form id="login-form" method="post" action="{% url 'bb_accounts:login' %}">
                 {% csrf_token %}
 
                 <h3>Enter your username and password.</h3>
