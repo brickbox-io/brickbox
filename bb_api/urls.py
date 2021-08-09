@@ -5,7 +5,7 @@ from rest_framework import routers
 
 from bb_api import views
 
-aap_name = 'bb_api'
+app_name = 'bb_api'
 
 router = routers.DefaultRouter()
 # router.register(r'users', views.UserViewSet)
