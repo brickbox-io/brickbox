@@ -13,7 +13,7 @@
             {% if request.user.is_authenticated %}
 
             <li class="{% if 'index' in segment %} active {% endif %}">
-                <a href="{% url 'dash' %}">
+                <a href="{% url 'django_dash_black:dash' %}">
                     <i class="tim-icons icon-chart-pie-36"></i>
                     <p>Dashboard</p>
                 </a>
@@ -61,7 +61,7 @@
                 </a>
             </li> -->
             <li>
-                <a href="{% url 'logout' %}">
+                <a href="{% url 'bb_accounts:logout' %}">
                     <i class="tim-icons icon-button-power"></i>
                     <p>Logout</p>
                 </a>
