@@ -1,6 +1,7 @@
 ''' models.py for bb_data '''
 
 import json
+import time
 import requests
 
 from django.db import models
@@ -186,7 +187,14 @@ def grab_crypto_price(sender, instance, created, **kwargs):
     '''
     print(f"Send by {sender}")
     if created:
-        eth_result = requests.get('https://api.etherscan.io/api?module=stats&action=ethprice').text
+
+        try:
+            eth_result = requests.get('https://api.etherscan.io/api?module=stats&action=ethprice').text
+
+        except TypeError:
+            time.sleep(60)
+            eth_result = requests.get('https://api.etherscan.io/api?module=stats&action=ethprice').text
+
         eth = json.loads(eth_result)
         eth_price = eth['result']['ethusd']
 
