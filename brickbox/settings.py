@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'bb_accounts',              # Account creation and login
     'bb_dashboard',             # Users dashboard
     'bb_data',                  # Collection of data
+    'bb_vm',                    # Virtual Machine Rentals
 ]
 
 # -------------------------------- Middleware -------------------------------- #

@@ -33,5 +33,6 @@ urlpatterns = [
     path('dashboard/', include('bb_dashboard.urls')),
     path('dash/', include('django_dash_black.urls')),
     path('data/', include('bb_data.urls')),
+    path('vm/', include('bb_vm.urls')),
     # path('api-auth/', include('rest_framework.urls'))
 ]

@@ -1,7 +1,5 @@
 # -*- encoding: utf-8 -*-
-"""
-Copyright (c) 2019 - present AppSeed.us
-"""
+''' Django Black Dashboard views.py '''
 
 from itertools import chain
 from operator import attrgetter
@@ -12,6 +10,7 @@ from django.http import HttpResponse
 from django import template
 
 from bb_data.models import UserProfile, CryptoPayout, FiatPayout
+from bb_vm.models import VirtualBrickOwner
 
 @login_required(login_url="/login/")
 def index(request):
@@ -23,7 +22,7 @@ def index(request):
 
     # Only grabs the first client for now until there is a proper way to dysplay multiple.
     try:
-        context['client'] = UserProfile.objects.get(user = request.user).clients.all()[0]
+        context['client'] = context['profile'].clients.all()[0]
     except IndexError:
         context['client'] = None
 
@@ -51,9 +50,11 @@ def pages(request):
     # All resource paths end in .html.
     # Pick out the html file name from the url. And load that template.
     try:
-
         load_template      = request.path.split('/')[-1]
         context['segment'] = load_template
+
+        context['profile'] = UserProfile.objects.get(user = request.user)
+        context['bricks'] = VirtualBrickOwner.objects.filter(owner=context['profile'])
 
         html_template = loader.get_template( load_template )
         return HttpResponse(html_template.render(context, request))

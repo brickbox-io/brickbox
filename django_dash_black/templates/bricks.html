@@ -1,0 +1,161 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Bricks {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="row">
+
+    <!-- ------------------------- START Create Brick -------------------------- -->
+    <div class="col-lg-2 col-md-4 col-sm-6">
+        <div class="card">
+
+            <div class="card-header">
+                <h4 class="title">Add Brick Instance</h4>
+                <p class="category">Ubuntu 18.04 LTS</p>
+            </div>
+
+            <div class="card-body">
+                <!-- <h5 class="title">Add Brick Instance</h5>
+                <p class="category">Ubuntu 18.04 LTS</p> -->
+                <p class="card-text">
+                    <!-- OS - Ubuntu 18.04 LTS <br> -->
+                    GPU - 3090 x1 <br>
+                    RAM - 12 GB <br>
+                    SSD - 30 GB
+                </p>
+            </div>
+
+            <div class="card-footer text-center">
+                <p class="card-text text-muted">
+                    $ 1.50 /hr
+                </p>
+                <button type="button" class="btn btn-success" onclick="CreateNewBrick()"> Place Brick </button>
+            </div>
+
+        </div>
+    </div>
+    <!-- ------------------------- END - Create Brick -------------------------- -->
+
+
+    <!-- ------------------------ START Brick Instances ------------------------ -->
+    <div class="col-lg-12 col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="title">Brick Wall</h5>
+                <!-- <p class="category">Handcrafted by our friends from <a href="https://nucleoapp.com/?ref=1712">NucleoApp</a></p> -->
+            </div>
+
+            <div class="card-body">
+                <table class="table">
+
+                    <!-- Table Head -->
+                    <thead>
+                        <tr>
+                            <!-- <th class="text-center">#</th> -->
+                            <th>Name</th>
+                            <th class="text-center">SSH</th>
+                            <!-- <th>Root Password</th> -->
+                            <th class="text-right">Status</th>
+                            <th class="text-right">Actions</th>
+                        </tr>
+                    </thead>
+
+                    <!-- Table Body -->
+                    <tbody>
+                        {% for brick in bricks %}
+                        <tr>
+                            <!-- <td class="text-center">1</td> -->
+
+                            <!-- Brick Name -->
+                            <td>{{ brick.virt_brick.name }}</td>
+
+                            {% if brick.virt_brick.ssh_port != None %}
+
+                            <!-- Brick SSH -->
+                            <td class="text-center" id="{{ brick.virt_brick.ssh_port.port_number }}">root@vm.brickbox.io -p {{ brick.virt_brick.ssh_port.port_number }}
+                                <button type="button" rel="tooltip" class="btn btn-default btn-link btn-icon btn-sm" data-port="{{ brick.virt_brick.ssh_port.port_number }}" onclick="CopySSH(this.dataset.port)">
+                                    <i class="tim-icons icon-single-copy-04"></i>
+                                </button>
+                            </td>
+
+                            <!-- <td>2013</td> -->
+
+                            <!-- Brick Status -->
+                            {% if brick.virt_brick.is_on %}
+
+                            <td class="text-right">Running</td>
+
+                            <!-- Running - Brick Actions -->
+                            <td class="td-actions text-right">
+                                <button type="button" rel="tooltip" class="btn btn-info btn-link btn-icon btn-sm" data-brickid="{{ brick.virt_brick.id }}" onclick="BrickReboot(this.dataset.brickid)">
+                                    <i class="tim-icons icon-refresh-01"></i>
+                                </button>
+                                <button type="button" rel="tooltip" class="btn btn-success btn-link btn-icon btn-sm" data-brickid="{{ brick.virt_brick.id }}" onclick="BrickPause(this.dataset.brickid)">
+                                    <i class="tim-icons icon-button-pause"></i>
+                                </button>
+                                <button type="button" rel="tooltip" class="btn btn-danger btn-link btn-icon btn-sm" data-brickid="{{ brick.virt_brick.id }}" onclick="BrickDestroy(this.dataset.brickid)">
+                                    <i class="tim-icons icon-trash-simple"></i>
+                                </button>
+                            </td>
+
+                            {% else %}
+
+                            <td class="text-right">Paused</td>
+
+                            <!-- Paused - Brick Actions -->
+                            <td class="td-actions text-right">
+                                <button type="button" rel="tooltip" class="btn btn-info btn-link btn-icon btn-sm" disabled>
+                                    <i class="tim-icons icon-refresh-01"></i>
+                                </button>
+                                <button type="button" rel="tooltip" class="btn btn-success btn-link btn-icon btn-sm" data-brickid="{{ brick.virt_brick.id }}" onclick="BrickPlay(this.dataset.brickid)">
+                                    <i class="tim-icons icon-triangle-right-17"></i>
+                                </button>
+                                <button type="button" rel="tooltip" class="btn btn-danger btn-link btn-icon btn-sm" data-brickid="{{ brick.virt_brick.id }}" onclick="BrickDestroy(this.dataset.brickid)">
+                                    <i class="tim-icons icon-trash-simple"></i>
+                                </button>
+                            </td>
+
+                            {% endif %}
+
+
+
+                            {% else %}
+
+                            <td class="text-center"> Applying Mortar </td>
+
+                            <!-- <td>2013</td> -->
+                            <td class="text-right"> Provisioning </td>
+                            <td class="td-actions text-right">
+                                <button type="button" rel="tooltip" class="btn btn-info btn-link btn-icon btn-sm" disabled>
+                                    <i class="tim-icons icon-refresh-01"></i>
+                                </button>
+                                <button type="button" rel="tooltip" class="btn btn-success btn-link btn-icon btn-sm" disabled>
+                                    <i class="tim-icons icon-button-pause"></i>
+                                </button>
+                                <button type="button" rel="tooltip" class="btn btn-danger btn-link btn-icon btn-sm" disabled>
+                                    <i class="tim-icons icon-trash-simple"></i>
+                                </button>
+                            </td>
+
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <!-- ------------------------- END Brick Instances ------------------------- -->
+
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
