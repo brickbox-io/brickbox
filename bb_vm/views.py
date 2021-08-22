@@ -1,13 +1,10 @@
 ''' bb_vm views.py '''
 
-import uuid
-import json
 import subprocess
 import urllib.parse
 
 from django.conf import settings
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
@@ -17,8 +14,7 @@ from bb_vm.models import PortTunnel, VirtualBrick, VirtualBrickOwner, GPU, Rente
 
 from bb_tasks.tasks import(
         new_vm_subprocess, destroy_vm_subprocess, close_ssh_port,
-        pause_vm_subprocess, pause_vm_subprocess, play_vm_subprocess,
-        reboot_vm_subprocess
+        pause_vm_subprocess, play_vm_subprocess, reboot_vm_subprocess,
     )
 
 @csrf_exempt
@@ -67,6 +63,7 @@ def clone_img(request):
     if designated_gpu_xml is None:
         return HttpResponse("No Available GPUs", status=200)
 
+    return HttpResponse("Error", status=200)
 
 # ------------------------------- Status Update ------------------------------ #
 @csrf_exempt

@@ -14,6 +14,9 @@ class PortTunnel(models.Model):
 
 @receiver(pre_save, sender=PortTunnel)
 def assign_port(sender, instance, **kwargs):
+    '''
+    Assigned first available port number to new SSH instance.
+    '''
     print(sender)
     if instance.port_number is None:
         for port in range(1025, 65535):
