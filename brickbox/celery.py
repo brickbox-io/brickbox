@@ -21,4 +21,7 @@ app.autodiscover_tasks()
 
 @app.task(bind=True)
 def debug_task(self):
+    '''
+    Required.
+    '''
     print(f'Request: {self.request!r}')
