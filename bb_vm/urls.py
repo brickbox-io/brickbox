@@ -11,6 +11,7 @@ urlpatterns = [
 
     path('register/<instance_id>/<domain_uuid>/', views.vm_register, name='vm_register'),
     path('tunnel/', views.vm_tunnel, name='vw_tunnel'),
+    path('status/', views.brick_status, name='brick_status'),
 
     # ------------------------------- Brick Actions ------------------------------ #
     path('brick/pause/', views.brick_pause, name='brick_pause'),

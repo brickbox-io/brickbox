@@ -214,3 +214,12 @@ PWA_APP_LANG = 'en-US'
 
 # https://dev.to/rubyflewtoo/upgrading-to-django-3-2-and-fixing-defaultautofield-warnings-518n
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+# ---------------------------------------------------------------------------- #
+#                                  VM Settings                                 #
+# ---------------------------------------------------------------------------- #
+
+if DEBUG:
+    SSH_URL = '134.209.214.111'
+else:
+    SSH_URL = 'vm.brickbox.io'

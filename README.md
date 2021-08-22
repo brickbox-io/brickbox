@@ -33,8 +33,8 @@ Files including images and .js are servered from the location specified in Nginx
 
 https://www.creative-tim.com/live/black-dashboard-django
 
-https://appseed.us/admin-dashboards/django-dashboard-black
-<br>
+https://appseed.us/admin-dashboards/django-dashboard-black <br>
+
 https://docs.appseed.us/products/django-dashboards/black-dashboard
 <br>
 https://demos.creative-tim.com/black-dashboard-django/docs/1.0/getting-started/getting-started-django.html
@@ -46,3 +46,15 @@ Represents an idividual or entity that owns one or more servers located within b
 
 **Colocation Owner** <br>
 The user that owns the colocation client.
+
+## Apps
+
+| App               | Description                                 |
+|-------------------|---------------------------------------------|
+| bb_accounts       | User account creation and management.       |
+| bb_api            | API framework and endpoints.                |
+| bb_dashboard      |                                             |
+| bb_public         | Any publicly accessible landing/info pages. |
+| bb_tasks          | Task management framework, celery.          |
+| bb_vm             | Virtual machine component.                  |
+| django_dash_black | Main website dashboard.                     |

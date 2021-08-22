@@ -4,6 +4,7 @@ brickbox-env/*
 # python
 */__pycache__/*
 __pycache__/
+*get-pip.py
 
 # Django
 db.sqlite3

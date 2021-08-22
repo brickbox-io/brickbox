@@ -188,15 +188,22 @@ def grab_crypto_price(sender, instance, created, **kwargs):
     print(f"Send by {sender}")
     if created:
 
+        eth_price = 0
+
         try:
             eth_result = requests.get('https://api.etherscan.io/api?module=stats&action=ethprice')
+
+            eth = json.loads(eth_result.text)
+            eth_price = eth['result']['ethusd']
 
         except TypeError:
             time.sleep(60)
             eth_result = requests.get('https://api.etherscan.io/api?module=stats&action=ethprice')
 
-        eth = json.loads(eth_result.text)
-        eth_price = eth['result']['ethusd']
+            eth = json.loads(eth_result.text)
+            eth_price = eth['result']['ethusd']
+
+
 
         if sender == CryptoSnapshot:
             instance.dollar_price = float(instance.balance)*float(eth_price)
