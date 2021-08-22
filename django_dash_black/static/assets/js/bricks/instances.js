@@ -1,35 +1,53 @@
+/* ------------------------------ Create New VM ----------------------------- */
 function CreateNewBrick() {
     var formData = new FormData();
     var xhttp = new XMLHttpRequest();
     var url = '/vm/create/'
 
     xhttp.onload = function () {
-        BrickNotice('bottom', 'center', 'Preparing Brick');
+        BrickNotice('bottom', 'center', 'Firing Bricks');
+        var vm_status = JSON.parse(this.responseText);
+        document.getElementById("brick_wall").innerHTML = vm_status.table;
+        CheckBrickStatus(vm_status.brick_id);
+
+        // setTimeout(() => {
+        //     CheckBrickStatus(BrickInfo);
+        // }, 5000);
     }
 
     xhttp.open('POST', url, true);
-    xhttp.setRequestHeader("X-CSRFToken", csrftoken)
+    xhttp.setRequestHeader("X-CSRFToken", csrftoken);
     xhttp.send(formData);
 }
 
-function BrickNotice(from, align, notice) {
-    color = Math.floor((Math.random() * 4) + 1);
 
-    $.notify({
-        icon: "tim-icons icon-bell-55",
-        message: notice
+/* --------------------------- Check Brick Status --------------------------- */
+function CheckBrickStatus(BrickID) {
+    var formData = new FormData();
+    var xhttp = new XMLHttpRequest();
+    var url = '/vm/status/'
 
-    }, {
-        type: type[color],
-        timer: 5000,
-        placement: {
-            from: from,
-            align: align
+    formData.append('BrickID', BrickID);
+
+    xhttp.onload = function () {
+        var vm_status = JSON.parse(this.responseText);
+        console.log(vm_status);
+        if (vm_status.changes != true) {
+            setTimeout(() => {
+                CheckBrickStatus(BrickID);
+            }, 5000);
         }
-    });
+        else {
+            document.getElementById("brick_wall").innerHTML = vm_status.table;
+        };
+    }
+
+    xhttp.open('POST', url, true);
+    xhttp.setRequestHeader("X-CSRFToken", csrftoken);
+    xhttp.send(formData);
 }
 
-
+/* ---------------------------- Copy To Clipbard ---------------------------- */
 function CopySSH(ssh_id) {
     var copyText = document.getElementById(ssh_id);
     var textArea = document.createElement("textarea");
@@ -91,19 +109,25 @@ function BrickReboot(brick_id) {
 }
 
 function BrickDestroy(brick_id) {
-    var formData = new FormData();
-    var xhttp = new XMLHttpRequest();
-    var url = '/vm/brick/destroy/'
+    $("#brick_destroy_confirmation").modal('toggle');
+    $("#confirm_button").click(function () {
+        $("#brick_destroy_confirmation").modal('toggle');
+        var formData = new FormData();
+        var xhttp = new XMLHttpRequest();
+        var url = '/vm/brick/destroy/'
 
-    formData.append('brick_id', brick_id);
+        formData.append('brick_id', brick_id);
 
-    xhttp.onload = function () {
-        BrickNotice('bottom', 'center', 'Brick Crumbled');
-    }
+        xhttp.onload = function () {
+            var vm_status = JSON.parse(this.responseText);
+            BrickNotice('bottom', 'center', 'Brick Crumbled');
+            document.getElementById("brick_wall").innerHTML = vm_status.table;
+        }
 
-    xhttp.open('POST', url, true);
-    xhttp.setRequestHeader("X-CSRFToken", csrftoken)
-    xhttp.send(formData);
+        xhttp.open('POST', url, true);
+        xhttp.setRequestHeader("X-CSRFToken", csrftoken);
+        xhttp.send(formData);
+    });
 }
 
 /* --------------------------------- Notices -------------------------------- */
@@ -117,6 +141,23 @@ function CoppiedNotice(from, align) {
     }, {
         type: type[color],
         timer: 3000,
+        placement: {
+            from: from,
+            align: align
+        }
+    });
+}
+
+function BrickNotice(from, align, notice) {
+    color = Math.floor((Math.random() * 4) + 1);
+
+    $.notify({
+        icon: "tim-icons icon-bell-55",
+        message: notice
+
+    }, {
+        type: type[color],
+        timer: 5000,
         placement: {
             from: from,
             align: align

@@ -1,0 +1,86 @@
+{% for brick in bricks %}
+<tr>
+    <!-- <td class="text-center">1</td> -->
+
+    <!-- Brick Name -->
+    <td>{{ brick.virt_brick.name }}</td>
+
+    {% if brick.virt_brick.ssh_port != None %}
+
+    <!-- Brick SSH -->
+    <td class="text-center" id="{{ brick.virt_brick.ssh_port.port_number }}">root@{{ ssh_url }} -p {{ brick.virt_brick.ssh_port.port_number }}
+        <button type="button" rel="tooltip" class="btn btn-default btn-link btn-icon btn-sm" data-port="{{ brick.virt_brick.ssh_port.port_number }}" onclick="CopySSH(this.dataset.port)">
+            <i class="tim-icons icon-single-copy-04"></i>
+        </button>
+    </td>
+
+    <!-- <td>2013</td> -->
+
+    <!-- Brick Status -->
+    {% if brick.virt_brick.is_on %}
+
+    <td class="text-right">Running</td>
+
+    <!-- Running - Brick Actions -->
+    <td class="td-actions text-right">
+        <button type="button" rel="tooltip" class="btn btn-info btn-link btn-icon btn-sm" data-brickid="{{ brick.virt_brick.id }}" onclick="BrickReboot(this.dataset.brickid)">
+            <i class="tim-icons icon-refresh-01"></i>
+        </button>
+        <button type="button" rel="tooltip" class="btn btn-success btn-link btn-icon btn-sm" data-brickid="{{ brick.virt_brick.id }}" onclick="BrickPause(this.dataset.brickid)">
+            <i class="tim-icons icon-button-pause"></i>
+        </button>
+        <button type="button" rel="tooltip" class="btn btn-danger btn-link btn-icon btn-sm" data-brickid="{{ brick.virt_brick.id }}" onclick="BrickDestroy(this.dataset.brickid)">
+            <i class="tim-icons icon-trash-simple"></i>
+        </button>
+    </td>
+
+    {% else %}
+
+    <td class="text-right">Paused</td>
+
+    <!-- Paused - Brick Actions -->
+    <td class="td-actions text-right">
+        <button type="button" rel="tooltip" class="btn btn-info btn-link btn-icon btn-sm" disabled>
+            <i class="tim-icons icon-refresh-01"></i>
+        </button>
+        <button type="button" rel="tooltip" class="btn btn-success btn-link btn-icon btn-sm" data-brickid="{{ brick.virt_brick.id }}" onclick="BrickPlay(this.dataset.brickid)">
+            <i class="tim-icons icon-triangle-right-17"></i>
+        </button>
+        <button type="button" rel="tooltip" class="btn btn-danger btn-link btn-icon btn-sm" data-brickid="{{ brick.virt_brick.id }}" onclick="BrickDestroy(this.dataset.brickid)">
+            <i class="tim-icons icon-trash-simple"></i>
+        </button>
+    </td>
+
+    {% endif %}
+
+
+
+    {% else %}
+
+    <td class="text-center">
+        <!-- Applying Mortar -->
+        <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </td>
+
+    <!-- <td>2013</td> -->
+    <td class="text-right"> Provisioning </td>
+    <td class="td-actions text-right">
+        <button type="button" rel="tooltip" class="btn btn-info btn-link btn-icon btn-sm" disabled>
+            <i class="tim-icons icon-refresh-01"></i>
+        </button>
+        <button type="button" rel="tooltip" class="btn btn-success btn-link btn-icon btn-sm" disabled>
+            <i class="tim-icons icon-button-pause"></i>
+        </button>
+        <button type="button" rel="tooltip" class="btn btn-danger btn-link btn-icon btn-sm" disabled>
+            <i class="tim-icons icon-trash-simple"></i>
+        </button>
+    </td>
+
+    {% endif %}
+</tr>
+{% endfor %}

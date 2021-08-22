@@ -4,13 +4,14 @@
 from itertools import chain
 from operator import attrgetter
 
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.template import loader
 from django.http import HttpResponse
 from django import template
 
 from bb_data.models import UserProfile, CryptoPayout, FiatPayout
-from bb_vm.models import VirtualBrickOwner
+from bb_vm.models import VirtualBrickOwner, GPU, RentedGPU
 
 @login_required(login_url="/login/")
 def index(request):
@@ -55,6 +56,12 @@ def pages(request):
 
         context['profile'] = UserProfile.objects.get(user = request.user)
         context['bricks'] = VirtualBrickOwner.objects.filter(owner=context['profile'])
+        context['ssh_url'] = settings.SSH_URL
+
+        context['gpu_available'] = False
+        for gpu in GPU.objects.all():
+            if RentedGPU.objects.filter(gpu=gpu).count() < 1:
+                context['gpu_available'] = True
 
         html_template = loader.get_template( load_template )
         return HttpResponse(html_template.render(context, request))
