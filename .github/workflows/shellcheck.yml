@@ -1,3 +1,12 @@
+name: Script Check
+
+on:
+  push:
+    branches:
+      - master
+
+  workflow_dispatch:
+
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -7,4 +16,4 @@ jobs:
       - name: Run Shellcheck
         uses: azohra/shell-linter@latest
         with:
-          path: "src/*.sh"
+          path: "bb_vm/bash_scripts/*.sh"

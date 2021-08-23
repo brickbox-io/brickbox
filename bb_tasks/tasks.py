@@ -45,6 +45,7 @@ def reboot_vm_subprocess(instance_id):
     with subprocess.Popen([f'{DIR}brick_reboot.sh', f'{str(instance_id)}']) as script:
         print(script)
 
+
 @shared_task
 def destroy_vm_subprocess(instance_id):
     '''
