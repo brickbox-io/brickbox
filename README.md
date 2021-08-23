@@ -1,8 +1,9 @@
 # brickbox.io Web & Dashboard
 
-[![Django CI](https://github.com/brickbox-io/brickbox/actions/workflows/Dajango.yml/badge.svg)](https://github.com/brickbox-io/brickbox/actions/workflows/Dajango.yml)
 [![Code Quality](https://github.com/brickbox-io/brickbox/actions/workflows/pylint.yml/badge.svg)](https://github.com/brickbox-io/brickbox/actions/workflows/pylint.yml)
 [![Script Check](https://github.com/brickbox-io/brickbox/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/brickbox-io/brickbox/actions/workflows/shellcheck.yml)
+[![Django CI](https://github.com/brickbox-io/brickbox/actions/workflows/Dajango.yml/badge.svg)](https://github.com/brickbox-io/brickbox/actions/workflows/Dajango.yml)
+
 Framework: Django
 
 ## Getting Started
