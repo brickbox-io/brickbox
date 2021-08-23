@@ -17,6 +17,8 @@ from bb_tasks.tasks import(
         pause_vm_subprocess, play_vm_subprocess, reboot_vm_subprocess,
     )
 
+DIR = '/opt/brickbox/bb_vm/bash_scripts/'
+
 @csrf_exempt
 @login_required(login_url="/login/")
 def clone_img(request):
@@ -211,7 +213,8 @@ def vm_tunnel(request):
     brick.is_on = True
     brick.save()
 
-    subprocess.Popen(['/opt/brickbox/bb_vm/bash_scripts/auth_key.sh', f'{str(pub_key)}'])
+    with subprocess.Popen([f'{DIR}auth_key.sh', f'{str(pub_key)}']) as script:
+        print(script)
 
     return HttpResponse(brick.ssh_port.port_number, status=200)
 
