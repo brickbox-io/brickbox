@@ -2,11 +2,11 @@
 
 from django.shortcuts import render
 
-def landing(request):
+def landing_ai(request):
     '''
     URL: brickbox.io
     '''
-    return render(request, 'landing.html')
+    return render(request, 'landing_ai.html')
 
 def about(request):
     '''
@@ -19,3 +19,9 @@ def contact(request):
     URL: brickbox.io/contact
     '''
     return render(request, 'contact.html')
+
+def landing_colo(request):
+    '''
+    URL: brickbox.io/colo
+    '''
+    return render(request, 'landing_colo.html')
