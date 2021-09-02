@@ -33,6 +33,8 @@ class UserProfile(models.Model):
                                     related_name='clients_owned'
                                     )
 
+    brick_access = models.BooleanField(default=False)
+
     def __str__(self):
         return f"{self.user.get_full_name()} ({self.user})"
 

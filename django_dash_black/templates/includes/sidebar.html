@@ -5,25 +5,44 @@
                 <!-- BB -->
             </a>
             <a target="_blank" rel="sponsored noopener noreferrer" href="" class="simple-text logo-normal">
-                {{ client.account_name }}<!-- Navigation -->
+                {{ client.account_name }}
+                <!-- Navigation -->
             </a>
         </div>
 
         <ul class="nav">
             {% if request.user.is_authenticated %}
 
+            {% if profile.clients.count >= 1 %}
             <li class="{% if 'index' in segment %} active {% endif %}">
                 <a href="{% url 'django_dash_black:dash' %}">
                     <i class="tim-icons icon-chart-pie-36"></i>
                     <p>Dashboard</p>
                 </a>
             </li>
+            {% endif %}
+
+            {% if profile.brick_access %}
             <li class="{% if 'icons' in segment %} active {% endif %}">
                 <a href="/dash/bricks.html">
                     <i class="tim-icons icon-components"></i>
                     <p>Bricks</p>
                 </a>
             </li>
+            {% endif %}
+
+            {% if profile.clients.count > 1 %}
+            <div class="form-group">
+                <!-- <label for="inputState">Clients</label> -->
+                <select id="inputState" class="form-control" onchange="window.location.replace(this.value)">
+                    <option selected>Change Client</option>
+                    {% for client_option in profile.clients.all %}
+                    <option value="{{forloop.counter0}}">{{ client_option }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            {% endif %}
+
             <!-- <li class="{% if 'maps' in segment %} active {% endif %}">
                 <a href="/ui-maps.html">
                     <i class="tim-icons icon-pin"></i>

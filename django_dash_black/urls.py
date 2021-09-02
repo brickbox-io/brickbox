@@ -12,6 +12,7 @@ urlpatterns = [
 
     # The home page
     path('', views.index, name='dash'),
+    path('<int:colo>', views.index, name='dash'),
 
     # Matches any html file
     re_path(r'^.*\.*', views.pages, name='pages'),
