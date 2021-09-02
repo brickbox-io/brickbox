@@ -14,7 +14,7 @@ from bb_data.models import UserProfile, CryptoPayout, FiatPayout
 from bb_vm.models import VirtualBrickOwner, GPU, RentedGPU
 
 @login_required(login_url="/login/")
-def index(request):
+def index(request, colo=0):
     '''
     Dashboard index
     '''
@@ -23,7 +23,7 @@ def index(request):
 
     # Only grabs the first client for now until there is a proper way to dysplay multiple.
     try:
-        context['client'] = context['profile'].clients.all()[0]
+        context['client'] = context['profile'].clients.all()[colo]
     except IndexError:
         context['client'] = None
 
