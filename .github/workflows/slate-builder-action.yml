@@ -1,6 +1,6 @@
 name: Create Slate Documentation on Push
 
-on: push
+on:
   push:
     branches: [ master-slate ]
 
