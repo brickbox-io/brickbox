@@ -1,6 +1,14 @@
 ---
 title: API Reference
 
+toc_footers:
+  - <a href='#'>Documentation provided by Decathlon</a>
+  - <a href='https://github.com/lord/slate'>Template Powered by Slate</a>
+
+search: true
+------
+title: API Reference
+
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
   - ruby
@@ -242,4 +250,6 @@ This endpoint deletes a specific kitten.
 Parameter | Description
 --------- | -----------
 ID | The ID of the kitten to delete
+
+
 
