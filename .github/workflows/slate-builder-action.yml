@@ -13,3 +13,11 @@ jobs:
       env:
         DOC_BASE_FOLDER: bb_api/templates/api_docs_source
         ZIP_BUILD: false
+
+    - name: Pull master-slate
+      run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git add .
+        git commit -m "Built API Docs"
+        git push -u origin 'master-slate'
