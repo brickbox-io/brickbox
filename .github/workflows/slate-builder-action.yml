@@ -1,12 +1,15 @@
-on: push
 name: Create Slate Documentation on Push
+
+on: push
+
 jobs:
   slate-documentation:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@master
-    - name: Build documentation
+
+    - name: Build API Documentation
       uses: docker://decathlon/slate-builder-action:2.0.0
       env:
-        DOC_BASE_FOLDER = "./bb_api/templates/api_docs_source/"
-        ZIP_BUILD = "false"
+        DOC_BASE_FOLDER: bb_api/templates/api_docs_source/
+        ZIP_BUILD: false
