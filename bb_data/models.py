@@ -74,6 +74,7 @@ class ColocationClientOwner(models.Model):
 
     class Meta:
         verbose_name_plural = "Colocation Client Owners"
+        unique_together = ('owner_profile', 'client_account')
 
 
 # ---------------------------------------------------------------------------- #
