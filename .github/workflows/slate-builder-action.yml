@@ -1,6 +1,8 @@
 name: Create Slate Documentation on Push
 
 on: push
+  push:
+    branches: [ master-slate ]
 
 jobs:
   slate-documentation:
@@ -20,4 +22,4 @@ jobs:
         git config user.email github-actions@github.com
         git add .
         git commit -m "Built API Docs"
-        git push -u origin 'master-slate'
+        git push
