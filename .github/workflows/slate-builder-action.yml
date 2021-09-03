@@ -8,4 +8,5 @@ jobs:
     - name: Build documentation
       uses: docker://decathlon/slate-builder-action:2.0.0
       env:
-        DOC_BASE_FOLDER = "bb_api/templates/api_docs_source"
+        DOC_BASE_FOLDER = "bb_api/templates/api_docs_source/"
+        ZIP_BUILD = "false"
