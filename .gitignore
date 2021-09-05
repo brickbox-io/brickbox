@@ -8,3 +8,6 @@ __pycache__/
 
 # Django
 db.sqlite3
+
+# API
+bb_api/templates/api_docs_source/build/*

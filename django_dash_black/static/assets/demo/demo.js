@@ -116,7 +116,16 @@ demo = {
         function CryptoData() {
             var formData = new FormData();
             var xhttp = new XMLHttpRequest();
-            var url = '/data/cryptochart/'
+
+            var current_url = window.location.href
+            var selected_colo = current_url[current_url.length - 1]
+            console.log(selected_colo)
+            if (Number.isInteger(Number(selected_colo))) {
+                var url = '/data/cryptochart/' + selected_colo;
+            } else {
+                var url = '/data/cryptochart/';
+            }
+            console.log(url)
 
             formData.append('client', user);
 
@@ -145,7 +154,15 @@ demo = {
         function FiatData() {
             var formData = new FormData();
             var xhttp = new XMLHttpRequest();
-            var url = '/data/fiatchart/'
+
+            var current_url = window.location.href
+            var selected_colo = current_url[current_url.length - 1]
+            if (Number.isInteger(Number(selected_colo))) {
+                var url = '/data/fiatchart/' + selected_colo;
+            } else {
+                var url = '/data/fiatchart/';
+            }
+
 
             formData.append('client', user);
 
