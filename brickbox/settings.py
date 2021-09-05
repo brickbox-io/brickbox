@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.admindocs', # https://docs.djangoproject.com/en/3.2/ref/contrib/admin/admindocs/
     'pwa',                      # https://github.com/silviolleite/django-pwa
     'rest_framework',           # https://www.django-rest-framework.org/#installation
+
+    # brickbox.io Apps
     'django_dash_black',        # https://appseed.us/admin-dashboards/django-dashboard-black
     'bb_api',                   # API endpoints and handlers
     'bb_public',                # Public landing pages
@@ -48,6 +50,9 @@ INSTALLED_APPS = [
     'bb_dashboard',             # Users dashboard
     'bb_data',                  # Collection of data
     'bb_vm',                    # Virtual Machine Rentals
+
+    # Other Apps
+    'compressor',               # https://github.com/django-compressor/django-compressor
 ]
 
 # -------------------------------- Middleware -------------------------------- #
@@ -153,6 +158,13 @@ STATIC_ROOT = '/var/www/brickbox/static/' # Directory/Path where static files wi
 STATICFILES_DIRS = [
     'bb_api/templates/api_docs_source/build',
 ]
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    'compressor.finders.CompressorFinder',
+)
 
 # Login OPTIONS
 
