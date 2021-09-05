@@ -1,5 +1,7 @@
 ''' views.py for bb_api '''
 
+from django.shortcuts import render
+
 # from django.contrib.auth.models import User, Group
 
 from rest_framework import viewsets
@@ -15,6 +17,12 @@ from bb_data.models import (
         ColocationClient, CryptoSnapshot, FiatSnapshot,
         CryptoPayout, FiatPayout
     )
+
+def docs(request):
+    '''
+    Return Slate Docs
+    '''
+    return render(request, 'api_docs_source/build/index.html')
 
 # class UserViewSet(viewsets.ModelViewSet):
 #     """

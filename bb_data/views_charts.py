@@ -11,7 +11,7 @@ from bb_data.models import UserProfile, CryptoSnapshot, FiatSnapshot
 
 
 @csrf_exempt
-def crypto_balance_chart(request):
+def crypto_balance_chart(request, colo=0):
     '''
     URL: /data/cryptochart/
     METHOD: AJAX
@@ -21,7 +21,7 @@ def crypto_balance_chart(request):
     formated_data = None
 
     try:
-        user_client = UserProfile.objects.get(user = request.user).clients.all()[0]
+        user_client = UserProfile.objects.get(user = request.user).clients.all()[colo]
 
         check_last_reset = CryptoSnapshot.objects.filter(
             account_holder = user_client).order_by('-id')
@@ -65,7 +65,7 @@ def crypto_balance_chart(request):
 
 
 @csrf_exempt
-def fiat_balance_chart(request):
+def fiat_balance_chart(request, colo=0):
     '''
     URL: /data/fiatchart/
     METHOD: AJAX
@@ -75,7 +75,7 @@ def fiat_balance_chart(request):
     formated_data = None
 
     try:
-        user_client = UserProfile.objects.get(user = request.user).clients.all()[0]
+        user_client = UserProfile.objects.get(user = request.user).clients.all()[colo]
 
         check_last_reset = FiatSnapshot.objects.filter(account_holder = user_client).order_by('-id')
         starting_point = check_last_reset.count()

@@ -8,5 +8,8 @@ app_name = 'bb_data'
 
 urlpatterns = [
    path('cryptochart/', views_charts.crypto_balance_chart, name='crypto_chart'),
+   path('cryptochart/<int:colo>', views_charts.crypto_balance_chart, name='crypto_chart_colo'),
+
    path('fiatchart/', views_charts.fiat_balance_chart, name='fiat_chart'),
+   path('fiatchart/<int:colo>', views_charts.fiat_balance_chart, name='fiat_chart_colo'),
 ]

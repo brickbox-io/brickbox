@@ -35,9 +35,9 @@
             <div class="form-group">
                 <!-- <label for="inputState">Clients</label> -->
                 <select id="inputState" class="form-control" onchange="window.location.replace(this.value)">
-                    <option selected>Change Client</option>
+                    <option style="color: black;" selected>Change Client</option>
                     {% for client_option in profile.clients.all %}
-                    <option value="{{forloop.counter0}}">{{ client_option }}</option>
+                    <option style="color: black;" value="{{forloop.counter0}}">{{ client_option }}</option>
                     {% endfor %}
                 </select>
             </div>

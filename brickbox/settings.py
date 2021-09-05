@@ -150,6 +150,10 @@ STATIC_URL = '/static/' # Refrenced via HTML
 
 STATIC_ROOT = '/var/www/brickbox/static/' # Directory/Path where static files will be located
 
+STATICFILES_DIRS = [
+    'bb_api/templates/api_docs_source/build',
+]
+
 # Login OPTIONS
 
 LOGIN_REDIRECT_URL = '/dash/'
