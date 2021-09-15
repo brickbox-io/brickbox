@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Register | brickbox.io{% endblock %}
+{% block menu_title %}Register{% endblock %}
+
+{% block body_class %}is-preload{% endblock %}
+
+{% block content %}
+<!-- Main -->
+<article id="main">
+    <header>
+        <h2>Registration</h2>
+    </header>
+    <section class="wrapper style5">
+        <div class="inner">
+            <form id="login-form" method="post" action="{% url 'bb_accounts:login' %}">
+                {% csrf_token %}
+
+                <h3>Register for Brickbox</h3>
+		 <div>
+                        <label for="fname">First Name:</label>
+                        <input type="text" id="fname" name="fname">
+			<label for="lname">Last Name:</label>
+			<input type="text" id="lname" name="lname">
+                </div>
+		<div>
+                        <label for="email">E-Mail Address:</label>
+                        <input type="email" id="email" name="email">
+                </div>
+                <div>
+                   <label for="pass">Password:</label>
+                   <input type="password" id="pass" name="password" minlength="8" required>
+                </div>
+
+
+                <br>
+
+                <input type="submit" value="Sign Up">
+            </form>
+        </div>
+
+    </section>
+</article>
+
+{% endblock %}

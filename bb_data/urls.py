@@ -12,4 +12,6 @@ urlpatterns = [
 
    path('fiatchart/', views_charts.fiat_balance_chart, name='fiat_chart'),
    path('fiatchart/<int:colo>', views_charts.fiat_balance_chart, name='fiat_chart_colo'),
+
+   path('monthlybreakdown/', views_charts.monthly_breakdown_chart, name='monthly_breakdown'),
 ]
