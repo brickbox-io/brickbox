@@ -5,9 +5,11 @@ Returns formated data for the dashboard charts.
 from decimal import Decimal
 
 from django.http import JsonResponse
+from django.db.models import Count
+from django.db.models.functions import TruncMonth, ExtractMonth
 from django.views.decorators.csrf import csrf_exempt
 
-from bb_data.models import UserProfile, CryptoSnapshot, FiatSnapshot
+from bb_data.models import UserProfile, CryptoSnapshot, FiatSnapshot, CryptoPayout, FiatPayout
 
 
 @csrf_exempt
@@ -17,7 +19,6 @@ def crypto_balance_chart(request, colo=0):
     METHOD: AJAX
     Returns json formatted data of the crypto balance since last payout.
     '''
-
     formated_data = None
 
     try:
@@ -54,8 +55,7 @@ def crypto_balance_chart(request, colo=0):
             'total': Decimal(total_balance).normalize()
         }
 
-
-        print(formated_data)
+        # print(formated_data)
 
     except IndexError:
         user_client = None
@@ -71,7 +71,6 @@ def fiat_balance_chart(request, colo=0):
     METHOD: AJAX
     Returns json formatted data of the dollar balance since last payout.
     '''
-
     formated_data = None
 
     try:
@@ -107,14 +106,46 @@ def fiat_balance_chart(request, colo=0):
             'total': Decimal(total_balance).normalize()
         }
 
-
-        print(formated_data)
+        # print(formated_data)
 
     except IndexError:
         user_client = None
 
 
     return JsonResponse(formated_data, safe=False)
+
+@csrf_exempt
+def monthly_breakdown_chart(request, colo=0):
+    '''
+    URL: /data/monthlybreakdown/
+    METHOD: AJAX
+    Returns a month to month cumulative amount generated.
+    DOES NOT HANDLE YEARS DYNAMICALLY YET
+    '''
+    formated_data = None
+
+    try:
+        user_client = UserProfile.objects.get(user = request.user).clients.all()[colo]
+
+        crypto_payouts = CryptoPayout.objects.filter(account_holder=user_client)
+
+        monthly_payout = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        for payout in crypto_payouts:
+            if payout.recorded.year == 2021:
+                selected_month = payout.recorded.month - 1
+                month_total = monthly_payout[selected_month]
+                try:
+                    monthly_payout[selected_month] = month_total + float(payout.dollar_price)
+                except TypeError:
+                    monthly_payout[selected_month] = month_total
+
+    except IndexError:
+        user_client = None
+
+    formated_data = {2021: monthly_payout}
+
+    return JsonResponse(formated_data, safe=False)
+
 
 # @csrf_exempt
 # def cumulative_earned(request):

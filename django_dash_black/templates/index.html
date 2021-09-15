@@ -67,11 +67,26 @@
     </div>
 </div> -->
 
-
-
-<!-- --------------------------- Payment History --------------------------- -->
 <div class="row">
-    <div class="col-lg-12 col-md-12">
+
+    <!-- ------------------ START - Monthly Payment Breakdown ------------------ -->
+    <div class="col-lg-6">
+        <div class="card card-chart">
+            <div class="card-header">
+                <h4 class="card-title">Monthly Breakdown</h4>
+            </div>
+            <div class="card-body">
+                <div class="chart-area">
+                    <canvas id="chartMonthlyBreakdown"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ------------------- END - Monthly Payment Breakdown ------------------- -->
+
+
+    <!-- --------------------------- Payment History --------------------------- -->
+    <div class="col-lg-6 col-md-6">
         <div class="card ">
             <div class="card-header">
                 <h4 class="card-title">Payment History</h4>
@@ -146,6 +161,7 @@
             </div>
         </div>
     </div>
+
 </div>
 
 {% else %}
@@ -174,6 +190,7 @@
     $(document).ready(function () {
         // Javascript method's body can be found in assets/js/demos.js
         demo.initDashboardPageCharts('{{ user }}');
+        monthly_chart.initMonthlyBreakdown('{{ user }}');
     });
 </script>
 

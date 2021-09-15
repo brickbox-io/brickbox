@@ -30,7 +30,7 @@ class CryptoPayoutAdmin(admin.ModelAdmin):
     '''
     Admin configuration for CryptoPayout DB model.
     '''
-    list_display = ('dated', 'account_holder', 'amount', 'currency', 'tx_hash')
+    list_display = ('dated', 'account_holder', 'amount', 'currency', 'tx_hash', 'dollar_price')
 
 class FiatPayoutAdmin(admin.ModelAdmin):
     '''
