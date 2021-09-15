@@ -5,8 +5,6 @@ Returns formated data for the dashboard charts.
 from decimal import Decimal
 
 from django.http import JsonResponse
-from django.db.models import Count
-from django.db.models.functions import TruncMonth, ExtractMonth
 from django.views.decorators.csrf import csrf_exempt
 
 from bb_data.models import UserProfile, CryptoSnapshot, FiatSnapshot, CryptoPayout, FiatPayout
@@ -128,14 +126,25 @@ def monthly_breakdown_chart(request, colo=0):
         user_client = UserProfile.objects.get(user = request.user).clients.all()[colo]
 
         crypto_payouts = CryptoPayout.objects.filter(account_holder=user_client)
+        fiat_payouts = FiatPayout.objects.filter(account_holder=user_client)
 
         monthly_payout = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
         for payout in crypto_payouts:
             if payout.recorded.year == 2021:
                 selected_month = payout.recorded.month - 1
                 month_total = monthly_payout[selected_month]
                 try:
                     monthly_payout[selected_month] = month_total + float(payout.dollar_price)
+                except TypeError:
+                    monthly_payout[selected_month] = month_total
+
+        for payout in fiat_payouts:
+            if payout.recorded.year == 2021:
+                selected_month = payout.recorded.month - 1
+                month_total = monthly_payout[selected_month]
+                try:
+                    monthly_payout[selected_month] = month_total + float(payout.amount)
                 except TypeError:
                     monthly_payout[selected_month] = month_total
 
