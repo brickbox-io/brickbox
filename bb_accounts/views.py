@@ -15,5 +15,5 @@ def account_registration(request):
     '''
     if request.user.is_authenticated:
         return HttpResponseRedirect('/dash/')
-    else:
-        return render(request, 'registration/register.html', {'form_class':UserCreationForm})
+
+    return render(request, 'registration/register.html', {'form_class':UserCreationForm})
