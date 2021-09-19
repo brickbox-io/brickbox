@@ -1,0 +1,4 @@
+.registration_pagelayout {
+    padding: 78px 30px 30px 30px;
+    min-height: calc(100vh - 70px);
+}

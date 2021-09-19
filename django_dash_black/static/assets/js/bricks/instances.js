@@ -100,6 +100,9 @@ function BrickReboot(brick_id) {
     formData.append('brick_id', brick_id);
 
     xhttp.onload = function () {
+        document.getElementById('status_text').innerHTML = "Rebooting"
+        document.getElementById('reboot_button').disabled = true;
+        document.getElementById('power_button').disabled = true;
         BrickNotice('bottom', 'center', 'Brick Restarting');
     }
 

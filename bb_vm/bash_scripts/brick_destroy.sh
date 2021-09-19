@@ -20,6 +20,8 @@ sleep 5
 
 sudo -n rm /var/lib/libvirt/images/$instance.qcow2 2>> bash_errors.log
 
+sudo -n rm /var/lib/libvirt/images/$instance.img 2>> bash_errors.log
+
 exit
 
 EOF

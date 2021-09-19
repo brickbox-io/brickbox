@@ -10,7 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 from bb_data.models import UserProfile, CryptoSnapshot, FiatSnapshot, CryptoPayout, FiatPayout
 
 
-@csrf_exempt
+
 def crypto_balance_chart(request, colo=0):
     '''
     URL: /data/cryptochart/
@@ -62,7 +62,7 @@ def crypto_balance_chart(request, colo=0):
     return JsonResponse(formated_data, safe=False)
 
 
-@csrf_exempt
+
 def fiat_balance_chart(request, colo=0):
     '''
     URL: /data/fiatchart/
@@ -112,7 +112,7 @@ def fiat_balance_chart(request, colo=0):
 
     return JsonResponse(formated_data, safe=False)
 
-@csrf_exempt
+
 def monthly_breakdown_chart(request, colo=0):
     '''
     URL: /data/monthlybreakdown/
