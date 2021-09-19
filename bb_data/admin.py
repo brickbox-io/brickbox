@@ -30,7 +30,13 @@ class CryptoPayoutAdmin(admin.ModelAdmin):
     '''
     Admin configuration for CryptoPayout DB model.
     '''
-    list_display = ('dated', 'account_holder', 'amount', 'currency', 'tx_hash')
+    list_display = ('dated', 'account_holder', 'amount', 'currency', 'tx_hash', 'dollar_price')
+
+class FiatPayoutAdmin(admin.ModelAdmin):
+    '''
+    Admin configuration for FiatPayout DB model.
+    '''
+    list_display = ('dated', 'account_holder', 'amount', 'currency', 'tx_vast_id')
 
 admin.site.register(UserProfile)
 admin.site.register(ColocationClient)
@@ -38,4 +44,4 @@ admin.site.register(ColocationClientOwner, ColocationClientOwnerAdmin)
 admin.site.register(CryptoSnapshot, CryptoSnapshotAdmin)
 admin.site.register(FiatSnapshot, FiatSnapshotAdmin)
 admin.site.register(CryptoPayout, CryptoPayoutAdmin)
-admin.site.register(FiatPayout)
+admin.site.register(FiatPayout, FiatPayoutAdmin)

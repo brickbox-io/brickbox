@@ -4,6 +4,10 @@ brickbox-env/*
 # python
 */__pycache__/*
 __pycache__/
+*get-pip.py
 
 # Django
 db.sqlite3
+
+# API
+bb_api/templates/api_docs_source/build/*

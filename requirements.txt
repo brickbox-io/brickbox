@@ -1,11 +1,16 @@
 asgiref==3.3.4
 certifi==2021.5.30
+celery>=5.1.2
 chardet==4.0.0
 conventional-commit==0.4.2
+docutils>=0.17.1
 Django==3.2.3
 djangorestframework>=3.12.4
 django-filter>=2.4.0
+django-oauth-toolkit>=1.5.0
 django-pwa>=1.0.10
+django-celery-results>=2.2.0
+django_compressor>=2.4.1
 enforce-git-message==1.0.1
 gunicorn>=20.1.0
 idna==2.10

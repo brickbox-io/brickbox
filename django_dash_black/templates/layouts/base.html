@@ -6,11 +6,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="/static/assets/img/apple-icon.png">
-    <link rel="canonical" href="https://appseed.us/admin-dashboards/django-dashboard-black">
 
     <title>
-        Django Dashboard Black - {% block title %}{% endblock %} | AppSeed
+        brickbox.io | {% block title %}{% endblock %}
     </title>
 
     <!--     Fonts and icons     -->
@@ -23,11 +21,14 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="/static/assets/demo/demo.css" rel="stylesheet" />
     <script src="{% static 'js/csrf.js' %}"></script>
+
+    <link href="/static/assets/css/spinner.css" rel="stylesheet" />
+
     <!-- Specific Page CSS goes HERE  -->
     {% block stylesheets %}{% endblock stylesheets %}
 
-
     <link rel="shortcut icon" type="image/png" href="{% static 'brickbox_icon/favicon.ico' %}" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/static/assets/img/apple-icon.png">
     <link rel="apple-touch-icon" sizes="57x57" href="{% static 'brickbox_icon/apple-icon-57x57.png' %}" />
     <link rel="apple-touch-icon" sizes="60x60" href="{% static 'brickbox_icon/apple-icon-60x60.png' %}" />
     <link rel="apple-touch-icon" sizes="72x72" href="{% static 'brickbox_icon/apple-icon-72x72.png' %}" />
@@ -45,6 +46,7 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{% static 'brickbox_icon/ms-icon-144x144.png' %}">
     <meta name="theme-color" content="#ffffff">
+
 </head>
 
 <body class="">
@@ -56,11 +58,19 @@
 
             {% include 'includes/navigation.html' %}
 
+            {% if request.user.is_authenticated %}
+
             <div class="content">
-
                 {% block content %}{% endblock content %}
-
             </div>
+
+            {% else %}
+
+            <div class="registration_pagelayout">
+                {% block registration %}{% endblock registration %}
+            </div>
+
+            {% endif %}
 
             {% include 'includes/footer.html' %}
 

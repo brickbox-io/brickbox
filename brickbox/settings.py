@@ -31,6 +31,7 @@ ADMINS = [('Justin Merrell', 'merrelljustin@gmail.com'),]
 
 # ------------------------------- Applications ------------------------------- #
 INSTALLED_APPS = [
+    # Django Apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,14 +39,22 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'pwa',                  # https://github.com/silviolleite/django-pwa
-    'rest_framework',       # https://www.django-rest-framework.org/#installation
-    'django_dash_black',    # https://appseed.us/admin-dashboards/django-dashboard-black
-    'bb_api',               # API endpoints and handlers
-    'bb_public',            # Public landing pages
-    'bb_accounts',          # Account creation and login
-    'bb_dashboard',         # Users dashboard
-    'bb_data',              # Collection of data
+    'django.contrib.admindocs', # https://docs.djangoproject.com/en/3.2/ref/contrib/admin/admindocs/
+
+    # brickbox.io Apps
+    'django_dash_black',        # https://appseed.us/admin-dashboards/django-dashboard-black
+    'bb_api',                   # API endpoints and handlers
+    'bb_public',                # Public landing pages
+    'bb_accounts',              # Account creation and login
+    'bb_dashboard',             # Users dashboard
+    'bb_data',                  # Collection of data
+    'bb_vm',                    # Virtual Machine Rentals
+
+    # Other Apps
+    'pwa',                      # https://github.com/silviolleite/django-pwa
+    'compressor',               # https://github.com/django-compressor/django-compressor
+    'rest_framework',           # https://www.django-rest-framework.org/#installation
+    'oauth2_provider',          # https://django-oauth-toolkit.readthedocs.io/en/latest/install.html
 ]
 
 # -------------------------------- Middleware -------------------------------- #
@@ -148,6 +157,17 @@ STATIC_URL = '/static/' # Refrenced via HTML
 
 STATIC_ROOT = '/var/www/brickbox/static/' # Directory/Path where static files will be located
 
+STATICFILES_DIRS = [
+    'bb_api/templates/api_docs_source/build',
+]
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    'compressor.finders.CompressorFinder',
+)
+
 # Login OPTIONS
 
 LOGIN_REDIRECT_URL = '/dash/'
@@ -212,3 +232,12 @@ PWA_APP_LANG = 'en-US'
 
 # https://dev.to/rubyflewtoo/upgrading-to-django-3-2-and-fixing-defaultautofield-warnings-518n
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+# ---------------------------------------------------------------------------- #
+#                                  VM Settings                                 #
+# ---------------------------------------------------------------------------- #
+
+if DEBUG:
+    SSH_URL = '134.209.214.111'
+else:
+    SSH_URL = 'vm.brickbox.io'

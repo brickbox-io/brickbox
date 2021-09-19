@@ -18,6 +18,8 @@ from django.urls import path, include
 
 from django.conf.urls import url
 
+from brickbox import views
+
 # --------------------------- Admin Customizations --------------------------- #
 admin.site.site_header = "brickbox.io"
 admin.site.site_title = "brickbox.io"
@@ -25,12 +27,17 @@ admin.site.index_title = "Admin Interface"
 
 urlpatterns = [
     url('', include('pwa.urls')),  # Progressive Web App (PWA)
+    path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('admin/', admin.site.urls),
     path('api/', include('bb_api.urls')),
-    path('', include('bb_public.urls')),
     path('', include('bb_accounts.urls')),
+    path('', include('bb_public.urls')),
     path('dashboard/', include('bb_dashboard.urls')),
     path('dash/', include('django_dash_black.urls')),
     path('data/', include('bb_data.urls')),
-    # path('api-auth/', include('rest_framework.urls'))
+    path('vm/', include('bb_vm.urls')),
+    path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    # path('api-auth/', include('rest_framework.urls')),
+
+    path('cd/', views.pull_update, name='CD'),
 ]

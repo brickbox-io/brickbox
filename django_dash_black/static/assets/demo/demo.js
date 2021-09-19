@@ -116,7 +116,16 @@ demo = {
         function CryptoData() {
             var formData = new FormData();
             var xhttp = new XMLHttpRequest();
-            var url = '/data/cryptochart/'
+
+            var current_url = window.location.href
+            var selected_colo = current_url[current_url.length - 1]
+            console.log(selected_colo)
+            if (Number.isInteger(Number(selected_colo))) {
+                var url = '/data/cryptochart/' + selected_colo;
+            } else {
+                var url = '/data/cryptochart/';
+            }
+            console.log(url)
 
             formData.append('client', user);
 
@@ -145,7 +154,15 @@ demo = {
         function FiatData() {
             var formData = new FormData();
             var xhttp = new XMLHttpRequest();
-            var url = '/data/fiatchart/'
+
+            var current_url = window.location.href
+            var selected_colo = current_url[current_url.length - 1]
+            if (Number.isInteger(Number(selected_colo))) {
+                var url = '/data/fiatchart/' + selected_colo;
+            } else {
+                var url = '/data/fiatchart/';
+            }
+
 
             formData.append('client', user);
 
@@ -469,7 +486,7 @@ demo = {
                 // labels: ['JUL', 'AUG', 'SEP', 'OCT', 'NOV'],
                 labels: FiatBalanceValuesDates,
                 datasets: [{
-                    label: "My First dataset",
+                    label: "Balance",
                     fill: true,
                     backgroundColor: gradientStroke,
                     borderColor: '#00d6b4',
@@ -502,316 +519,316 @@ demo = {
         var chart_data = [6000, 11900, 18000, 23500, 30129, 35908, 42100, 48521, 54195, 56001, 62010, 68021];
 
 
-        var ctx = document.getElementById("chartBig1").getContext('2d');
+        // var ctx = document.getElementById("chartBig1").getContext('2d');
 
-        var gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
+        // var gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
 
-        gradientStroke.addColorStop(1, 'rgba(72,72,176,0.1)');
-        gradientStroke.addColorStop(0.4, 'rgba(72,72,176,0.0)');
-        gradientStroke.addColorStop(0, 'rgba(119,52,169,0)'); //purple colors
-        var config = {
-            type: 'line',
-            data: {
-                labels: chart_labels,
-                datasets: [{
-                    label: "My First dataset",
-                    fill: true,
-                    backgroundColor: gradientStroke,
-                    borderColor: '#d346b1',
-                    borderWidth: 2,
-                    borderDash: [],
-                    borderDashOffset: 0.0,
-                    pointBackgroundColor: '#d346b1',
-                    pointBorderColor: 'rgba(255,255,255,0)',
-                    pointHoverBackgroundColor: '#d346b1',
-                    pointBorderWidth: 20,
-                    pointHoverRadius: 4,
-                    pointHoverBorderWidth: 15,
-                    pointRadius: 4,
-                    data: chart_data,
-                }]
-            },
-            options: gradientChartOptionsConfigurationWithTooltipPurple
-        };
-        var myChartData = new Chart(ctx, config);
-        $("#0").click(function () {
-            var data = myChartData.config.data;
-            data.datasets[0].data = chart_data;
-            data.labels = chart_labels;
-            myChartData.update();
-        });
-        $("#1").click(function () {
-            var chart_data = [80, 120, 105, 110, 95, 105, 90, 100, 80, 95, 70, 120];
-            var data = myChartData.config.data;
-            data.datasets[0].data = chart_data;
-            data.labels = chart_labels;
-            myChartData.update();
-        });
+        // gradientStroke.addColorStop(1, 'rgba(72,72,176,0.1)');
+        // gradientStroke.addColorStop(0.4, 'rgba(72,72,176,0.0)');
+        // gradientStroke.addColorStop(0, 'rgba(119,52,169,0)'); //purple colors
+        // var config = {
+        //     type: 'line',
+        //     data: {
+        //         labels: chart_labels,
+        //         datasets: [{
+        //             label: "My First dataset",
+        //             fill: true,
+        //             backgroundColor: gradientStroke,
+        //             borderColor: '#d346b1',
+        //             borderWidth: 2,
+        //             borderDash: [],
+        //             borderDashOffset: 0.0,
+        //             pointBackgroundColor: '#d346b1',
+        //             pointBorderColor: 'rgba(255,255,255,0)',
+        //             pointHoverBackgroundColor: '#d346b1',
+        //             pointBorderWidth: 20,
+        //             pointHoverRadius: 4,
+        //             pointHoverBorderWidth: 15,
+        //             pointRadius: 4,
+        //             data: chart_data,
+        //         }]
+        //     },
+        //     options: gradientChartOptionsConfigurationWithTooltipPurple
+        // };
+        // var myChartData = new Chart(ctx, config);
+        // $("#0").click(function () {
+        //     var data = myChartData.config.data;
+        //     data.datasets[0].data = chart_data;
+        //     data.labels = chart_labels;
+        //     myChartData.update();
+        // });
+        // $("#1").click(function () {
+        //     var chart_data = [80, 120, 105, 110, 95, 105, 90, 100, 80, 95, 70, 120];
+        //     var data = myChartData.config.data;
+        //     data.datasets[0].data = chart_data;
+        //     data.labels = chart_labels;
+        //     myChartData.update();
+        // });
 
-        $("#2").click(function () {
-            var chart_data = [60, 80, 65, 130, 80, 105, 90, 130, 70, 115, 60, 130];
-            var data = myChartData.config.data;
-            data.datasets[0].data = chart_data;
-            data.labels = chart_labels;
-            myChartData.update();
-        });
-
-
-        var ctx = document.getElementById("CountryChart").getContext("2d");
-
-        var gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
-
-        gradientStroke.addColorStop(1, 'rgba(29,140,248,0.2)');
-        gradientStroke.addColorStop(0.4, 'rgba(29,140,248,0.0)');
-        gradientStroke.addColorStop(0, 'rgba(29,140,248,0)'); //blue colors
+        // $("#2").click(function () {
+        //     var chart_data = [60, 80, 65, 130, 80, 105, 90, 130, 70, 115, 60, 130];
+        //     var data = myChartData.config.data;
+        //     data.datasets[0].data = chart_data;
+        //     data.labels = chart_labels;
+        //     myChartData.update();
+        // });
 
 
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            responsive: true,
-            legend: {
-                display: false
-            },
-            data: {
-                labels: ['USA', 'GER', 'AUS', 'UK', 'RO', 'BR'],
-                datasets: [{
-                    label: "Countries",
-                    fill: true,
-                    backgroundColor: gradientStroke,
-                    hoverBackgroundColor: gradientStroke,
-                    borderColor: '#1f8ef1',
-                    borderWidth: 2,
-                    borderDash: [],
-                    borderDashOffset: 0.0,
-                    data: [53, 20, 10, 80, 100, 45],
-                }]
-            },
-            options: gradientBarChartConfiguration
-        });
+        //     var ctx = document.getElementById("CountryChart").getContext("2d");
 
-    },
+        //     var gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
 
-    initGoogleMaps: function () {
-        var myLatlng = new google.maps.LatLng(40.748817, -73.985428);
-        var mapOptions = {
-            zoom: 13,
-            center: myLatlng,
-            scrollwheel: false, //we disable de scroll over the map, it is a really annoing when you scroll through page
-            styles: [{
-                "elementType": "geometry",
-                "stylers": [{
-                    "color": "#1d2c4d"
-                }]
-            },
-            {
-                "elementType": "labels.text.fill",
-                "stylers": [{
-                    "color": "#8ec3b9"
-                }]
-            },
-            {
-                "elementType": "labels.text.stroke",
-                "stylers": [{
-                    "color": "#1a3646"
-                }]
-            },
-            {
-                "featureType": "administrative.country",
-                "elementType": "geometry.stroke",
-                "stylers": [{
-                    "color": "#4b6878"
-                }]
-            },
-            {
-                "featureType": "administrative.land_parcel",
-                "elementType": "labels.text.fill",
-                "stylers": [{
-                    "color": "#64779e"
-                }]
-            },
-            {
-                "featureType": "administrative.province",
-                "elementType": "geometry.stroke",
-                "stylers": [{
-                    "color": "#4b6878"
-                }]
-            },
-            {
-                "featureType": "landscape.man_made",
-                "elementType": "geometry.stroke",
-                "stylers": [{
-                    "color": "#334e87"
-                }]
-            },
-            {
-                "featureType": "landscape.natural",
-                "elementType": "geometry",
-                "stylers": [{
-                    "color": "#023e58"
-                }]
-            },
-            {
-                "featureType": "poi",
-                "elementType": "geometry",
-                "stylers": [{
-                    "color": "#283d6a"
-                }]
-            },
-            {
-                "featureType": "poi",
-                "elementType": "labels.text.fill",
-                "stylers": [{
-                    "color": "#6f9ba5"
-                }]
-            },
-            {
-                "featureType": "poi",
-                "elementType": "labels.text.stroke",
-                "stylers": [{
-                    "color": "#1d2c4d"
-                }]
-            },
-            {
-                "featureType": "poi.park",
-                "elementType": "geometry.fill",
-                "stylers": [{
-                    "color": "#023e58"
-                }]
-            },
-            {
-                "featureType": "poi.park",
-                "elementType": "labels.text.fill",
-                "stylers": [{
-                    "color": "#3C7680"
-                }]
-            },
-            {
-                "featureType": "road",
-                "elementType": "geometry",
-                "stylers": [{
-                    "color": "#304a7d"
-                }]
-            },
-            {
-                "featureType": "road",
-                "elementType": "labels.text.fill",
-                "stylers": [{
-                    "color": "#98a5be"
-                }]
-            },
-            {
-                "featureType": "road",
-                "elementType": "labels.text.stroke",
-                "stylers": [{
-                    "color": "#1d2c4d"
-                }]
-            },
-            {
-                "featureType": "road.highway",
-                "elementType": "geometry",
-                "stylers": [{
-                    "color": "#2c6675"
-                }]
-            },
-            {
-                "featureType": "road.highway",
-                "elementType": "geometry.fill",
-                "stylers": [{
-                    "color": "#9d2a80"
-                }]
-            },
-            {
-                "featureType": "road.highway",
-                "elementType": "geometry.stroke",
-                "stylers": [{
-                    "color": "#9d2a80"
-                }]
-            },
-            {
-                "featureType": "road.highway",
-                "elementType": "labels.text.fill",
-                "stylers": [{
-                    "color": "#b0d5ce"
-                }]
-            },
-            {
-                "featureType": "road.highway",
-                "elementType": "labels.text.stroke",
-                "stylers": [{
-                    "color": "#023e58"
-                }]
-            },
-            {
-                "featureType": "transit",
-                "elementType": "labels.text.fill",
-                "stylers": [{
-                    "color": "#98a5be"
-                }]
-            },
-            {
-                "featureType": "transit",
-                "elementType": "labels.text.stroke",
-                "stylers": [{
-                    "color": "#1d2c4d"
-                }]
-            },
-            {
-                "featureType": "transit.line",
-                "elementType": "geometry.fill",
-                "stylers": [{
-                    "color": "#283d6a"
-                }]
-            },
-            {
-                "featureType": "transit.station",
-                "elementType": "geometry",
-                "stylers": [{
-                    "color": "#3a4762"
-                }]
-            },
-            {
-                "featureType": "water",
-                "elementType": "geometry",
-                "stylers": [{
-                    "color": "#0e1626"
-                }]
-            },
-            {
-                "featureType": "water",
-                "elementType": "labels.text.fill",
-                "stylers": [{
-                    "color": "#4e6d70"
-                }]
-            }
-            ]
-        };
+        //     gradientStroke.addColorStop(1, 'rgba(29,140,248,0.2)');
+        //     gradientStroke.addColorStop(0.4, 'rgba(29,140,248,0.0)');
+        //     gradientStroke.addColorStop(0, 'rgba(29,140,248,0)'); //blue colors
 
-        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
-        var marker = new google.maps.Marker({
-            position: myLatlng,
-            title: "Hello World!"
-        });
+        //     var myChart = new Chart(ctx, {
+        //         type: 'bar',
+        //         responsive: true,
+        //         legend: {
+        //             display: false
+        //         },
+        //         data: {
+        //             labels: ['USA', 'GER', 'AUS', 'UK', 'RO', 'BR'],
+        //             datasets: [{
+        //                 label: "Countries",
+        //                 fill: true,
+        //                 backgroundColor: gradientStroke,
+        //                 hoverBackgroundColor: gradientStroke,
+        //                 borderColor: '#1f8ef1',
+        //                 borderWidth: 2,
+        //                 borderDash: [],
+        //                 borderDashOffset: 0.0,
+        //                 data: [53, 20, 10, 80, 100, 45],
+        //             }]
+        //         },
+        //         options: gradientBarChartConfiguration
+        //     });
 
-        // To add the marker to the map, call setMap();
-        marker.setMap(map);
-    },
+        // },
 
-    showNotification: function (from, align) {
-        color = Math.floor((Math.random() * 4) + 1);
+        // initGoogleMaps: function () {
+        //     var myLatlng = new google.maps.LatLng(40.748817, -73.985428);
+        //     var mapOptions = {
+        //         zoom: 13,
+        //         center: myLatlng,
+        //         scrollwheel: false, //we disable de scroll over the map, it is a really annoing when you scroll through page
+        //         styles: [{
+        //             "elementType": "geometry",
+        //             "stylers": [{
+        //                 "color": "#1d2c4d"
+        //             }]
+        //         },
+        //         {
+        //             "elementType": "labels.text.fill",
+        //             "stylers": [{
+        //                 "color": "#8ec3b9"
+        //             }]
+        //         },
+        //         {
+        //             "elementType": "labels.text.stroke",
+        //             "stylers": [{
+        //                 "color": "#1a3646"
+        //             }]
+        //         },
+        //         {
+        //             "featureType": "administrative.country",
+        //             "elementType": "geometry.stroke",
+        //             "stylers": [{
+        //                 "color": "#4b6878"
+        //             }]
+        //         },
+        //         {
+        //             "featureType": "administrative.land_parcel",
+        //             "elementType": "labels.text.fill",
+        //             "stylers": [{
+        //                 "color": "#64779e"
+        //             }]
+        //         },
+        //         {
+        //             "featureType": "administrative.province",
+        //             "elementType": "geometry.stroke",
+        //             "stylers": [{
+        //                 "color": "#4b6878"
+        //             }]
+        //         },
+        //         {
+        //             "featureType": "landscape.man_made",
+        //             "elementType": "geometry.stroke",
+        //             "stylers": [{
+        //                 "color": "#334e87"
+        //             }]
+        //         },
+        //         {
+        //             "featureType": "landscape.natural",
+        //             "elementType": "geometry",
+        //             "stylers": [{
+        //                 "color": "#023e58"
+        //             }]
+        //         },
+        //         {
+        //             "featureType": "poi",
+        //             "elementType": "geometry",
+        //             "stylers": [{
+        //                 "color": "#283d6a"
+        //             }]
+        //         },
+        //         {
+        //             "featureType": "poi",
+        //             "elementType": "labels.text.fill",
+        //             "stylers": [{
+        //                 "color": "#6f9ba5"
+        //             }]
+        //         },
+        //         {
+        //             "featureType": "poi",
+        //             "elementType": "labels.text.stroke",
+        //             "stylers": [{
+        //                 "color": "#1d2c4d"
+        //             }]
+        //         },
+        //         {
+        //             "featureType": "poi.park",
+        //             "elementType": "geometry.fill",
+        //             "stylers": [{
+        //                 "color": "#023e58"
+        //             }]
+        //         },
+        //         {
+        //             "featureType": "poi.park",
+        //             "elementType": "labels.text.fill",
+        //             "stylers": [{
+        //                 "color": "#3C7680"
+        //             }]
+        //         },
+        //         {
+        //             "featureType": "road",
+        //             "elementType": "geometry",
+        //             "stylers": [{
+        //                 "color": "#304a7d"
+        //             }]
+        //         },
+        //         {
+        //             "featureType": "road",
+        //             "elementType": "labels.text.fill",
+        //             "stylers": [{
+        //                 "color": "#98a5be"
+        //             }]
+        //         },
+        //         {
+        //             "featureType": "road",
+        //             "elementType": "labels.text.stroke",
+        //             "stylers": [{
+        //                 "color": "#1d2c4d"
+        //             }]
+        //         },
+        //         {
+        //             "featureType": "road.highway",
+        //             "elementType": "geometry",
+        //             "stylers": [{
+        //                 "color": "#2c6675"
+        //             }]
+        //         },
+        //         {
+        //             "featureType": "road.highway",
+        //             "elementType": "geometry.fill",
+        //             "stylers": [{
+        //                 "color": "#9d2a80"
+        //             }]
+        //         },
+        //         {
+        //             "featureType": "road.highway",
+        //             "elementType": "geometry.stroke",
+        //             "stylers": [{
+        //                 "color": "#9d2a80"
+        //             }]
+        //         },
+        //         {
+        //             "featureType": "road.highway",
+        //             "elementType": "labels.text.fill",
+        //             "stylers": [{
+        //                 "color": "#b0d5ce"
+        //             }]
+        //         },
+        //         {
+        //             "featureType": "road.highway",
+        //             "elementType": "labels.text.stroke",
+        //             "stylers": [{
+        //                 "color": "#023e58"
+        //             }]
+        //         },
+        //         {
+        //             "featureType": "transit",
+        //             "elementType": "labels.text.fill",
+        //             "stylers": [{
+        //                 "color": "#98a5be"
+        //             }]
+        //         },
+        //         {
+        //             "featureType": "transit",
+        //             "elementType": "labels.text.stroke",
+        //             "stylers": [{
+        //                 "color": "#1d2c4d"
+        //             }]
+        //         },
+        //         {
+        //             "featureType": "transit.line",
+        //             "elementType": "geometry.fill",
+        //             "stylers": [{
+        //                 "color": "#283d6a"
+        //             }]
+        //         },
+        //         {
+        //             "featureType": "transit.station",
+        //             "elementType": "geometry",
+        //             "stylers": [{
+        //                 "color": "#3a4762"
+        //             }]
+        //         },
+        //         {
+        //             "featureType": "water",
+        //             "elementType": "geometry",
+        //             "stylers": [{
+        //                 "color": "#0e1626"
+        //             }]
+        //         },
+        //         {
+        //             "featureType": "water",
+        //             "elementType": "labels.text.fill",
+        //             "stylers": [{
+        //                 "color": "#4e6d70"
+        //             }]
+        //         }
+        //         ]
+        //     };
 
-        $.notify({
-            icon: "tim-icons icon-bell-55",
-            message: "Welcome to <b>Black Dashboard</b> - a beautiful freebie for every web developer."
+        //     var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
-        }, {
-            type: type[color],
-            timer: 8000,
-            placement: {
-                from: from,
-                align: align
-            }
-        });
+        //     var marker = new google.maps.Marker({
+        //         position: myLatlng,
+        //         title: "Hello World!"
+        //     });
+
+        //     // To add the marker to the map, call setMap();
+        //     marker.setMap(map);
+        // },
+
+        // showNotification: function (from, align) {
+        //     color = Math.floor((Math.random() * 4) + 1);
+
+        //     $.notify({
+        //         icon: "tim-icons icon-bell-55",
+        //         message: "Welcome to <b>Black Dashboard</b> - a beautiful freebie for every web developer."
+
+        //     }, {
+        //         type: type[color],
+        //         timer: 8000,
+        //         placement: {
+        //             from: from,
+        //             align: align
+        //         }
+        //     });
     }
 
 };

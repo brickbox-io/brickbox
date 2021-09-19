@@ -1,7 +1,8 @@
 # brickbox.io Web & Dashboard
 
-[![Django CI](https://github.com/brickbox-io/brickbox/actions/workflows/Dajango.yml/badge.svg)](https://github.com/brickbox-io/brickbox/actions/workflows/Dajango.yml)
 [![Code Quality](https://github.com/brickbox-io/brickbox/actions/workflows/pylint.yml/badge.svg)](https://github.com/brickbox-io/brickbox/actions/workflows/pylint.yml)
+[![Script Check](https://github.com/brickbox-io/brickbox/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/brickbox-io/brickbox/actions/workflows/shellcheck.yml)
+[![Django CI](https://github.com/brickbox-io/brickbox/actions/workflows/Dajango.yml/badge.svg)](https://github.com/brickbox-io/brickbox/actions/workflows/Dajango.yml)
 
 Framework: Django
 
@@ -23,7 +24,7 @@ python3 -m pip freeze -l >requirements.txt
 
 ## Deploy
 
-[Uvicorn](https://www.uvicorn.org/) is used as the ASGI server to provide async capabilities.
+[Uvicorn](https://www.uvicorn.org/) is used as the ASGI server to provide async capabilities. When changes are made use ```systemctl restart gunicorn``` to update the service.
 
 ### Static Files
 
@@ -33,8 +34,8 @@ Files including images and .js are servered from the location specified in Nginx
 
 https://www.creative-tim.com/live/black-dashboard-django
 
-https://appseed.us/admin-dashboards/django-dashboard-black
-<br>
+https://appseed.us/admin-dashboards/django-dashboard-black <br>
+
 https://docs.appseed.us/products/django-dashboards/black-dashboard
 <br>
 https://demos.creative-tim.com/black-dashboard-django/docs/1.0/getting-started/getting-started-django.html
@@ -46,3 +47,15 @@ Represents an idividual or entity that owns one or more servers located within b
 
 **Colocation Owner** <br>
 The user that owns the colocation client.
+
+## Apps
+
+| App               | Description                                 |
+|-------------------|---------------------------------------------|
+| bb_accounts       | User account creation and management.       |
+| bb_api            | API framework and endpoints.                |
+| bb_dashboard      |                                             |
+| bb_public         | Any publicly accessible landing/info pages. |
+| bb_tasks          | Task management framework, celery.          |
+| bb_vm             | Virtual machine component.                  |
+| django_dash_black | Main website dashboard.                     |

@@ -1,0 +1,25 @@
+name: Create Slate Documentation on Push
+
+on:
+  push:
+    branches: [ master-slate ]
+
+jobs:
+  slate-documentation:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@master
+
+    - name: Build API Documentation
+      uses: docker://decathlon/slate-builder-action:latest
+      env:
+        DOC_BASE_FOLDER: bb_api/templates/api_docs_source
+        ZIP_BUILD: false
+
+    - name: Pull master-slate
+      run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git add bb_api/templates/api_docs_source/build
+        git commit -m "Built API Docs"
+        git push
