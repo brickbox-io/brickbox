@@ -5,7 +5,6 @@ Returns formated data for the dashboard charts.
 from decimal import Decimal
 
 from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
 
 from bb_data.models import UserProfile, CryptoSnapshot, FiatSnapshot, CryptoPayout, FiatPayout
 

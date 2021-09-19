@@ -137,6 +137,7 @@ def update_rent_status_available(sender, instance, **kwargs):
     '''
     Updates the rented boolean field of the GPU to False.
     '''
+    print(sender)
     selected_gpu = instance.gpu
     selected_gpu.rented = False
     selected_gpu.save()
