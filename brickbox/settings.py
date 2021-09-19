@@ -152,6 +152,9 @@ USE_TZ = True
 #                                 Static Files                                 #
 # ---------------------------------------------------------------------------- #
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
+# https://blog.xoxzo.com/en/2018/08/22/cache-busting-in-django/
+
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 STATIC_URL = '/static/' # Refrenced via HTML
 
