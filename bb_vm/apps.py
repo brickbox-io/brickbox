@@ -9,3 +9,4 @@ class BbVmConfig(AppConfig):
     '''
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'bb_vm'
+    verbose_name = "Virtualization (AI/ML Environments)"

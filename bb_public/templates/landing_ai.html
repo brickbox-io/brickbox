@@ -38,14 +38,14 @@
     <meta name="theme-color" content="#ffffff">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-QZQPQ7EV5P"></script>
-	<script>
-  		window.dataLayer = window.dataLayer || [];
-  		function gtag(){dataLayer.push(arguments);}
-  		gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QZQPQ7EV5P"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-  		gtag('config', 'G-QZQPQ7EV5P');
-	</script>
+        gtag('config', 'G-QZQPQ7EV5P');
+    </script>
 </head>
 
 <body class="is-preload landing">
@@ -75,7 +75,12 @@
 								</ul>
 							</li>
 							<li><a href="elements.html">Elements</a></li>-->
-                    <li><a href="#" class="button primary">Sign Up</a></li>
+
+                    {%  if user.is_authenticated %}
+                    <li><a href="{% url 'django_dash_black:dash' %}" class="button primary">View Dashboard</a></li>
+                    {% else %}
+                    <li><a href="{% url 'bb_accounts:register' %}" class="button primary">Sign Up</a></li>
+                    {% endif %}
                 </ul>
             </nav>
         </header>
@@ -132,7 +137,7 @@
                     We built brickbox.io with machine learning in mind, therefore, all of the libraries, like TensorFlow, PyTorch, CUDA, among the others you know and love, are readily available.
                 </p>
                 <ul class="actions">
-                    <li><a href="#" class="button">Get Started</a></li>
+                    <li><a href="{% url 'bb_accounts:register' %}" class="button">Get Started</a></li>
                 </ul>
             </div>
             <a href="#three" class="goto-next scrolly">Next</a>
@@ -151,7 +156,7 @@
                     By democratizing and distributing processing power at affordable rates around the globe, we are providing the tools and infrastructure to the architects of the future.
                 </p>
                 <ul class="actions">
-                    <li><a href="#" class="button">Sign Up</a></li>
+                    <li><a href="{% url 'bb_accounts:register' %}" class="button">Sign Up</a></li>
                 </ul>
             </div>
             <a href="#four" class="goto-next scrolly">Next</a>
@@ -200,16 +205,16 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>1x RTX 3090</td>
-                                <td>1x3090, 4GB RAM, 10GB SDD</td>
-                                <td>$0.80/hr</td>
+                                <td>RTX 3070</td>
+                                <td>4x vCPU, 12GB RAM, 25GB SDD</td>
+                                <td><strike>$0.55/hr</strike> All Rented</td>
                             </tr>
                             <tr>
-                                <td>1x RTX 3090</td>
-                                <td>1x3090, 4GB RAM, 10GB SDD</td>
-                                <td>$0.80/hr</td>
+                                <td>RTX 3090</td>
+                                <td>4x vCPU, 12GB RAM, 25GB SDD</td>
+                                <td>$0.75/hr</td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td>1x RTX 3070</td>
                                 <td>1x3070, 4GB RAM, 10GB SDD</td>
                                 <td>$0.65/hr</td>
@@ -218,7 +223,7 @@
                                 <td>1x RTX 3090</td>
                                 <td>1x3090, 4GB RAM, 10GB SDD</td>
                                 <td>$0.80/hr</td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>
@@ -226,7 +231,7 @@
     </div>
     <footer class="major">
         <ul class="actions special">
-            <li><a href="#" class="button">Get Started</a></li>
+            <li><a href="{% url 'bb_accounts:register' %}" class="button">Get Started</a></li>
         </ul>
     </footer>
     </div>
@@ -252,14 +257,14 @@
     <footer id="footer">
         <ul class="icons">
             <li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
-            <li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+            <li><a href="https://www.facebook.com/brickboxio" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
             <li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
             <li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-            <li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-            <li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
+            <li><a href="https://github.com/brickbox-io" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+            <li><a href="mailto: info@brickbox.io" target="_blank" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
         </ul>
         <ul class="copyright">
-            <li>&copy; 2021 brickbox.io | All rights reserved.</li>
+            <li>&copy; {% now "Y" %} brickbox.io | All rights reserved.</li>
         </ul>
     </footer>
 

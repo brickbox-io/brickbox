@@ -67,6 +67,7 @@ def clone_img(request):
 
     return HttpResponse("Error", status=200)
 
+
 # ------------------------------- Status Update ------------------------------ #
 @csrf_exempt
 @login_required(login_url="/login/")
@@ -93,6 +94,9 @@ def brick_status(request):
 
     return JsonResponse(response_data, status=200, safe=False)
 
+# ---------------------------------------------------------------------------- #
+#                                 Brick Actions                                #
+# ---------------------------------------------------------------------------- #
 
 # -------------------------------- Shutdown VM ------------------------------- #
 @csrf_exempt
@@ -148,6 +152,7 @@ def brick_reboot(request):
 
     brick = VirtualBrick.objects.get(id=vm_id)
     brick.is_on = True
+    brick.is_rebooting = True
     brick.save()
 
     reboot_vm_subprocess.delay(vm_id)

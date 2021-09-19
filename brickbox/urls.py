@@ -18,6 +18,8 @@ from django.urls import path, include
 
 from django.conf.urls import url
 
+from brickbox import views
+
 # --------------------------- Admin Customizations --------------------------- #
 admin.site.site_header = "brickbox.io"
 admin.site.site_title = "brickbox.io"
@@ -34,5 +36,8 @@ urlpatterns = [
     path('dash/', include('django_dash_black.urls')),
     path('data/', include('bb_data.urls')),
     path('vm/', include('bb_vm.urls')),
-    # path('api-auth/', include('rest_framework.urls'))
+    path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    # path('api-auth/', include('rest_framework.urls')),
+
+    path('cd/', views.pull_update, name='CD'),
 ]

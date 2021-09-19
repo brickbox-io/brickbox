@@ -17,16 +17,33 @@
     <!-- <td>2013</td> -->
 
     <!-- Brick Status -->
-    {% if brick.virt_brick.is_on %}
+    {% if brick.virt_brick.is_on and not brick.virt_brick.is_rebooting %}
 
-    <td class="text-right">Running</td>
+    <td class="text-right" id="status_text">Running</td>
 
     <!-- Running - Brick Actions -->
     <td class="td-actions text-right">
-        <button type="button" rel="tooltip" class="btn btn-info btn-link btn-icon btn-sm" data-brickid="{{ brick.virt_brick.id }}" onclick="BrickReboot(this.dataset.brickid)">
+        <button type="button" rel="tooltip" class="btn btn-info btn-link btn-icon btn-sm" id="reboot_button" data-brickid="{{ brick.virt_brick.id }}" onclick="BrickReboot(this.dataset.brickid)">
             <i class="tim-icons icon-refresh-01"></i>
         </button>
-        <button type="button" rel="tooltip" class="btn btn-success btn-link btn-icon btn-sm" data-brickid="{{ brick.virt_brick.id }}" onclick="BrickPause(this.dataset.brickid)">
+        <button type="button" rel="tooltip" class="btn btn-success btn-link btn-icon btn-sm" id="power_button" data-brickid="{{ brick.virt_brick.id }}" onclick="BrickPause(this.dataset.brickid)">
+            <i class="tim-icons icon-button-pause"></i>
+        </button>
+        <button type="button" rel="tooltip" class="btn btn-danger btn-link btn-icon btn-sm" data-brickid="{{ brick.virt_brick.id }}" onclick="BrickDestroy(this.dataset.brickid)">
+            <i class="tim-icons icon-trash-simple"></i>
+        </button>
+    </td>
+
+    {% elif brick.virt_brick.is_rebooting and brick.virt_brick.is_on %}
+
+    <td class="text-right" id="status_text">Rebooting</td>
+
+    <!-- Rebooting - Brick Actions -->
+    <td class="td-actions text-right">
+        <button type="button" rel="tooltip" class="btn btn-info btn-link btn-icon btn-sm" id="reboot_button" disabled>
+            <i class="tim-icons icon-refresh-01"></i>
+        </button>
+        <button type="button" rel="tooltip" class="btn btn-success btn-link btn-icon btn-sm" id="power_button" disabled>
             <i class="tim-icons icon-button-pause"></i>
         </button>
         <button type="button" rel="tooltip" class="btn btn-danger btn-link btn-icon btn-sm" data-brickid="{{ brick.virt_brick.id }}" onclick="BrickDestroy(this.dataset.brickid)">
@@ -36,14 +53,14 @@
 
     {% else %}
 
-    <td class="text-right">Paused</td>
+    <td class="text-right" id="status_text">Paused</td>
 
     <!-- Paused - Brick Actions -->
     <td class="td-actions text-right">
-        <button type="button" rel="tooltip" class="btn btn-info btn-link btn-icon btn-sm" disabled>
+        <button type="button" rel="tooltip" class="btn btn-info btn-link btn-icon btn-sm" id="reboot_button" disabled>
             <i class="tim-icons icon-refresh-01"></i>
         </button>
-        <button type="button" rel="tooltip" class="btn btn-success btn-link btn-icon btn-sm" data-brickid="{{ brick.virt_brick.id }}" onclick="BrickPlay(this.dataset.brickid)">
+        <button type="button" rel="tooltip" class="btn btn-success btn-link btn-icon btn-sm" id="power_button" data-brickid="{{ brick.virt_brick.id }}" onclick="BrickPlay(this.dataset.brickid)">
             <i class="tim-icons icon-triangle-right-17"></i>
         </button>
         <button type="button" rel="tooltip" class="btn btn-danger btn-link btn-icon btn-sm" data-brickid="{{ brick.virt_brick.id }}" onclick="BrickDestroy(this.dataset.brickid)">
