@@ -2,7 +2,7 @@ name: master-ci -> release
 
 on:
   push:
-    branches: [master-ci]
+    branches: [ master-ci ]
 
   workflow_dispatch:
 
