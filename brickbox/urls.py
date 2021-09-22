@@ -18,7 +18,6 @@ from django.urls import path, include
 
 from django.conf.urls import url
 
-from brickbox import views
 
 # --------------------------- Admin Customizations --------------------------- #
 admin.site.site_header = "brickbox.io"
@@ -26,18 +25,22 @@ admin.site.site_title = "brickbox.io"
 admin.site.index_title = "Admin Interface"
 
 urlpatterns = [
-    url('', include('pwa.urls')),  # Progressive Web App (PWA)
     path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('admin/', admin.site.urls),
-    path('api/', include('bb_api.urls')),
-    path('', include('bb_accounts.urls')),
-    path('', include('bb_public.urls')),
-    path('dashboard/', include('bb_dashboard.urls')),
+    path('api/', include('bb_api.urls')),               # bb_api
+    path('', include('bb_accounts.urls')),              # bb_accounts
+    path('', include('bb_public.urls')),                # bb_public
+    path('dashboard/', include('bb_dashboard.urls')),   # bb_dashboard
     path('dash/', include('django_dash_black.urls')),
-    path('data/', include('bb_data.urls')),
-    path('vm/', include('bb_vm.urls')),
-    path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    path('data/', include('bb_data.urls')),             # bb_data
+
+    # ---------------------------- Virtulization URLS ---------------------------- #
+    path('vm/', include('bb_vm.urls')),                 # bb_vm
+
+    path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')), # OAuth2.0
     # path('api-auth/', include('rest_framework.urls')),
 
-    path('cd/', views.pull_update, name='CD'),
+    path('puller/', include('puller.urls')), # Puller App
+
+    url('', include('pwa.urls')),  # Progressive Web App (PWA)
 ]

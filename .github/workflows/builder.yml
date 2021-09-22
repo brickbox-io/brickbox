@@ -1,0 +1,24 @@
+name: master-ci -> release
+
+on:
+  push:
+    branches: [master-ci]
+
+  worflow_dispatch:
+
+jobs:
+
+  sanitize:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@master
+
+    - name: Set DEBUG False
+      run: |
+        git checkout release
+        sed -i -e 's/DEBUG = True/DEBUG = False/g' brickbox/settings.py
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git add brickbox/settings.py
+        git commit -m "Set DEBUG False"
+        git push
