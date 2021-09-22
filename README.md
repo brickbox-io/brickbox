@@ -1,12 +1,26 @@
-# brickbox.io Web & Dashboard
+<div align="center">
 
-[![Code Quality](https://github.com/brickbox-io/brickbox/actions/workflows/pylint.yml/badge.svg)](https://github.com/brickbox-io/brickbox/actions/workflows/pylint.yml)
-[![Script Check](https://github.com/brickbox-io/brickbox/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/brickbox-io/brickbox/actions/workflows/shellcheck.yml)
+<h1>brickbox.io</h1>
+
+[![Code Quality](https://github.com/brickbox-io/brickbox/actions/workflows/pylint.yml/badge.svg)](https://github.com/brickbox-io/brickbox/actions/workflows/pylint.yml) &nbsp;
+[![Script Check](https://github.com/brickbox-io/brickbox/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/brickbox-io/brickbox/actions/workflows/shellcheck.yml) &nbsp;
 [![Django CI](https://github.com/brickbox-io/brickbox/actions/workflows/Dajango.yml/badge.svg)](https://github.com/brickbox-io/brickbox/actions/workflows/Dajango.yml)
 
-Framework: Django
+</div>
+
+## Table of Contents
+
+- [Table of Contents](#table-of-contents)
+- [What is brickbox.io?](#what-is-brickbox.io)
+- [Getting Started](#getting-Started)
+- [Continuous Integration](#continuous-integration)
+- [Continuous Deployment](#continuous-deployment)
+- [Directory Structure](#directory-structure)
+- [Definitions](#definitions)
 
 ## Getting Started
+
+Framework: Django
 
 ```bash
 apt-get install python3-venv -y
@@ -19,10 +33,10 @@ python3 -m pip install -r requirements.txt
 To update requirements.txt after a new package is installed
 
 ```bash
-python3 -m pip freeze -l >requirements.txt
+python3 -m pip freeze -l > requirements.txt
 ```
 
-## Deploy
+### Deploy
 
 [Uvicorn](https://www.uvicorn.org/) is used as the ASGI server to provide async capabilities. When changes are made use ```systemctl restart gunicorn``` to update the service.
 
@@ -40,6 +54,27 @@ https://docs.appseed.us/products/django-dashboards/black-dashboard
 <br>
 https://demos.creative-tim.com/black-dashboard-django/docs/1.0/getting-started/getting-started-django.html
 
+## Continuous Integration
+
+To facilitate the rapid integration of new code the brickbox.io DevOps process includes a set of continious integration tools. These tools are a combination of both best practices and enforced code policies with the aid of GitHub Actions.
+
+## Directory Structure
+
+```default
+.
+├── .github             # CI/CD using GitHub Actions and other functions.
+├── bb_accounts         # User account creation and management.
+├── bb_api              # API framework and endpoints.
+├── bb_dashboard        # Main user interfaces.
+├── bb_data             # Contains the database model definitions.
+├── bb_public           # Any publicly accessible landing/info pages.
+├── bb_tasks            # Task management framework, celery.
+├── bb_vm               # Virtual machine component.
+├── brickbox            # Django project settings and configuration.
+├── django_dash_black   # Main website dashboard.
+└── puller              # Internal CI/CD tools.
+```
+
 ## Definitions
 
 **Colocation Client** <br>
@@ -47,15 +82,3 @@ Represents an idividual or entity that owns one or more servers located within b
 
 **Colocation Owner** <br>
 The user that owns the colocation client.
-
-## Apps
-
-| App               | Description                                 |
-|-------------------|---------------------------------------------|
-| bb_accounts       | User account creation and management.       |
-| bb_api            | API framework and endpoints.                |
-| bb_dashboard      |                                             |
-| bb_public         | Any publicly accessible landing/info pages. |
-| bb_tasks          | Task management framework, celery.          |
-| bb_vm             | Virtual machine component.                  |
-| django_dash_black | Main website dashboard.                     |
