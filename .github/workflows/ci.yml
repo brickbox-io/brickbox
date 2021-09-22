@@ -57,4 +57,4 @@ jobs:
       with:
         type: now
         target_branch: master-ci
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.ACTION_PRIVATE_KEY }}
