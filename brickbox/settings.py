@@ -51,6 +51,9 @@ INSTALLED_APPS = [
     'bb_vm',                    # Virtual Machine Rentals
 
     # Other Apps
+    'puller',                   # CI/CD Automation Tool
+
+    # Other Apps (3rd Party)
     'pwa',                      # https://github.com/silviolleite/django-pwa
     'compressor',               # https://github.com/django-compressor/django-compressor
     'rest_framework',           # https://www.django-rest-framework.org/#installation
