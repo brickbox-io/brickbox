@@ -12,10 +12,11 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@master
+      with:
+        ref: release
 
     - name: Set DEBUG False
       run: |
-        git checkout release
         sed -i -e 's/DEBUG = True/DEBUG = False/g' brickbox/settings.py
         git config user.name github-actions
         git config user.email github-actions@github.com
