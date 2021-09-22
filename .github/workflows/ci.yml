@@ -57,5 +57,4 @@ jobs:
       with:
         type: now
         target_branch: master-ci
-        ssh-key: ${{ secrets.ACTION_PRIVATE_KEY }}
-        # github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
