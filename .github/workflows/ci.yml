@@ -36,6 +36,8 @@ jobs:
     name: Wait For Build To Merge
     steps:
     - uses: actions/checkout@master
+      with:
+        ssh-key: ${{ secrets.ACTION_PRIVATE_KEY }}
 
     - name: Wait on build check
       uses: fountainhead/action-wait-for-check@v1.0.0
