@@ -12,6 +12,8 @@ jobs:
     name: start master-ci
     steps:
     - uses: actions/checkout@master
+      with:
+        ssh-key: ${{ secrets.ACTION_PRIVATE_KEY }}
 
     - name: Wait on check
       uses: fountainhead/action-wait-for-check@v1.0.0
@@ -55,4 +57,5 @@ jobs:
       with:
         type: now
         target_branch: master-ci
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        ssh-key: ${{ secrets.ACTION_PRIVATE_KEY }}
+        # github_token: ${{ secrets.GITHUB_TOKEN }}
