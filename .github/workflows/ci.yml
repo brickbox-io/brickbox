@@ -82,4 +82,7 @@ jobs:
         git config user.email github-actions@github.com
         git add brickbox/settings.py
         git commit -m "Set DEBUG False"
-        git push -u origin master-ci:release
+        git checkout release
+        git merge --squash master-ci
+        git commit
+        git push
