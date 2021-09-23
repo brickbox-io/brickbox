@@ -8,7 +8,7 @@ on:
 
 jobs:
 
-  merge:
+  deploy:
     runs-on: ubuntu-latest
     name: Issue Pull Request
     steps:
