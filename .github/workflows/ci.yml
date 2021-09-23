@@ -56,12 +56,13 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
 
+  # master-ci -> release
   sanitize:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
       with:
-        ref: release
+        ref: master-ci
 
     - name: Wait on build check
       uses: fountainhead/action-wait-for-check@v1.0.0
@@ -81,4 +82,4 @@ jobs:
         git config user.email github-actions@github.com
         git add brickbox/settings.py
         git commit -m "Set DEBUG False"
-        git push
+        git push -u origin master-ci:release
