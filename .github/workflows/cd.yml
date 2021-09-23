@@ -10,12 +10,10 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    name: Issue Pull Request
     steps:
     - uses: actions/checkout@master
 
     - name: Puller Notification
-      if: steps.wait-for-build.outputs.conclusion == 'success'
       uses: distributhor/workflow-webhook@v1
       env:
         webhook_url: "https://brickbox.io/puller/cd/"
