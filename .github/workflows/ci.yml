@@ -86,5 +86,4 @@ jobs:
         git commit -m "Set DEBUG False"
         git checkout release
         git rebase master-ci
-        git push
-
+        git push --force
