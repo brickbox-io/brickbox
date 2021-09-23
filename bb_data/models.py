@@ -206,6 +206,12 @@ def grab_crypto_price(sender, instance, created, **kwargs):
             eth = json.loads(eth_result.text)
             eth_price = eth['result']['ethusd']
 
+        except requests.exceptions.SSLError:
+            time.sleep(60)
+            eth_result = requests.get('https://api.etherscan.io/api?module=stats&action=ethprice')
+
+            eth = json.loads(eth_result.text)
+            eth_price = eth['result']['ethusd']
 
 
         if sender == CryptoSnapshot:

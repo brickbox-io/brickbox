@@ -1,4 +1,5 @@
 {% load static %}
+{% load compress %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +21,10 @@
     <link href="/static/assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="/static/assets/demo/demo.css" rel="stylesheet" />
+
+    {% compress js inline %}
     <script src="{% static 'js/csrf.js' %}"></script>
+    {% endcompress %}
 
     <link href="/static/assets/css/spinner.css" rel="stylesheet" />
 

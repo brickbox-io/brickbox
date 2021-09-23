@@ -25,3 +25,14 @@ def landing_colo(request):
     URL: brickbox.io/colo
     '''
     return render(request, 'landing_colo.html')
+
+# ---------------------------------------------------------------------------- #
+#                                      PWA                                     #
+# ---------------------------------------------------------------------------- #
+
+# ---------------------------------- Offline --------------------------------- #
+def pwa_offline(request):
+    '''
+    URL: brickbox.io/offline/
+    '''
+    return render(request, 'pwa_offline.html')

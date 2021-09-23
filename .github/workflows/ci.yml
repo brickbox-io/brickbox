@@ -54,3 +54,32 @@ jobs:
         type: now
         target_branch: master-ci
         github_token: ${{ secrets.GITHUB_TOKEN }}
+
+
+  # master-ci -> release
+  sanitize:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+      with:
+        ref: master-ci
+
+    - name: Wait on build check
+      uses: fountainhead/action-wait-for-check@v1.0.0
+      id: wait-for-build
+
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        checkName: build
+        ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+
+    - name: Set DEBUG False
+      if: steps.wait-for-build.outputs.conclusion == 'success'
+      run: |
+        sed -i -e 's/DEBUG = True/DEBUG = False/g' brickbox/settings.py
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git add brickbox/settings.py
+        git commit -m "Set DEBUG False"
+        git push -u origin master-ci:release
