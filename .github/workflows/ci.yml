@@ -84,6 +84,5 @@ jobs:
         git add brickbox/settings.py
         git commit -m "Set DEBUG False"
         git checkout release
-        git merge --squash master-ci
-        git commit
+        git rebase master-ci
         git push
