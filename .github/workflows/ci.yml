@@ -63,6 +63,7 @@ jobs:
     - uses: actions/checkout@master
       with:
         ref: master-ci
+        fetch-depth: 0
 
     - name: Wait on build check
       uses: fountainhead/action-wait-for-check@v1.0.0
