@@ -1,4 +1,5 @@
-name: master -> master-ci
+name: master -> master-ci -> release
+
 on:
   push:
     branches: [ master ]
@@ -6,6 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
+
   # NOTE Split into two jobs while testing trying to get it to read build. Should work as one now.
   pull_request:
     runs-on: ubuntu-latest
@@ -62,7 +64,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
       with:
-        ref: master-ci
+        ref: release
         fetch-depth: 0
 
 
@@ -79,12 +81,15 @@ jobs:
     - name: Set DEBUG False
       if: steps.wait-for-build.outputs.conclusion == 'success'
       run: |
-        sed -i -e 's/DEBUG = True/DEBUG = False/g' brickbox/settings.py
         git config user.name github-actions
         git config user.email github-actions@github.com
+
+        git checkout master-ci
+        git pull
+
+        git checkout release
+        git merge --squash master-ci --strategy-option theirs
+        sed -i -e 's/DEBUG = True/DEBUG = False/g' brickbox/settings.py
         git add brickbox/settings.py
         git commit -m "Set DEBUG False"
-        git checkout release
-        git rebase master-ci
         git push
-
