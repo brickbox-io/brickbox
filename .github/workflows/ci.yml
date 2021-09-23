@@ -31,9 +31,9 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
   # master -> master-ci
+  # --- Waits for builds to finish before merging. ---
   merge:
     runs-on: ubuntu-latest
-    name: Wait For Build To Merge
     steps:
     - uses: actions/checkout@master
 
