@@ -79,13 +79,15 @@ jobs:
     - name: Set DEBUG False
       if: steps.wait-for-build.outputs.conclusion == 'success'
       run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+
         git checkout master-ci
         git pull
+
         git checkout release
         git merge --squash master-ci
         sed -i -e 's/DEBUG = True/DEBUG = False/g' brickbox/settings.py
-        git config user.name github-actions
-        git config user.email github-actions@github.com
         git add brickbox/settings.py
         git commit -m "Set DEBUG False"
         git push
