@@ -18,6 +18,11 @@
 - [Directory Structure](#directory-structure)
 - [Definitions](#definitions)
 
+
+## What is brickbox.io?
+
+[brickbox.io](brickbox.io) is an artificial intelligence (AI) infrastructure provider and management platform. The goal of brickbox.io is to connection individuals working on the latest in cutting edge technology with the hardware they need to rain AI models.
+
 ## Getting Started
 
 Framework: Django
