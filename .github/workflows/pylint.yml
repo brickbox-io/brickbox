@@ -1,13 +1,14 @@
-name: Code Quality
+name: Code Quality (linting)
 
 on:
   push:
     branches:
       - master
+  workflow_dispatch:
 
 jobs:
-  lint:
 
+  lint:
     runs-on: ubuntu-latest
 
     steps:

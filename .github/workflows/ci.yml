@@ -3,12 +3,10 @@ name: master -> master-ci -> release
 on:
   push:
     branches: [ master ]
-
   workflow_dispatch:
 
 jobs:
 
-  # NOTE Split into two jobs while testing trying to get it to read build. Should work as one now.
   pull_request:
     runs-on: ubuntu-latest
     name: start master-ci
@@ -32,14 +30,14 @@ jobs:
         destination_branch: "master-ci"
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
-
+  # master -> master-ci
+  # --- Waits for builds to finish before merging. ---
   merge:
     runs-on: ubuntu-latest
-    name: Wait For Build To Merge
     steps:
     - uses: actions/checkout@master
 
-    - name: Wait on build check
+    - name: Wait for Build
       uses: fountainhead/action-wait-for-check@v1.0.0
       id: wait-for-build
 
@@ -57,7 +55,6 @@ jobs:
         target_branch: master-ci
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
-
   # master-ci -> release
   sanitize:
     runs-on: ubuntu-latest
@@ -68,18 +65,18 @@ jobs:
         fetch-depth: 0
 
 
-    - name: Wait on build check
+    - name: Wait for Merge
       uses: fountainhead/action-wait-for-check@v1.0.0
-      id: wait-for-build
+      id: wait-for-merge
 
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        checkName: build
+        checkName: merge
         ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
 
     - name: Set DEBUG False
-      if: steps.wait-for-build.outputs.conclusion == 'success'
+      if: steps.wait-for-merge.outputs.conclusion == 'success'
       run: |
         git config user.name github-actions
         git config user.email github-actions@github.com
