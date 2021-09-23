@@ -13,8 +13,8 @@
 - [Table of Contents](#table-of-contents)
 - [What is brickbox.io?](#what-is-brickbox.io)
 - [Getting Started](#getting-Started)
-- [Continuous Integration](#continuous-integration)
-- [Continuous Deployment](#continuous-deployment)
+- [Continuous Integration (CI)](#continuous-integration)
+- [Continuous Deployment (CD)](#continuous-deployment)
 - [Directory Structure](#directory-structure)
 - [Definitions](#definitions)
 
@@ -22,9 +22,9 @@
 
 [brickbox.io](brickbox.io) is an artificial intelligence (AI) infrastructure provider and management platform. The goal of brickbox.io is to connection individuals working on the latest in cutting edge technology with the hardware they need to rain AI models.
 
-## Getting Started
+The web interface is built on the [Django](https://www.djangoproject.com/) framework.
 
-Framework: Django
+## Getting Started
 
 ```bash
 apt-get install python3-venv -y
@@ -60,7 +60,7 @@ https://demos.creative-tim.com/black-dashboard-django/docs/1.0/getting-started/g
 
 ## Continuous Integration
 
-To facilitate the rapid integration of new code the brickbox.io DevOps process includes a set of continious integration tools. These tools are a combination of both best practices and enforced code policies with the aid of GitHub Actions.
+To facilitate the rapid integration of new code the brickbox.io DevOps process includes a set of continuous integration tools. These tools are a combination of both best practices and enforced code policies with the aid of GitHub Actions.
 
 ## Directory Structure
 
