@@ -3,12 +3,10 @@ name: master -> master-ci -> release
 on:
   push:
     branches: [ master ]
-
   workflow_dispatch:
 
 jobs:
 
-  # NOTE Split into two jobs while testing trying to get it to read build. Should work as one now.
   pull_request:
     runs-on: ubuntu-latest
     name: start master-ci
@@ -32,7 +30,7 @@ jobs:
         destination_branch: "master-ci"
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
-
+  # master -> master-ci
   merge:
     runs-on: ubuntu-latest
     name: Wait For Build To Merge
@@ -56,7 +54,6 @@ jobs:
         type: now
         target_branch: master-ci
         github_token: ${{ secrets.GITHUB_TOKEN }}
-
 
   # master-ci -> release
   sanitize:
