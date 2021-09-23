@@ -72,8 +72,9 @@ jobs:
         checkName: build
         ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
-    if: steps.wait-for-build.outputs.conclusion == 'success'
+
     - name: Set DEBUG False
+      if: steps.wait-for-build.outputs.conclusion == 'success'
       run: |
         sed -i -e 's/DEBUG = True/DEBUG = False/g' brickbox/settings.py
         git config user.name github-actions
