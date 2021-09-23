@@ -65,6 +65,7 @@ jobs:
         ref: master-ci
         fetch-depth: 0
 
+
     - name: Wait on build check
       uses: fountainhead/action-wait-for-check@v1.0.0
       id: wait-for-build
@@ -86,3 +87,4 @@ jobs:
         git checkout release
         git rebase master-ci
         git push
+
