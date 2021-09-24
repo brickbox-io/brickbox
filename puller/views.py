@@ -1,4 +1,4 @@
-''' CI/CD Functions '''
+# ''' CI/CD Functions '''
 
 import subprocess
 
