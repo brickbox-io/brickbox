@@ -83,16 +83,22 @@ jobs:
 
         git fetch origin
 
-        git checkout master-ci
-        git rebase origin/release --skip
-
         git checkout release
+
+        git checkout -b temp
 
         git merge --strategy-option theirs origin/master-ci --ff-only
 
         sed -i -e 's/DEBUG = True/DEBUG = False/g' brickbox/settings.py
 
         git add .
+
         git commit -m "Set DEBUG False"
+
+        git rebase origin/release
+
+        git checkout release
+
+        git merge --ff-only temp
 
         git push
