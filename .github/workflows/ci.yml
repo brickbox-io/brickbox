@@ -92,5 +92,4 @@ jobs:
         git add .
         git commit -m "Set DEBUG False"
 
-        git clean
         git push
