@@ -85,8 +85,10 @@ jobs:
 
         git reset --hard origin/master-ci
 
+        git pull
+
         sed -i -e 's/DEBUG = True/DEBUG = False/g' brickbox/settings.py
 
         git add .
-        git commit -m "Set DEBUG False" --amend
+        git commit -m "Set DEBUG False"
         git push
