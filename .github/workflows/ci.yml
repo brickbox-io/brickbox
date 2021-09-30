@@ -97,6 +97,8 @@ jobs:
 
         git checkout release
 
+        git pull --rebase
+
         git merge --ff-only temp
 
         git push --force
