@@ -95,7 +95,7 @@ jobs:
 
         git commit -m "Set DEBUG False"
 
-        git rebase origin/release
+        git rebase origin/release --strategy-option ours
 
         git checkout release
 
