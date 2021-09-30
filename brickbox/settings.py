@@ -200,7 +200,7 @@ PASSWORD_RESET_MAIL_FROM_USER = 'info@brickbox.io'    #CRM
 # ---------------------------------------------------------------------------- #
 #                           Progressive Web App (PWA)                          #
 # ---------------------------------------------------------------------------- #
-PWA_SERVICE_WORKER_PATH = '/var/www/brickbox/static/js/pwa/serviceworker.js'
+PWA_SERVICE_WORKER_PATH = '/var/www/brickbox/static/pwa/serviceworker.js'
 
 if DEBUG:
     PWA_APP_NAME = 'DEV-brickbox.io'

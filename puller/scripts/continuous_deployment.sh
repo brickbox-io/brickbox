@@ -4,3 +4,5 @@
 
 git pull
 python3 /opt/brickbox/manage.py collectstatic --noinput
+python3 /opt/brickbox/manage.py migrate
+systemctl restart gunicorn
