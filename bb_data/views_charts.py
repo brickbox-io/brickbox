@@ -6,10 +6,12 @@ from decimal import Decimal
 
 from django.http import JsonResponse
 
+from django.contrib.auth.decorators import login_required
+
 from bb_data.models import UserProfile, CryptoSnapshot, FiatSnapshot, CryptoPayout, FiatPayout
 
 
-
+@login_required(login_url='/login/')
 def crypto_balance_chart(request, colo=0):
     '''
     URL: /data/cryptochart/
@@ -61,7 +63,7 @@ def crypto_balance_chart(request, colo=0):
     return JsonResponse(formated_data, safe=False)
 
 
-
+@login_required(login_url='/login/')
 def fiat_balance_chart(request, colo=0):
     '''
     URL: /data/fiatchart/
@@ -112,6 +114,7 @@ def fiat_balance_chart(request, colo=0):
     return JsonResponse(formated_data, safe=False)
 
 
+@login_required(login_url='/login/')
 def monthly_breakdown_chart(request, colo=0):
     '''
     URL: /data/monthlybreakdown/
