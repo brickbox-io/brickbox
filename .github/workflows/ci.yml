@@ -99,4 +99,4 @@ jobs:
 
         git merge --ff-only temp
 
-        git push origin/release --force
+        git push --force
