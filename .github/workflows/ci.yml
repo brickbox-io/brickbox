@@ -84,8 +84,7 @@ jobs:
         git checkout release
 
         git reset --hard origin/master-ci
-
-        git pull
+        git rebase origin/release
 
         sed -i -e 's/DEBUG = True/DEBUG = False/g' brickbox/settings.py
 
