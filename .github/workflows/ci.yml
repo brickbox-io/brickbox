@@ -83,10 +83,11 @@ jobs:
 
         git checkout master-ci
         git pull
-        git rebase origin/release
 
         git checkout release
         git merge --no-squash master-ci --strategy-option theirs
+
+        git rebase origin/release
 
         sed -i -e 's/DEBUG = True/DEBUG = False/g' brickbox/settings.py
 
