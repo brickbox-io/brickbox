@@ -85,7 +85,7 @@ jobs:
 
         git checkout release
 
-        git merge --strategy-option theirs master-ci
+        git merge --strategy-option theirs origin/master-ci
 
         sed -i -e 's/DEBUG = True/DEBUG = False/g' brickbox/settings.py
 
