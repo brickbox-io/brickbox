@@ -95,10 +95,8 @@ jobs:
 
         git commit -m "Set DEBUG False"
 
-        git rebase origin/release --strategy-option ours
-
         git checkout release
 
         git merge --ff-only temp
 
-        git push
+        git push origin/release --force
