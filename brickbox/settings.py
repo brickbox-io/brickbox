@@ -177,7 +177,7 @@ STATICFILES_FINDERS = (
 # Login OPTIONS
 
 LOGIN_REDIRECT_URL = '/dash/'
-LOGOUT_REDIRECT_URL = ''
+LOGOUT_REDIRECT_URL = '/login/'
 
 # ---------------------------------------------------------------------------- #
 #                              Email Configuration                             #
@@ -212,7 +212,7 @@ PWA_APP_THEME_COLOR = '#0A0302'
 PWA_APP_BACKGROUND_COLOR = '#ffffff'
 PWA_APP_DISPLAY = 'standalone'
 PWA_APP_SCOPE = '/'
-PWA_APP_ORIENTATION = 'any'
+PWA_APP_ORIENTATION = 'portrait'
 PWA_APP_START_URL = '/dash/'
 PWA_APP_STATUS_BAR_COLOR = 'default'
 PWA_APP_ICONS = [
