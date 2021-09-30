@@ -84,7 +84,7 @@ jobs:
         git fetch origin
 
         git checkout master-ci
-        git rebase origin/release
+        git rebase origin/release --strategy-option ours
 
         git checkout release
 
