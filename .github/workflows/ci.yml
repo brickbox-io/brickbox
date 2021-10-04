@@ -38,6 +38,7 @@ jobs:
     - uses: actions/checkout@master
 
     - name: Wait for Build
+      if: steps.wait-for-lint.outputs.conclusion == 'success'
       uses: fountainhead/action-wait-for-check@v1.0.0
       id: wait-for-build
 
@@ -83,18 +84,18 @@ jobs:
 
         git fetch origin
 
-        git checkout origin/master-ci
+        git checkout master-ci
 
-        git checkout -b temp
+        git pull
+
+        git checkout release
+
+        git merge master-ci
 
         sed -i -e 's/DEBUG = True/DEBUG = False/g' brickbox/settings.py
 
         git add .
 
         git commit -m "Set DEBUG False"
-
-        git checkout release
-
-        git reset --hard temp
 
         git push --force

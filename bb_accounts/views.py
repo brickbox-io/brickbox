@@ -2,7 +2,7 @@
 
 from django.shortcuts import render, redirect
 
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 
 from django.contrib.auth import login, authenticate
 
@@ -24,7 +24,7 @@ def account_registration(request):
 
     Response: Form Errors or Redirect
     '''
-    if request.method != 'POST' and request.method != 'GET':
+    if request.method not in ('POST', 'GET'):
         return HttpResponse(status=405)
 
     if request.user.is_authenticated:
@@ -58,7 +58,6 @@ def account_registration(request):
 
             return redirect('/dash/')
 
-        else:
-            print(form.errors)
+        print(form.errors)
 
     return render(request, 'registration/register.html', {'form_class':UserCreationForm})
