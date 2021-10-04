@@ -33,7 +33,7 @@ class RegistrationForm(UserCreationForm):
                 }))
 
     def __init__(self, *args, **kwargs):
-        super(RegistrationForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         for fieldname in ['username', 'email', 'password1']:
             self.fields[fieldname].help_text = None
