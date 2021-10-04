@@ -107,4 +107,4 @@ jobs:
 
         git commit -m "Set DEBUG False"
 
-        git push --force
+        git push
