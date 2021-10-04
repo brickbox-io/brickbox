@@ -58,6 +58,20 @@ INSTALLED_APPS = [
     'compressor',               # https://github.com/django-compressor/django-compressor
     'rest_framework',           # https://www.django-rest-framework.org/#installation
     'oauth2_provider',          # https://django-oauth-toolkit.readthedocs.io/en/latest/install.html
+    'django_celery_results',    # https://github.com/celery/django-celery-results
+
+    # django-health-check       # https://github.com/KristianOellegaard/django-health-check
+    'health_check',                             # required
+    'health_check.db',                          # stock Django health checkers
+    'health_check.cache',
+    'health_check.storage',
+    'health_check.contrib.migrations',
+    'health_check.contrib.celery',              # requires celery
+    'health_check.contrib.celery_ping',         # requires celery
+    'health_check.contrib.psutil',              # disk and memory utilization; requires psutil
+    # 'health_check.contrib.s3boto3_storage',     # requires boto3 and S3BotoStorage backend
+    'health_check.contrib.rabbitmq',            # requires RabbitMQ broker
+    # 'health_check.contrib.redis',               # requires Redis broker
 ]
 
 # -------------------------------- Middleware -------------------------------- #
@@ -73,7 +87,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'brickbox.urls'
 
-# --------------------------------- Template --------------------------------- #
+# --------------------------------- Templates -------------------------------- #
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -179,6 +193,7 @@ STATICFILES_FINDERS = (
 LOGIN_REDIRECT_URL = '/dash/'
 LOGOUT_REDIRECT_URL = '/login/'
 
+
 # ---------------------------------------------------------------------------- #
 #                              Email Configuration                             #
 # ---------------------------------------------------------------------------- #
@@ -196,6 +211,7 @@ else:
     EMAIL_HOST_PASSWORD = 'r0flduqu'
 
 PASSWORD_RESET_MAIL_FROM_USER = 'info@brickbox.io'    #CRM
+
 
 # ---------------------------------------------------------------------------- #
 #                           Progressive Web App (PWA)                          #
@@ -238,6 +254,14 @@ PWA_APP_LANG = 'en-US'
 
 # https://dev.to/rubyflewtoo/upgrading-to-django-3-2-and-fixing-defaultautofield-warnings-518n
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+
+# ---------------------------------------------------------------------------- #
+#                                    Celery                                    #
+# ---------------------------------------------------------------------------- #
+
+CELERY_RESULT_BACKEND = 'django-db'
+
 
 # ---------------------------------------------------------------------------- #
 #                                  VM Settings                                 #

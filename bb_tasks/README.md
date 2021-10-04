@@ -7,3 +7,7 @@ The bb_tasks app contains the core functionality of the Celery framework. The ta
 ```bash
 apt-get install rabbitmq-server
 ```
+
+## Result Monitoring
+
+https://github.com/celery/django-celery-results

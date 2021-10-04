@@ -151,7 +151,7 @@ def monthly_breakdown_chart(request, colo=0):
                     monthly_payout[selected_month] = month_total
 
     except IndexError:
-        user_client = None
+        monthly_payout = None
 
     formated_data = {2021: monthly_payout}
 
