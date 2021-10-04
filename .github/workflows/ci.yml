@@ -37,6 +37,15 @@ jobs:
     steps:
     - uses: actions/checkout@master
 
+    - name: Wait on check
+      uses: fountainhead/action-wait-for-check@v1.0.0
+      id: wait-for-lint
+
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        checkName: lint
+        ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
     - name: Wait for Build
       if: steps.wait-for-lint.outputs.conclusion == 'success'
       uses: fountainhead/action-wait-for-check@v1.0.0
