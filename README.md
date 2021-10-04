@@ -62,6 +62,12 @@ https://demos.creative-tim.com/black-dashboard-django/docs/1.0/getting-started/g
 
 To facilitate the rapid integration of new code the brickbox.io DevOps process includes a set of continuous integration tools. These tools are a combination of both best practices and enforced code policies with the aid of GitHub Actions.
 
+## Admin & Monitoring
+
+### Service Status
+
+To quickly see that services are operational the app [django-health-check](https://github.com/KristianOellegaard/django-health-check) has been added.
+
 ## Directory Structure
 
 ```default

@@ -40,7 +40,9 @@ urlpatterns = [
     path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')), # OAuth2.0
     # path('api-auth/', include('rest_framework.urls')),
 
-    path('puller/', include('puller.urls')), # Puller App
+    path('puller/', include('puller.urls')),        # Puller App
 
-    url('', include('pwa.urls')),  # Progressive Web App (PWA)
+    path('status/', include('health_check.urls')),  # django-health-check
+
+    url('', include('pwa.urls')),                   # Progressive Web App (PWA)
 ]
