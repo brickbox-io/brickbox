@@ -1,5 +1,7 @@
 {% extends "layouts/base.html" %}
 
+{% load static %}
+
 {% block title %} Register {% endblock %}
 
 <!-- Specific Page CSS goes HERE  -->
@@ -10,53 +12,55 @@
 {% block registration %}
 
 <div class="row justify-content-center">
-    <div class="col-md-3">
+    <div class="col-lg-3 col-md-6">
         <div class="card">
 
-            <form role="form" method="post" action="">
-                {% csrf_token %}
+            <div class="card-header">
+                <h6 class="card-category" style="text-align:center;">
+                    Register & Start Building
+                </h6>
 
-                <div class="card-header">
-                    <h5 class="title">Lay your own path, brick by brick.</h5>
+                <h5 class="title" style="text-align:center;">Lay your own path, brick by brick.</h5>
 
-                    <h6 class="card-category">
-                        Register & Start Building
-                    </h6>
+
+            </div>
+
+            <div class="card-body">
+
+                <!-- ------------------------- START - Google Auth ------------------------- -->
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <div id="g_id_onload" data-client_id="918414840239-qljh31euklmcem5ec7s72a726r3aofsr.apps.googleusercontent.com" data-login_uri="/tokensignin/" data-auto_prompt="false">
+                            </div>
+                            <div class="g_id_signin" data-type="standard" data-size="large" data-theme="filled_black" data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- -------------------------- END - Google Auth -------------------------- -->
+
+                <!-- ------------------------- START - GitHub Auth ------------------------- -->
+                <!-- <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <a id="github-button" class="btn btn-block btn-social btn-github">
+                                <i class="fa fa-github"></i> Sign in with GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- -------------------------- END - GitHub Auth -------------------------- -->
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group" style="text-align: center;">
+                            OR
+                        </div>
+                    </div>
                 </div>
 
-                <div class="card-body">
-
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <script src="https://accounts.google.com/gsi/client" async defer></script>
-                                <div id="g_id_onload" data-client_id="YOUR_GOOGLE_CLIENT_ID" data-login_uri="https://your.domain/your_login_endpoint" data-auto_prompt="false">
-                                </div>
-                                <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <a id="github-button" class="btn btn-block btn-social btn-github">
-                                    <i class="fa fa-github"></i> Sign in with GitHub
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group" style="text-align: center;">
-                                OR
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- <div class="row">
+                <!-- <div class="row">
                         <div class="col">
                             <div class="form-group">
                                 <label>Username</label>
@@ -65,6 +69,8 @@
                         </div>
                     </div> -->
 
+                <form role="form" method="post" action="">
+                    {% csrf_token %}
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
@@ -82,16 +88,16 @@
                             </div>
                         </div>
                     </div>
+                </form>
+            </div>
 
-                </div>
+            <div class="card-footer" style="text-align: center;">
+                <button type="submit" name="register" class="btn btn-fill btn-primary">Register</button>
+                <br><br>
+                Have an account? <a href="{% url 'bb_accounts:login' %}" class="text-primary">Login</a>
+            </div>
 
-                <div class="card-footer" style="text-align: center;">
-                    <button type="submit" name="register" class="btn btn-fill btn-primary">Register</button>
-                    <br>
-                    Have an account? <a href="{% url 'bb_accounts:login' %}" class="text-primary">Login</a>
-                </div>
 
-            </form>
 
         </div>
     </div>
@@ -101,4 +107,24 @@
 {% endblock registration %}
 
 <!-- Specific Page JS goes HERE  -->
-{% block javascripts %}{% endblock javascripts %}
+{% block javascripts %}
+<script src="https://apis.google.com/js/platform.js" async defer>
+
+    function onSignIn(googleUser) {
+        var id_token = googleUser.getAuthResponse().id_token;
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/tokensignin/', true);
+        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+
+        xhr.onload = function () {
+            console.log('Signed in as: ' + xhr.responseText);
+        };
+
+        xhr.send('idtoken=' + id_token);
+    }
+
+</script>
+
+
+{% endblock javascripts %}

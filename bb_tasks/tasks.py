@@ -4,18 +4,25 @@ from __future__ import absolute_import, unicode_literals
 
 import subprocess
 
+from django.contrib.sites.models import Site
+
 from celery import shared_task
 
-from bb_vm.models import PortTunnel
+from bb_vm.models import PortTunnel, VirtualBrickOwner, VirtualBrick
 
 DIR = '/opt/brickbox/bb_vm/bash_scripts/'
+
+# ---------------------------------------------------------------------------- #
+#                                Scripted Tasks                                #
+# ---------------------------------------------------------------------------- #
 
 @shared_task
 def new_vm_subprocess(instance_id, xml):
     '''
     Called to start the creation of a VM in the background.
     '''
-    with subprocess.Popen([f'{DIR}clone_img.sh', f'{str(instance_id)}', f'{str(xml)}']) as script:
+    catch_clone_errors.apply_async((instance_id,), countdown=60)
+    with subprocess.Popen([f'{DIR}clone_img.sh', f'{str(Site.objects.get_current().domain)}', f'{str(instance_id)}', f'{str(xml)}']) as script:
         print(script)
 
 
@@ -61,3 +68,18 @@ def close_ssh_port(port_number):
     Called when a VM is being destryed, a delay is set before the port becomes available again.
     '''
     PortTunnel.objects.filter(port_number=port_number).delete()
+
+
+# ---------------------------------------------------------------------------- #
+#                              Verification Tasks                              #
+# ---------------------------------------------------------------------------- #
+
+@shared_task
+def catch_clone_errors(instance_id):
+    '''
+    Called when clone is requested, cleans up database if clone fails.
+    '''
+    brick = VirtualBrick.objects.get(id=instance_id)
+    if brick.ssh_port is None and brick.img_cloned is False:
+        VirtualBrickOwner.objects.filter(virt_brick=instance_id).delete()
+        brick.delete()

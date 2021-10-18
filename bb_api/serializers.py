@@ -8,6 +8,8 @@ from bb_data.models import (
         CryptoPayout, FiatPayout
     )
 
+from bb_vm.models import VMLog
+
 # class UserSerializer(serializers.HyperlinkedModelSerializer):
 #     '''
 #     The User Model Serializer
@@ -71,3 +73,13 @@ class FiatPayoutSerializer(serializers.ModelSerializer):
     class Meta:
         model = FiatPayout
         fields = ['id', 'recorded', 'dated', 'account_holder', 'amount', 'currency', 'tx_vast_id']
+
+
+# ---------------------------------- Logging --------------------------------- #
+class VMLoggingSerializer(serializers.ModelSerializer):
+    '''
+    Serializer for the VMLog Model.
+    '''
+    class Meta:
+        model = VMLog
+        fields = ['timestamp', 'level', 'virt_brick', 'message']

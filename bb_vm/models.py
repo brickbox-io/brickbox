@@ -4,7 +4,10 @@ from django.db import models
 from django.dispatch import receiver
 from django.db.models.signals import pre_save, post_save, post_delete
 
+from django.utils.translation import gettext_lazy as _
+
 from bb_data.models import UserProfile
+
 
 # ----------------------------------- Ports ---------------------------------- #
 class PortTunnel(models.Model):
@@ -70,8 +73,8 @@ class VirtualBrick(models.Model):
     '''
     Represents a single VM instance.
     '''
-    name = models.CharField(max_length = 36, null=True) # Arbitrary Name
-    domain_uuid = models.CharField(max_length = 36, null=True) # UUID of the VM (serial = "domain")
+    name = models.CharField(max_length = 36, null=True)         # Arbitrary Name
+    domain_uuid = models.CharField(max_length = 36, null=True)  # UUID of the VM (serial="domain")
     assigned_gpus = models.ManyToManyField('GPU', through='RentedGPU', related_name='assigned_gpus')
     ssh_port = models.ForeignKey(PortTunnel, on_delete=models.PROTECT, null=True)
 
@@ -99,6 +102,29 @@ class VirtualBrickOwner(models.Model):
 
     class Meta:
         verbose_name_plural = "VM Owners"
+
+
+# ---------------------------------- Logging --------------------------------- #
+class VMLog(models.Model):
+    '''
+    Model to store logs relating the VMs.
+    '''
+    class LogLevels(models.IntegerChoices):
+        CRITICAL = 50, _('CRITICAL')
+        ERROR = 40, _('ERROR')
+        WARNING = 30, _('WARNING')
+        INFO = 20, _('INFO')
+        DEBUG = 10, _('DEBUG')
+        NOTSET = 0, _('NOTSET')
+        __empty__ = _('NOTSET')
+
+    timestamp = models.DateTimeField(auto_now_add=True)
+    level = models.IntegerField(choices=LogLevels.choices)
+    virt_brick = models.CharField(max_length=36)
+    message = models.TextField()
+
+    class Meta:
+        verbose_name_plural = "VM Logs"
 
 
 # ---------------------------------------------------------------------------- #
