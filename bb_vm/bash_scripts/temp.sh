@@ -8,9 +8,9 @@ echo "$xml_data" >> bash_errors.log
 
 curl -X POST https://"$url"/api/vmlog/ -d "level=20&virt_brick=$instance&message=Successfully%20SSH%20connection%20to%20host,%20creating%20$instance."    # Logging
 
-sudo virt-clone --original brickbox-U20.04 --name "$instance" --auto-clone && 2>> bash_errors.log
+sudo virt-clone --original brickbox-U20.04 --name "$instance" --auto-clone 2>> bash_errors.log
 
-if sudo virsh domblklist $instance | grep "\/var\/lib\/libvirt\/images\/$instance.img"; then
+if sudo virsh domblklist "$instance" | grep "\/var\/lib\/libvirt\/images\/$instance.img"; then
 
 
     curl -X POST https://"$url"/api/vmlog/ -d "level=20&virt_brick=$instance&message=VM%20clone%20validated."             # Logging
@@ -18,7 +18,7 @@ if sudo virsh domblklist $instance | grep "\/var\/lib\/libvirt\/images\/$instanc
 
     curl -X POST https://dev.brickbox.io/vm/state/ -d "instance=$instance&verify=clone" &
 
-    rm /home/bb_dev/GPU.xml && 2>> bash_errors.log
+    rm /home/bb_dev/GPU.xml 2>> bash_errors.log
 
     sleep 1
 
@@ -28,7 +28,7 @@ if sudo virsh domblklist $instance | grep "\/var\/lib\/libvirt\/images\/$instanc
     curl -X POST https://"$url"/api/vmlog/ -d "level=20&virt_brick=$instance&message=GPU%20XML%0D%0A$xml_data"                  # Logging
 
 
-    sudo virsh attach-device "$instance" /home/bb_dev/GPU.xml && 2>> bash_errors.log
+    sudo virsh attach-device "$instance" /home/bb_dev/GPU.xml 2>> bash_errors.log
 
     sleep 10
 
@@ -45,11 +45,11 @@ if sudo virsh domblklist $instance | grep "\/var\/lib\/libvirt\/images\/$instanc
 
         sleep 10
 
-        sudo virsh attach-device "$instance" /home/bb_dev/GPU.xml && 2>> bash_errors.log
+        sudo virsh attach-device "$instance" /home/bb_dev/GPU.xml 2>> bash_errors.log
 
         sleep 10
 
-        sudo virsh reboot "$instance" && 2>> bash_errors.log
+        sudo virsh reboot "$instance" 2>> bash_errors.log
 
     fi
 
@@ -69,7 +69,7 @@ if sudo virsh domblklist $instance | grep "\/var\/lib\/libvirt\/images\/$instanc
 
     rm /home/bb_dev/GPU.xml 2>> bash_errors.log
 
-    curl https://dev.brickbox.io/vm/register/"$instance"/$(sudo virsh domuuid $instance)/ &
+    curl https://dev.brickbox.io/vm/register/"$instance"/$(sudo virsh domuuid "$instance")/ &
 
     echo "VM Cloned"
 

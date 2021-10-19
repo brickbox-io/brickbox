@@ -9,7 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from django.shortcuts import render, redirect
 
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseServerError
 
 from django.conf import settings
 
@@ -81,9 +81,8 @@ def token_signin(request):
     '''
     URL: /tokensignin/
     Method: AJAX
-    Processes 3rd party sign up/in authentications.
+    Processes Google authentication token when registering.
     '''
-    print(request.POST)
     try:
         # Specify the CLIENT_ID of the app that accesses the backend:
         idinfo = id_token.verify_oauth2_token(
@@ -101,9 +100,6 @@ def token_signin(request):
 
         # ID token is valid. Get the user's Google Account ID from the decoded token.
         userid = idinfo['sub']
-
-        print(f'User ID: {userid}')
-        print(idinfo)
 
         if SocialAccount.objects.filter(uid = userid).exists():
             print('Account already connected.')
@@ -146,3 +142,5 @@ def token_signin(request):
 
     except ValueError as err:
         print(err)
+
+        return HttpResponseServerError()
