@@ -150,12 +150,12 @@ def monthly_breakdown_chart(request, colo=0):
                 except TypeError:
                     monthly_payout[selected_month] = month_total
 
-        round_to_two_decimals = [round(num, 2) for num in monthly_payout]
+        monthly_payout_cleaned = [round(num, 2) for num in monthly_payout]
 
     except IndexError:
         monthly_payout = None
 
-    formated_data = {2021: monthly_payout}
+    formated_data = {2021: monthly_payout_cleaned}
 
     return JsonResponse(formated_data, safe=False)
 
