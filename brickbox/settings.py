@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',         # https://docs.djangoproject.com/en/dev/ref/contrib/sites/
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
@@ -59,9 +60,15 @@ INSTALLED_APPS = [
     'health_check.contrib.celery',              # requires celery
     'health_check.contrib.celery_ping',         # requires celery
     'health_check.contrib.psutil',              # disk and memory utilization; requires psutil
-    # 'health_check.contrib.s3boto3_storage',     # requires boto3 and S3BotoStorage backend
+    # 'health_check.contrib.s3boto3_storage',   # requires boto3 and S3BotoStorage backend
     'health_check.contrib.rabbitmq',            # requires RabbitMQ broker
-    # 'health_check.contrib.redis',               # requires Redis broker
+    # 'health_check.contrib.redis',             # requires Redis broker
+
+    #django-allauth                             # https://django-allauth.readthedocs.io
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
 
 # -------------------------------- Middleware -------------------------------- #
@@ -94,8 +101,35 @@ TEMPLATES = [
     },
 ]
 
+# -------------------------- Authentication Backends ------------------------- #
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
 WSGI_APPLICATION = 'brickbox.wsgi.application'
 
+SITE_ID = 1
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+
+# Provider specific settings
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        # For each OAuth based provider, either add a ``SocialApp``
+        # (``socialaccount`` app) containing the required client
+        # credentials, or list them here:
+        'APP': {
+            'client_id': '918414840239-qljh31euklmcem5ec7s72a726r3aofsr.apps.googleusercontent.com',
+            'secret': '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',
+            'key': ''
+        }
+    }
+}
 
 # ---------------------------------------------------------------------------- #
 #                            Database Configuration                            #

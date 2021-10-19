@@ -1,0 +1,34 @@
+bash: -c: line 0: syntax error near unexpected token `newline'
+bash: -c: line 0: `bash -s dev.brickbox.io 137 <hostdev mode=\"subsystem\" type=\"pci\" managed=\"yes\"> <driver name=\"vfio\"/> <source> <address domain=\"0x0000\" bus=\"0x81\" slot=\"0x00\" function=\"0x0\"/> </source> <alias name=\"hostdev0\"/> <address type=\"pci\" domain=\"0x0000\" bus=\"0x01\" slot=\"0x00\" function=\"0x0\"/> </hostdev>'
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   235  100   141  100    94   1093    728 --:--:-- --:--:-- --:--:--  1821
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   165  100   110  100    55    635    317 --:--:-- --:--:-- --:--:--   953
+rm: cannot remove '/home/bb_dev/GPU.xml': No such file or directory
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    25    0     0  100    25      0    140 --:--:-- --:--:-- --:--:--   140
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   736  100   413  100   323   2401   1877 --:--:-- --:--:-- --:--:--  4279
+error: Failed to attach device from /home/bb_dev/GPU.xml
+error: Requested operation is not valid: domain is not running
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   193  100   122  100    71    976    568 --:--:-- --:--:-- --:--:--  1544
+error: Failed to start domain 138
+error: Cannot get interface MTU on 'br0': No such device
+error: Failed to attach device from /home/bb_dev/GPU.xml
+error: Requested operation is not valid: domain is not running
+error: Failed to reboot domain 138
+error: Requested operation is not valid: domain is not running
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   173  100   113  100    60    758    402 --:--:-- --:--:-- --:--:--  1161
+error: Failed to start domain 138
+error: Cannot get interface MTU on 'br0': No such device
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0

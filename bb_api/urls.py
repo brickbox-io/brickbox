@@ -16,6 +16,8 @@ router.register(r'fiatsnapshot', views.FiatSnapshotViewSet)
 router.register(r'cryptopayout', views.CryptoPayoutViewSet)
 router.register(r'fiatpayout', views.FiatPayoutViewSet)
 
+router.register(r'vmlog', views.VMLoggingViewSet)
+
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [

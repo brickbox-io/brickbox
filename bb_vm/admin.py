@@ -4,7 +4,7 @@ from django.contrib import admin
 
 from bb_vm.models import(
      VirtualBrick, PortTunnel, VirtualBrickOwner,
-     GPU, HostFoundation, RentedGPU
+     GPU, HostFoundation, RentedGPU, VMLog
 )
 
 class HostFoundationAdmin(admin.ModelAdmin):
@@ -37,9 +37,16 @@ class VirtualBrickOwnerAdmin(admin.ModelAdmin):
     '''
     list_display = ('owner', 'virt_brick')
 
+class VMLogAdmin(admin.ModelAdmin):
+    '''
+    Admin configuration for VMLog model.
+    '''
+    list_display = ('timestamp', 'level', 'virt_brick')
+
 admin.site.register(PortTunnel)
 admin.site.register(HostFoundation, HostFoundationAdmin)
 admin.site.register(GPU, GPUAdmin)
 admin.site.register(RentedGPU, RentedGPUAdmin)
 admin.site.register(VirtualBrick, VirtualBrickAdmin)
 admin.site.register(VirtualBrickOwner, VirtualBrickOwnerAdmin)
+admin.site.register(VMLog, VMLogAdmin)

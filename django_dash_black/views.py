@@ -1,4 +1,3 @@
-# -*- encoding: utf-8 -*-
 ''' Django Black Dashboard views.py '''
 
 from itertools import chain
@@ -19,7 +18,17 @@ def index(request, colo=0):
     Dashboard index
     '''
     context = {}
-    context['profile'] = UserProfile.objects.get(user = request.user)
+
+    try:
+        context['profile'] = UserProfile.objects.get(user = request.user)
+    except UserProfile.DoesNotExist:
+        user_profile = UserProfile(
+                            user = request.user,
+                        )
+        user_profile.save()
+
+        context['profile'] = user_profile
+
 
     # Only grabs the first client for now until there is a proper way to dysplay multiple.
     try:
@@ -63,7 +72,7 @@ def pages(request):
             if RentedGPU.objects.filter(gpu=gpu).count() < 1:
                 context['gpu_available'] = True
 
-        html_template = loader.get_template( load_template )
+        html_template = loader.get_template( f'{load_template}.html' )
         return HttpResponse(html_template.render(context, request))
 
     except template.TemplateDoesNotExist:

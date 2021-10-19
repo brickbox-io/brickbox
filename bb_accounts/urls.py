@@ -9,4 +9,6 @@ app_name = 'bb_accounts'
 urlpatterns = [
     path('', include('django.contrib.auth.urls')),
     path('register/', views.account_registration, name='register'),
+
+    path('tokensignin/', views.token_signin, name='tokensignin'),
 ]
