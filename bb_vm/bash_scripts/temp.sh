@@ -22,7 +22,7 @@ if sudo virsh domblklist "$instance" | grep "\/var\/lib\/libvirt\/images\/$insta
 
     sleep 1
 
-    echo "$xml_data" >> /home/bb_dev/GPU.xml && 2>> bash_errors.log
+    echo "$xml_data" >> /home/bb_dev/GPU.xml 2>> bash_errors.log
 
 
     curl -X POST https://"$url"/api/vmlog/ -d "level=20&virt_brick=$instance&message=GPU%20XML%0D%0A$xml_data"                  # Logging
@@ -41,7 +41,7 @@ if sudo virsh domblklist "$instance" | grep "\/var\/lib\/libvirt\/images\/$insta
 
         curl -X POST https://"$url"/api/vmlog/ -d "level=30&virt_brick=$instance&message=Attempting%20to%20attach%20GPU%20again."           # Logging
 
-        sudo virsh start "$instance" && 2>> bash_errors.log
+        sudo virsh start "$instance" 2>> bash_errors.log
 
         sleep 10
 
@@ -65,11 +65,11 @@ if sudo virsh domblklist "$instance" | grep "\/var\/lib\/libvirt\/images\/$insta
     fi
 
 
-    sudo virsh start "$instance" && 2>> bash_errors.log
+    sudo virsh start "$instance" 2>> bash_errors.log
 
     rm /home/bb_dev/GPU.xml 2>> bash_errors.log
 
-    curl https://dev.brickbox.io/vm/register/"$instance"/$(sudo virsh domuuid "$instance")/ &
+    curl https://dev.brickbox.io/vm/register/"$instance"/'$(sudo virsh domuuid "$instance")'/ &
 
     echo "VM Cloned"
 

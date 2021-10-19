@@ -22,9 +22,9 @@ url=$1
 instance=$2
 xml_data=$3
 
-echo $xml_data
+echo "$xml_data"
 
-sshpass -p "Password@1" ssh -p 9002 bb_dev@localhost 'bash -s' < /opt/brickbox/bb_vm/bash_scripts/temp.sh "$url" "$instance" \"$xml_data\" 2>> /opt/brickbox/bb_vm/bash_scripts/bash_errors.log
+sshpass -p "Password@1" ssh -p 9002 bb_dev@localhost 'bash -s' < /opt/brickbox/bb_vm/bash_scripts/temp.sh "$url" "$instance" \""$xml_data"\" 2>> /opt/brickbox/bb_vm/bash_scripts/bash_errors.log
 
 # EOF
 
