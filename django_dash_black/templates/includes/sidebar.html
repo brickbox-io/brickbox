@@ -15,6 +15,7 @@
         <ul class="nav">
 
 
+            <!-- --------------------- START - Colo Dashboard Tab ---------------------- -->
             {% if profile.clients.count >= 1 %}
             <li class="{% if 'index' in segment %} active {% endif %}">
                 <a href="{% url 'django_dash_black:dash' %}">
@@ -35,25 +36,33 @@
                 </select>
             </li>
             {% endif %}
+            <!-- ---------------------- END - Colo Dashboard Tab ----------------------- -->
 
+
+            <!-- ------------------------- START - Bricks Tab -------------------------- -->
             {% if profile.brick_access %}
-            <li class="{% if 'icons' in segment %} active {% endif %}">
+            <li class="{% if 'bricks' in segment %} active {% endif %}">
                 <a href="/dash/bricks">
                     <i class="tim-icons icon-components"></i>
                     <p>Bricks</p>
                 </a>
             </li>
             {% endif %}
+            <!-- -------------------------- END - Bricks Tab --------------------------- -->
 
 
-
-            <!-- <li class="{% if 'maps' in segment %} active {% endif %}">
-                <a href="/ui-maps.html">
-                    <i class="tim-icons icon-pin"></i>
-                    <p>Maps</p>
+            <!-- ------------------------ START - Superuser Tab ------------------------ -->
+            {% if user.is_superuser %}
+            <li class="{% if 'superuser' in segment %} active {% endif %}">
+                <a href="/dash/superuser">
+                    <i class="tim-icons icon-atom"></i>
+                    <p>Superuser</p>
                 </a>
             </li>
-            <li class="{% if 'notifications' in segment %} active {% endif %}">
+            {% endif %}
+            <!-- ------------------------- END - Superuser Tab ------------------------- -->
+
+            <!-- <li class="{% if 'notifications' in segment %} active {% endif %}">
                 <a href="/ui-notifications.html">
                     <i class="tim-icons icon-bell-55"></i>
                     <p>Notifications</p>
