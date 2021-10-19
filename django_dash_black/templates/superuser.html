@@ -1,0 +1,86 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Superuser {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<!-- ------------------------- START - Link Table -------------------------- -->
+<div class="col-lg-12 col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="title">Management Tools</h5>
+            <p class="category">Centralized access to available management tools.</a></p>
+        </div>
+
+        <div class="card-body">
+            <table class="table">
+
+                <!-- Table Head -->
+                <thead>
+                    <tr>
+                        <!-- <th class="text-center">#</th> -->
+                        <th>Name</th>
+                        <th class="text-center">Description/Function</th>
+                        <th class="text-center">Link</th>
+                    </tr>
+                </thead>
+
+                <!-- Table Body -->
+                <tbody id="brick_wall">
+
+                    <tr>
+                        <td> Admin Page </td>
+                        <td class="text-center"> Django core admin page for database viewing and management. </td>
+                        <td class="text-center">
+                            <a href="https://{{ request.get_host }}/admin" target="_blank">https://{{ request.get_host }}/admin</a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td> Status Page </td>
+                        <td class="text-center"> Summary of web server services. </td>
+                        <td class="text-center">
+                            <a href="https://{{ request.get_host }}/status" target="_blank">https://{{ request.get_host }}/status</a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td> OpenVPN Summary </td>
+                        <td class="text-center"> Status of OpenVPN connections. NOTE: Must be connected to OpenVPN first. </td>
+                        <td class="text-center">
+                            <a href="https://{{ request.get_host }}/status" target="_blank">https://{{ request.get_host }}/status</a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td> NetBox Page </td>
+                        <td class="text-center"> At-a-glance network and server infrastructure status. </td>
+                        <td class="text-center">
+                            <a href="https://netbox.brickbox.io/" target="_blank">https://netbox.brickbox.io/</a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td> Nagios Page </td>
+                        <td class="text-center"> At-a-glance server statuses. </td>
+                        <td class="text-center">
+                            <a href="http://nagios.brickbox.io/nagios" target="_blank">http://nagios.brickbox.io/nagios</a>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+</div>
+<!-- -------------------------- END - Link Table --------------------------- -->
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
