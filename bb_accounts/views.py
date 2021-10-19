@@ -3,7 +3,7 @@
 from google.oauth2 import id_token
 from google.auth.transport import requests
 
-from django.contrib.auth.models import User
+from allauth.socialaccount.models import SocialAccount
 
 from django.views.decorators.csrf import csrf_exempt
 
@@ -19,9 +19,8 @@ from django.contrib.auth.forms import UserCreationForm
 
 from bb_accounts.forms import RegistrationForm
 
-from bb_data.models import UserProfile
+from bb_data.models import UserProfile, User
 
-from allauth.socialaccount.models import SocialAccount
 
 def account_registration(request):
     '''
@@ -70,6 +69,9 @@ def account_registration(request):
             return redirect('/dash/')
 
         print(form.errors)
+        return render(request, 'registration/register.html',
+                    {'form_class':UserCreationForm, 'form_errors':form.errors}
+                )
 
     return render(request, 'registration/register.html', {'form_class':UserCreationForm})
 
@@ -144,4 +146,3 @@ def token_signin(request):
 
     except ValueError as err:
         print(err)
-        pass

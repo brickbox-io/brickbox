@@ -110,6 +110,7 @@ class VMLog(models.Model):
     Model to store logs relating the VMs.
     '''
     class LogLevels(models.IntegerChoices):
+        '''Logging level options'''
         CRITICAL = 50, _('CRITICAL')
         ERROR = 40, _('ERROR')
         WARNING = 30, _('WARNING')

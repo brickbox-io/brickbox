@@ -22,7 +22,11 @@ def new_vm_subprocess(instance_id, xml):
     Called to start the creation of a VM in the background.
     '''
     catch_clone_errors.apply_async((instance_id,), countdown=60)
-    with subprocess.Popen([f'{DIR}clone_img.sh', f'{str(Site.objects.get_current().domain)}', f'{str(instance_id)}', f'{str(xml)}']) as script:
+    new_vm_script = [
+                        f'{DIR}clone_img.sh', f'{str(Site.objects.get_current().domain)}',
+                        f'{str(instance_id)}', f'{str(xml)}'
+                    ]
+    with subprocess.Popen(new_vm_script) as script:
         print(script)
 
 
