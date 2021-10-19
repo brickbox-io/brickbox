@@ -139,7 +139,7 @@
 
                 <div class="button-container">
                     {% if not accounts.google %}
-                    <a href="{% provider_login_url 'google' process='connect' next='/dash/page-user/' %}">
+                    <a href="{% provider_login_url 'google' process='connect' next='/dash/page-user' %}">
                         <button class="btn btn-round btn-google">
                             <i class="fab fa-google"></i> &nbsp; Connect Google Account
                         </button>

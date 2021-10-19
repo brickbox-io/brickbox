@@ -150,6 +150,8 @@ def monthly_breakdown_chart(request, colo=0):
                 except TypeError:
                     monthly_payout[selected_month] = month_total
 
+        round_to_two_decimals = [round(num, 2) for num in monthly_payout]
+
     except IndexError:
         monthly_payout = None
 
