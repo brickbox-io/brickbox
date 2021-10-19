@@ -1,8 +1,17 @@
 ''' Processes account registration views. '''
 
+from google.oauth2 import id_token
+from google.auth.transport import requests
+
+from allauth.socialaccount.models import SocialAccount
+
+from django.views.decorators.csrf import csrf_exempt
+
 from django.shortcuts import render, redirect
 
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseServerError
+
+from django.conf import settings
 
 from django.contrib.auth import login, authenticate
 
@@ -10,7 +19,8 @@ from django.contrib.auth.forms import UserCreationForm
 
 from bb_accounts.forms import RegistrationForm
 
-from bb_data.models import UserProfile
+from bb_data.models import UserProfile, User
+
 
 def account_registration(request):
     '''
@@ -59,5 +69,78 @@ def account_registration(request):
             return redirect('/dash/')
 
         print(form.errors)
+        return render(request, 'registration/register.html',
+                    {'form_class':UserCreationForm, 'form_errors':form.errors}
+                )
 
     return render(request, 'registration/register.html', {'form_class':UserCreationForm})
+
+
+@csrf_exempt
+def token_signin(request):
+    '''
+    URL: /tokensignin/
+    Method: AJAX
+    Processes Google authentication token when registering.
+    '''
+    try:
+        # Specify the CLIENT_ID of the app that accesses the backend:
+        idinfo = id_token.verify_oauth2_token(
+                    request.POST.get('credential'), requests.Request(),
+                    settings.SOCIALACCOUNT_PROVIDERS['google']['APP']['client_id'])
+
+        # Or, if multiple clients access the backend server:
+        # idinfo = id_token.verify_oauth2_token(token, requests.Request())
+        # if idinfo['aud'] not in [CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]:
+        #     raise ValueError('Could not verify audience.')
+
+        # If auth request is from a G Suite domain:
+        # if idinfo['hd'] != GSUITE_DOMAIN_NAME:
+        #     raise ValueError('Wrong hosted domain.')
+
+        # ID token is valid. Get the user's Google Account ID from the decoded token.
+        userid = idinfo['sub']
+
+        if SocialAccount.objects.filter(uid = userid).exists():
+            print('Account already connected.')
+            social_user = SocialAccount.objects.get(uid=userid)
+            login(
+                request,
+                social_user.user,
+                backend = 'allauth.account.auth_backends.AuthenticationBackend',
+            )
+            return redirect('/dash/')
+
+        new_user = User.objects.create_user(
+            username = idinfo['email'],
+            first_name = idinfo['given_name'],
+            last_name = idinfo['family_name'],
+            email = idinfo['email'],
+        )
+
+        new_socialaccount = SocialAccount(
+            user = new_user,
+            provider = 'google',
+            uid = userid,
+            extra_data = idinfo
+        )
+
+        new_socialaccount.save()
+
+        login(
+            request,
+            new_socialaccount,
+            backend = 'allauth.account.auth_backends.AuthenticationBackend'
+        )
+
+        user_profile = UserProfile(
+                            user = request.user,
+                        )
+        user_profile.save()
+
+        return redirect('/dash/')
+
+    except ValueError as err:
+        print(err)
+
+        return HttpResponseServerError()

@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% load socialaccount %}
+
 {% block title %}Login | brickbox.io{% endblock %}
 {% block menu_title %}Login{% endblock %}
 
@@ -15,6 +17,9 @@
     </header>
     <section class="wrapper style5">
         <div class="inner">
+
+            <a href="{% provider_login_url 'google' %}">Login With Google</a>
+
             <form id="login-form" method="post" action="{% url 'bb_accounts:login' %}">
                 {% csrf_token %}
 

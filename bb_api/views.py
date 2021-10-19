@@ -10,13 +10,15 @@ from rest_framework import viewsets
 from bb_api.serializers import (
     # UserSerializer, GroupSerializer,
     ColocationClientSerializer, CryptoSnapshotSerializer, FiatSnapshotSerializer,
-    CryptoPayoutSerializer, FiatPayoutSerializer
+    CryptoPayoutSerializer, FiatPayoutSerializer, VMLoggingSerializer
 )
 
 from bb_data.models import (
         ColocationClient, CryptoSnapshot, FiatSnapshot,
         CryptoPayout, FiatPayout
     )
+
+from bb_vm.models import VMLog
 
 def docs(request):
     '''
@@ -78,3 +80,12 @@ class FiatPayoutViewSet(viewsets.ModelViewSet):
     '''
     queryset = FiatPayout.objects.all()
     serializer_class = FiatPayoutSerializer
+
+
+# ---------------------------------- Logging --------------------------------- #
+class VMLoggingViewSet(viewsets.ModelViewSet):
+    '''
+    API endpoint to log VM events.
+    '''
+    queryset = VMLog.objects.all()
+    serializer_class = VMLoggingSerializer

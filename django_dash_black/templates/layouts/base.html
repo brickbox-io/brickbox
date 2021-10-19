@@ -24,6 +24,7 @@
 
     {% compress js inline %}
     <script src="{% static 'js/csrf.js' %}"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     {% endcompress %}
 
     <link href="/static/assets/css/spinner.css" rel="stylesheet" />
@@ -59,10 +60,9 @@
         {% include 'includes/sidebar.html' %}
 
         <div class="main-panel">
+            {% if request.user.is_authenticated %}
 
             {% include 'includes/navigation.html' %}
-
-            {% if request.user.is_authenticated %}
 
             <div class="content">
                 {% block content %}{% endblock content %}

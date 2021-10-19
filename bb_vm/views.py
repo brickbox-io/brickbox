@@ -77,16 +77,21 @@ def brick_status(request):
     Method: AJAX
     Returns an update of the users' VMs along with the status of a specific brick.
     '''
-    profile = UserProfile.objects.get(user = request.user)
-    bricks = VirtualBrickOwner.objects.filter(owner=profile) # All bricks owned.
-    brick = VirtualBrick.objects.get(id=request.POST.get("BrickID")) # Brick updating.
-
     response_data = {}
 
-    if brick.ssh_port is None:
-        response_data['changes'] = False
-    else:
+    profile = UserProfile.objects.get(user = request.user)
+    bricks = VirtualBrickOwner.objects.filter(owner=profile) # All bricks owned.
+
+    try:
+        brick = VirtualBrick.objects.get(id=request.POST.get("BrickID")) # Brick updating.
+        if brick.ssh_port is None:
+            response_data['changes'] = False
+        else:
+            response_data['changes'] = True
+
+    except VirtualBrick.DoesNotExist:
         response_data['changes'] = True
+
     response_data['table'] = f"""{render_to_string(
                                     'bricks/bricks-instances_table.html',
                                     {'bricks':bricks, 'ssh_url':settings.SSH_URL,}

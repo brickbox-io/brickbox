@@ -5,8 +5,9 @@
             <a target="_blank" rel="sponsored noopener noreferrer" href="" class="simple-text logo-mini">
                 <!-- BB -->
             </a>
-            <a target="_blank" rel="sponsored noopener noreferrer" href="" class="simple-text logo-normal">
-                {{ client.account_name }}
+            <a href="{% url 'bb_public:ai_landing_page' %}" rel="sponsored noopener noreferrer" class="simple-text logo-normal">
+                brickbox.io
+                <!-- {{ client.account_name }} -->
                 <!-- Navigation -->
             </a>
         </div>
@@ -23,17 +24,8 @@
             </li>
             {% endif %}
 
-            {% if profile.brick_access %}
-            <li class="{% if 'icons' in segment %} active {% endif %}">
-                <a href="/dash/bricks.html">
-                    <i class="tim-icons icon-components"></i>
-                    <p>Bricks</p>
-                </a>
-            </li>
-            {% endif %}
-
-            {% if profile.clients.count > 1 %}
-            <div class="form-group">
+            {% if profile.clients.count > 1 and 'index' in segment %}
+            <li class="form-group" style="margin-left: 50px; margin-right: 10px;">
                 <!-- <label for="inputState">Clients</label> -->
                 <select id="inputState" class="form-control" onchange="window.location.replace(this.value)">
                     <option style="color: black;" selected>Change Client</option>
@@ -41,8 +33,19 @@
                     <option style="color: black;" value="{{forloop.counter0}}">{{ client_option }}</option>
                     {% endfor %}
                 </select>
-            </div>
+            </li>
             {% endif %}
+
+            {% if profile.brick_access %}
+            <li class="{% if 'icons' in segment %} active {% endif %}">
+                <a href="/dash/bricks">
+                    <i class="tim-icons icon-components"></i>
+                    <p>Bricks</p>
+                </a>
+            </li>
+            {% endif %}
+
+
 
             <!-- <li class="{% if 'maps' in segment %} active {% endif %}">
                 <a href="/ui-maps.html">
