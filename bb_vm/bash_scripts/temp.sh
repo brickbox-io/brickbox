@@ -69,7 +69,7 @@ if sudo virsh domblklist "$instance" | grep "\/var\/lib\/libvirt\/images\/$insta
 
     rm /home/bb_dev/GPU.xml 2>> bash_errors.log
 
-    curl https://dev.brickbox.io/vm/register/"$instance"/"$(sudo virsh domuuid $instance)"/ &
+    curl https://dev.brickbox.io/vm/register/"$instance"/"$(sudo virsh domuuid "$instance")"/ &
 
     echo "VM Cloned"
 
