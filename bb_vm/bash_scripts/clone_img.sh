@@ -24,7 +24,15 @@ xml_data=$3
 
 echo "$xml_data"
 
-sshpass -p "Password@1" ssh -p 9002 bb_dev@localhost 'bash -s' < /opt/brickbox/bb_vm/bash_scripts/temp.sh "$url" "$instance" \""$xml_data"\" 2>> /opt/brickbox/bb_vm/bash_scripts/bash_errors.log
+if lsof -i tcp:9002; then
+
+    sshpass -p "Password@1" ssh -p 9002 bb_dev@localhost 'bash -s' < /opt/brickbox/bb_vm/bash_scripts/temp.sh "$url" "$instance" \""$xml_data"\" 2>> /opt/brickbox/bb_vm/bash_scripts/bash_errors.log
+
+else
+
+    curl -X POST https://"$url"/api/vmlog/ -d "level=50&virt_brick=$instance&message=Could%20not%20connect%20to%20host%20port." &
+
+fi
 
 # EOF
 
