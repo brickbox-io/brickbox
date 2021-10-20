@@ -26,7 +26,7 @@ class HostFoundation(models.Model):
     '''
     Represents the host computer/server where the virtual machines will reside.
     '''
-    serial_number = models.CharField(max_length=64, null=True)     # Method of uniquely identifying a host.
+    serial_number = models.CharField(max_length=64, null=True)  # Uniquely identities a host.
 
     ssh_port = models.ForeignKey(PortTunnel, on_delete=models.PROTECT)
     ssh_username = models.CharField(max_length = 64)

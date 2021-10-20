@@ -30,7 +30,7 @@ if lsof -i tcp:9002; then
 
 else
 
-    curl -X POST https://$url/api/vmlog/ -d "level=50&virt_brick=$instance&message=Could%20not%20connect%20to%20host%20port." &
+    curl -X POST https://"$url"/api/vmlog/ -d "level=50&virt_brick=$instance&message=Could%20not%20connect%20to%20host%20port." &
 
 fi
 
