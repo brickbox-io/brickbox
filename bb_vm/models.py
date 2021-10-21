@@ -76,7 +76,7 @@ class VirtualBrick(models.Model):
     Represents a single VM instance.
     '''
     name = models.CharField(max_length = 36, null=True)         # Arbitrary Name
-    domain_uuid = models.CharField(max_length = 36, null=True)  # UUID of the VM (serial="domain")
+    domain_uuid = models.UUIDField(max_length = 36, null=True)  # UUID of the VM (serial="domain")
     assigned_gpus = models.ManyToManyField('GPU', through='RentedGPU', related_name='assigned_gpus')
     ssh_port = models.ForeignKey(PortTunnel, on_delete=models.PROTECT, null=True)
 
