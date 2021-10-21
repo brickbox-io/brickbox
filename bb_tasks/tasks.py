@@ -22,6 +22,8 @@ def new_vm_subprocess(instance_id, xml):
     Called to start the creation of a VM in the background.
     '''
     catch_clone_errors.apply_async((instance_id,), countdown=60)
+    remove_stale_clone.apply_async((instance_id,), countdown=180)
+
     new_vm_script = [
                         f'{DIR}clone_img.sh', f'{str(Site.objects.get_current().domain)}',
                         f'{str(instance_id)}', f'{str(xml)}'
@@ -87,3 +89,15 @@ def catch_clone_errors(instance_id):
     if brick.ssh_port is None and brick.img_cloned is False:
         VirtualBrickOwner.objects.filter(virt_brick=instance_id).delete()
         brick.delete()
+
+
+@shared_task
+def remove_stale_clone(instance_id):
+    '''
+    Last resort to remove clones that did not sucessfully start and never given a port.
+    '''
+    brick = VirtualBrick.objects.get(id=instance_id)
+    if brick.ssh_port is None and brick.is_on is False:
+        VirtualBrickOwner.objects.filter(virt_brick=instance_id).delete()
+        brick.delete()
+        destroy_vm_subprocess(instance_id)
