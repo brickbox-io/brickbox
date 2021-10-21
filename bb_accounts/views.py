@@ -83,6 +83,9 @@ def token_signin(request):
     Method: AJAX
     Processes Google authentication token when registering.
     '''
+    if request.method == "GET":
+        return HttpResponse(status=405)
+
     try:
         # Specify the CLIENT_ID of the app that accesses the backend:
         idinfo = id_token.verify_oauth2_token(
