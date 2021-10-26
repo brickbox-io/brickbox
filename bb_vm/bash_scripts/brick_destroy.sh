@@ -20,4 +20,13 @@ sudo -n rm /var/lib/libvirt/images/"$instance".qcow2 2>> bash_errors.log
 
 sudo -n rm /var/lib/libvirt/images/"$instance".img 2>> bash_errors.log
 
+# Confirm that the image is deleted
+if [ -f /var/lib/libvirt/images/"$instance".img ]; then
+    echo "Image not deleted"
+    curl -X POST https://"$url"/api/vmlog/ -d "level=50&virt_brick=$instance&message=Brick%20was%20destroyed." &
+
+    exit 1
+fi
+t
+
 exit

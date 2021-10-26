@@ -6,14 +6,10 @@ import json
 
 from subprocess import Popen, PIPE
 
-from django.contrib.sites.models import Site
-
 from celery import shared_task
 
-from bb_vm.models import (
-    PortTunnel, VirtualBrickOwner, VirtualBrick,
-    HostFoundation,
-)
+from bb_vm.models import HostFoundation
+
 
 @shared_task
 def verify_host_connectivity():
