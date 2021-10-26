@@ -13,7 +13,7 @@ if [ "$(sudo virsh domstate "$instance")" != "running" ]; then
 fi
 
 # Check if brick has started.
-if [ "$(sudo virsh list --all | grep "$instance" | wc -l)" -eq 1 ]; then
+if [ "$(sudo virsh list --all | grep -c "$instance")" -eq 1 ]; then
     echo "Brick started."
     curl -X POST https://"$url"/api/vmlog/ -d "level=20&virt_brick=$instance&message=Brick%20has%20started." &
     exit 0
