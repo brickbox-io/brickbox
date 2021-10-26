@@ -13,6 +13,7 @@ for i in {1..30}; do
         curl -X POST https://"$url"/api/vmlog/ -d "level=20&virt_brick=$instance&message=Brick%20has%20rebooted." &
         exit 0
     fi
+    echo "$i"
     sleep 1
 done
 
