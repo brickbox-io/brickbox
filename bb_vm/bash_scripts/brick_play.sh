@@ -1,13 +1,26 @@
 #!/bin/bash
 
-instance=$1
+# Starts a brick up that is shutdown.
 
-sshpass -p "Password@1" ssh -o StrictHostKeyChecking=no -p 9002 bb_dev@localhost << EOF
+url=$1
+instance=$2
 
-sleep 1
+# Check if brick is on, if not, start it.
+if [ "$(sudo virsh domstate "$instance")" != "running" ]; then
+    echo "Brick is not running, starting it."
+    sudo virsh start "$instance"
+    sleep 10
+fi
 
-sudo virsh start $instance &&
+# Check if brick has started.
+if [ "$(sudo virsh list --all | grep -c "$instance")" -eq 1 ]; then
+    echo "Brick started."
+    curl -X POST https://"$url"/api/vmlog/ -d "level=20&virt_brick=$instance&message=Brick%20has%20started." &
+    exit 0
+else
+    echo "Brick failed to start."
+    curl -X POST https://"$url"/api/vmlog/ -d "level=40&virt_brick=$instance&message=Brick%20failed%20to%20start." &
+    exit 1
+fi
 
 exit
-
-EOF
