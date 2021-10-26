@@ -1,13 +1,13 @@
 #!/bin/bash
 
-instance=$1
+# This script pauses the brick by shutting it down.
 
-sshpass -p "Password@1" ssh -o StrictHostKeyChecking=no -p 9002 bb_dev@localhost << EOF
+url=$1
+instance=$2
+
 
 sleep 1
 
-sudo virsh shutdown  $instance &&
+sudo virsh shutdown  "$instance"
 
 exit
-
-EOF

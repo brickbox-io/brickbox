@@ -18,7 +18,12 @@ python3 /opt/brickbox/manage.py migrate
 
 
 # ---------------------------------------------------------------------------- #
+#                                Update Services                               #
+# ---------------------------------------------------------------------------- #
+
+python3 /opt/brickbox/manage.py update_services
+
+# ---------------------------------------------------------------------------- #
 #                               Restart Services                               #
 # ---------------------------------------------------------------------------- #
-systemctl restart celery.service
 systemctl restart gunicorn

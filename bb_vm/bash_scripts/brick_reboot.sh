@@ -1,13 +1,12 @@
 #!/bin/bash
 
-instance=$1
+# Restarts the virtual brick.
 
-sshpass -p "Password@1" ssh -o StrictHostKeyChecking=no -p 9002 bb_dev@localhost << EOF
+url=$1
+instance=$2
 
 sleep 1
 
-sudo virsh reboot $instance &&
+sudo virsh reboot $instance
 
 exit
-
-EOF

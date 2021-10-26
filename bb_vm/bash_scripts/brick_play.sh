@@ -1,13 +1,13 @@
 #!/bin/bash
 
-instance=$1
+# Starts a brick up that is shutdown.
 
-sshpass -p "Password@1" ssh -o StrictHostKeyChecking=no -p 9002 bb_dev@localhost << EOF
+url=$1
+instance=$2
+
 
 sleep 1
 
-sudo virsh start $instance &&
+sudo virsh start $instance
 
 exit
-
-EOF

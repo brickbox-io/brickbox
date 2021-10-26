@@ -43,12 +43,14 @@ INSTALLED_APPS = [
 
     # Other Apps
     'puller',                   # CI/CD Automation Tool
+    'django_devops',            # Custom DevOps Package
 
     # Other Apps (3rd Party)
     'pwa',                      # https://github.com/silviolleite/django-pwa
     'compressor',               # https://github.com/django-compressor/django-compressor
     'rest_framework',           # https://www.django-rest-framework.org/#installation
     'oauth2_provider',          # https://django-oauth-toolkit.readthedocs.io/en/latest/install.html
+    'django_celery_beat',       # https://github.com/celery/django-celery-beat
     'django_celery_results',    # https://github.com/celery/django-celery-results
 
     # django-health-check       # https://github.com/KristianOellegaard/django-health-check
