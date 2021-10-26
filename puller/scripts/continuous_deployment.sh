@@ -4,6 +4,9 @@
 #                                Update Packages                               #
 # ---------------------------------------------------------------------------- #
 
+# PIP
+/usr/bin/python3 -m pip install --upgrade pip
+
 # Django
 python3 -m pip install -U Django
 
@@ -18,7 +21,12 @@ python3 /opt/brickbox/manage.py migrate
 
 
 # ---------------------------------------------------------------------------- #
+#                                Update Services                               #
+# ---------------------------------------------------------------------------- #
+
+python3 /opt/brickbox/manage.py update_services
+
+# ---------------------------------------------------------------------------- #
 #                               Restart Services                               #
 # ---------------------------------------------------------------------------- #
-systemctl restart celery.service
 systemctl restart gunicorn

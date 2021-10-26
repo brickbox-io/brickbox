@@ -8,7 +8,9 @@ from django.contrib.sites.models import Site
 
 from celery import shared_task
 
-from bb_vm.models import PortTunnel, VirtualBrickOwner, VirtualBrick
+from bb_vm.models import (
+    PortTunnel, VirtualBrickOwner, VirtualBrick,
+)
 
 DIR = '/opt/brickbox/bb_vm/bash_scripts/'
 
@@ -25,8 +27,11 @@ def new_vm_subprocess(instance_id, xml):
     remove_stale_clone.apply_async((instance_id,), countdown=180)
 
     new_vm_script = [
-                        f'{DIR}clone_img.sh', f'{str(Site.objects.get_current().domain)}',
-                        f'{str(instance_id)}', f'{str(xml)}'
+                        f'{DIR}brick_connect.sh',
+                        'brick_img',
+                        f'{str(Site.objects.get_current().domain)}',
+                        f'{str(instance_id)}',
+                        f'{str(xml)}'
                     ]
     with subprocess.Popen(new_vm_script) as script:
         print(script)
@@ -37,8 +42,17 @@ def pause_vm_subprocess(instance_id):
     '''
     Called to power down a VM.
     '''
-    with subprocess.Popen([f'{DIR}brick_pause.sh', f'{str(instance_id)}']) as script:
+    pause_vm_script = [
+                        f'{DIR}brick_connect.sh',
+                        'brick_pause',
+                        f'{str(Site.objects.get_current().domain)}',
+                        f'{str(instance_id)}'
+                    ]
+    with subprocess.Popen(pause_vm_script) as script:
         print(script)
+
+    # with subprocess.Popen([f'{DIR}brick_pause.sh', f'{str(instance_id)}']) as script:
+    #     print(script)
 
 
 @shared_task
@@ -46,8 +60,17 @@ def play_vm_subprocess(instance_id):
     '''
     Resume VM from off state.
     '''
-    with subprocess.Popen([f'{DIR}brick_play.sh', f'{str(instance_id)}']) as script:
+    play_vm_script = [
+                        f'{DIR}brick_connect.sh',
+                        'brick_play',
+                        f'{str(Site.objects.get_current().domain)}',
+                        f'{str(instance_id)}'
+                    ]
+    with subprocess.Popen(play_vm_script) as script:
         print(script)
+
+    # with subprocess.Popen([f'{DIR}brick_play.sh', f'{str(instance_id)}']) as script:
+    #     print(script)
 
 
 @shared_task
@@ -55,8 +78,17 @@ def reboot_vm_subprocess(instance_id):
     '''
     Called to reboot a VM.
     '''
-    with subprocess.Popen([f'{DIR}brick_reboot.sh', f'{str(instance_id)}']) as script:
+    reboot_vm_script = [
+                        f'{DIR}brick_connect.sh',
+                        'brick_reboot',
+                        f'{str(Site.objects.get_current().domain)}',
+                        f'{str(instance_id)}'
+                    ]
+    with subprocess.Popen(reboot_vm_script) as script:
         print(script)
+
+    # with subprocess.Popen([f'{DIR}brick_reboot.sh', f'{str(instance_id)}']) as script:
+    #     print(script)
 
 
 @shared_task
@@ -64,8 +96,17 @@ def destroy_vm_subprocess(instance_id):
     '''
     Called to destroy VM.
     '''
-    with subprocess.Popen([f'{DIR}brick_destroy.sh', f'{str(instance_id)}']) as script:
+    destroy_vm_script = [
+                        f'{DIR}brick_connect.sh',
+                        'brick_destroy',
+                        f'{str(Site.objects.get_current().domain)}',
+                        f'{str(instance_id)}'
+                    ]
+    with subprocess.Popen(destroy_vm_script) as script:
         print(script)
+
+    # with subprocess.Popen([f'{DIR}brick_destroy.sh', f'{str(instance_id)}']) as script:
+    #     print(script)
 
 
 @shared_task

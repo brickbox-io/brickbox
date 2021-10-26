@@ -32,6 +32,10 @@ class HostFoundation(models.Model):
     ssh_username = models.CharField(max_length = 64)
 
     active = models.BooleanField(default=True)
+
+    is_online = models.BooleanField(default=False)
+    gpus_online = models.BooleanField(default=False)
+
     connected_status = models.BooleanField(default=False)
 
     class Meta:
