@@ -74,3 +74,120 @@ error: Cannot get interface MTU on 'br0': No such device
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+sudo: ./vfio-pci-bind.sh: command not found
+sudo: ./vfio-pci-bind.sh: command not found
+sudo: ./vfio-pci-bind.sh: command not found
+sudo: ./vfio-pci-bind.sh: command not found
+sudo: ./vfio-pci-bind.sh: command not found
+sudo: ./vfio-pci-bind.sh: command not found
+sudo: ./vfio-pci-bind.sh: command not found
+sudo: ./vfio-pci-bind.sh: command not found
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+Cloning into 'vfio-pci-bind'...
+chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
+chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
+chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
+chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
+chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
+chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
+chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
+chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
+kex_exchange_identification: read: Connection reset by peer
+kex_exchange_identification: read: Connection reset by peer
+kex_exchange_identification: read: Connection reset by peer
+kex_exchange_identification: read: Connection reset by peer
+fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
+chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
+bash: line 7: cd: /vfio-pci-bind: No such file or directory
+sudo: ./vfio-pci-bind.sh: command not found
