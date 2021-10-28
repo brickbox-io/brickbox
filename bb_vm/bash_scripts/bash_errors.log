@@ -562,3 +562,59 @@ bash: line 30: t: command not found
                                  Dload  Upload   Total   Spent    Left  Speed
   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
 kex_exchange_identification: read: Connection reset by peer
+kex_exchange_identification: read: Connection reset by peer
+fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
+chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
+RTNETLINK answers: File exists
+Killed old client process
+RTNETLINK answers: File exists
+Killed old client process
+RTNETLINK answers: File exists
+Killed old client process
+RTNETLINK answers: File exists
+Killed old client process
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   284  100   190  100    94    703    348 --:--:-- --:--:-- --:--:--  1051
+bash: line 26: !!: command not found
+error: failed to get domain '158'
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    24    0     0  100    24      0    136 --:--:-- --:--:-- --:--:--   136
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   284  100   190  100    94    801    396 --:--:-- --:--:-- --:--:--  1203
+bash: line 26: !!: command not found
+error: failed to get domain '159'
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    24    0     0  100    24      0    144 --:--:-- --:--:-- --:--:--   144
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   284  100   190  100    94    355    175 --:--:-- --:--:-- --:--:--   530
+bash: line 26: !!: command not found
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  1138  100   608  100   530   2854   2488 --:--:-- --:--:-- --:--:--  5342
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    25    0     0  100    25      0    121 --:--:-- --:--:-- --:--:--   121
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   820  100   483  100   337   1762   1229 --:--:-- --:--:-- --:--:--  3003
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   242  100   171  100    71    924    383 --:--:-- --:--:-- --:--:--  1308
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   228  100   166  100    62    312    116 --:--:-- --:--:-- --:--:--   429
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
+chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
+RTNETLINK answers: File exists
+Killed old client process
+RTNETLINK answers: File exists
+Killed old client process
+Connection closed by 127.0.0.1 port 9002

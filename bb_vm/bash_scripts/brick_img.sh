@@ -22,9 +22,8 @@ echo "$xml_data" >> bash_errors.log
 
 curl -X POST https://"$url"/api/vmlog/ -d "level=20&virt_brick=$instance&message=Successfully%20SSH%20connection%20to%20host,%20creating%20$instance."    # Logging
 
-sudo virt-clone --original brickbox-U20.04 --name "$instance" --auto-clone 2>> bash_errors.log
-last_command=$(echo !!)
-last_command_output=$(echo $?)
+last_command_output=$(sudo virt-clone --original brickbox-U20.04 --name "$instance" --auto-clone 2>> bash_errors.log)
+last_command=$(history 1 | sed 's/^ *[^ ]* *//')
 
 if sudo virsh domblklist "$instance" | grep "\/var\/lib\/libvirt\/images\/$instance.img"; then
 

@@ -2,7 +2,7 @@
 
 # Confirms that the host is ready for virtualization.
 
-url=$1
+# url=$1
 
 # Verify that QEMU is installed.
 if [ ! -f /usr/bin/qemu-system-x86_64 ]; then
