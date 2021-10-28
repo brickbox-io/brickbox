@@ -82,4 +82,4 @@ class VMLoggingSerializer(serializers.ModelSerializer):
     '''
     class Meta:
         model = VMLog
-        fields = ['timestamp', 'level', 'virt_brick', 'message']
+        fields = ['timestamp', 'level', 'host', 'virt_brick', 'message', 'command', 'command_output']

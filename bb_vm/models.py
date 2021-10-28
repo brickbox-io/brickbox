@@ -16,6 +16,7 @@ class PortTunnel(models.Model):
     Recivers(s): assign_port
     '''
     port_number = models.IntegerField(unique=True)
+    is_alive = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.port_number}"
@@ -127,8 +128,12 @@ class VMLog(models.Model):
 
     timestamp = models.DateTimeField(auto_now_add=True)
     level = models.IntegerField(choices=LogLevels.choices)
-    virt_brick = models.CharField(max_length=36)
+    host = models.CharField(max_length=32, null=True)
+    virt_brick = models.CharField(max_length=32)
     message = models.TextField()
+
+    command = models.TextField(null=True)           # Command that was executed
+    command_output = models.TextField(null=True)    # Output of the command
 
     class Meta:
         verbose_name_plural = "VM Logs"

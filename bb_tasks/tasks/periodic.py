@@ -35,9 +35,10 @@ def verify_host_connectivity():
 
                 host.is_online = True
                 host.save()
-            else:
+            elif not port_result and host.is_online:
                 host.is_online = False
                 host.save()
+
 
 
     return json.dumps({
@@ -67,6 +68,7 @@ def reconnect_host(host):
         except AttributeError:
             prep_script_result = 'No output'
 
+    host = HostFoundation.objects.get(id=host)
     for gpu in GPU.objects.filter(host=host):
         reconnect_script = [
                             f'{DIR}brick_connect.sh',
