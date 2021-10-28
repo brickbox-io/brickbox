@@ -1,6 +1,6 @@
 #!/bin/bash
 
-url=$1
+# url=$1
 device=$2
 pcie=$3
 
