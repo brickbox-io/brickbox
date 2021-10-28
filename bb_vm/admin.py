@@ -3,15 +3,22 @@
 from django.contrib import admin
 
 from bb_vm.models import(
-     VirtualBrick, PortTunnel, VirtualBrickOwner,
+     PortTunnel, VirtualBrick, VirtualBrickOwner,
      GPU, HostFoundation, RentedGPU, VMLog
 )
+
+class PortTunnelAdmin(admin.ModelAdmin):
+    ''' PortTunnel admin view model registration '''
+    list_display = ('port_number', 'is_alive')
+    list_filter = ('is_alive',)
+    search_fields = ('port_number', 'poris_alivet')
+    ordering = ('port_number',)
 
 class HostFoundationAdmin(admin.ModelAdmin):
     '''
     Admin configuration for HostFoundation model.
     '''
-    list_display = ('ssh_port', 'active', 'connected_status')
+    list_display = ('ssh_port', 'active', 'connected_status', 'is_online', 'gpus_online')
 
 class GPUAdmin(admin.ModelAdmin):
     '''
@@ -41,9 +48,9 @@ class VMLogAdmin(admin.ModelAdmin):
     '''
     Admin configuration for VMLog model.
     '''
-    list_display = ('timestamp', 'level', 'virt_brick')
+    list_display = ('timestamp', 'command', 'level', 'virt_brick')
 
-admin.site.register(PortTunnel)
+admin.site.register(PortTunnel, PortTunnelAdmin)
 admin.site.register(HostFoundation, HostFoundationAdmin)
 admin.site.register(GPU, GPUAdmin)
 admin.site.register(RentedGPU, RentedGPUAdmin)

@@ -22,12 +22,13 @@ echo "$xml_data" >> bash_errors.log
 
 curl -X POST https://"$url"/api/vmlog/ -d "level=20&virt_brick=$instance&message=Successfully%20SSH%20connection%20to%20host,%20creating%20$instance."    # Logging
 
-sudo virt-clone --original brickbox-U20.04 --name "$instance" --auto-clone 2>> bash_errors.log
+last_command_output=$(sudo virt-clone --original brickbox-U20.04 --name "$instance" --auto-clone 2>> bash_errors.log)
+last_command=$(history 1 | sed 's/^ *[^ ]* *//')
 
 if sudo virsh domblklist "$instance" | grep "\/var\/lib\/libvirt\/images\/$instance.img"; then
 
 
-    curl -X POST https://"$url"/api/vmlog/ -d "level=20&virt_brick=$instance&message=VM%20clone%20validated."             # Logging
+    curl -X POST https://"$url"/api/vmlog/ -d "level=20&host=1&virt_brick=$instance&message=VM%20clone%20validated&command=$last_command&command_output=$last_command_output"             # Logging
 
 
     curl -X POST https://dev.brickbox.io/vm/state/ -d "instance=$instance&verify=clone" &
@@ -44,7 +45,7 @@ if sudo virsh domblklist "$instance" | grep "\/var\/lib\/libvirt\/images\/$insta
 
     sudo virsh attach-device "$instance" /home/bb_dev/GPU.xml 2>> bash_errors.log
 
-    sleep 10
+    sleep 20
 
 
     if sudo virsh dumpxml "$instance" | grep "hostdev"; then
@@ -57,11 +58,11 @@ if sudo virsh domblklist "$instance" | grep "\/var\/lib\/libvirt\/images\/$insta
 
         sudo virsh start "$instance" 2>> bash_errors.log
 
-        sleep 10
+        sleep 20
 
         sudo virsh attach-device "$instance" /home/bb_dev/GPU.xml 2>> bash_errors.log
 
-        sleep 10
+        sleep 20
 
         sudo virsh reboot "$instance" 2>> bash_errors.log
 
