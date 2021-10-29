@@ -10,7 +10,7 @@ from django.contrib.sites.models import Site
 
 from celery import shared_task
 
-from bb_vm.models import HostFoundation, GPU
+from bb_vm.models import PortTunnel, HostFoundation, GPU, VirtualBrick
 
 DIR = '/opt/brickbox/bb_vm/bash_scripts/'
 
@@ -39,10 +39,44 @@ def verify_host_connectivity():
                 host.is_online = False
                 host.save()
 
-
-
     return json.dumps({
         'hosts':f'{hosts.values()}',
+        'script':f'{command}',
+        'Port_Result':f'{port_result}'
+    })
+
+
+@shared_task
+def verify_brick_connectivity():
+    '''
+    Checks that virtual machine are connected by cycling through ports to verify activity.
+    '''
+    bricks = VirtualBrick.objects.all()
+
+    port_result = False
+    script = False
+
+    for brick in bricks:
+        command = ['lsof', '-i', f'tcp:{brick.ssh_port.port_number}']
+        with Popen(command, stdout=PIPE) as script:
+
+            port_result = f"{script.stdout.read().decode('ascii')}"
+
+            if port_result and not brick.is_online:
+                PortTunnel.objects.filter(
+                    port_number=brick.ssh_port.port_number
+                ).update(is_alive=True)
+                # brick.ssh_port.is_alive = True
+                # brick.save()
+            elif not port_result and brick.is_online:
+                PortTunnel.objects.filter(
+                    port_number=brick.ssh_port.port_number
+                ).update(is_alive=False)
+                # brick.ssh_port.is_alive = False
+                # brick.save()
+
+    return json.dumps({
+        'bricks':f'{bricks.values()}',
         'script':f'{command}',
         'Port_Result':f'{port_result}'
     })
