@@ -95,6 +95,13 @@ class VirtualBrick(models.Model):
     is_rebooting = models.BooleanField(default = False)
     is_on = models.BooleanField(default = False)
 
+    @property
+    def is_online(self):
+        '''
+        Returns True if the VM is connected to the host.
+        '''
+        return self.ssh_port.is_alive
+
     class Meta:
         verbose_name_plural = "Virtual Bricks/Machines"
 
