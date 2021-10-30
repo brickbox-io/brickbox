@@ -17,7 +17,7 @@
     <!-- <td>2013</td> -->
 
     <!-- Brick Status -->
-    {% if brick.virt_brick.is_on and not brick.virt_brick.is_rebooting and brick.virt_brick.is_connected %}
+    {% if brick.virt_brick.is_on and not brick.virt_brick.is_rebooting and brick.virt_brick.is_online %}
 
     <td class="text-right" id="status_text">Running</td>
 
@@ -34,7 +34,7 @@
         </button>
     </td>
 
-    {% elif brick.virt_brick.is_rebooting and brick.virt_brick.is_on and brick.virt_brick.is_connected%}
+    {% elif brick.virt_brick.is_rebooting and brick.virt_brick.is_on and brick.virt_brick.is_online%}
 
     <td class="text-right" id="status_text">Rebooting</td>
 
@@ -52,7 +52,7 @@
     </td>
 
 
-    {% elif not brick.virt_brick.is_online %}
+    {% elif not brick.virt_brick.is_online and not brick.host.is_online%}
 
     <td class="text-right" id="status_text">Offline</td>
 
