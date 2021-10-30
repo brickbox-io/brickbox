@@ -20,15 +20,18 @@ xml_data=$3
 
 echo "$xml_data" >> bash_errors.log
 
-curl -X POST https://"$url"/api/vmlog/ -d "level=20&virt_brick=$instance&message=Successfully%20SSH%20connection%20to%20host,%20creating%20$instance."    # Logging
+# Logging
+curl -X POST https://"$url"/api/vmlog/ -d "level=20&virt_brick=$instance&message=Successfully%20SSH%20connection%20to%20host,%20creating%20$instance."
+
+# ------------------------------ Clone Template ------------------------------ #
 
 last_command_output=$(sudo virt-clone --original brickbox-U20.04 --name "$instance" --auto-clone 2>> bash_errors.log)
-last_command=$(history 1 | sed 's/^ *[^ ]* *//')
+last_command=!!
 
 if sudo virsh domblklist "$instance" | grep "\/var\/lib\/libvirt\/images\/$instance.img"; then
 
-
-    curl -X POST https://"$url"/api/vmlog/ -d "level=20&host=1&virt_brick=$instance&message=VM%20clone%20validated&command=$last_command&command_output=$last_command_output"             # Logging
+    # Logging
+    curl -X POST https://"$url"/api/vmlog/ -d "level=20&host=1&virt_brick=$instance&message=VM%20clone%20validated&command=$last_command&command_output=$last_command_output"
 
 
     curl -X POST https://dev.brickbox.io/vm/state/ -d "instance=$instance&verify=clone" &
@@ -40,10 +43,12 @@ if sudo virsh domblklist "$instance" | grep "\/var\/lib\/libvirt\/images\/$insta
     echo "$xml_data" >> /home/bb_dev/GPU.xml 2>> bash_errors.log
 
 
-    curl -X POST https://"$url"/api/vmlog/ -d "level=20&virt_brick=$instance&message=GPU%20XML%0D%0A$xml_data"                  # Logging
+    # Logging
+    curl -X POST https://"$url"/api/vmlog/ -d "level=20&virt_brick=$instance&message=GPU%20XML%0D%0A$xml_data"
 
 
-    sudo virsh attach-device "$instance" /home/bb_dev/GPU.xml 2>> bash_errors.log
+    last_command_output=$(sudo virsh attach-device "$instance" /home/bb_dev/GPU.xml --persistent 2>> bash_errors.log)
+    last_command=!!
 
     sleep 20
 
@@ -54,13 +59,14 @@ if sudo virsh domblklist "$instance" | grep "\/var\/lib\/libvirt\/images\/$insta
 
     else
 
-        curl -X POST https://"$url"/api/vmlog/ -d "level=30&virt_brick=$instance&message=Attempting%20to%20attach%20GPU%20again."           # Logging
+        # Logging
+        curl -X POST https://"$url"/api/vmlog/ -d "level=30&virt_brick=$instance&message=Attempting%20to%20attach%20GPU%20again&command=$last_command&command_output=$last_command_output"
 
         sudo virsh start "$instance" 2>> bash_errors.log
 
         sleep 20
 
-        sudo virsh attach-device "$instance" /home/bb_dev/GPU.xml 2>> bash_errors.log
+        sudo virsh attach-device "$instance" /home/bb_dev/GPU.xml --persistent 2>> bash_errors.log
 
         sleep 20
 
