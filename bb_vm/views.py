@@ -35,8 +35,12 @@ def clone_img(request):
             profile = UserProfile.objects.get(user=request.user)
 
             instance = VirtualBrick(
-                name=f'brick-{VirtualBrickOwner.objects.filter(owner=profile).count()+1}'
+                host = gpu.host,
+                # name = f'brick-{VirtualBrickOwner.objects.filter(owner=profile).count()+1}'
             )
+            instance.save()
+
+            instance.name = f'brick-{instance.id}'
             instance.save()
 
             assigned = RentedGPU(gpu=gpu, virt_brick=instance)
