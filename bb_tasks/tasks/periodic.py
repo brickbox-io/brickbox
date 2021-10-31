@@ -126,7 +126,7 @@ def reconnect_host(host):
 
     # Cycle through VM and update power status
     for brick_vm in VirtualBrick.objects.filter(host=host):
-        if vm.is_on:
+        if brick_vm.is_on:
             # play_vm_subprocess.delay(vm.id)
             play_vm_script = [
                                 f'{DIR}brick_connect.sh',
