@@ -305,5 +305,5 @@ else:
 
 # ----------------------- Stripe Debug/Test Credentials ---------------------- #
 # CLIENT_ID_TEST =
-# STRIPE_SECRET_KEY_TEST = 'sk_test_51Jb9T1AFJmW5oMdbI6NszFIEwIHNynAa1pHqeUkBRMWAqFUj2XguaLzfFqspuarRB5uqVZPuFkyDb4f5k7WuJ3EE00OqwKdoI4'
-# STRIPE_PUBLISHABLE_KEY_TEST = 'pk_test_51Jb9T1AFJmW5oMdbOtpNv8mEKgXZZjdVScjhh1l7wMJ4h2UynWpnIl1tlsmX0Hgt33lE8hyoiKer85GgfHnNjagK00aZMtPtzX'
+# STRIPE_SECRET_KEY_TEST = ''
+# STRIPE_PUBLISHABLE_KEY_TEST = ''
