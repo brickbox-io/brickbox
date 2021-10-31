@@ -125,14 +125,14 @@ def reconnect_host(host):
         time.sleep(10)
 
     # Cycle through VM and update power status
-    for vm in VirtualBrick.objects.filter(host=host):
+    for brick_vm in VirtualBrick.objects.filter(host=host):
         if vm.is_on:
             # play_vm_subprocess.delay(vm.id)
             play_vm_script = [
                                 f'{DIR}brick_connect.sh',
                                 'brick_play',
                                 f'{str(Site.objects.get_current().domain)}',
-                                f'{str(vm.id)}'
+                                f'{str(brick_vm.id)}'
                             ]
             with Popen(play_vm_script) as script:
                 print(script)
