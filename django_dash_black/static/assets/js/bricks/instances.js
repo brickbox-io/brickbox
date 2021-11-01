@@ -139,7 +139,7 @@ function CoppiedNotice(from, align) {
 
     $.notify({
         icon: "tim-icons icon-single-copy-04",
-        message: "Coppied!"
+        message: "Copied!"
 
     }, {
         type: type[color],

@@ -12,6 +12,9 @@ urlpatterns = [
    path('contact/', views.contact, name='contact_page'),
    path('colo/', views.landing_colo, name='colo_landing_page'),
 
+    # ----------------------------------- Forms ---------------------------------- #
+    path('forms/email_list/', views.forms_email_list, name='forms_email_list'),
+
    # ------------------------------------ PWA ----------------------------------- #
    path('offline/', views.pwa_offline, name='pwa_offline'),
 ]

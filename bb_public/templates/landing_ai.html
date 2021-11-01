@@ -1,4 +1,5 @@
 {% load static %}
+{% load compress %}
 
 <!DOCTYPE HTML>
 
@@ -41,6 +42,8 @@
 
         gtag('config', 'G-QZQPQ7EV5P', { cookie_flags: 'SameSite=None;Secure' });
     </script>
+
+    <script id="mcjs">!function (c, h, i, m, p) { m = c.createElement(h), p = c.getElementsByTagName(h)[0], m.async = 1, m.src = i, p.parentNode.insertBefore(m, p) }(document, "script", "https://chimpstatic.com/mcjs-connected/js/users/a626d38bfb20209717cccbbe3/96eabc780208eb0d6c7af5c15.js");</script>
 </head>
 
 <body class="is-preload landing">
@@ -237,14 +240,16 @@
         <div class="container">
             <header>
                 <h2>BUILD THE FUTURE</h2>
-                <p>Are you interested in hosting machines at brickbox.io? Sign up in the field below and we will be in touch! </p>
+                <p> Sign up below to be the first to receive news and updates! </p>
             </header>
-            <form method="post" action="#" class="cta">
+            <!-- <form method="post" action="{% url 'bb_public:forms_email_list' %}" class="cta" id="email_input"> {% csrf_token %} -->
+            <div class="cta" id="email_input" style="max-width: 35em; margin-left: auto; margin-right:auto;">
                 <div class="row gtr-uniform gtr-50">
                     <div class="col-8 col-12-xsmall"><input type="email" name="email" id="email" placeholder="Your Email Address" /></div>
-                    <div class="col-4 col-12-xsmall"><input type="submit" value="Submit" class="fit primary" /></div>
+                    <div class="col-4 col-12-xsmall"><input type="submit" value="Submit" class="fit primary" onclick="SubmitEmail()" /></div>
                 </div>
-            </form>
+            </div>
+            <!-- </form> -->
         </div>
     </section>
 
@@ -274,6 +279,12 @@
     <script src="{% static 'js/ai/breakpoints.min.js' %}"></script>
     <script src="{% static 'js/ai/util.js' %}"></script>
     <script src="{% static 'js/ai/main.js' %}"></script>
+
+    <script src="{% static 'js/ai/landing.js' %}"></script>
+
+    {% compress js inline %}
+    <script src="{% static 'js/csrf.js' %}"></script>
+    {% endcompress %}
 
 </body>
 

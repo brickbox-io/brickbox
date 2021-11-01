@@ -122,22 +122,11 @@ def reconnect_host(host):
                 reconnect_script_result = f"{script.stdout.read().decode('ascii')}"
             except AttributeError:
                 reconnect_script_result = 'No output'
-        time.sleep(10)
 
     # Cycle through VM and update power status
     for brick_vm in VirtualBrick.objects.filter(host=host):
         if brick_vm.is_on:
-            # play_vm_subprocess.delay(vm.id)
-            play_vm_script = [
-                                f'{DIR}brick_connect.sh',
-                                'brick_play',
-                                f'{str(Site.objects.get_current().domain)}',
-                                f'{str(brick_vm.id)}'
-                            ]
-            with Popen(play_vm_script) as script:
-                print(script)
-
-            time.sleep(10)
+            restore_vm_state.delay(brick_vm.id)
 
 
     return json.dumps({
@@ -147,3 +136,17 @@ def reconnect_host(host):
         'ReconnectScript':f'{reconnect_script}',
         'ReconnectScriptResult':f'{reconnect_script_result}',
     })
+
+@shared_task
+def restore_vm_state(instance):
+    '''
+    Called to restore the powered state of the VM.
+    '''
+    play_vm_script = [
+                        f'{DIR}brick_connect.sh',
+                        'brick_play',
+                        f'{str(Site.objects.get_current().domain)}',
+                        f'{str(instance)}'
+                    ]
+    with Popen(play_vm_script) as script:
+        print(script)
