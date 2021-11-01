@@ -1,6 +1,6 @@
 '''views.py for bb_public'''
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.http import HttpResponse
 
 from bb_public.models import EmailUpdateList
