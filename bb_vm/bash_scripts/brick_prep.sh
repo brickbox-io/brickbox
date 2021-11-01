@@ -20,4 +20,10 @@ if [ ! -x /vfio-pci-bind/vfio-pci-bind ]; then
     sudo chmod +x /vfio-pci-bind/vfio-pci-bind.sh
 fi
 
+sudo ip link add name br0 type bridge
+sudo ip link set dev br0 up
+sudo ip link set dev enp3s0f1 master br0
+
+sudo dhclient -r br0 && sudo dhclient br0
+
 exit
