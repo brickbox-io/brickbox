@@ -81,3 +81,5 @@ def onboarding_sshport(request, host_serial):
                 return HttpResponse('404')
 
         return HttpResponse(status=200)
+
+    return HttpResponse(status=405)
