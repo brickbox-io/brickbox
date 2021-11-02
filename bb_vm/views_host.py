@@ -4,7 +4,7 @@ bb_vm views for hosts
 '''
 
 from django.http import HttpResponse
-from django.contrib.auth.decorators import login_required
+# from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 
 from bb_vm.models import HostFoundation
@@ -57,6 +57,8 @@ def onboarding_pubkey(request, host_serial):
                 return HttpResponse('404')
 
         return HttpResponse(status=200)
+
+    return HttpResponse(status=405)
 
 
 @csrf_exempt
