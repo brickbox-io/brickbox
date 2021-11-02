@@ -18,8 +18,16 @@ urlpatterns = [
 
     # ------------------------------- Host Actions ------------------------------- #
     path('host/onboarding/<host_serial>', views_host.onboarding, name='host_onboarding'),
-    path('host/onboarding/pubkey/<host_serial>/', views_host.onboarding_pubkey, name='host_onboarding_pubkey'),
-    path('host/onboarding/sshport/<host_serial>/', views_host.onboarding_sshport, name='host_onboarding_done'),
+    path(
+            'host/onboarding/pubkey/<host_serial>/',
+            views_host.onboarding_pubkey,
+            name='host_onboarding_pubkey'
+    ),
+    path(
+            'host/onboarding/sshport/<host_serial>/',
+            views_host.onboarding_sshport,
+            name='host_onboarding_done'
+    ),
 
     # ------------------------------- Brick Actions ------------------------------ #
     path('brick/pause/', views.brick_pause, name='brick_pause'),
