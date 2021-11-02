@@ -28,10 +28,11 @@ class HostFoundation(models.Model):
     Represents the host computer/server where the virtual machines will reside.
     Recivers(s): assign_host_ssh_port
     '''
-    serial_number = models.CharField(max_length=64, null=True, unique=True)  # Uniquely identities a host.
+    serial_number = models.CharField(max_length=64, null=True, unique=True)  # Host serial number
 
-    ssh_port = models.ForeignKey(PortTunnel, blank=True, null=True, on_delete=models.PROTECT) # Tunnel Port
-    sshtunnel_public_key = models.TextField(blank=True, null=True)      # Key to establish SSH tunnel
+    # SSH Tunnel
+    ssh_port = models.ForeignKey(PortTunnel, blank=True, null=True, on_delete=models.PROTECT)
+    sshtunnel_public_key = models.TextField(blank=True, null=True)  # Key to establish SSH tunnel
 
     ssh_username = models.CharField(max_length = 64, default="bb_root")
 
