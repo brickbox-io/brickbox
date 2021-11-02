@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'pwa',                      # https://github.com/silviolleite/django-pwa
     'compressor',               # https://github.com/django-compressor/django-compressor
     'rest_framework',           # https://www.django-rest-framework.org/#installation
+    'rest_framework.authtoken', # https://www.django-rest-framework.org/api-guide/authentication/
     'oauth2_provider',          # https://django-oauth-toolkit.readthedocs.io/en/latest/install.html
     'django_celery_beat',       # https://github.com/celery/django-celery-beat
     'django_celery_results',    # https://github.com/celery/django-celery-results
