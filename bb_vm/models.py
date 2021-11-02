@@ -26,18 +26,21 @@ class PortTunnel(models.Model):
 class HostFoundation(models.Model):
     '''
     Represents the host computer/server where the virtual machines will reside.
+    Recivers(s): assign_host_ssh_port
     '''
-    serial_number = models.CharField(max_length=64, null=True)  # Uniquely identities a host.
+    serial_number = models.CharField(max_length=64, null=True, unique=True)  # Uniquely identities a host.
 
-    ssh_port = models.ForeignKey(PortTunnel, on_delete=models.PROTECT)
-    ssh_username = models.CharField(max_length = 64)
+    ssh_port = models.ForeignKey(PortTunnel, blank=True, null=True, on_delete=models.PROTECT) # Tunnel Port
+    sshtunnel_public_key = models.TextField(blank=True, null=True)      # Key to establish SSH tunnel
+
+    ssh_username = models.CharField(max_length = 64, default="bb_root")
 
     active = models.BooleanField(default=True)
 
-    is_online = models.BooleanField(default=False)
+    is_online = models.BooleanField(default=False)          # Online if tunnel is alive
     gpus_online = models.BooleanField(default=False)
 
-    connected_status = models.BooleanField(default=False)
+    connected_status = models.BooleanField(default=False)   # Replaced by is_online
 
     class Meta:
         verbose_name_plural = "Host Foundations/Servers"
@@ -165,6 +168,20 @@ def assign_port(sender, instance, **kwargs):
                 instance.save()
 
                 break
+
+# --------------------------- Host Port Allocation --------------------------- #
+@receiver(pre_save, sender=HostFoundation)
+def assign_host_ssh_port(sender, instance, **kwargs):
+    '''
+    Assigns first available port number to new SSH instance.
+    '''
+    print(sender)
+    if instance.ssh_port is None:
+        assigned_port = PortTunnel()
+        assigned_port.save()
+        instance.ssh_port = assigned_port
+        instance.save()
+
 
 # ----------------------------- GPU Rented Status ---------------------------- #
 @receiver(post_save, sender=RentedGPU)
