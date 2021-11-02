@@ -2,7 +2,7 @@
 
 from django.urls import path
 
-from bb_vm import views, views_validation
+from bb_vm import views, views_validation, views_host
 
 app_name = 'bb_vm'
 
@@ -15,6 +15,11 @@ urlpatterns = [
 
     path('error/', views_validation.brick_errors, name='brick_errors'),
     path('state/', views_validation.brick_state, name='brick_state'),
+
+    # ------------------------------- Host Actions ------------------------------- #
+    path('host/onboarding/<host_serial>', views_host.onboarding, name='host_onboarding'),
+    path('host/onboarding/pubkey/<host_serial>/', views_host.onboarding_pubkey, name='host_onboarding_pubkey'),
+    path('host/onboarding/sshport/<host_serial>/', views_host.onboarding_sshport, name='host_onboarding_done'),
 
     # ------------------------------- Brick Actions ------------------------------ #
     path('brick/pause/', views.brick_pause, name='brick_pause'),
