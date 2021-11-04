@@ -18,102 +18,104 @@ DIR = '/opt/brickbox/bb_vm/bash_scripts/'
 #                                Scripted Tasks                                #
 # ---------------------------------------------------------------------------- #
 
+# ---------------------------------- New VM ---------------------------------- #
 @shared_task
-def new_vm_subprocess(instance_id, xml, root_user):
+def new_vm_subprocess(instance_id):
     '''
     Called to start the creation of a VM in the background.
     '''
+    host = VirtualBrick.objects.get(id=instance_id).host
+
     catch_clone_errors.apply_async((instance_id,), countdown=60)
     remove_stale_clone.apply_async((instance_id,), countdown=180)
 
     new_vm_script = [
                         f'{DIR}brick_connect.sh',
-                        'brick_img',
-                        f'{str(Site.objects.get_current().domain)}',
-                        f'{str(instance_id)}',
-                        f'{str(xml)}',
-                        f'{str(root_user)}'
+                        f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
+                        'brick_img', f'{str(Site.objects.get_current().domain)}',
+                        f'{str(instance_id)}', f'{str(xml)}'
                     ]
+
     with subprocess.Popen(new_vm_script) as script:
         print(script)
 
 
+# -------------------------------- Shutdown VM ------------------------------- #
 @shared_task
-def pause_vm_subprocess(instance_id, root_user):
+def pause_vm_subprocess(instance_id):
     '''
     Called to power down a VM.
     '''
+    host = VirtualBrick.objects.get(id=instance_id).host
+
     pause_vm_script = [
                         f'{DIR}brick_connect.sh',
-                        'brick_pause',
-                        f'{str(Site.objects.get_current().domain)}',
-                        f'{str(instance_id)}',
-                        f'{str(root_user)}'
+                        f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
+                        'brick_pause', f'{str(Site.objects.get_current().domain)}',
+                        f'{str(instance_id)}'
                     ]
+
     with subprocess.Popen(pause_vm_script) as script:
         print(script)
 
-    # with subprocess.Popen([f'{DIR}brick_pause.sh', f'{str(instance_id)}']) as script:
-    #     print(script)
 
-
+# --------------------------------- Bootup VM -------------------------------- #
 @shared_task
-def play_vm_subprocess(instance_id, root_user):
+def play_vm_subprocess(instance_id):
     '''
     Resume VM from off state.
     '''
+    host = VirtualBrick.objects.get(id=instance_id).host
+
     play_vm_script = [
                         f'{DIR}brick_connect.sh',
-                        'brick_play',
-                        f'{str(Site.objects.get_current().domain)}',
+                        f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
+                        'brick_play', f'{str(Site.objects.get_current().domain)}',
                         f'{str(instance_id)}',
-                        f'{str(root_user)}'
                     ]
+
     with subprocess.Popen(play_vm_script) as script:
         print(script)
 
-    # with subprocess.Popen([f'{DIR}brick_play.sh', f'{str(instance_id)}']) as script:
-    #     print(script)
 
-
+# --------------------------------- Reboot VM -------------------------------- #
 @shared_task
 def reboot_vm_subprocess(instance_id, root_user):
     '''
     Called to reboot a VM.
     '''
+    host = VirtualBrick.objects.get(id=instance_id).host
+
     reboot_vm_script = [
                         f'{DIR}brick_connect.sh',
-                        'brick_reboot',
-                        f'{str(Site.objects.get_current().domain)}',
+                        f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
+                        'brick_reboot', f'{str(Site.objects.get_current().domain)}',
                         f'{str(instance_id)}',
-                        f'{str(root_user)}'
                     ]
     with subprocess.Popen(reboot_vm_script) as script:
         print(script)
 
-    # with subprocess.Popen([f'{DIR}brick_reboot.sh', f'{str(instance_id)}']) as script:
-    #     print(script)
 
-
+# --------------------------------- Delete VM -------------------------------- #
 @shared_task
-def destroy_vm_subprocess(instance_id, root_user):
+def destroy_vm_subprocess(instance_id):
     '''
     Called to destroy VM.
     '''
+    host = VirtualBrick.objects.get(id=instance_id).host
+
     destroy_vm_script = [
                         f'{DIR}brick_connect.sh',
-                        'brick_destroy',
-                        f'{str(Site.objects.get_current().domain)}',
+                        f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
+                        'brick_destroy', f'{str(Site.objects.get_current().domain)}',
                         f'{str(instance_id)}',
-                        f'{str(root_user)}'
                     ]
+
     with subprocess.Popen(destroy_vm_script) as script:
         print(script)
 
-    # with subprocess.Popen([f'{DIR}brick_destroy.sh', f'{str(instance_id)}']) as script:
-    #     print(script)
 
-
+# ---------------------------- Terminate SSH Port ---------------------------- #
 @shared_task
 def close_ssh_port(port_number):
     '''
