@@ -26,7 +26,7 @@ xml_data=$6
 # Check that port is active before trying to connect.
 if lsof -i tcp:"$port"; then
 
-    ssh -i /opt/brickbox/bb_vm/keys/"$host_user" -o StrictHostKeyChecking=no -p "$port" "$root_user"@localhost \
+    ssh -i /opt/brickbox/bb_vm/keys/"$host_user" -o StrictHostKeyChecking=no -p "$port" "$host_user"@localhost \
     'bash -s' < /opt/brickbox/bb_vm/bash_scripts/"$action".sh "$url" "$instance" \""$xml_data"\" 2>> \
     /opt/brickbox/bb_vm/bash_scripts/logs/brick_connect_errors.log
 

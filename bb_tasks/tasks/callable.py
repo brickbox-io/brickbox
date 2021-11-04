@@ -24,7 +24,8 @@ def new_vm_subprocess(instance_id):
     '''
     Called to start the creation of a VM in the background.
     '''
-    host = VirtualBrick.objects.get(id=instance_id).host
+    brick = VirtualBrick.objects.get(id=instance_id)
+    host = brick.host
 
     catch_clone_errors.apply_async((instance_id,), countdown=60)
     remove_stale_clone.apply_async((instance_id,), countdown=180)
@@ -33,7 +34,7 @@ def new_vm_subprocess(instance_id):
                         f'{DIR}brick_connect.sh',
                         f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
                         'brick_img', f'{str(Site.objects.get_current().domain)}',
-                        f'{str(instance_id)}', f'{str(xml)}'
+                        f'{str(instance_id)}', f'{str(brick.assigned_gpus[0])}'
                     ]
 
     with subprocess.Popen(new_vm_script) as script:
@@ -80,7 +81,7 @@ def play_vm_subprocess(instance_id):
 
 # --------------------------------- Reboot VM -------------------------------- #
 @shared_task
-def reboot_vm_subprocess(instance_id, root_user):
+def reboot_vm_subprocess(instance_id):
     '''
     Called to reboot a VM.
     '''
@@ -145,6 +146,7 @@ def remove_stale_clone(instance_id):
     Last resort to remove clones that did not sucessfully start and never given a port.
     '''
     brick = VirtualBrick.objects.get(id=instance_id)
+
     if brick.ssh_port is None and brick.is_on is False:
         VirtualBrickOwner.objects.filter(virt_brick=instance_id).delete()
         brick.delete()
