@@ -9,10 +9,11 @@ action_script=$1
 url=$2
 instance=$3
 xml_data=$4
+root_user=$5
 
 if lsof -i tcp:9002; then
 
-    sshpass -p "Password@1" ssh -o StrictHostKeyChecking=no -p 9002 bb_dev@localhost 'bash -s' < /opt/brickbox/bb_vm/bash_scripts/"$action_script".sh "$url" "$instance" \""$xml_data"\" 2>> /opt/brickbox/bb_vm/bash_scripts/bash_errors.log
+    sshpass -p "Password@1" ssh -i /opt/brickbox/bb_vm/keys/bb_root -o StrictHostKeyChecking=no -p 9002 "$root_user"@localhost 'bash -s' < /opt/brickbox/bb_vm/bash_scripts/"$action_script".sh "$url" "$instance" \""$xml_data"\" 2>> /opt/brickbox/bb_vm/bash_scripts/bash_errors.log
 
 else
 

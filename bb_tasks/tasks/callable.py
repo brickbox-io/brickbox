@@ -19,7 +19,7 @@ DIR = '/opt/brickbox/bb_vm/bash_scripts/'
 # ---------------------------------------------------------------------------- #
 
 @shared_task
-def new_vm_subprocess(instance_id, xml):
+def new_vm_subprocess(instance_id, xml, root_user):
     '''
     Called to start the creation of a VM in the background.
     '''
@@ -31,14 +31,15 @@ def new_vm_subprocess(instance_id, xml):
                         'brick_img',
                         f'{str(Site.objects.get_current().domain)}',
                         f'{str(instance_id)}',
-                        f'{str(xml)}'
+                        f'{str(xml)}',
+                        f'{srt(root_user)}'
                     ]
     with subprocess.Popen(new_vm_script) as script:
         print(script)
 
 
 @shared_task
-def pause_vm_subprocess(instance_id):
+def pause_vm_subprocess(instance_id, root_user):
     '''
     Called to power down a VM.
     '''
@@ -46,7 +47,8 @@ def pause_vm_subprocess(instance_id):
                         f'{DIR}brick_connect.sh',
                         'brick_pause',
                         f'{str(Site.objects.get_current().domain)}',
-                        f'{str(instance_id)}'
+                        f'{str(instance_id)}',
+                        f'{srt(root_user)}'
                     ]
     with subprocess.Popen(pause_vm_script) as script:
         print(script)
@@ -56,7 +58,7 @@ def pause_vm_subprocess(instance_id):
 
 
 @shared_task
-def play_vm_subprocess(instance_id):
+def play_vm_subprocess(instance_id, root_user):
     '''
     Resume VM from off state.
     '''
@@ -64,7 +66,8 @@ def play_vm_subprocess(instance_id):
                         f'{DIR}brick_connect.sh',
                         'brick_play',
                         f'{str(Site.objects.get_current().domain)}',
-                        f'{str(instance_id)}'
+                        f'{str(instance_id)}',
+                        f'{srt(root_user)}'
                     ]
     with subprocess.Popen(play_vm_script) as script:
         print(script)
@@ -74,7 +77,7 @@ def play_vm_subprocess(instance_id):
 
 
 @shared_task
-def reboot_vm_subprocess(instance_id):
+def reboot_vm_subprocess(instance_id, root_user):
     '''
     Called to reboot a VM.
     '''
@@ -82,7 +85,8 @@ def reboot_vm_subprocess(instance_id):
                         f'{DIR}brick_connect.sh',
                         'brick_reboot',
                         f'{str(Site.objects.get_current().domain)}',
-                        f'{str(instance_id)}'
+                        f'{str(instance_id)}',
+                        f'{srt(root_user)}'
                     ]
     with subprocess.Popen(reboot_vm_script) as script:
         print(script)
@@ -92,7 +96,7 @@ def reboot_vm_subprocess(instance_id):
 
 
 @shared_task
-def destroy_vm_subprocess(instance_id):
+def destroy_vm_subprocess(instance_id, root_user):
     '''
     Called to destroy VM.
     '''
@@ -100,7 +104,8 @@ def destroy_vm_subprocess(instance_id):
                         f'{DIR}brick_connect.sh',
                         'brick_destroy',
                         f'{str(Site.objects.get_current().domain)}',
-                        f'{str(instance_id)}'
+                        f'{str(instance_id)}',
+                        f'{srt(root_user)}'
                     ]
     with subprocess.Popen(destroy_vm_script) as script:
         print(script)
