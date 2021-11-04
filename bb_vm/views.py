@@ -49,12 +49,7 @@ def clone_img(request):
             brick_owner = VirtualBrickOwner(owner=profile, virt_brick=instance)
             brick_owner.save()
 
-            new_vm_subprocess.delay(instance.id, designated_gpu_xml, instance.host.ssh_username)
-
-            # subprocess.Popen([
-            #     '/opt/brickbox/bb_vm/bash_scripts/clone_img.sh',
-            #     f'{str(instance.id)}', f'{str(designated_gpu_xml)}'
-            # ])
+            new_vm_subprocess.delay(instance.id)
 
             bricks = VirtualBrickOwner.objects.filter(owner=profile) # All bricks owned.
             response_data = {}
@@ -122,8 +117,7 @@ def brick_pause(request):
     brick.is_on = False
     brick.save()
 
-    pause_vm_subprocess.delay(vm_id, brick.host.ssh_username)
-    # subprocess.Popen(['/opt/brickbox/bb_vm/bash_scripts/brick_pause.sh', f'{str(vm_id)}'])
+    pause_vm_subprocess.delay(vm_id)
 
     return HttpResponse(status=200)
 
@@ -143,8 +137,7 @@ def brick_play(request):
     brick.is_on = True
     brick.save()
 
-    play_vm_subprocess.delay(vm_id, brick.host.ssh_username)
-    # subprocess.Popen(['/opt/brickbox/bb_vm/bash_scripts/brick_play.sh', f'{str(vm_id)}'])
+    play_vm_subprocess.delay(vm_id)
 
     return HttpResponse(status=200)
 
@@ -187,9 +180,7 @@ def brick_destroy(request):
     # brick.ssh_port.delete()
     close_ssh_port.apply_async((brick.ssh_port.port_number,), countdown=43200)
 
-    destroy_vm_subprocess.delay(vm_id, brick.host.ssh_username)
-
-    # subprocess.Popen(['/opt/brickbox/bb_vm/bash_scripts/brick_destroy.sh', f'{str(vm_id)}'])
+    destroy_vm_subprocess.delay(vm_id)
 
     profile = UserProfile.objects.get(user = request.user)
     bricks = VirtualBrickOwner.objects.filter(owner=profile) # All bricks owned.

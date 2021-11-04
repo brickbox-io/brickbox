@@ -100,17 +100,15 @@ def reconnect_host(host):
 
     preperation_script = [
                             f'{DIR}brick_connect.sh',
-                            'brick_prep',
-                            f'{str(Site.objects.get_current().domain)}',
-                            f'{host.ssh_username}'
+                            f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
+                            'brick_prep', f'{str(Site.objects.get_current().domain)}',
                         ]
+
     with Popen(preperation_script, stdout=PIPE) as script:
         try:
             prep_script_result = f"{script.stdout.read().decode('ascii')}"
         except AttributeError:
             prep_script_result = 'No output'
-
-
 
     reconnect_script = "Not GPUs"
     reconnect_script_result = "Not Ran"
@@ -118,12 +116,12 @@ def reconnect_host(host):
     for gpu in GPU.objects.filter(host=host):
         reconnect_script = [
                                 f'{DIR}brick_connect.sh',
-                                'brick_reconnect',
-                                f'{str(Site.objects.get_current().domain)}',
+                                f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
+                                'brick_reconnect', f'{str(Site.objects.get_current().domain)}',
                                 f'{gpu.device}',
                                 f'{gpu.pcie}'
-                                f'{host.ssh_username}'
                             ]
+
         with Popen(reconnect_script) as script:
             try:
                 reconnect_script_result = f"{script.stdout.read().decode('ascii')}"
@@ -153,10 +151,10 @@ def restore_vm_state(instance):
 
     play_vm_script = [
                         f'{DIR}brick_connect.sh',
-                        'brick_play',
-                        f'{str(Site.objects.get_current().domain)}',
+                        f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
+                        'brick_play', f'{str(Site.objects.get_current().domain)}',
                         f'{str(instance)}'
-                        f'{host.ssh_username}'
                     ]
+
     with Popen(play_vm_script) as script:
         print(script)
