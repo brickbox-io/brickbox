@@ -3,12 +3,17 @@ bb_vm views for hosts
 - Onboarding
 '''
 
+import os
+import subprocess
+import urllib.parse
+
 from django.http import HttpResponse
 # from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 
 from bb_vm.models import HostFoundation
 
+DIR = '/opt/brickbox/bb_vm/bash_scripts/'
 
 @csrf_exempt
 # @login_required
@@ -21,20 +26,25 @@ def onboarding(request, host_serial):
     '''
     if request.method == 'POST':
         print(request.POST)
-        public_key = request.POST.get('public_key')
+
+        public_key = urllib.parse.unquote(request.POST.get("public_key"))
 
         if host_serial and public_key:
             try:
                 host = HostFoundation.objects.get(serial_number=host_serial)
                 host.sshtunnel_public_key = public_key
                 host.save()
-                return HttpResponse('200')
+
+                with subprocess.Popen([f'{DIR}auth_key.sh', f'{str(public_key)}']) as script:
+                    print(script)
+
+                return HttpResponse("ok", status=200)
             except HostFoundation.DoesNotExist:
-                return HttpResponse('404')
+                return HttpResponse("error", status=404)
 
-        return HttpResponse(status=200)
+        return HttpResponse("error", status=400)
 
-    return HttpResponse(status=405)
+    return HttpResponse("error", status=405)
 
 
 @csrf_exempt
@@ -52,13 +62,17 @@ def onboarding_pubkey(request, host_serial):
         if host_serial:
             try:
                 host = HostFoundation.objects.get(serial_number=host_serial)
-                return HttpResponse(host.sshtunnel_public_key)
+                with open("/opt/brickbox/bb_vm/keys/bb_root.pub") as pubkey_file:
+                    pubkey = pubkey_file.read()
+
+                return HttpResponse(pubkey, status=200)
+
             except HostFoundation.DoesNotExist:
-                return HttpResponse('404')
+                return HttpResponse("error", status=404)
 
-        return HttpResponse(status=200)
+        return HttpResponse("error", status=400)
 
-    return HttpResponse(status=405)
+    return HttpResponse("error", status=405)
 
 
 @csrf_exempt
@@ -76,10 +90,10 @@ def onboarding_sshport(request, host_serial):
         if host_serial:
             try:
                 host = HostFoundation.objects.get(serial_number=host_serial)
-                return HttpResponse(host.ssh_port)
+                return HttpResponse(host.ssh_port, status=200)
             except HostFoundation.DoesNotExist:
-                return HttpResponse('404')
+                return HttpResponse("error", status=404)
 
-        return HttpResponse(status=200)
+        return HttpResponse("error", status=404)
 
-    return HttpResponse(status=405)
+    return HttpResponse("error", status=405)

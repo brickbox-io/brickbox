@@ -34,6 +34,7 @@ class HostFoundation(models.Model):
     ssh_port = models.ForeignKey(PortTunnel, blank=True, null=True, on_delete=models.PROTECT)
     sshtunnel_public_key = models.TextField(blank=True, null=True)  # Key to establish SSH tunnel
 
+    # Root User
     ssh_username = models.CharField(max_length = 64, default="bb_root")
 
     active = models.BooleanField(default=True)

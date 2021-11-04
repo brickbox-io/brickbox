@@ -6,8 +6,11 @@
 
 # Verify that QEMU is installed.
 if [ ! -f /usr/bin/qemu-system-x86_64 ]; then
-  echo "QEMU is not installed. Please install QEMU and try again."
-  exit 1
+    echo "QEMU is not installed. Attempting to install."
+    sudo apt-get install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils -y
+    # apt-get install qemu-kvm -y
+    # sudo apt-get install qemu -y
+    exit 1
 fi
 
 # Check if directory exists.

@@ -96,10 +96,13 @@ def reconnect_host(host):
     GPU - Cycles through all GPUs and changes driver to VFIO.
     VM - Cycles through all VMs and updates their power status.
     '''
+    host = HostFoundation.objects.get(id=host)
+
     preperation_script = [
                             f'{DIR}brick_connect.sh',
                             'brick_prep',
                             f'{str(Site.objects.get_current().domain)}',
+                            f'{host.ssh_username}'
                         ]
     with Popen(preperation_script, stdout=PIPE) as script:
         try:
@@ -107,14 +110,19 @@ def reconnect_host(host):
         except AttributeError:
             prep_script_result = 'No output'
 
-    host = HostFoundation.objects.get(id=host)
+
+
+    reconnect_script = "Not GPUs"
+    reconnect_script_result = "Not Ran"
+
     for gpu in GPU.objects.filter(host=host):
         reconnect_script = [
-                            f'{DIR}brick_connect.sh',
-                            'brick_reconnect',
-                            f'{str(Site.objects.get_current().domain)}',
-                            f'{gpu.device}',
-                            f'{gpu.pcie}'
+                                f'{DIR}brick_connect.sh',
+                                'brick_reconnect',
+                                f'{str(Site.objects.get_current().domain)}',
+                                f'{gpu.device}',
+                                f'{gpu.pcie}'
+                                f'{host.ssh_username}'
                             ]
         with Popen(reconnect_script) as script:
             try:
@@ -141,11 +149,14 @@ def restore_vm_state(instance):
     '''
     Called to restore the powered state of the VM.
     '''
+    host = VirtualBrick.objects.get(id=instance).host
+
     play_vm_script = [
                         f'{DIR}brick_connect.sh',
                         'brick_play',
                         f'{str(Site.objects.get_current().domain)}',
                         f'{str(instance)}'
+                        f'{host.ssh_username}'
                     ]
     with Popen(play_vm_script) as script:
         print(script)
