@@ -3,7 +3,6 @@ bb_vm views for hosts
 - Onboarding
 '''
 
-import os
 import subprocess
 import urllib.parse
 
@@ -61,8 +60,8 @@ def onboarding_pubkey(request, host_serial):
 
         if host_serial:
             try:
-                host = HostFoundation.objects.get(serial_number=host_serial)
-                with open("/opt/brickbox/bb_vm/keys/bb_root.pub") as pubkey_file:
+                HostFoundation.objects.get(serial_number=host_serial)
+                with open("/opt/brickbox/bb_vm/keys/bb_root.pub", encoding="utf-8") as pubkey_file:
                     pubkey = pubkey_file.read()
 
                 return HttpResponse(pubkey, status=200)
