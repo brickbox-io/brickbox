@@ -32,7 +32,7 @@ def new_vm_subprocess(instance_id, xml, root_user):
                         f'{str(Site.objects.get_current().domain)}',
                         f'{str(instance_id)}',
                         f'{str(xml)}',
-                        f'{srt(root_user)}'
+                        f'{str(root_user)}'
                     ]
     with subprocess.Popen(new_vm_script) as script:
         print(script)
@@ -48,7 +48,7 @@ def pause_vm_subprocess(instance_id, root_user):
                         'brick_pause',
                         f'{str(Site.objects.get_current().domain)}',
                         f'{str(instance_id)}',
-                        f'{srt(root_user)}'
+                        f'{str(root_user)}'
                     ]
     with subprocess.Popen(pause_vm_script) as script:
         print(script)
@@ -67,7 +67,7 @@ def play_vm_subprocess(instance_id, root_user):
                         'brick_play',
                         f'{str(Site.objects.get_current().domain)}',
                         f'{str(instance_id)}',
-                        f'{srt(root_user)}'
+                        f'{str(root_user)}'
                     ]
     with subprocess.Popen(play_vm_script) as script:
         print(script)
@@ -86,7 +86,7 @@ def reboot_vm_subprocess(instance_id, root_user):
                         'brick_reboot',
                         f'{str(Site.objects.get_current().domain)}',
                         f'{str(instance_id)}',
-                        f'{srt(root_user)}'
+                        f'{str(root_user)}'
                     ]
     with subprocess.Popen(reboot_vm_script) as script:
         print(script)
@@ -105,7 +105,7 @@ def destroy_vm_subprocess(instance_id, root_user):
                         'brick_destroy',
                         f'{str(Site.objects.get_current().domain)}',
                         f'{str(instance_id)}',
-                        f'{srt(root_user)}'
+                        f'{str(root_user)}'
                     ]
     with subprocess.Popen(destroy_vm_script) as script:
         print(script)
@@ -146,4 +146,4 @@ def remove_stale_clone(instance_id):
     if brick.ssh_port is None and brick.is_on is False:
         VirtualBrickOwner.objects.filter(virt_brick=instance_id).delete()
         brick.delete()
-        destroy_vm_subprocess(instance_id)
+        destroy_vm_subprocess(instance_id, brick.host.ssh_usernmae)
