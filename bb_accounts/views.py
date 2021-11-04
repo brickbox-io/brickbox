@@ -114,12 +114,18 @@ def token_signin(request):
             )
             return redirect('/dash/')
 
-        new_user = User.objects.create_user(
-            username = idinfo['email'],
-            first_name = idinfo['given_name'],
-            last_name = idinfo['family_name'],
-            email = idinfo['email'],
-        )
+        try:
+            new_user = User.objects.create_user(
+                username = idinfo['email'],
+                first_name = idinfo['given_name'],
+                last_name = idinfo['family_name'],
+                email = idinfo['email'],
+            )
+        except KeyError:
+            new_user = User.objects.create_user(
+                username = idinfo['email'],
+                email = idinfo['email'],
+            )
 
         new_socialaccount = SocialAccount(
             user = new_user,
