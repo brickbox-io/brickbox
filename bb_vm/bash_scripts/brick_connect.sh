@@ -1,19 +1,34 @@
 #!/bin/bash
 
+# Connects to a remote host through a SSH tunnel and runs the provided script.
+
 # --------------------------------- Arguments -------------------------------- #
-# - (1) URL Endpint
-# - (2) Instance ID that has been provided to refrence this new VM.
-# - (3) XML formatted data to attach GPU to VM
 
-action_script=$1
-url=$2
-instance=$3
-xml_data=$4
-root_user=$5
+# $1: Remote (root) username
+# $2: Host assigned port tunnel
+# $3: The script that will be executed on the remote host
 
-if lsof -i tcp:9002; then
+## The Following arguments are passed along to the script
 
-    sshpass -p "Password@1" ssh -i /opt/brickbox/bb_vm/keys/bb_root -o StrictHostKeyChecking=no -p 9002 "$root_user"@localhost 'bash -s' < /opt/brickbox/bb_vm/bash_scripts/"$action_script".sh "$url" "$instance" \""$xml_data"\" 2>> /opt/brickbox/bb_vm/bash_scripts/bash_errors.log
+# $4: URL Endpint
+# $5: Instance ID that has been provided to refrence this new VM
+# $6: XML formatted data to attach GPU to VM
+
+host_user=$1
+port=$2
+action=$3
+
+url=$4
+instance=$5
+xml_data=$6
+
+
+# Check that port is active before trying to connect.
+if lsof -i tcp:"$port"; then
+
+    ssh -i /opt/brickbox/bb_vm/keys/"$host_user" -o StrictHostKeyChecking=no -p "$port" "$host_user"@localhost \
+    'bash -s' < /opt/brickbox/bb_vm/bash_scripts/"$action".sh "$url" "$instance" \""$xml_data"\" 2>> \
+    /opt/brickbox/bb_vm/bash_scripts/logs/brick_connect_errors.log
 
 else
 
