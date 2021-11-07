@@ -2,6 +2,7 @@
 
 from __future__ import absolute_import, unicode_literals
 
+import json
 import subprocess
 
 from django.contrib.sites.models import Site
@@ -9,7 +10,7 @@ from django.contrib.sites.models import Site
 from celery import shared_task
 
 from bb_vm.models import (
-    PortTunnel, VirtualBrickOwner, VirtualBrick,
+    PortTunnel, VirtualBrickOwner, VirtualBrick, RentedGPU
 )
 
 DIR = '/opt/brickbox/bb_vm/bash_scripts/'
@@ -30,11 +31,13 @@ def new_vm_subprocess(instance_id):
     catch_clone_errors.apply_async((instance_id,), countdown=60)
     remove_stale_clone.apply_async((instance_id,), countdown=180)
 
+    gpu_xml = RentedGPU.objects.filter(virt_brick=brick)[0].gpu.xml
+
     new_vm_script = [
                         f'{DIR}brick_connect.sh',
                         f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
                         'brick_img', f'{str(Site.objects.get_current().domain)}',
-                        f'{str(instance_id)}', f'{str(brick.assigned_gpus[0])}'
+                        f'{str(instance_id)}', f'{str(gpu_xml)}'
                     ]
 
     with subprocess.Popen(new_vm_script) as script:
@@ -145,9 +148,15 @@ def remove_stale_clone(instance_id):
     '''
     Last resort to remove clones that did not sucessfully start and never given a port.
     '''
-    brick = VirtualBrick.objects.get(id=instance_id)
+    try:
+        brick = VirtualBrick.objects.get(id=instance_id)
 
-    if brick.ssh_port is None and brick.is_on is False:
-        VirtualBrickOwner.objects.filter(virt_brick=instance_id).delete()
-        brick.delete()
-        destroy_vm_subprocess(instance_id)
+        if brick.ssh_port is None and brick.is_on is False:
+            VirtualBrickOwner.objects.filter(virt_brick=instance_id).delete()
+            brick.delete()
+            destroy_vm_subprocess(instance_id)
+
+    except VirtualBrick.DoesNotExist as err:
+        return json.dumps({
+            'error':f'{err}'
+        })

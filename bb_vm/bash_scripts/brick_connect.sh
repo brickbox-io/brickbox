@@ -26,9 +26,9 @@ xml_data=$6
 # Check that port is active before trying to connect.
 if lsof -i tcp:"$port"; then
 
-    sshpass -p "" ssh -i /opt/brickbox/bb_vm/keys/"$host_user" -o StrictHostKeyChecking=no -p "$port" "$host_user"@localhost \
-    'bash -s' < /opt/brickbox/bb_vm/bash_scripts/"$action".sh "$url" "$instance" \""$xml_data"\" 2>> \
-    /opt/brickbox/bb_vm/bash_scripts/logs/brick_connect_errors.log
+    curl -X POST https://"$url"/api/vmlog/ -d "level=20&virt_brick=$instance&message=$action%20sending%20over%20ssh%20tunnel&command=ssh&command_output=$last_command_output"
+
+    last_command_output=$(ssh -i /opt/brickbox/bb_vm/keys/"$host_user" -o StrictHostKeyChecking=no -p "$port" "$host_user"@localhost 'sudo bash -s' < /opt/brickbox/bb_vm/bash_scripts/"$action".sh "$url" "$instance" \""$xml_data"\" 2>> /opt/brickbox/bb_vm/bash_scripts/logs/brick_connect_errors.log)
 
 else
 

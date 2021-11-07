@@ -18,7 +18,7 @@ url=$1
 instance=$2
 xml_data=$3
 
-echo "$xml_data" >> bash_errors.log
+sudo echo "$xml_data" >> bash_errors.log
 
 # Logging
 curl -X POST https://"$url"/api/vmlog/ -d "level=20&virt_brick=$instance&message=Successfully%20SSH%20connection%20to%20host,%20creating%20$instance."
@@ -36,11 +36,11 @@ if sudo virsh domblklist "$instance" | grep "\/var\/lib\/libvirt\/images\/$insta
 
     curl -X POST https://dev.brickbox.io/vm/state/ -d "instance=$instance&verify=clone" &
 
-    rm /home/bb_dev/GPU.xml 2>> bash_errors.log
+    sudo rm /home/bb_dev/GPU.xml 2>> bash_errors.log
 
     sleep 1
 
-    echo "$xml_data" >> /home/bb_dev/GPU.xml 2>> bash_errors.log
+    sudo echo "$xml_data" >> /home/bb_dev/GPU.xml 2>> bash_errors.log
 
 
     # Logging
