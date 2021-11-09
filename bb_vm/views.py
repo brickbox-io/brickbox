@@ -176,11 +176,12 @@ def brick_destroy(request):
 
     brick = VirtualBrick.objects.get(id=vm_id)
     VirtualBrickOwner.objects.filter(virt_brick=brick).delete()
-    brick.delete()
+
     # brick.ssh_port.delete()
     close_ssh_port.apply_async((brick.ssh_port.port_number,), countdown=43200)
 
     destroy_vm_subprocess.delay(vm_id)
+    brick.delete()
 
     profile = UserProfile.objects.get(user = request.user)
     bricks = VirtualBrickOwner.objects.filter(owner=profile) # All bricks owned.

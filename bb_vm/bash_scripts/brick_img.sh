@@ -36,18 +36,18 @@ if sudo virsh domblklist "$instance" | grep "\/var\/lib\/libvirt\/images\/$insta
 
     curl -X POST https://dev.brickbox.io/vm/state/ -d "instance=$instance&verify=clone" &
 
-    sudo rm /home/bb_dev/GPU.xml 2>> bash_errors.log
+    sudo rm GPU.xml 2>> bash_errors.log
 
     sleep 1
 
-    sudo echo "$xml_data" >> /home/bb_dev/GPU.xml 2>> bash_errors.log
+    sudo echo "$xml_data" >> GPU.xml 2>> bash_errors.log
 
 
     # Logging
     curl -X POST https://"$url"/api/vmlog/ -d "level=20&virt_brick=$instance&message=GPU%20XML%0D%0A$xml_data"
 
 
-    last_command_output=$(sudo virsh attach-device "$instance" /home/bb_dev/GPU.xml --persistent 2>> bash_errors.log)
+    last_command_output=$(sudo virsh attach-device "$instance" GPU.xml --persistent 2>> bash_errors.log)
     last_command=!!
 
     sleep 20
@@ -66,7 +66,7 @@ if sudo virsh domblklist "$instance" | grep "\/var\/lib\/libvirt\/images\/$insta
 
         sleep 20
 
-        sudo virsh attach-device "$instance" /home/bb_dev/GPU.xml --persistent 2>> bash_errors.log
+        sudo virsh attach-device "$instance" GPU.xml --persistent 2>> bash_errors.log
 
         sleep 20
 
@@ -88,7 +88,7 @@ if sudo virsh domblklist "$instance" | grep "\/var\/lib\/libvirt\/images\/$insta
 
     sudo virsh start "$instance" 2>> bash_errors.log
 
-    rm /home/bb_dev/GPU.xml 2>> bash_errors.log
+    sudo rm GPU.xml 2>> bash_errors.log
 
     curl https://dev.brickbox.io/vm/register/"$instance"/"$(sudo virsh domuuid "$instance")"/ &
 
