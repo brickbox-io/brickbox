@@ -6,7 +6,18 @@ pcie=$3
 
 # cd /vfio-pci-bind || exit 1
 
-sudo ./vfio-pci-bind/vfio-pci-bind.sh "$device" "$pcie" 2>> bash_errors.log
+command_output=$(sudo ./vfio-pci-bind/vfio-pci-bind.sh "$device" "$pcie" 2>> bash_errors.log)
+
+# Verify that the GPU was attached sucessfully
+if sudo lspci -s "$pcie" -k | grep "vfio-pci"; then
+
+    curl -X POST https://"$url"/api/vmlog/ -d "level=20&virt_brick=NA&message=$pcie%20Driver%20set%20to%20VFIO&command_output=$command_output"  # Logging
+
+else
+
+    curl -X POST https://"$url"/api/vmlog/ -d "level=40&virt_brick=NA&message=Failed%20set%20$pcie%20driver%20set%20to%20VFIO&command_output=$command_output"    # Logging
+
+fi
 
 # sudo ip link add name br0 type bridge
 # sudo ip link set dev br0 up

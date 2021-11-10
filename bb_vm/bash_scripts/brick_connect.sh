@@ -28,7 +28,8 @@ if lsof -i tcp:"$port"; then
 
     # curl -X POST https://"$url"/api/vmlog/ -d "level=20&virt_brick=$instance&message=$action%20sending%20over%20ssh%20tunnel&command=ssh"
 
-    sudo ssh -i /opt/brickbox/bb_vm/keys/"$host_user" -o StrictHostKeyChecking=no -p "$port" "$host_user"@localhost 'sudo bash -s' < /opt/brickbox/bb_vm/bash_scripts/"$action".sh "$url" "$instance" \""$xml_data"\" 2>> /opt/brickbox/bb_vm/bash_scripts/logs/brick_connect_errors.log
+    sudo cat /opt/brickbox/bb_vm/bash_scripts/"$action".sh "$url" "$instance" \""$xml_data"\" | sudo ssh -i /opt/brickbox/bb_vm/keys/"$host_user" -o StrictHostKeyChecking=no -p "$port" "$host_user"@localhost 'sudo bash -s' 2>> /opt/brickbox/bb_vm/bash_scripts/logs/brick_connect_errors.log
+    # sudo ssh -i /opt/brickbox/bb_vm/keys/"$host_user" -o StrictHostKeyChecking=no -p "$port" "$host_user"@localhost 'sudo bash -s' < /opt/brickbox/bb_vm/bash_scripts/"$action".sh "$url" "$instance" \""$xml_data"\" 2>> /opt/brickbox/bb_vm/bash_scripts/logs/brick_connect_errors.log
 
     # curl -X POST https://"$url"/api/vmlog/ -d "level=20&virt_brick=$instance&message=$action%20Sent%20over%20ssh%20tunnel&command=ssh&command_output=$last_command_output"
 

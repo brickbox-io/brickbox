@@ -156,6 +156,8 @@ def remove_stale_clone(instance_id):
             brick.delete()
             destroy_vm_subprocess(instance_id)
 
+        return True
+
     except VirtualBrick.DoesNotExist as err:
         return json.dumps({
             'error':f'{err}'

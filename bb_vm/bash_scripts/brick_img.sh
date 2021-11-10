@@ -74,7 +74,7 @@ if sudo virsh domblklist "$instance" | grep "\/var\/lib\/libvirt\/images\/$insta
 
     fi
 
-
+    # Verify that the GPU was attached sucessfully
     if sudo virsh dumpxml "$instance" | grep "hostdev"; then
 
         curl -X POST https://"$url"/api/vmlog/ -d "level=20&virt_brick=$instance&message=GPU%20attached%20successfully."  # Logging
