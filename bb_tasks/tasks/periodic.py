@@ -12,6 +12,7 @@ from celery import shared_task
 
 from bb_vm.models import PortTunnel, HostFoundation, GPU, VirtualBrick
 
+# Script directory on server.
 DIR = '/opt/brickbox/bb_vm/bash_scripts/'
 
 @shared_task
@@ -59,24 +60,28 @@ def verify_brick_connectivity():
     command = "No Command Ran"
 
     for brick in bricks:
-        if brick.ssh_port.port_number is not None:
-            command = ['lsof', '-i', f'tcp:{brick.ssh_port.port_number}']
-            with Popen(command, stdout=PIPE) as script:
+        try:
+            if brick.ssh_port.port_number is not None:
+                command = ['lsof', '-i', f'tcp:{brick.ssh_port.port_number}']
+                with Popen(command, stdout=PIPE) as script:
 
-                port_result = f"{script.stdout.read().decode('ascii')}"
+                    port_result = f"{script.stdout.read().decode('ascii')}"
 
-                if port_result and not brick.is_online:
-                    PortTunnel.objects.filter(
-                        port_number=brick.ssh_port.port_number
-                    ).update(is_alive=True)
-                    # brick.ssh_port.is_alive = True
-                    # brick.save()
-                elif not port_result and brick.is_online:
-                    PortTunnel.objects.filter(
-                        port_number=brick.ssh_port.port_number
-                    ).update(is_alive=False)
-                    # brick.ssh_port.is_alive = False
-                    # brick.save()
+                    if port_result and not brick.is_online:
+                        PortTunnel.objects.filter(
+                            port_number=brick.ssh_port.port_number
+                        ).update(is_alive=True)
+                        # brick.ssh_port.is_alive = True
+                        # brick.save()
+                    elif not port_result and brick.is_online:
+                        PortTunnel.objects.filter(
+                            port_number=brick.ssh_port.port_number
+                        ).update(is_alive=False)
+                        # brick.ssh_port.is_alive = False
+                        # brick.save()
+        except AttributeError as err:
+            port_result = f"{err}"
+
 
     return json.dumps({
         'bricks':f'{bricks.values()}',
@@ -110,7 +115,7 @@ def reconnect_host(host):
         except AttributeError:
             prep_script_result = 'No output'
 
-    reconnect_script = "Not GPUs"
+    reconnect_script = "No GPUs"
     reconnect_script_result = "Not Ran"
 
     for gpu in GPU.objects.filter(host=host):
