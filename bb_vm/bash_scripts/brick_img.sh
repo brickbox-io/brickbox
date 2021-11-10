@@ -18,7 +18,7 @@ url=$1
 instance=$2
 xml_data=$3
 
-sudo echo "$xml_data" >> bash_errors.log
+sudo echo "$xml_data" | sudo tee -a bash_errors.log > /dev/null
 
 # Logging
 curl -X POST https://"$url"/api/vmlog/ -d "level=20&virt_brick=$instance&message=Successfully%20SSH%20connection%20to%20host,%20creating%20$instance."
@@ -40,7 +40,7 @@ if sudo virsh domblklist "$instance" | grep "\/var\/lib\/libvirt\/images\/$insta
 
     sleep 1
 
-    sudo echo "$xml_data" >> GPU.xml 2>> bash_errors.log
+    sudo echo "$xml_data" | sudo tee -a GPU.xml > /dev/null 2>> bash_errors.log
 
 
     # Logging
