@@ -106,18 +106,20 @@ def destroy_vm_subprocess(instance_id):
     '''
     Called to destroy VM.
     '''
-    host = VirtualBrick.objects.get(id=instance_id).host
+    brick = VirtualBrick.objects.get(id=instance_id)
 
     destroy_vm_script = [
                         f'{DIR}brick_connect.sh',
-                        f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
+                        f'{str(brick.host.ssh_username)}', f'{str(brick.host.ssh_port)}',
                         'brick_destroy', f'{str(Site.objects.get_current().domain)}',
                         f'{str(instance_id)}',
                     ]
 
+
     with subprocess.Popen(destroy_vm_script) as script:
         print(script)
 
+    brick.delete()
 
 # ---------------------------- Terminate SSH Port ---------------------------- #
 @shared_task
