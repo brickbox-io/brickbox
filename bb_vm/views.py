@@ -27,8 +27,9 @@ def clone_img(request):
     Method: AJAX
     Clone exsisting image to create a new istance.
     '''
+    selected_gpu = request.POST.get('selected_gpu')
     designated_gpu_xml = None
-    for gpu in GPU.objects.all():
+    for gpu in GPU.objects.filter(model=selected_gpu):
         if RentedGPU.objects.filter(gpu=gpu).count() < 1:
             designated_gpu_xml = gpu.xml
 
