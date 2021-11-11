@@ -1,1118 +1,0 @@
-bash: -c: line 0: syntax error near unexpected token `newline'
-bash: -c: line 0: `bash -s dev.brickbox.io 137 <hostdev mode=\"subsystem\" type=\"pci\" managed=\"yes\"> <driver name=\"vfio\"/> <source> <address domain=\"0x0000\" bus=\"0x81\" slot=\"0x00\" function=\"0x0\"/> </source> <alias name=\"hostdev0\"/> <address type=\"pci\" domain=\"0x0000\" bus=\"0x01\" slot=\"0x00\" function=\"0x0\"/> </hostdev>'
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   235  100   141  100    94   1093    728 --:--:-- --:--:-- --:--:--  1821
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   165  100   110  100    55    635    317 --:--:-- --:--:-- --:--:--   953
-rm: cannot remove '/home/bb_dev/GPU.xml': No such file or directory
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    25    0     0  100    25      0    140 --:--:-- --:--:-- --:--:--   140
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   736  100   413  100   323   2401   1877 --:--:-- --:--:-- --:--:--  4279
-error: Failed to attach device from /home/bb_dev/GPU.xml
-error: Requested operation is not valid: domain is not running
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   193  100   122  100    71    976    568 --:--:-- --:--:-- --:--:--  1544
-error: Failed to start domain 138
-error: Cannot get interface MTU on 'br0': No such device
-error: Failed to attach device from /home/bb_dev/GPU.xml
-error: Requested operation is not valid: domain is not running
-error: Failed to reboot domain 138
-error: Requested operation is not valid: domain is not running
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   173  100   113  100    60    758    402 --:--:-- --:--:-- --:--:--  1161
-error: Failed to start domain 138
-error: Cannot get interface MTU on 'br0': No such device
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   235  100   141  100    94    437    291 --:--:-- --:--:-- --:--:--   729
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   165  100   110  100    55    478    239 --:--:-- --:--:-- --:--:--   717
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    25    0     0  100    25      0    111 --:--:-- --:--:-- --:--:--   111
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   771  100   434  100   337   1550   1203 --:--:-- --:--:-- --:--:--  2743
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   193  100   122  100    71    311    181 --:--:-- --:--:-- --:--:--   492
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   173  100   113  100    60    455    241 --:--:-- --:--:-- --:--:--   697
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    94    0     0  100    94      0    458 --:--:-- --:--:-- --:--:--   456100   235  100   141  100    94    505    336 --:--:-- --:--:-- --:--:--   842
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   165  100   110  100    55    381    190 --:--:-- --:--:-- --:--:--   572
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    25    0     0  100    25      0     98 --:--:-- --:--:-- --:--:--    98
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   771  100   434  100   337   1613   1252 --:--:-- --:--:-- --:--:--  2866
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   193  100   122  100    71    319    185 --:--:-- --:--:-- --:--:--   503
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   173  100   113  100    60    366    194 --:--:-- --:--:-- --:--:--   561
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-sudo: ./vfio-pci-bind.sh: command not found
-sudo: ./vfio-pci-bind.sh: command not found
-sudo: ./vfio-pci-bind.sh: command not found
-sudo: ./vfio-pci-bind.sh: command not found
-sudo: ./vfio-pci-bind.sh: command not found
-sudo: ./vfio-pci-bind.sh: command not found
-sudo: ./vfio-pci-bind.sh: command not found
-sudo: ./vfio-pci-bind.sh: command not found
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-Cloning into 'vfio-pci-bind'...
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-kex_exchange_identification: read: Connection reset by peer
-kex_exchange_identification: read: Connection reset by peer
-kex_exchange_identification: read: Connection reset by peer
-kex_exchange_identification: read: Connection reset by peer
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-sudo: ./vfio-pci-bind.sh: command not found
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-bash: line 7: cd: /vfio-pci-bind: No such file or directory
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-error: Failed to shutdown domain 90
-error: Requested operation is not valid: domain is not running
-error: Failed to destroy domain 90
-error: Requested operation is not valid: domain is not running
-bash: line 30: t: command not found
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   235  100   141  100    94    503    335 --:--:-- --:--:-- --:--:--   842
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   165  100   110  100    55    497    248 --:--:-- --:--:-- --:--:--   746
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    25    0     0  100    25      0    107 --:--:-- --:--:-- --:--:--   107
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   657  100   373  100   284   1657   1262 --:--:-- --:--:-- --:--:--  2920
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   193  100   122  100    71    486    282 --:--:-- --:--:-- --:--:--   768
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   173  100   113  100    60    455    241 --:--:-- --:--:-- --:--:--   697
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-error: Failed to shutdown domain 141
-error: Requested operation is not valid: domain is not running
-error: Failed to destroy domain 141
-error: Requested operation is not valid: domain is not running
-bash: line 30: t: command not found
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   235  100   141  100    94    597    398 --:--:-- --:--:-- --:--:--   995
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   235  100   141  100    94    546    364 --:--:-- --:--:-- --:--:--   910
-error: failed to get domain '143'
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    24    0     0  100    24      0    124 --:--:-- --:--:-- --:--:--   124
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   165  100   110  100    55    458    229 --:--:-- --:--:-- --:--:--   690
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    25    0     0  100    25      0    114 --:--:-- --:--:-- --:--:--   114
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   771  100   434  100   337   1823   1415 --:--:-- --:--:-- --:--:--  3239
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   193  100   122  100    71    504    293 --:--:-- --:--:-- --:--:--   797
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   173  100   113  100    60    429    228 --:--:-- --:--:-- --:--:--   660
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   235  100   141  100    94    540    360 --:--:-- --:--:-- --:--:--   903
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   165  100   110  100    55    488    244 --:--:-- --:--:-- --:--:--   736
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    25    0     0  100    25      0    114 --:--:-- --:--:-- --:--:--   114
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   657  100   373  100   284   1560   1188 --:--:-- --:--:-- --:--:--  2737
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   193  100   122  100    71    528    307 --:--:-- --:--:-- --:--:--   839
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   173  100   113  100    60    130     69 --:--:-- --:--:-- --:--:--   200
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-error: Failed to shutdown domain 142
-error: Requested operation is not valid: domain is not running
-error: Failed to destroy domain 142
-error: Requested operation is not valid: domain is not running
-bash: line 30: t: command not found
-kex_exchange_identification: read: Connection reset by peer
-kex_exchange_identification: read: Connection reset by peer
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-RTNETLINK answers: File exists
-RTNETLINK answers: File exists
-RTNETLINK answers: File exists
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   235  100   141  100    94    602    401 --:--:-- --:--:-- --:--:--  1000
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   165  100   110  100    55    468    234 --:--:-- --:--:-- --:--:--   702
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    25    0     0  100    25      0    116 --:--:-- --:--:-- --:--:--   116
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   771  100   434  100   337   1656   1286 --:--:-- --:--:-- --:--:--  2942
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    71    0     0  100    71      0    348 --:--:-- --:--:-- --:--:--   346100   193  100   122  100    71    512    298 --:--:-- --:--:-- --:--:--   807
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   165  100   110  100    55    468    234 --:--:-- --:--:-- --:--:--   702
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   235  100   141  100    94    489    326 --:--:-- --:--:-- --:--:--   815
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   165  100   110  100    55    450    225 --:--:-- --:--:-- --:--:--   676
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    25    0     0  100    25      0    142 --:--:-- --:--:-- --:--:--   142100    25    0     0  100    25      0    116 --:--:-- --:--:-- --:--:--   116
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   284    0     0  100   284      0   1543 --:--:-- --:--:-- --:--:--  1535100   657  100   373  100   284   1695   1290 --:--:-- --:--:-- --:--:--  2972
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   193  100   122  100    71    521    303 --:--:-- --:--:-- --:--:--   824
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   173  100   113  100    60    453    240 --:--:-- --:--:-- --:--:--   694
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    94    0     0  100    94      0    403 --:--:-- --:--:-- --:--:--   401100   235  100   141  100    94    232    155 --:--:-- --:--:-- --:--:--   387
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   165  100   110  100    55    332    166 --:--:-- --:--:-- --:--:--   496100   165  100   110  100    55    332    166 --:--:-- --:--:-- --:--:--   496
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    25    0     0  100    25      0    111 --:--:-- --:--:-- --:--:--   111
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   771  100   434  100   337    500    388 --:--:-- --:--:-- --:--:--   888
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   193  100   122  100    71    552    321 --:--:-- --:--:-- --:--:--   869
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   179  100   117  100    62    567    300 --:--:-- --:--:-- --:--:--   868
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-bash: line 30: t: command not found
-bash: line 30: t: command not found
-bash: line 30: t: command not found
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   235  100   141  100    94    491    327 --:--:-- --:--:-- --:--:--   815
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   165  100   110  100    55    123     61 --:--:-- --:--:-- --:--:--   185
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    25    0     0  100    25      0     97 --:--:-- --:--:-- --:--:--    97
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   771  100   434  100   337    438    340 --:--:-- --:--:-- --:--:--   778
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   193  100   122  100    71    512    298 --:--:-- --:--:-- --:--:--   810
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   179  100   117  100    62    539    285 --:--:-- --:--:-- --:--:--   824
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   235  100   141  100    94    532    354 --:--:-- --:--:-- --:--:--   886
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    55    0     0  100    55      0    286 --:--:-- --:--:-- --:--:--   284100   165  100   110  100    55    466    233 --:--:-- --:--:-- --:--:--   699
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    25    0     0  100    25      0    100 --:--:-- --:--:-- --:--:--   100
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   657  100   373  100   284   1541   1173 --:--:-- --:--:-- --:--:--  2714
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   193  100   122  100    71    147     85 --:--:-- --:--:-- --:--:--   232
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   179  100   117  100    62     77     40  0:00:01  0:00:01 --:--:--   118
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   235  100   141  100    94    314    209 --:--:-- --:--:-- --:--:--   523
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   165  100   110  100    55    134     67 --:--:-- --:--:-- --:--:--   201100   165  100   110  100    55    134     67 --:--:-- --:--:-- --:--:--   201
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    25    0     0  100    25      0     39 --:--:-- --:--:-- --:--:--    39
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   771  100   434  100   337    441    342 --:--:-- --:--:-- --:--:--   783100   771  100   434  100   337    441    342 --:--:-- --:--:-- --:--:--   783
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   193  100   122  100    71    465    270 --:--:-- --:--:-- --:--:--   736
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   179  100   117  100    62    132     70 --:--:-- --:--:-- --:--:--   202
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   165  100   110  100    55    167     83 --:--:-- --:--:-- --:--:--   251
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   235  100   141  100    94    522    348 --:--:-- --:--:-- --:--:--   870
-bash: line 30: t: command not found
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   165  100   110  100    55    509    254 --:--:-- --:--:-- --:--:--   760
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    25    0     0  100    25      0    113 --:--:-- --:--:-- --:--:--   113
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   771  100   434  100   337   1764   1369 --:--:-- --:--:-- --:--:--  3134
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   193  100   122  100    71    151     88 --:--:-- --:--:-- --:--:--   239
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   179  100   117  100    62    281    149 --:--:-- --:--:-- --:--:--   430
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   235  100   141  100    94    613    408 --:--:-- --:--:-- --:--:--  1021
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   165  100   110  100    55    359    179 --:--:-- --:--:-- --:--:--   539
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    25    0     0  100    25      0     96 --:--:-- --:--:-- --:--:--    96
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   657  100   373  100   284   1407   1071 --:--:-- --:--:-- --:--:--  2479
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    71    0     0  100    71      0    346 --:--:-- --:--:-- --:--:--   344100   193  100   122  100    71    516    300 --:--:-- --:--:-- --:--:--   814
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   173  100   113  100    60    470    250 --:--:-- --:--:-- --:--:--   720
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-Connection to localhost closed by remote host.
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-RTNETLINK answers: File exists
-Killed old client process
-RTNETLINK answers: File exists
-Killed old client process
-RTNETLINK answers: File exists
-Killed old client process
-RTNETLINK answers: File exists
-Killed old client process
-error: Failed to shutdown domain 153
-error: Requested operation is not valid: domain is not running
-error: Failed to destroy domain 153
-error: Requested operation is not valid: domain is not running
-bash: line 30: t: command not found
-error: Failed to shutdown domain 152
-error: Requested operation is not valid: domain is not running
-error: Failed to destroy domain 152
-error: Requested operation is not valid: domain is not running
-bash: line 30: t: command not found
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   235  100   141  100    94    474    316 --:--:-- --:--:-- --:--:--   791
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   165  100   110  100    55    344    172 --:--:-- --:--:-- --:--:--   517
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    25    0     0  100    25      0    126 --:--:-- --:--:-- --:--:--   126
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   657  100   373  100   284   1264    962 --:--:-- --:--:-- --:--:--  2227
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   193  100   122  100    71    663    385 --:--:-- --:--:-- --:--:--  1048
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   173  100   113  100    60    316    168 --:--:-- --:--:-- --:--:--   484
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-kex_exchange_identification: read: Connection reset by peer
-kex_exchange_identification: read: Connection reset by peer
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-RTNETLINK answers: File exists
-Killed old client process
-RTNETLINK answers: File exists
-Killed old client process
-RTNETLINK answers: File exists
-Killed old client process
-RTNETLINK answers: File exists
-Killed old client process
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   284  100   190  100    94    703    348 --:--:-- --:--:-- --:--:--  1051
-bash: line 26: !!: command not found
-error: failed to get domain '158'
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    24    0     0  100    24      0    136 --:--:-- --:--:-- --:--:--   136
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   284  100   190  100    94    801    396 --:--:-- --:--:-- --:--:--  1203
-bash: line 26: !!: command not found
-error: failed to get domain '159'
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    24    0     0  100    24      0    144 --:--:-- --:--:-- --:--:--   144
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   284  100   190  100    94    355    175 --:--:-- --:--:-- --:--:--   530
-bash: line 26: !!: command not found
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  1138  100   608  100   530   2854   2488 --:--:-- --:--:-- --:--:--  5342
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    25    0     0  100    25      0    121 --:--:-- --:--:-- --:--:--   121
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   820  100   483  100   337   1762   1229 --:--:-- --:--:-- --:--:--  3003
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   242  100   171  100    71    924    383 --:--:-- --:--:-- --:--:--  1308
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   228  100   166  100    62    312    116 --:--:-- --:--:-- --:--:--   429
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-RTNETLINK answers: File exists
-Killed old client process
-RTNETLINK answers: File exists
-Killed old client process
-Connection closed by 127.0.0.1 port 9002
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-RTNETLINK answers: File exists
-Killed old client process
-RTNETLINK answers: File exists
-Killed old client process
-RTNETLINK answers: File exists
-Killed old client process
-bash: line 30: t: command not found
-bash: line 30: t: command not found
-bash: line 30: t: command not found
-bash: line 30: t: command not found
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   284  100   190  100    94    620    307 --:--:-- --:--:-- --:--:--   928
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  1138  100   608  100   530   2565   2236 --:--:-- --:--:-- --:--:--  4801
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    25    0     0  100    25      0     98 --:--:-- --:--:-- --:--:--    98
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   820  100   483  100   337   2379   1660 --:--:-- --:--:-- --:--:--  4019
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   242  100   171  100    71    971    403 --:--:-- --:--:-- --:--:--  1375
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   228  100   166  100    62    882    329 --:--:-- --:--:-- --:--:--  1212
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   284  100   190  100    94    655    324 --:--:-- --:--:-- --:--:--   975100   284  100   190  100    94    655    324 --:--:-- --:--:-- --:--:--   975
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  1138  100   608  100   530   3640   3173 --:--:-- --:--:-- --:--:--  6814
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    25    0     0  100    25      0    155 --:--:-- --:--:-- --:--:--   155
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   706  100   422  100   284   2604   1753 --:--:-- --:--:-- --:--:--  4358
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   242  100   171  100    71    650    269 --:--:-- --:--:-- --:--:--   920
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   222  100   162  100    60    620    229 --:--:-- --:--:-- --:--:--   850
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   214  100   159  100    55    665    230 --:--:-- --:--:-- --:--:--   891100   214  100   159  100    55    665    230 --:--:-- --:--:-- --:--:--   891
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   284  100   190  100    94   1098    543 --:--:-- --:--:-- --:--:--  1641
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  1306  100   692  100   614   3425   3039 --:--:-- --:--:-- --:--:--  6465
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    25    0     0  100    25      0    110 --:--:-- --:--:-- --:--:--   110
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   706  100   422  100   284   2293   1543 --:--:-- --:--:-- --:--:--  3836
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   267  100   170  100    97    732    418 --:--:-- --:--:-- --:--:--  1145
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   228  100   166  100    62    965    360 --:--:-- --:--:-- --:--:--  1325
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   284  100   190  100    94   1016    502 --:--:-- --:--:-- --:--:--  1526
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  1306  100   692  100   614   2768   2456 --:--:-- --:--:-- --:--:--  5224
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    25    0     0  100    25      0    143 --:--:-- --:--:-- --:--:--   143
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   820  100   483  100   337   2857   1994 --:--:-- --:--:-- --:--:--  4852
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   267  100   170  100    97    769    438 --:--:-- --:--:-- --:--:--  1208
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   228  100   166  100    62    721    269 --:--:-- --:--:-- --:--:--   991
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-RTNETLINK answers: File exists
-Killed old client process
-RTNETLINK answers: File exists
-Killed old client process
-RTNETLINK answers: File exists
-Killed old client process
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-RTNETLINK answers: File exists
-Killed old client process
-RTNETLINK answers: File exists
-Killed old client process
-RTNETLINK answers: File exists
-Killed old client process
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-RTNETLINK answers: File exists
-Killed old client process
-Connection to localhost closed by remote host.
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-RTNETLINK answers: File exists
-Killed old client process
-RTNETLINK answers: File exists
-Killed old client process
-RTNETLINK answers: File exists
-Killed old client process
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   212  100   158  100    54    987    337 --:--:-- --:--:-- --:--:--  1316
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   212  100   158  100    54    981    335 --:--:-- --:--:-- --:--:--  1316
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   212  100   158  100    54    963    329 --:--:-- --:--:-- --:--:--  1292
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   212  100   158  100    54    840    287 --:--:-- --:--:-- --:--:--  1127
-bash: line 30: t: command not found
-bash: line 30: t: command not found
-bash: line 30: t: command not found
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    94    0     0  100    94      0    531 --:--:-- --:--:-- --:--:--   528100   284  100   190  100    94    892    441 --:--:-- --:--:-- --:--:--  1327
-bash: line 30: t: command not found
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  1140  100   608  100   532   3872   3388 --:--:-- --:--:-- --:--:--  7261
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    25    0     0  100    25      0    161 --:--:-- --:--:-- --:--:--   161
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   820  100   483  100   337   2824   1970 --:--:-- --:--:-- --:--:--  4795
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   228  100   166  100    62    948    354 --:--:-- --:--:-- --:--:--  1295
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   228  100   166  100    62    603    225 --:--:-- --:--:-- --:--:--   829
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   284  100   190  100    94    931    460 --:--:-- --:--:-- --:--:--  1392
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  1140  100   608  100   532   2187   1913 --:--:-- --:--:-- --:--:--  4086100  1140  100   608  100   532   2187   1913 --:--:-- --:--:-- --:--:--  4086
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    25    0     0  100    25      0    139 --:--:-- --:--:-- --:--:--   139
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   706  100   422  100   284   1648   1109 --:--:-- --:--:-- --:--:--  2757
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   228  100   166  100    62    959    358 --:--:-- --:--:-- --:--:--  1317
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   228  100   166  100    62    970    362 --:--:-- --:--:-- --:--:--  1341
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-Connection to localhost closed by remote host.
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-kex_exchange_identification: read: Connection reset by peer
-Connection to localhost closed by remote host.
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-kex_exchange_identification: read: Connection reset by peer
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   212  100   158  100    54    268     91 --:--:-- --:--:-- --:--:--   360
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    54    0     0  100    54      0    267 --:--:-- --:--:-- --:--:--   266100   212  100   158  100    54    339    116 --:--:-- --:--:-- --:--:--   454
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   284  100   190  100    94    840    415 --:--:-- --:--:-- --:--:--  1256
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  1140  100   608  100   532   3640   3185 --:--:-- --:--:-- --:--:--  6785100  1140  100   608  100   532   3640   3185 --:--:-- --:--:-- --:--:--  6785
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    25    0     0  100    25      0    147 --:--:-- --:--:-- --:--:--   148
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   820  100   483  100   337   1894   1321 --:--:-- --:--:-- --:--:--  3215
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   228  100   166  100    62    638    238 --:--:-- --:--:-- --:--:--   876
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   228  100   166  100    62    757    283 --:--:-- --:--:-- --:--:--  1045
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   284  100   190  100    94    601    297 --:--:-- --:--:-- --:--:--   898
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  1306  100   692  100   614   4407   3910 --:--:-- --:--:-- --:--:--  8318
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    25    0     0  100    25      0    135 --:--:-- --:--:-- --:--:--   135
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   706  100   422  100   284   2637   1775 --:--:-- --:--:-- --:--:--  4412
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   228  100   166  100    62    638    238 --:--:-- --:--:-- --:--:--   873
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   228  100   166  100    62    594    222 --:--:-- --:--:-- --:--:--   820
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   212  100   158  100    54   1000    341 --:--:-- --:--:-- --:--:--  1341
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    L100   212  100   158  100    54    902    308 --:--:-- --:--:-- --:--:--  1211
-eft  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   212  100   158  100    54    934    319 --:--:-- --:--:-- --:--:--  1254
-100   212  100   158  100    54    544    186 --:--:-- --:--:-- --:--:--   731
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    54    0     0  100    54      0    397 --:--:-- --:--:-- --:--:--   394100   212  100   158  100    54    913    312 --:--:-- --:--:-- --:--:--  1218
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   212  100   158  100    54    585    200 --:--:-- --:--:-- --:--:--   782
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   212  100   158  100    54    718    245 --:--:-- --:--:-- --:--:--   968
-error: Failed to shutdown domain 165
-error: Requested operation is not valid: domain is not running
-error: Failed to destroy domain 165
-error: Requested operation is not valid: domain is not running
-bash: line 30: t: command not found
-bash: line 30: t: command not found
-bash: line 30: t: command not found
-bash: line 30: t: command not found
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   284  100   190  100    94   1165    576 --:--:-- --:--:-- --:--:--  1742
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  1140  100   608  100   532   3662   3204 --:--:-- --:--:-- --:--:--  6826
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    25    0     0  100    25      0    117 --:--:-- --:--:-- --:--:--   117
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   706  100   422  100   284   2397   1613 --:--:-- --:--:-- --:--:--  4011
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   228  100   166  100    62    631    235 --:--:-- --:--:-- --:--:--   866
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   228  100   166  100    62    917    342 --:--:-- --:--:-- --:--:--  1259
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   284  100   190  100    94   1038    513 --:--:-- --:--:-- --:--:--  1543
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  1140  100   608  100   532   3576   3129 --:--:-- --:--:-- --:--:--  6705
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    25    0     0  100    25      0    119 --:--:-- --:--:-- --:--:--   119
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   820  100   483  100   337   3241   2261 --:--:-- --:--:-- --:--:--  5503
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   228  100   166  100    62    965    360 --:--:-- --:--:-- --:--:--  1325
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   228  100   166  100    62    965    360 --:--:-- --:--:-- --:--:--  1317
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   284  100   190  100    94    748    370 --:--:-- --:--:-- --:--:--  1113
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  1140  100   608  100   532   3897   3410 --:--:-- --:--:-- --:--:--  7307
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    25    0     0  100    25      0    162 --:--:-- --:--:-- --:--:--   162
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   706  100   422  100   284   2637   1775 --:--:-- --:--:-- --:--:--  4412
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    62    0     0  100    62      0    480 --:--:-- --:--:-- --:--:--   476100   228  100   166  100    62   1024    382 --:--:-- --:--:-- --:--:--  1398
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   228  100   166  100    62   1084    405 --:--:-- --:--:-- --:--:--  1490
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   284  100   190  100    94   1283    635 --:--:-- --:--:-- --:--:--  1918
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   614    0     0  100   614      0   2778 --:--:-- --:--:-- --:--:--  2765100  1306  100   692  100   614   2713   2407 --:--:-- --:--:-- --:--:--  5101
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    25    0     0  100    25      0    167 --:--:-- --:--:-- --:--:--   167
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   820  100   483  100   337   2257   1574 --:--:-- --:--:-- --:--:--  3831
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   228  100   166  100    62    912    340 --:--:-- --:--:-- --:--:--  1252
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   228  100   166  100    62   1121    418 --:--:-- --:--:-- --:--:--  1540
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-fatal: destination path 'vfio-pci-bind' already exists and is not an empty directory.
-chmod: cannot access '/vfio-pci-bind/vfio-pci-bind.sh': No such file or directory
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   212  100   158  100    54    868    296 --:--:-- --:--:-- --:--:--  1164
-100   212  100   158  100    54    672    229 --:--:-- --:--:-- --:--:--   902
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   212  100   158  100    54   1025    350 --:--:-- --:--:-- --:--:--  1376
-100   212  100   158  100    54    969    331 --:--:-- --:--:-- --:--:--  1300
-bash: line 30: t: command not found
-bash: line 30: t: command not found
-bash: line 30: t: command not found
-bash: line 30: t: command not found
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0100   284  100   190  100    94     57     28  0:00:03  0:00:03 --:--:--    85
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0100  1140  100   608  100   532    183    160  0:00:03  0:00:03 --:--:--   344
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0100    25    0     0  100    25      0      8  0:00:03  0:00:02  0:00:01     8
-100   706  100   422  100   284    209    141  0:00:02  0:00:02 --:--:--   351
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0100   228  100   166  100    62     50     18  0:00:03  0:00:03 --:--:--    69
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0100   228  100   166  100    62     55     20  0:00:03  0:00:03 --:--:--    75
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0100   212  100   158  100    54     49     16  0:00:03  0:00:03 --:--:--    65
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0100   284  100   190  100    94     58     29  0:00:03  0:00:03 --:--:--    87
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0100  1140  100   608  100   532    184    161  0:00:03  0:00:03 --:--:--   345
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0100    25    0     0  100    25      0      8  0:00:03  0:00:03 --:--:--     8
-100   820  100   483  100   337    240    167  0:00:02  0:00:02 --:--:--   407
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0100   228  100   166  100    62     50     18  0:00:03  0:00:03 --:--:--    68
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0100   228  100   166  100    62     56     21  0:00:02  0:00:02 --:--:--    77
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0100   284  100   190  100    94     57     28  0:00:03  0:00:03 --:--:--    85100   284  100   190  100    94     57     28  0:00:03  0:00:03 --:--:--    85
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0100  1140  100   608  100   532    183    160  0:00:03  0:00:03 --:--:--   343
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0100   706  100   422  100   284    214    144  0:00:01  0:00:01 --:--:--   358
-100    25    0     0  100    25      0      8  0:00:03  0:00:03 --:--:--     8
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0100    62    0     0  100    62      0     19  0:00:03  0:00:03 --:--:--    19100   228  100   166  100    62     51     19  0:00:03  0:00:03 --:--:--    70
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0100   228  100   166  100    62     53     20  0:00:03  0:00:03 --:--:--    73
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0100   284  100   190  100    94     58     29  0:00:03  0:00:03 --:--:--    88
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0100  1306  100   692  100   614    209    185  0:00:03  0:00:03 --:--:--   394
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:-- : -0-          00    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0100    25    0     0  100    25      0      8  0:00:03  0:00:02  0:00:01     8
-100   820  100   483  100   337    243    169  0:00:01  0:00:01 --:--:--   412
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0100   228  100   166  100    62     51     19  0:00:03  0:00:03 --:--:--    70
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0100   228  100   166  100    62     55     20  0:00:03  0:00:03 --:--:--    75
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0
-bash: line 30: t: command not found
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0100   284  100   190  100    94     58     28  0:00:03  0:00:03 --:--:--    87
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0100  1306  100   692  100   614    209    186  0:00:03  0:00:03 --:--:--   396
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0100    25    0     0  100    25      0      8  0:00:03  0:00:02  0:00:01     8
-100   706  100   422  100   284    211    142  0:00:02  0:00:01  0:00:01   354
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0100    62    0     0  100    62      0     19  0:00:03  0:00:03 --:--:--    19100   228  100   166  100    62     51     19  0:00:03  0:00:03 --:--:--    70
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0100   228  100   166  100    62     54     20  0:00:03  0:00:03 --:--:--    75
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0
-bash: line 30: t: command not found
-bash: line 30: t: command not found
-bash: line 30: t: command not found
-bash: line 30: t: command not found
