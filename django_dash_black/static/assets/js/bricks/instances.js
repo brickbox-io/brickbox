@@ -1,8 +1,10 @@
 /* ------------------------------ Create New VM ----------------------------- */
-function CreateNewBrick() {
+function CreateNewBrick(selected_gpu) {
     var formData = new FormData();
     var xhttp = new XMLHttpRequest();
     var url = '/vm/create/'
+
+    formData.append('selected_gpu', selected_gpu);
 
     xhttp.onload = function () {
         BrickNotice('bottom', 'center', 'Firing Bricks');

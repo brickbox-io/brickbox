@@ -26,7 +26,7 @@ curl -X POST https://"$url"/api/vmlog/ -d "level=20&virt_brick=$instance&message
 # ------------------------------ Clone Template ------------------------------ #
 
 last_command_output=$(sudo virt-clone --original brickbox-U20.04 --name "$instance" --auto-clone 2>> bash_errors.log)
-last_command=!!
+last_command="sudo virt-clone --original brickbox-U20.04 --name $instance --auto-clone"
 
 if sudo virsh domblklist "$instance" | grep "\/var\/lib\/libvirt\/images\/$instance.img"; then
 
