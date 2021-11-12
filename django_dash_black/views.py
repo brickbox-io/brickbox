@@ -67,10 +67,15 @@ def pages(request):
         context['bricks'] = VirtualBrickOwner.objects.filter(owner=context['profile'])
         context['ssh_url'] = settings.SSH_URL
 
-        context['gpu_available'] = False
-        for gpu in GPU.objects.all():
+        context['3090_gpu_available'] = False
+        for gpu in GPU.objects.filter(model="3090", host__connected_status=True):
             if RentedGPU.objects.filter(gpu=gpu).count() < 1:
-                context['gpu_available'] = True
+                context['3090_gpu_available'] = True
+
+        context['3070_gpu_available'] = False
+        for gpu in GPU.objects.filter(model="3070", host__connected_status=True):
+            if RentedGPU.objects.filter(gpu=gpu).count() < 1:
+                context['3070_gpu_available'] = True
 
         html_template = loader.get_template( f'{load_template}.html' )
         return HttpResponse(html_template.render(context, request))
