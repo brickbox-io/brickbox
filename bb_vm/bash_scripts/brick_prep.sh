@@ -34,6 +34,20 @@ if [ ! -d /sys/class/net/br0 ]; then
     sudo dhclient -r br0 && sudo dhclient br0
 fi
 
+# Verify base image exists. (Need to change to long lasting task)
+if [ ! -f /var/lib/libvirt/images/brickbox-U20.04.img ]; then
+    curl https://os-imgs.nyc3.digitaloceanspaces.com/brickbox-U20.04.img \
+    --output /var/lib/libvirt/images/brickbox-U20.04.img &
+fi
+
+# Verify that the XML file exists.
+if [ ! -f /var/lib/libvirt/images/brickbox-U20.04.xml ]; then
+    curl https://os-imgs.nyc3.digitaloceanspaces.com/brickbox-U20.04.xml \
+    --output /var/lib/libvirt/images/brickbox-U20.04.xml && virsh define /var/lib/libvirt/images/brickbox-U20.04.xml
+fi
+
+
+
 sudo service gdm3 stop
 
 sudo rmmod nvidia_uvm

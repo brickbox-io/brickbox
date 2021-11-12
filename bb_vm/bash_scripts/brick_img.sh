@@ -85,18 +85,18 @@ if sudo virsh domblklist "$instance" | grep "\/var\/lib\/libvirt\/images\/$insta
 
     fi
 
+    {
+        sudo virsh start "$instance";
+        sudo rm GPU.xml;
+    }   2>> bash_errors.log
 
-    sudo virsh start "$instance" 2>> bash_errors.log
-
-    sudo rm GPU.xml 2>> bash_errors.log
-
-    curl https://dev.brickbox.io/vm/register/"$instance"/"$(sudo virsh domuuid "$instance")"/ &
+    curl https://dev.brickbox.io/vm/register/"$instance"/"$(sudo virsh domuuid "$instance")"/ 2>> bash_errors.log
 
     echo "VM Cloned"
 
 else
 
-    curl -X POST https://dev.brickbox.io/vm/error/ -d "instance=$instance&error=clone" &
+    curl -X POST https://dev.brickbox.io/vm/error/ -d "instance=$instance&error=clone" 2>> bash_errors.log
 
 fi
 
