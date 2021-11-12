@@ -86,7 +86,9 @@ if sudo virsh domblklist "$instance" | grep "\/var\/lib\/libvirt\/images\/$insta
     fi
 
 
-    sudo virsh start "$instance" 2>> bash_errors.log
+    {
+        sudo virsh start "$instance"
+    }   2>> bash_errors.log
 
     sudo rm GPU.xml 2>> bash_errors.log
 
