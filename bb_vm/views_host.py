@@ -10,7 +10,7 @@ from django.http import HttpResponse
 # from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 
-from bb_vm.models import HostFoundation
+from bb_vm.models import HostFoundation, GPU
 
 DIR = '/opt/brickbox/bb_vm/bash_scripts/'
 
@@ -90,6 +90,50 @@ def onboarding_sshport(request, host_serial):
             try:
                 host = HostFoundation.objects.get(serial_number=host_serial)
                 return HttpResponse(host.ssh_port, status=200)
+            except HostFoundation.DoesNotExist:
+                return HttpResponse("error", status=404)
+
+        return HttpResponse("error", status=404)
+
+    return HttpResponse("error", status=405)
+
+
+@csrf_exempt
+def onboarding_gpu(request, host_serial):
+    '''
+    Endpoint for the process of onboarding a new host.
+    URL: brickbox.io/vm/host/onboarding/gpu_registration
+    Method: POST
+    Make a request to recive the assigned GPU port.
+    '''
+    if request.method == 'POST':
+        print(request.POST)
+
+        if host_serial:
+            try:
+                host = HostFoundation.objects.get(serial_number=host_serial)
+
+                gpu_model = request.POST.get("gpu_model")
+                gpu_device = request.POST.get("gpu_device")
+
+                gpu_pcie = request.POST.get("gpu_pcie")
+                bus = gpu_pcie.split(':')[0]
+
+                gpu_pcie = f'0000:{gpu_pcie}'
+
+                # gpu_qty = request.POST.get("gpu_qty")
+
+                new_gpu = GPU(
+                                host=host, model=gpu_model,
+                                pcie=gpu_pcie, device=gpu_device
+                            )
+
+                with open("/opt/brickbox/bb_vm/xml/ gpu.xml", encoding="utf-8") as gpu_xml:
+                    gpu_xml = gpu_xml.read()
+                    new_gpu.xml = gpu_xml.format(bus=bus)
+                    new_gpu.save()
+
+                return HttpResponse("ok", status=200)
             except HostFoundation.DoesNotExist:
                 return HttpResponse("error", status=404)
 
