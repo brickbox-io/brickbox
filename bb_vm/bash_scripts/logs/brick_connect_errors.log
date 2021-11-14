@@ -910,3 +910,7 @@ Connection to localhost closed by remote host.
 kex_exchange_identification: read: Connection reset by peer
 Killed old client process
 Connection to localhost closed by remote host.
+Killed old client process
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   212  100   158  100    54    863    295 --:--:-- --:--:-- --:--:--  1158

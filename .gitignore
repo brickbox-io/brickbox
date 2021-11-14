@@ -11,3 +11,7 @@ db.sqlite3
 
 # API
 bb_api/templates/api_docs_source/build/*
+
+# Logs
+logs/*
+!logs/.gitkeep
