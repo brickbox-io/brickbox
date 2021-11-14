@@ -34,6 +34,15 @@ if [ ! -d /sys/class/net/br0 ]; then
     sudo dhclient -r br0 && sudo dhclient br0
 fi
 
+# Verify that br0 has an IP address.
+if [[ $(ip -f inet addr show br0) ]] ; then
+    echo "br0 has an IP address."
+else
+    echo "br0 does not have an IP address."
+    sudo dhclient -r br0 && sudo dhclient br0
+fi
+
+
 # Verify base image exists. (Need to change to long lasting task)
 if [ ! -f /var/lib/libvirt/images/brickbox-U20.04.img ]; then
     curl https://os-imgs.nyc3.digitaloceanspaces.com/brickbox-U20.04.img \

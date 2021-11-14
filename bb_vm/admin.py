@@ -36,7 +36,7 @@ class VirtualBrickAdmin(admin.ModelAdmin):
     '''
     Admin configuration for VirtualBrick model.
     '''
-    list_display = ('id', 'domain_uuid', 'ssh_port', 'img_cloned', 'is_rebooting', 'is_on')
+    list_display = ('id', 'domain_uuid', 'host', 'ssh_port', 'img_cloned', 'is_rebooting', 'is_on')
 
 class VirtualBrickOwnerAdmin(admin.ModelAdmin):
     '''

@@ -128,7 +128,7 @@ def onboarding_gpu(request, host_serial):
                                 pcie=gpu_pcie, device=gpu_device
                             )
 
-                with open("/opt/brickbox/bb_vm/xml/ gpu.xml", encoding="utf-8") as gpu_xml:
+                with open("/opt/brickbox/bb_vm/xml/gpu.xml", encoding="utf-8") as gpu_xml:
                     gpu_xml = gpu_xml.read()
                     new_gpu.xml = gpu_xml.format(bus=bus)
                     new_gpu.save()
