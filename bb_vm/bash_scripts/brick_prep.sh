@@ -46,7 +46,8 @@ if [ ! -f /var/lib/libvirt/images/brickbox-U20.04.xml ]; then
     --output /var/lib/libvirt/images/brickbox-U20.04.xml && virsh define /var/lib/libvirt/images/brickbox-U20.04.xml
 fi
 
-
+sudo ip link set dev enp3s0f1 up
+sudo dhclient -r enp3s0f1 && sudo dhclient enp3s0f1
 
 sudo service gdm3 stop
 

@@ -26,8 +26,14 @@ urlpatterns = [
     path(
             'host/onboarding/sshport/<host_serial>/',
             views_host.onboarding_sshport,
-            name='host_onboarding_done'
+            name='host_onboarding_ssh'
     ),
+    path(
+            'host/onboarding/gpu/<host_serial>/',
+            views_host.onboarding_gpu,
+            name='host_onboarding_gpu'
+    ),
+
 
     # ------------------------------- Brick Actions ------------------------------ #
     path('brick/pause/', views.brick_pause, name='brick_pause'),
