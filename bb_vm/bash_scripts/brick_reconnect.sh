@@ -15,7 +15,12 @@ if sudo lspci -s "$pcie" -k | grep "vfio-pci"; then
 
 else
 
-    curl -X POST https://"$url"/api/vmlog/ -d "level=40&virt_brick=NA&message=Failed%20set%20$pcie%20driver%20set%20to%20VFIO&command_output=$command_output"    # Logging
+    curl -X POST https://"$url"/api/vmlog/ \
+    -d "level=40" \
+    -d "virt_brick=NA" \
+    -d "message=Failed set $pcie driver set to VFIO." \
+    -d "command=sudo ./vfio-pci-bind/vfio-pci-bind.sh $device $pcie 2>> bash_errors.log" \
+    -d "command_output=$command_output" > /dev/null &
 
 fi
 

@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     # brickbox.io Apps
     'django_dash_black',        # https://appseed.us/admin-dashboards/django-dashboard-black
     'bb_api',                   # API endpoints and handlers
+    'bb_colo',                  # Colocation management
     'bb_public',                # Public landing pages
     'bb_accounts',              # Account creation and login
     'bb_dashboard',             # Users dashboard
@@ -306,5 +307,8 @@ else:
 
 # ----------------------- Stripe Debug/Test Credentials ---------------------- #
 # CLIENT_ID_TEST =
-# STRIPE_SECRET_KEY_TEST = ''
-# STRIPE_PUBLISHABLE_KEY_TEST = ''
+STRIPE_SECRET_KEY_TEST = '''sk_test_51Jb9T1AFJmW5oMdbI6NszFIEwIHNynAa
+1pHqeUkBRMWAqFUj2XguaLzfFqspuarRB5uqVZPuFkyDb4f5k7WuJ3EE00OqwKdoI4'''
+
+STRIPE_PUBLISHABLE_KEY_TEST = '''pk_test_51Jb9T1AFJmW5oMdbOtpNv8mEKgXZZ
+jdVScjhh1l7wMJ4h2UynWpnIl1tlsmX0Hgt33lE8hyoiKer85GgfHnNjagK00aZMtPtzX'''
