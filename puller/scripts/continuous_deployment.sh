@@ -4,8 +4,7 @@
 #                            System Update/Updgrade                            #
 # ---------------------------------------------------------------------------- #
 
-sudo apt-get update -y
-sudo apt-get upgrade -y
+# sudo apt-get update -y && sudo apt-get upgrade -y
 
 # ---------------------------------------------------------------------------- #
 #                                Update Packages                               #
