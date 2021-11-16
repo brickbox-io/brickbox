@@ -3,12 +3,12 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 
-from bb_data.models import UserProfile, ColocationClient
+from bb_data.models import ColocationClient
 
 User = get_user_model()
 
 # --------------------------- colo Onboarding Stage -------------------------- #
-class colocationOnboarding(models.Model):
+class ColocationOnboarding(models.Model):
     '''
     Used to track the stage of a client coming on as a CoLo.
     '''
@@ -22,7 +22,7 @@ class colocationOnboarding(models.Model):
     insurance_info_received = models.BooleanField(default=False)
 
     def __str__(self):
-        return f'{self.client.owner_profile.user}'
+        return f'{self.client}'
 
     class Meta:
         verbose_name = 'Colocation Onboarding'

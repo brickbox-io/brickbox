@@ -17,12 +17,12 @@ fi
     if [ "$(sudo virsh domstate "$instance")" != "running" ]; then
     echo "Brick started."
 
-    curl -X POST https://"$url"/api/vmlog/ \
+    curl -s -X POST https://"$url"/api/vmlog/ \
     -d "level=20" \
     -d "virt_brick=$instance" \
     -d "message=Brick hasstarted." \
     -d "command=sudo virsh start $instance" \
-    -d "command_output=$command_output" & > /dev/null
+    -d "command_output=$command_output" > /dev/null &
 
     exit 0
 else
