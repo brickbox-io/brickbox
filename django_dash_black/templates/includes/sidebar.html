@@ -39,12 +39,24 @@
             <!-- ---------------------- END - Colo Dashboard Tab ----------------------- -->
 
 
+            <!-- ------------------ START - Colocation Dashboard Tab ------------------- -->
+            {% if user.is_superuser %}
+            <li class="{% if 'colo' in segment %} active {% endif %}">
+                <a href="/dash/colo">
+                    <i class="tim-icons icon-paper"></i>
+                    <p>COLOCATION</p>
+                </a>
+            </li>
+            {% endif %}
+            <!-- ------------------- END - Colocation Dashboard Tab -------------------- -->
+
+
             <!-- ------------------------- START - Bricks Tab -------------------------- -->
             {% if profile.brick_access %}
             <li class="{% if 'bricks' in segment %} active {% endif %}">
                 <a href="/dash/bricks">
                     <i class="tim-icons icon-components"></i>
-                    <p>Bricks</p>
+                    <p>BRICKS</p>
                 </a>
             </li>
             {% endif %}
@@ -56,7 +68,7 @@
             <li class="{% if 'superuser' in segment %} active {% endif %}">
                 <a href="/dash/superuser">
                     <i class="tim-icons icon-atom"></i>
-                    <p>Superuser</p>
+                    <p>SUPERUSER</p>
                 </a>
             </li>
             {% endif %}
