@@ -18,7 +18,7 @@ sudo apt-get upgrade -y
 python3 -m pip install -U Django
 
 # Install or Update Required Packages
-pip3 install --upgrade -r requirements.txt
+pip3 install --upgrade --force-reinstall -r requirements.txt
 
 # Pulls the latest code from GitHub, performs the required steps then deploys.
 
