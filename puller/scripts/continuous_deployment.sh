@@ -11,7 +11,7 @@ sudo apt-get update -y && sudo apt-get upgrade -y
 # ---------------------------------------------------------------------------- #
 
 # PIP
-/usr/bin/python3 -m pip install --upgrade pip
+python3 -m pip install --upgrade pip
 
 # Django
 python3 -m pip install -U Django

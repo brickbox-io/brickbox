@@ -11,7 +11,7 @@ EnvironmentFile=/etc/conf.d/celery
 
 WorkingDirectory=/opt/brickbox
 
-ExecStart=/usr/local/bin/celery -A ${CELERY_APP} beat \
+ExecStart=/opt/brickbox/bbenv/bin/celery -A ${CELERY_APP} beat \
     --scheduler django_celery_beat.schedulers:DatabaseScheduler \
     --pidfile=${CELERYBEAT_PID_FILE} \
     --logfile=${CELERYBEAT_LOG_FILE} --loglevel=${CELERYD_LOG_LEVEL}
