@@ -8,7 +8,7 @@
 if [ ! -f /usr/bin/qemu-system-x86_64 ]; then
     echo "QEMU is not installed. Attempting to install."
     # sudo apt-get install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils -y
-    sudo apt install qemu-kvm qemu-utils libvirt-daemon-system libvirt-clients bridge-utils virt-manager ovmf -y
+    sudo apt-get install qemu-kvm qemu-utils libvirt-daemon-system libvirt-clients bridge-utils virt-manager ovmf -y
     # apt-get install qemu-kvm -y
     # sudo apt-get install qemu -y
     exit 1
@@ -52,7 +52,7 @@ fi
 # Verify that the XML file exists.
 if [ ! -f /var/lib/libvirt/images/brickbox-U20.04.xml ]; then
     curl https://os-imgs.nyc3.digitaloceanspaces.com/brickbox-U20.04.xml \
-    --output /var/lib/libvirt/images/brickbox-U20.04.xml && virsh define /var/lib/libvirt/images/brickbox-U20.04.xml
+    --output /var/lib/libvirt/images/brickbox-U20.04.xml && virsh define /var/lib/libvirt/images/brickbox-U20.04.xml &
 fi
 
 sudo ip link set dev enp3s0f1 up
