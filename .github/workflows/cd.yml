@@ -14,7 +14,7 @@ jobs:
     - uses: actions/checkout@master
 
     - name: Puller Notification
-      uses: distributhor/workflow-webhook@v1
+      uses: distributhor/workflow-webhook@v2
       env:
         webhook_url: "https://brickbox.io/puller/cd/"
         webhook_secret: "Y0uR5ecr3t"

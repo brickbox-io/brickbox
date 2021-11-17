@@ -19,7 +19,7 @@ enforce-git-message==1.0.1
 google-auth>=2.3.0
 gunicorn>=20.1.0
 idna==2.10
-markdown>=3.3.4,<3.3.5
+markdown>=3.3.6
 packaging==19.2
 pip-upgrader>=1.4.15
 prompt-toolkit==3.0.18

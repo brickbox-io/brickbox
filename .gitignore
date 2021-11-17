@@ -17,3 +17,4 @@ bb_api/templates/api_docs_source/build/*
 */logs/*
 !.gitkeep
 bash_errors.log
+brick_connect_errors.log
