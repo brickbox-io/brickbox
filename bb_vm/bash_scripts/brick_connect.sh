@@ -42,4 +42,5 @@ else
     -d "virt_brick=$instance" \
     -d "message=Could not connect to host port." \
     -d "command=ssh -i /opt/brickbox/bb_vm/keys/""$host_user"" -o StrictHostKeyChecking=no -p ""$port"" ""$host_user""@localhost 'sudo bash -s' < /opt/brickbox/bb_vm/bash_scripts/""$action"".sh ""$url"" ""$instance"" \"""$xml_data""\""
+
 fi
