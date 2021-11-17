@@ -24,6 +24,7 @@ def verify_host_connectivity():
 
     port_result = False
     script = False
+    command = False
 
     for host in hosts:
         command = ['lsof', '-i', f'tcp:{host.ssh_port.port_number}']
