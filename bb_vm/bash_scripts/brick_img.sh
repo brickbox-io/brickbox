@@ -34,9 +34,11 @@ if sudo virsh domblklist "$instance" | grep "\/var\/lib\/libvirt\/images\/$insta
     curl -X POST https://"$url"/api/vmlog/ -d "level=20&host=1&virt_brick=$instance&message=VM%20clone%20validated&command=$last_command&command_output=$last_command_output"
 
 
-    curl -X POST https://dev.brickbox.io/vm/state/ -d "instance=$instance&verify=clone" &
+    curl -X POST https://"$url"/vm/state/ -d "instance=$instance&verify=clone" &
 
-    sudo rm GPU.xml 2>> bash_errors.log
+    if [[ -f GPU.xml ]]; then
+        sudo rm GPU.xml 2>> bash_errors.log
+    fi
 
     sleep 1
 
@@ -92,13 +94,13 @@ if sudo virsh domblklist "$instance" | grep "\/var\/lib\/libvirt\/images\/$insta
     fi
 
 
-    curl https://dev.brickbox.io/vm/register/"$instance"/"$(sudo virsh domuuid "$instance")"/ 2>> bash_errors.log
+    curl https://"$url"/vm/register/"$instance"/"$(sudo virsh domuuid "$instance")"/ 2>> bash_errors.log
 
     echo "VM Cloned"
 
 else
 
-    curl -X POST https://dev.brickbox.io/vm/error/ -d "instance=$instance&error=clone" 2>> bash_errors.log
+    curl -X POST https://"$url"/vm/error/ -d "instance=$instance&error=clone" 2>> bash_errors.log
 
 fi
 
