@@ -14,6 +14,6 @@ db.sqlite3
 bb_api/templates/api_docs_source/build/*
 
 # Logs
-logs/*
-!logs/.gitkeep
+*/logs/*
+!.gitkeep
 bash_errors.log
