@@ -4,7 +4,7 @@
 #                            System Update/Updgrade                            #
 # ---------------------------------------------------------------------------- #
 
-# sudo apt-get update -y && sudo apt-get upgrade -y
+sudo apt-get update -y && sudo apt-get upgrade -y
 
 # ---------------------------------------------------------------------------- #
 #                                Update Packages                               #
@@ -17,7 +17,7 @@
 python3 -m pip install -U Django
 
 # Install or Update Required Packages
-pip3 install --upgrade --force-reinstall -r requirements.txt
+pip3 install --force-reinstall --upgrade -r requirements.txt
 
 # Pulls the latest code from GitHub, performs the required steps then deploys.
 
