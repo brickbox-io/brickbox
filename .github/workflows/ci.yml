@@ -59,7 +59,7 @@ jobs:
     - name: Merge master -> master-ci
 
       if: steps.wait-for-build.outputs.conclusion == 'success'
-      uses: devmasx/merge-branch@v1.3.1
+      uses: devmasx/merge-branch@1.4.0
       with:
         type: now
         target_branch: master-ci
