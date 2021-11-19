@@ -8,5 +8,5 @@ app_name = 'bb_webhook'
 
 urlpatterns = [
   # ------------------------- Stripe Webhook Endpoints ------------------------- #
-  path('stripe/account', views_stripe.account, name='webhook_stripe_account'),
+  path('stripe/account', views_stripe.account_event, name='webhook_stripe_account'),
 ]

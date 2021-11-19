@@ -10,7 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 from bb_data.models import ColocationClient
 
 @csrf_exempt
-def account(request):
+def account_event(request):
     '''
     URL: webhook/stripe/account
     '''
@@ -21,7 +21,7 @@ def account(request):
         event = stripe.Event.construct_from(
             json.loads(payload), stripe.api_key
         )
-    except ValueError as e:
+    except ValueError:
         # Invalid payload
         return HttpResponse(status=400)
 
@@ -42,6 +42,6 @@ def account(request):
         # handle_payment_method_attached(payment_method)
         # ... handle other event types
     else:
-        print('Unhandled event type {}'.format(event.type))
+        print(f'Unhandled event type {event.type}')
 
     return HttpResponse(status=200)

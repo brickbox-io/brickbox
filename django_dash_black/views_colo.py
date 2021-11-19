@@ -2,9 +2,6 @@
 
 import stripe
 
-from itertools import chain
-from operator import attrgetter
-
 from django.shortcuts import render
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
@@ -13,8 +10,7 @@ from django.template import loader
 from django.http import HttpResponse
 from django import template
 
-from bb_data.models import UserProfile, CryptoPayout, FiatPayout
-from bb_vm.models import VirtualBrickOwner, GPU, RentedGPU
+from bb_data.models import UserProfile
 
 if settings.DEBUG is False:
     stripe.api_key = settings.STRIPE_SECRET_KEY
