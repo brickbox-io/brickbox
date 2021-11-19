@@ -50,6 +50,7 @@ jobs:
 
       # Step 3, remove the IP address
       - name: Remove IP address to trusted source (managed database)
+        if: always()
         uses: GarreauArthur/manage-digital-ocean-managed-database-trusted-sources-gh-action@main
         with:
           action: "remove"
