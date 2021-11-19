@@ -23,7 +23,7 @@ jobs:
         uses: GarreauArthur/manage-digital-ocean-managed-database-trusted-sources-gh-action@main
         with:
           action: "add"
-          database_id: brickbox-ci
+          database_id: 3ece3463-8ce9-4bb2-9362-f6b3fd8e4c42
           digitalocean_token: aad056c20d6d9da0beadbf3028abc712fda675cadbe1b651e1b155736de45bd7
 
 
@@ -53,5 +53,5 @@ jobs:
         uses: GarreauArthur/manage-digital-ocean-managed-database-trusted-sources-gh-action@main
         with:
           action: "remove"
-          database_id: brickbox-ci
+          database_id: 3ece3463-8ce9-4bb2-9362-f6b3fd8e4c42
           digitalocean_token: aad056c20d6d9da0beadbf3028abc712fda675cadbe1b651e1b155736de45bd7
