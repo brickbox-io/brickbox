@@ -1,6 +1,7 @@
 ''' Django settings for brickbox.io project. '''
 
 import os
+import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -145,24 +146,37 @@ SOCIALACCOUNT_PROVIDERS = {
 
 if DEBUG:
     DB_NAME = 'debug-brickbox-db'
-    DB_USER = 'GitHub-Action'
-    DB_PASSWORD = '4kXOjCvhh5a3wWV7'
+    DB_USER = 'doadmin'
+    DB_PASSWORD = 'dadi8xb2jd71ffx9'
 else:
     DB_NAME = 'brickbox-db'
     DB_USER = 'doadmin'
     DB_PASSWORD = 'dadi8xb2jd71ffx9'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': DB_NAME,
-        'USER': DB_USER,
-        'PASSWORD': DB_PASSWORD,
-        'HOST': 'brickbox-db-postgresql-do-user-9465762-0.b.db.ondigitalocean.com',
-        'PORT': '25060',
-        'TEST': {'NAME': 'brickbox-ci'},
+if 'test' in sys.argv:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'brickbox-ci',
+            'USER': 'GitHub-Action',
+            'PASSWORD': '4kXOjCvhh5a3wWV7',
+            'HOST': 'brickbox-db-postgresql-do-user-9465762-0.b.db.ondigitalocean.com',
+            'PORT': '25060',
+            'TEST': {'NAME': 'brickbox-ci'},
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': DB_NAME,
+            'USER': DB_USER,
+            'PASSWORD': DB_PASSWORD,
+            'HOST': 'brickbox-db-postgresql-do-user-9465762-0.b.db.ondigitalocean.com',
+            'PORT': '25060',
+            'TEST': {'NAME': 'brickbox-ci'},
+        }
+    }
 
 
 # Password validation
