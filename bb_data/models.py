@@ -53,6 +53,8 @@ class ColocationClient(models.Model):
                     related_name='client_owners'
                 )
 
+    stripe_account_id = models.CharField(max_length=128, blank=True, null=True)
+
     vast_api_key = models.CharField(max_length = 64, blank=True, null=True)
     eth_deposit_address = models.CharField(max_length = 64, blank=True, null=True)
 

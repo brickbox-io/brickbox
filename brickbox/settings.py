@@ -1,6 +1,7 @@
 ''' Django settings for brickbox.io project. '''
 
 import os
+import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'bb_dashboard',             # Users dashboard
     'bb_data',                  # Collection of data
     'bb_vm',                    # Virtual Machine Rentals
+    'bb_webhook',               # Handle incoming and outgoing webhook events
 
     # Other Apps
     'puller',                   # CI/CD Automation Tool
@@ -144,20 +146,37 @@ SOCIALACCOUNT_PROVIDERS = {
 
 if DEBUG:
     DB_NAME = 'debug-brickbox-db'
+    DB_USER = 'doadmin'
+    DB_PASSWORD = 'dadi8xb2jd71ffx9'
 else:
     DB_NAME = 'brickbox-db'
+    DB_USER = 'doadmin'
+    DB_PASSWORD = 'dadi8xb2jd71ffx9'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': DB_NAME,
-        'USER': 'doadmin',
-        'PASSWORD': 'dadi8xb2jd71ffx9',
-        'HOST': 'brickbox-db-postgresql-do-user-9465762-0.b.db.ondigitalocean.com',
-        'PORT': '25060',
-        'test': {'NAME': 'brickbox-ci'},
+if 'test' in sys.argv:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'brickbox-ci',
+            'USER': 'GitHub-Action',
+            'PASSWORD': '4kXOjCvhh5a3wWV7',
+            'HOST': 'brickbox-db-postgresql-do-user-9465762-0.b.db.ondigitalocean.com',
+            'PORT': '25060',
+            'TEST': {'NAME': 'brickbox-ci'},
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': DB_NAME,
+            'USER': DB_USER,
+            'PASSWORD': DB_PASSWORD,
+            'HOST': 'brickbox-db-postgresql-do-user-9465762-0.b.db.ondigitalocean.com',
+            'PORT': '25060',
+            'TEST': {'NAME': 'brickbox-ci'},
+        }
+    }
 
 
 # Password validation
@@ -306,9 +325,15 @@ else:
 # ---------------------------------------------------------------------------- #
 
 # ----------------------- Stripe Debug/Test Credentials ---------------------- #
-# CLIENT_ID_TEST =
-STRIPE_SECRET_KEY_TEST = '''sk_test_51Jb9T1AFJmW5oMdbI6NszFIEwIHNynAa
-1pHqeUkBRMWAqFUj2XguaLzfFqspuarRB5uqVZPuFkyDb4f5k7WuJ3EE00OqwKdoI4'''
+CLIENT_ID_TEST = 'ca_KbUZTFe8KqC56Ngh7b4hQUBu0fifyban'
 
-STRIPE_PUBLISHABLE_KEY_TEST = '''pk_test_51Jb9T1AFJmW5oMdbOtpNv8mEKgXZZ
-jdVScjhh1l7wMJ4h2UynWpnIl1tlsmX0Hgt33lE8hyoiKer85GgfHnNjagK00aZMtPtzX'''
+STRIPE_SECRET_KEY_TEST = 'sk_test_51Jb9T1AFJmW5oMdbI6NszFIEwIHNynAa1pHqeUkBRMWAqFUj2XguaLzfFqspuarRB5uqVZPuFkyDb4f5k7WuJ3EE00OqwKdoI4' # pylint: disable=line-too-long
+
+STRIPE_PUBLISHABLE_KEY_TEST = 'pk_test_51Jb9T1AFJmW5oMdbOtpNv8mEKgXZZjdVScjhh1l7wMJ4h2UynWpnIl1tlsmX0Hgt33lE8hyoiKer85GgfHnNjagK00aZMtPtzX' # pylint: disable=line-too-long
+
+# ---------------------------- Stripe Credentials ---------------------------- #
+CLIENT_ID = 'ca_KbUZatPIraDbaExd7VA0jkTR6Cb2et76'
+
+STRIPE_SECRET_KEY = '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' # pylint: disable=line-too-long
+
+STRIPE_PUBLISHABLE_KEY = 'pk_live_51Jb9T1AFJmW5oMdb3WcUDAIySK9NYUmd3JrP4rb7NvDupmnM8HfVYdpWHxoNf1HFLcwTAcXGmM23D9VKjfu2vTnz00LAAcLjtx' # pylint: disable=line-too-long

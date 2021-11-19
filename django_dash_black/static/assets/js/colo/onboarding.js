@@ -19,3 +19,11 @@ function TermsAgreement() {
         xhttp.send(formData);
     });
 }
+
+function ETH_Address() {
+    $("#eth_address").modal('toggle');
+    $("#confirm_button").click(function () {
+        $("#eth_address").modal('toggle');
+
+    });
+}

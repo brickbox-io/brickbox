@@ -6,7 +6,6 @@
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
-
 <div class="row">
 
     <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
@@ -39,7 +38,28 @@
             <div class="card-body">
                 <p class="card-text">
                     Please provide the account information for where you would like to receive your payout.
+                    <br>
+                    Stripe - USD Payments
+                    <br>
+                    ETH - Cypto Payments
                 </p>
+            </div>
+
+            <div class="card-footer text-center">
+                {% if stripe_link_url is not False %}
+                <a href="{{ stripe_link_url }}">
+                    <button type="button" class="btn btn-success"> Connect Stripe </button>
+                </a>
+                {% else %}
+                <button type="button" class="btn btn-success" disabled> Stripe Connected </button>
+                {% endif %}
+
+                {% if first_colo.eth_deposit_address is None %}
+                <button type="button" class="btn btn-success" onclick="ETH_Address()"> ETH Address </button>
+                {% else %}
+                <button type="button" class="btn btn-success" disabled> ETH Address </button>
+                {% endif %}
+
             </div>
 
         </div>
@@ -71,7 +91,8 @@
             <div class="card-body">
                 <p class="card-text">
                     As stated in the agreement, you will be required to provide us with a valid insurance policy for the equipment.
-                    You can either go through our insurace provider or upload a copy of your proff of insurance.
+                    <br>
+                    You can either go through our insurance provider or upload a copy of your proof of insurance.
                 </p>
             </div>
 
@@ -81,6 +102,7 @@
 </div>
 
 {% include "modals/colo_terms_signature.html" %}
+{% include "modals/colo_eth_address.html" %}
 
 {% endblock content %}
 

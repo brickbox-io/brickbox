@@ -33,6 +33,7 @@ urlpatterns = [
     path('dashboard/', include('bb_dashboard.urls')),   # bb_dashboard
     path('dash/', include('django_dash_black.urls')),
     path('data/', include('bb_data.urls')),             # bb_data
+    path('webhook/', include('bb_webhook.urls')),       # bb_webhook
 
     # ---------------------------- Virtulization URLS ---------------------------- #
     path('vm/', include('bb_vm.urls')),                 # bb_vm
