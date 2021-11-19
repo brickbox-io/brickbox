@@ -309,13 +309,13 @@ else:
 # ----------------------- Stripe Debug/Test Credentials ---------------------- #
 CLIENT_ID_TEST = 'ca_KbUZTFe8KqC56Ngh7b4hQUBu0fifyban'
 
-STRIPE_SECRET_KEY_TEST = 'sk_test_51Jb9T1AFJmW5oMdbI6NszFIEwIHNynAa1pHqeUkBRMWAqFUj2XguaLzfFqspuarRB5uqVZPuFkyDb4f5k7WuJ3EE00OqwKdoI4'
+STRIPE_SECRET_KEY_TEST = 'sk_test_51Jb9T1AFJmW5oMdbI6NszFIEwIHNynAa1pHqeUkBRMWAqFUj2XguaLzfFqspuarRB5uqVZPuFkyDb4f5k7WuJ3EE00OqwKdoI4' # pylint: disable=line-too-long
 
-STRIPE_PUBLISHABLE_KEY_TEST = 'pk_test_51Jb9T1AFJmW5oMdbOtpNv8mEKgXZZjdVScjhh1l7wMJ4h2UynWpnIl1tlsmX0Hgt33lE8hyoiKer85GgfHnNjagK00aZMtPtzX'
+STRIPE_PUBLISHABLE_KEY_TEST = 'pk_test_51Jb9T1AFJmW5oMdbOtpNv8mEKgXZZjdVScjhh1l7wMJ4h2UynWpnIl1tlsmX0Hgt33lE8hyoiKer85GgfHnNjagK00aZMtPtzX' # pylint: disable=line-too-long
 
 # ---------------------------- Stripe Credentials ---------------------------- #
 CLIENT_ID = 'ca_KbUZatPIraDbaExd7VA0jkTR6Cb2et76'
 
-STRIPE_SECRET_KEY = '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'
+STRIPE_SECRET_KEY = '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' # pylint: disable=line-too-long
 
-STRIPE_PUBLISHABLE_KEY = 'pk_live_51Jb9T1AFJmW5oMdb3WcUDAIySK9NYUmd3JrP4rb7NvDupmnM8HfVYdpWHxoNf1HFLcwTAcXGmM23D9VKjfu2vTnz00LAAcLjtx'
+STRIPE_PUBLISHABLE_KEY = 'pk_live_51Jb9T1AFJmW5oMdb3WcUDAIySK9NYUmd3JrP4rb7NvDupmnM8HfVYdpWHxoNf1HFLcwTAcXGmM23D9VKjfu2vTnz00LAAcLjtx' # pylint: disable=line-too-long
