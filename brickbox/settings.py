@@ -145,15 +145,19 @@ SOCIALACCOUNT_PROVIDERS = {
 
 if DEBUG:
     DB_NAME = 'debug-brickbox-db'
+    DB_USER = 'GitHub-Action'
+    DB_PASSWORD = '4kXOjCvhh5a3wWV7'
 else:
     DB_NAME = 'brickbox-db'
+    DB_USER = 'doadmin'
+    DB_PASSWORD = 'dadi8xb2jd71ffx9'
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': DB_NAME,
-        'USER': 'doadmin',
-        'PASSWORD': 'dadi8xb2jd71ffx9',
+        'USER': DB_USER,
+        'PASSWORD': DB_PASSWORD,
         'HOST': 'brickbox-db-postgresql-do-user-9465762-0.b.db.ondigitalocean.com',
         'PORT': '25060',
         'test': {'NAME': 'brickbox-ci'},
