@@ -160,7 +160,7 @@ DATABASES = {
         'PASSWORD': DB_PASSWORD,
         'HOST': 'brickbox-db-postgresql-do-user-9465762-0.b.db.ondigitalocean.com',
         'PORT': '25060',
-        'test': {'NAME': 'brickbox-ci'},
+        'TEST': {'NAME': 'brickbox-ci'},
     }
 }
 
