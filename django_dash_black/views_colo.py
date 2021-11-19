@@ -1,5 +1,6 @@
 ''' Django Black Dashboard views_colo.py '''
 
+import sys
 import stripe
 
 from django.shortcuts import render
@@ -21,7 +22,10 @@ else:
     stripePubKey = settings.STRIPE_PUBLISHABLE_KEY_TEST
     stripe_clident_id = settings.CLIENT_ID_TEST
 
-current_site = Site.objects.get_current()
+if 'test' in sys.argv:
+    current_domain = "examle.com"
+else:
+    current_domain = Site.objects.get_current().domain
 
 @login_required(login_url="/login/")
 def onboarding(request):
@@ -66,8 +70,8 @@ def onboarding(request):
         if account_details.details_submitted is False:
             stripe_link = stripe.AccountLink.create(
                 account = first_colo.stripe_account_id,
-                refresh_url = f"https://{current_site.domain}/dash/colo",
-                return_url = f"https://{current_site.domain}/dash/colo",
+                refresh_url = f"https://{current_domain}/dash/colo",
+                return_url = f"https://{current_domain}/dash/colo",
                 type = "account_onboarding",
             )
             context["stripe_link_url"] = stripe_link.url
