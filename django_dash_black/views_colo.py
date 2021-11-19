@@ -23,9 +23,9 @@ else:
     stripe_clident_id = settings.CLIENT_ID_TEST
 
 if 'test' in sys.argv:
-    current_domain = "examle.com"
+    CURRENT_DOMAIN = "examle.com"
 else:
-    current_domain = Site.objects.get_current().domain
+    CURRENT_DOMAIN = Site.objects.get_current().domain
 
 @login_required(login_url="/login/")
 def onboarding(request):
@@ -70,8 +70,8 @@ def onboarding(request):
         if account_details.details_submitted is False:
             stripe_link = stripe.AccountLink.create(
                 account = first_colo.stripe_account_id,
-                refresh_url = f"https://{current_domain}/dash/colo",
-                return_url = f"https://{current_domain}/dash/colo",
+                refresh_url = f"https://{CURRENT_DOMAIN}/dash/colo",
+                return_url = f"https://{CURRENT_DOMAIN}/dash/colo",
                 type = "account_onboarding",
             )
             context["stripe_link_url"] = stripe_link.url
