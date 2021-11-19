@@ -17,6 +17,17 @@ jobs:
 
     steps:
 
+
+      # Step 1, add the IP address
+      - name: Add IP address to trusted source (managed database)
+        uses: GarreauArthur/manage-digital-ocean-managed-database-trusted-sources-gh-action@main
+        with:
+          action: "add"
+          database_id: brickbox-ci
+          digitalocean_token: aad056c20d6d9da0beadbf3028abc712fda675cadbe1b651e1b155736de45bd7
+
+
+      # Step 2, do whatever you need to do with you database
       - uses: actions/checkout@v2
 
       # - name: Set up Python ${{ matrix.python-version }}
@@ -34,3 +45,13 @@ jobs:
       - name: Run Tests
         run: |
           python manage.py test --noinput
+
+
+
+      # Step 3, remove the IP address
+      - name: Remove IP address to trusted source (managed database)
+        uses: GarreauArthur/manage-digital-ocean-managed-database-trusted-sources-gh-action@main
+        with:
+          action: "remove"
+          database_id: brickbox-ci
+          digitalocean_token: aad056c20d6d9da0beadbf3028abc712fda675cadbe1b651e1b155736de45bd7
