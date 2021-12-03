@@ -153,7 +153,10 @@ def monthly_breakdown_chart(request, colo=0):
         monthly_payout_cleaned = [round(num, 2) for num in monthly_payout]
 
     except IndexError:
-        monthly_payout = None
+        monthly_payout_cleaned = None
+
+    except UnboundLocalError:
+        monthly_payout_cleaned = None
 
     formated_data = {2021: monthly_payout_cleaned}
 
