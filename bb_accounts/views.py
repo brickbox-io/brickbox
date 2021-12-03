@@ -143,7 +143,7 @@ def token_signin(request):
         )
 
         user_profile = UserProfile(
-                            user = request.user,
+                            user = new_user,
                         )
         user_profile.save()
 

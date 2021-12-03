@@ -74,11 +74,14 @@
 							</li>
 							<li><a href="elements.html">Elements</a></li>-->
 
+                    <li><a href="https://knowledge.brickbox.io/" target="_blank">Knowledgebase</a></li>
+
                     {%  if user.is_authenticated %}
                     <li><a href="{% url 'django_dash_black:dash' %}" class="button primary">View Dashboard</a></li>
                     {% else %}
                     <li><a href="{% url 'bb_accounts:register' %}" class="button primary">Sign Up</a></li>
                     {% endif %}
+
                 </ul>
             </nav>
         </header>
@@ -188,7 +191,7 @@
 
 
             <!-- Table -->
-            <section class="col-12">
+            <section id="four" class="wrapper style1 special fade-up col-12">
                 <header class="gputable">
                     <h2>Currently Available GPUs</h2>
                 </header>
@@ -204,12 +207,12 @@
                         <tbody>
                             <tr>
                                 <td>RTX 3070</td>
-                                <td>4x vCPU, 12GB RAM, 25GB SDD</td>
+                                <td>4x vCPU, 12GB RAM, 25GB SSD</td>
                                 <td><strike>$0.55/hr</strike> All Rented</td>
                             </tr>
                             <tr>
                                 <td>RTX 3090</td>
-                                <td>4x vCPU, 12GB RAM, 25GB SDD</td>
+                                <td>4x vCPU, 12GB RAM, 25GB SSD</td>
                                 <td>$0.75/hr</td>
                             </tr>
                             <!-- <tr>
@@ -256,10 +259,10 @@
     <!-- Footer -->
     <footer id="footer">
         <ul class="icons">
-            <li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="https://twitter.com/brickbox_io" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
             <li><a href="https://www.facebook.com/brickboxio" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
             <li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-            <li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="https://www.instagram.com/brickbox.io/" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
             <li><a href="https://github.com/brickbox-io" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
             <li><a href="mailto: info@brickbox.io" target="_blank" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
         </ul>

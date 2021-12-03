@@ -12,7 +12,7 @@ from django import template
 from bb_data.models import UserProfile, CryptoPayout, FiatPayout
 from bb_vm.models import VirtualBrickOwner, GPU, RentedGPU
 
-@login_required(login_url="/login/")
+@login_required()
 def index(request, colo=0):
     '''
     Dashboard index
@@ -51,7 +51,7 @@ def index(request, colo=0):
     html_template = loader.get_template( 'index.html' )
     return HttpResponse(html_template.render(context, request))
 
-@login_required(login_url="/login/")
+@login_required()
 def pages(request):
     '''
     Serves the diffrent pages.
