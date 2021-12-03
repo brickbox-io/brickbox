@@ -25,23 +25,25 @@
 
             </div>
 
-            <div class="card-body">
+            <form role="form" method="post" action="">
 
-                <!-- ------------------------- START - Google Auth ------------------------- -->
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <div id="g_id_onload" data-client_id="918414840239-qljh31euklmcem5ec7s72a726r3aofsr.apps.googleusercontent.com" data-login_uri="/tokensignin/" data-auto_prompt="false">
-                            </div>
-                            <div class="g_id_signin" data-type="standard" data-size="large" data-theme="filled_black" data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left">
+                <div class="card-body">
+
+                    <!-- ------------------------- START - Google Auth ------------------------- -->
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <div id="g_id_onload" data-client_id="918414840239-qljh31euklmcem5ec7s72a726r3aofsr.apps.googleusercontent.com" data-login_uri="/tokensignin/" data-auto_prompt="false">
+                                </div>
+                                <div class="g_id_signin" data-type="standard" data-size="large" data-theme="filled_black" data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- -------------------------- END - Google Auth -------------------------- -->
+                    <!-- -------------------------- END - Google Auth -------------------------- -->
 
-                <!-- ------------------------- START - GitHub Auth ------------------------- -->
-                <!-- <div class="row">
+                    <!-- ------------------------- START - GitHub Auth ------------------------- -->
+                    <!-- <div class="row">
                     <div class="col">
                         <div class="form-group">
                             <a id="github-button" class="btn btn-block btn-social btn-github">
@@ -50,17 +52,17 @@
                         </div>
                     </div>
                 </div> -->
-                <!-- -------------------------- END - GitHub Auth -------------------------- -->
+                    <!-- -------------------------- END - GitHub Auth -------------------------- -->
 
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group" style="text-align: center;">
-                            OR
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group" style="text-align: center;">
+                                OR
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- <div class="row">
+                    <!-- <div class="row">
                         <div class="col">
                             <div class="form-group">
                                 <label>Username</label>
@@ -69,7 +71,7 @@
                         </div>
                     </div> -->
 
-                <form role="form" method="post" action="">
+
                     {% csrf_token %}
                     <div class="row">
                         <div class="col">
@@ -88,16 +90,16 @@
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
 
-            <div class="card-footer" style="text-align: center;">
-                <button type="submit" name="register" class="btn btn-fill btn-primary">Register</button>
-                <br><br>
-                Have an account? <a href="{% url 'bb_accounts:login' %}" class="text-primary">Login</a>
-            </div>
+                </div>
 
+                <div class="card-footer" style="text-align: center;">
+                    <button type="submit" name="register" class="btn btn-fill btn-primary">Register</button>
+                    <br><br>
+                    Have an account? <a href="{% url 'bb_accounts:login' %}" class="text-primary">Login</a>
+                </div>
 
+            </form>
 
         </div>
     </div>
