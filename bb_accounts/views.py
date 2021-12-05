@@ -63,6 +63,8 @@ def account_registration(request):
 
             user_profile = UserProfile(
                                 user = request.user,
+                                brick_access = True,
+                                is_beta = True,
                             )
             user_profile.save()
 

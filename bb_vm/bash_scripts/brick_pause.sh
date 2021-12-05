@@ -9,6 +9,7 @@ instance=$2
 if [ "$(sudo virsh domstate "$instance")" == "running" ]; then
     echo "Brick is still running. Shutting it down manually."
     sudo virsh shutdown  "$instance"
+    sudo virsh autostart "$instance" --disable > /dev/null # Disable autostart.
     sleep 10
 fi
 

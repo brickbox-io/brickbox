@@ -35,6 +35,9 @@ class UserProfile(models.Model):
 
     brick_access = models.BooleanField(default=False)
 
+    # Flags
+    is_beta = models.BooleanField(default=True)
+
     def __str__(self):
         return f"{self.user.get_full_name()} ({self.user})"
 
