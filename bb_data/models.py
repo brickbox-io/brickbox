@@ -9,6 +9,8 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.contrib.auth import get_user_model
 
+# from bb_vm.models import EquipmentOwner
+
 User = get_user_model()
 
 # ----------------------------- Selection Options ---------------------------- #
@@ -36,6 +38,7 @@ class UserProfile(models.Model):
     brick_access = models.BooleanField(default=False)
 
     # Flags
+    is_manager = models.BooleanField(default=False)
     is_beta = models.BooleanField(default=True)
 
     def __str__(self):
@@ -56,10 +59,18 @@ class ColocationClient(models.Model):
                     related_name='client_owners'
                 )
 
+    term_agreement = models.BooleanField(default=False)
+
     stripe_account_id = models.CharField(max_length=128, blank=True, null=True)
 
     vast_api_key = models.CharField(max_length = 64, blank=True, null=True)
     eth_deposit_address = models.CharField(max_length = 64, blank=True, null=True)
+
+    equipment = models.ManyToManyField(
+                    'bb_vm.HostFoundation',
+                    through='bb_vm.EquipmentOwner',
+                    related_name='owned_equipment'
+                )
 
     def __str__(self):
         return f"{self.account_name } (ID: {self.id})"

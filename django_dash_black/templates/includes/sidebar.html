@@ -63,17 +63,6 @@
             <!-- -------------------------- END - Bricks Tab --------------------------- -->
 
 
-            <!-- ------------------------ START - Superuser Tab ------------------------ -->
-            {% if user.is_superuser %}
-            <li class="{% if 'superuser' in segment %} active {% endif %}">
-                <a href="/dash/superuser">
-                    <i class="tim-icons icon-atom"></i>
-                    <p>SUPERUSER</p>
-                </a>
-            </li>
-            {% endif %}
-            <!-- ------------------------- END - Superuser Tab ------------------------- -->
-
             <!-- <li class="{% if 'notifications' in segment %} active {% endif %}">
                 <a href="/ui-notifications.html">
                     <i class="tim-icons icon-bell-55"></i>
@@ -116,6 +105,50 @@
 
 
         </ul>
+
+        <br>
+
+        <!-- ----------------------------------------------------------------------- -->
+        <!--                               ADMIN TOOLS                               -->
+        <!-- ----------------------------------------------------------------------- -->
+        {% if profile.is_manager %}
+
+        <div class="logo">
+            <a target="_blank" rel="sponsored noopener noreferrer" href="" class="simple-text logo-mini">
+                <!-- BB -->
+            </a>
+            <a href="{% url 'bb_public:ai_landing_page' %}" rel="sponsored noopener noreferrer" class="simple-text logo-normal">
+                ADMIN TOOLS
+            </a>
+        </div>
+
+        <ul class="nav">
+
+            <!-- ------------------------ START - Superuser Tab ------------------------ -->
+            {% if user.is_superuser %}
+            <li class="{% if 'superuser' in segment %} active {% endif %}">
+                <a href="/dash/superuser">
+                    <i class="tim-icons icon-atom"></i>
+                    <p>SUPERUSER</p>
+                </a>
+            </li>
+            {% endif %}
+            <!-- ------------------------- END - Superuser Tab ------------------------- -->
+
+
+            <!-- --------------------------- START - Clients --------------------------- -->
+            <li class="{% if 'clients' in segment %} active {% endif %}">
+                <a href="/dash/clients">
+                    <i class="material-icons-outlined">group</i>
+                    <p>COLO CLIENTS</p>
+                </a>
+            </li>
+            <!-- ---------------------------- END - Clients ---------------------------- -->
+
+
+        </ul>
+
+        {% endif %}
 
     </div>
 </div>

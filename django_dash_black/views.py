@@ -9,7 +9,7 @@ from django.template import loader
 from django.http import HttpResponse
 from django import template
 
-from bb_data.models import UserProfile, CryptoPayout, FiatPayout
+from bb_data.models import UserProfile, CryptoPayout, FiatPayout, ColocationClient
 from bb_vm.models import VirtualBrickOwner, GPU, RentedGPU
 
 @login_required()
@@ -66,6 +66,8 @@ def pages(request):
         context['profile'] = UserProfile.objects.get(user = request.user)
         context['bricks'] = VirtualBrickOwner.objects.filter(owner=context['profile'])
         context['ssh_url'] = settings.SSH_URL
+
+        context['colo_clients'] = ColocationClient.objects.all()
 
         context['3090_gpu_available'] = False
         for gpu in GPU.objects.filter(model="3090", host__connected_status=True):
