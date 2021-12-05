@@ -22,7 +22,12 @@
             </div>
 
             <div class="card-footer text-center">
+                {% if first_colo.term_agreement %}
+                <button type="button" class="btn btn-success" onclick="TermsAgreement()" disabled> Terms Accepted </button>
+                {% else %}
                 <button type="button" class="btn btn-success" onclick="TermsAgreement()"> View Terms </button>
+
+                {% endif %}
             </div>
 
         </div>

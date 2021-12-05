@@ -6,7 +6,7 @@ from django.db.models.signals import pre_save, post_save, post_delete
 
 from django.utils.translation import gettext_lazy as _
 
-from bb_data.models import UserProfile
+from bb_data.models import UserProfile, ColocationClient
 
 
 # ----------------------------------- Ports ---------------------------------- #
@@ -46,6 +46,15 @@ class HostFoundation(models.Model):
 
     class Meta:
         verbose_name_plural = "Host Foundations/Servers"
+
+
+# ------------------------------ Equipment Owner ----------------------------- #
+class EquipmentOwner(models.Model):
+    '''
+    Pairs equipment with a colo client account.
+    '''
+    client_account = models.ForeignKey(ColocationClient, on_delete=models.PROTECT)
+    server = models.ForeignKey('HostFoundation', on_delete=models.PROTECT)
 
 
 # ----------------------------------- GPUs ----------------------------------- #

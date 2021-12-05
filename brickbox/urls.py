@@ -28,6 +28,7 @@ urlpatterns = [
     path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('admin/', admin.site.urls),
     path('api/', include('bb_api.urls')),               # bb_api
+    path('colo/', include('bb_colo.urls')),             # bb_colo
     path('', include('bb_accounts.urls')),              # bb_accounts
     path('', include('bb_public.urls')),                # bb_public
     path('dashboard/', include('bb_dashboard.urls')),   # bb_dashboard

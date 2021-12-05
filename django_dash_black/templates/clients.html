@@ -1,0 +1,105 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Colo Clients {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<!-- ------------------------ START - Client Table ------------------------- -->
+<div class="col-lg-12 col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="title">Manage Colo Clients</h5>
+            <p class="category">A list of colo clients and their current status.</a></p>
+        </div>
+
+        <div class="card-body">
+            <table class="table">
+
+                <!-- Table Head -->
+                <thead>
+                    <tr>
+                        <!-- <th class="text-center">#</th> -->
+                        <th>Client</th>
+                        <th class="text-center">Term Agreement</th>
+                        <th class="text-center">Stripe Connected</th>
+                        <th class="text-center">ETH Address</th>
+                        <th class="text-center">Equipment Purchased</th>
+                        <th class="text-center">Insurance Info</th>
+                    </tr>
+                </thead>
+
+                <!-- Table Body -->
+                <tbody id="brick_wall">
+
+                    {% for client in colo_clients %}
+
+                    <tr>
+                        <!-- Name -->
+                        <td> {{ client.account_name }} </td>
+
+                        <!-- Term Agreement -->
+                        <td class="text-center">
+                            {% if client.term_agreement %}
+                            {% else %}
+                            <span class="material-icons-outlined" style="color: red;">sd_card_alert</span>
+                            {% endif %}
+                        </td>
+
+                        <!-- Stripe Connected -->
+                        <td class="text-center">
+                            {% if client.stripe_account_id %}
+                            <span class="material-icons-outlined" style="color: green;">link</span>
+                            {% else %}
+                            <span class="material-icons-outlined" style="color: red;">link_off</span>
+                            {% endif %}
+                        </td>
+
+                        <!-- ETH Address -->
+                        <td class="text-center">
+                            {% if client.eth_deposit_address %}
+                            <span class="material-icons-outlined" style="color: green;">account_balance_wallet</span>
+                            {% else %}
+                            <span class="material-icons-outlined" style="color: red;">account_balance_wallet</span>
+                            {% endif %}
+                        </td>
+
+                        <!-- Equipment Purchased -->
+                        <td class="text-center">
+                            {% if client.equipment.all.count >= 1 %}
+                            <span class="material-icons-outlined" style="color: green;">check_circle</span>
+                            {% else %}
+                            <span class="material-icons-outlined" style="color: orange;">pending</span>
+                            {% endif %}
+                        </td>
+
+                        <!-- Insurance Info -->
+                        <td class="text-center">
+                            {% if client.insurance_info %}
+                            <span class="material-icons-outlined" style="color: green;">policy</span>
+                            {% else %}
+                            <span class="material-icons-outlined" style="color: orange;">policy</span>
+                            {% endif %}
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+
+
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+</div>
+<!-- ------------------------- END - Client Table -------------------------- -->
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
