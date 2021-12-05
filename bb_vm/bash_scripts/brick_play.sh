@@ -6,7 +6,7 @@ url=$1
 instance=$2
 
 # Check if brick is on, if not, start it.
-if [ "$(sudo virsh domstate $instance)" != "running" ]; then
+if [ "$(sudo virsh domstate "$instance")" != "running" ]; then
     echo "Brick is not running, starting it."
     command_output=$(sudo virsh start "$instance")
     sleep 10
@@ -14,7 +14,7 @@ fi
 
 # Check if brick has started.
 # if [ "$(sudo virsh list --all | grep -c "$instance")" -eq 1 ]; then
-if [ "$(sudo virsh domstate $instance)" == "running" ]; then
+if [ "$(sudo virsh domstate "$instance")" == "running" ]; then
     echo "Brick started."
 
     curl -s -X POST https://"$url"/api/vmlog/ \
