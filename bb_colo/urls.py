@@ -1,6 +1,6 @@
 ''' bb_colo urls.py '''
 
-from django.urls import include, path
+from django.urls import path
 
 from bb_colo import views
 
