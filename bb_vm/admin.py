@@ -4,7 +4,7 @@ from django.contrib import admin
 
 from bb_vm.models import(
      PortTunnel, VirtualBrick, VirtualBrickOwner,
-     GPU, HostFoundation, RentedGPU, VMLog
+     GPU, HostFoundation, EquipmentOwner, RentedGPU, VMLog
 )
 
 class PortTunnelAdmin(admin.ModelAdmin):
@@ -52,6 +52,7 @@ class VMLogAdmin(admin.ModelAdmin):
 
 admin.site.register(PortTunnel, PortTunnelAdmin)
 admin.site.register(HostFoundation, HostFoundationAdmin)
+admin.site.register(EquipmentOwner)
 admin.site.register(GPU, GPUAdmin)
 admin.site.register(RentedGPU, RentedGPUAdmin)
 admin.site.register(VirtualBrick, VirtualBrickAdmin)
