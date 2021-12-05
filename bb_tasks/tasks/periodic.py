@@ -134,10 +134,10 @@ def reconnect_host(host):
             except AttributeError:
                 reconnect_script_result = 'No output'
 
-    # Cycle through VM and update power status
-    for brick_vm in VirtualBrick.objects.filter(host=host):
-        if brick_vm.is_on:
-            restore_vm_state.delay(brick_vm.id)
+    # Cycle through VM and update power status (Replaced with autostart)
+    # for brick_vm in VirtualBrick.objects.filter(host=host):
+    #     if brick_vm.is_on:
+    #         restore_vm_state.delay(brick_vm.id)
 
 
     return json.dumps({
