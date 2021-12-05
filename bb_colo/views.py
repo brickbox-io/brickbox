@@ -1,9 +1,8 @@
 ''' bb_colo - views.py '''
 
-from django.shortcuts import render
 from django.http import HttpResponse
 
-from bb_data.models import UserProfile, ColocationClient, ColocationClientOwner
+from bb_data.models import UserProfile, ColocationClientOwner
 
 def agreement(request):
     '''
