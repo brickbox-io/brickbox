@@ -27,13 +27,16 @@ def clone_img(request):
     Method: AJAX
     Clone exsisting image to create a new istance.
     '''
+    profile = UserProfile.objects.get(user=request.user)
     selected_gpu = request.POST.get('selected_gpu')
     designated_gpu_xml = None
+
+    if profile.is_beta and VirtualBrickOwner.objects.filter(owner=profile).count() >= 2:
+        return HttpResponse("Max Beta VMs Reached", status=200)
+
     for gpu in GPU.objects.filter(model=selected_gpu):
         if RentedGPU.objects.filter(gpu=gpu).count() < 1:
             designated_gpu_xml = gpu.xml
-
-            profile = UserProfile.objects.get(user=request.user)
 
             instance = VirtualBrick(
                 host = gpu.host,
@@ -41,7 +44,7 @@ def clone_img(request):
             )
             instance.save()
 
-            instance.name = f'brick-{instance.id}'
+            instance.name = f'brick-{instance.id} ({gpu.model})'
             instance.save()
 
             assigned = RentedGPU(gpu=gpu, virt_brick=instance)

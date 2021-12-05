@@ -9,6 +9,7 @@ instance=$2
 if [ "$(sudo virsh domstate "$instance")" != "running" ]; then
     echo "Brick is not running, starting it."
     command_output=$(sudo virsh start "$instance")
+    sudo virsh autostart "$instance" > /dev/null # Enable autostart.
     sleep 10
 fi
 
@@ -20,7 +21,7 @@ if [ "$(sudo virsh domstate "$instance")" == "running" ]; then
     curl -s -X POST https://"$url"/api/vmlog/ \
     -d "level=20" \
     -d "virt_brick=$instance" \
-    -d "message=Brick hasstarted." \
+    -d "message=Brick has started." \
     -d "command=sudo virsh start $instance" \
     -d "command_output=$command_output" > /dev/null &
 
