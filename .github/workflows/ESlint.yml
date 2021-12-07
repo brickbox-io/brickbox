@@ -27,5 +27,5 @@ jobs:
       - name: Run linters
         uses: wearerequired/lint-action@v1
         with:
-          # eslint: true
+          eslint: true
           prettier: true
