@@ -1,3 +1,7 @@
 {
-    "name": "brickbox.io"
+    "name": "brickbox.io",
+    "dependencies": {
+        "eslint": "^8.4.1",
+        "prettier": "^2.5.1"
+    }
 }
