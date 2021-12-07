@@ -7,6 +7,8 @@ from django.shortcuts import HttpResponse
 
 from django.views.decorators.csrf import csrf_exempt
 
+from bb_data.models import ColocationClient
+
 
 @csrf_exempt
 def account_event(request):
@@ -27,9 +29,14 @@ def account_event(request):
     # Account Updated
     if event.type == 'account.updated':
         account = event.data.object.id
-        print(account)
+        account_details = stripe.Account.retrieve(account)
 
+        if account_details.details_submitted:
+            ColocationClient.objects.filter(stripe_account_id=account).update(
+                stripe_connected=True
+            )
 
+        return HttpResponse(status=200)
 
 
     # Handle the event

@@ -1,3 +1,4 @@
+/* ----------------------------- Term Agreement ----------------------------- */
 function TermsAgreement() {
     $("#terms_agreement_signature").modal('toggle');
 
@@ -24,6 +25,7 @@ function TermsAgreement() {
 
 }
 
+/* ------------------------------- ETH Address ------------------------------ */
 function ETH_Address() {
     $("#eth_address").modal('toggle');
     $("#confirm_button").click(function () {

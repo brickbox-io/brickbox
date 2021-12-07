@@ -38,6 +38,7 @@ class UserProfile(models.Model):
     brick_access = models.BooleanField(default=False)
 
     # Flags
+    is_colo = models.BooleanField(default=False)
     is_manager = models.BooleanField(default=False)
     is_beta = models.BooleanField(default=True)
 
@@ -62,6 +63,7 @@ class ColocationClient(models.Model):
     term_agreement = models.BooleanField(default=False)
 
     stripe_account_id = models.CharField(max_length=128, blank=True, null=True)
+    stripe_connected = models.BooleanField(default=False) # Verify user connected Stripe
 
     vast_api_key = models.CharField(max_length = 64, blank=True, null=True)
     eth_deposit_address = models.CharField(max_length = 64, blank=True, null=True)
