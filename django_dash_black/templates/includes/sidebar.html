@@ -40,7 +40,7 @@
 
 
             <!-- ------------------ START - Colocation Dashboard Tab ------------------- -->
-            {% if user.is_superuser %}
+            {% if profile.is_colo %}
             <li class="{% if 'colo' in segment %} active {% endif %}">
                 <a href="/dash/colo">
                     <i class="tim-icons icon-paper"></i>
