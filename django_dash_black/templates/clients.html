@@ -43,6 +43,7 @@
                         <!-- Term Agreement -->
                         <td class="text-center">
                             {% if client.term_agreement %}
+                            <span class="material-icons-outlined" style="color: green;">task</span>
                             {% else %}
                             <span class="material-icons-outlined" style="color: red;">sd_card_alert</span>
                             {% endif %}
@@ -50,7 +51,7 @@
 
                         <!-- Stripe Connected -->
                         <td class="text-center">
-                            {% if client.stripe_account_id %}
+                            {% if client.stripe_connected %}
                             <span class="material-icons-outlined" style="color: green;">link</span>
                             {% else %}
                             <span class="material-icons-outlined" style="color: red;">link_off</span>
