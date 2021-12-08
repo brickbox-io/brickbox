@@ -118,23 +118,24 @@
         <div class="card card-user">
             {% comment %}
             <div class="card-body">
-                <p class="card-text">
-                <div class="author">
-                    <div class="block block-one"></div>
-                    <div class="block block-two"></div>
-                    <div class="block block-three"></div>
-                    <div class="block block-four"></div>
-                    <a href="javascript:void(0)">
-                        <img class="avatar" src="/static/assets/img/emilyz.jpg" alt="Bill Gates photo - when buys a Linux.">
-                        <h5 class="title">
-                            {{ request.user.username }}
-                        </h5>
-                    </a>
-                    <p class=" description">
-                        {{ request.user.email }}
-                    </p>
+                <div class="card-text">
+
+                    <div class="author">
+                        <div class="block block-one"></div>
+                        <div class="block block-two"></div>
+                        <div class="block block-three"></div>
+                        <div class="block block-four"></div>
+                        <a href="javascript:void(0)">
+                            <img class="avatar" src="/static/assets/img/emilyz.jpg" alt="Bill Gates photo - when buys a Linux.">
+                            <h5 class="title">
+                                {{ request.user.username }}
+                            </h5>
+                        </a>
+                        <p class=" description">
+                            {{ request.user.email }}
+                        </p>
+                    </div>
                 </div>
-                </p>
 
                 <!-- <div class="card-description">
                     Linux, my favorite OS - I admin that windows is just a big mistake.
