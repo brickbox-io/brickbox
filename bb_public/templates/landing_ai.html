@@ -165,8 +165,9 @@
 
         <!-- Four -->
         <!--<section id="four" class="wrapper style1 special fade-up">-->
-        <div class="container">
-            <!--
+        <section id="four" class="wrapper style1 special fade-up col-12">
+            <div class="container">
+                <!--
 						<header class="major">
 							<h2>Accumsan sed tempus adipiscing blandit</h2>
 							<p>Iaculis ac volutpat vis non enim gravida nisi faucibus posuere arcu consequat</p>
@@ -190,8 +191,8 @@
 								</section>-->
 
 
-            <!-- Table -->
-            <section id="four" class="wrapper style1 special fade-up col-12">
+                <!-- Table -->
+
                 <header class="gputable">
                     <h2>Currently Available GPUs</h2>
                 </header>
@@ -228,49 +229,47 @@
                         </tbody>
                     </table>
                 </div>
-            </section>
-        </div>
-    </div>
-    <footer class="major">
-        <ul class="actions special">
-            <li><a href="{% url 'bb_accounts:register' %}" class="button">Get Started</a></li>
-        </ul>
-    </footer>
-    </div>
-    </section>
 
-    <!-- Five -->
-    <section id="five" class="wrapper style2 special fade">
-        <div class="container">
-            <header>
-                <h2>BUILD THE FUTURE</h2>
-                <p> Sign up below to be the first to receive news and updates! </p>
-            </header>
-            <!-- <form method="post" action="{% url 'bb_public:forms_email_list' %}" class="cta" id="email_input"> {% csrf_token %} -->
-            <div class="cta" id="email_input" style="max-width: 35em; margin-left: auto; margin-right:auto;">
-                <div class="row gtr-uniform gtr-50">
-                    <div class="col-8 col-12-xsmall"><input type="email" name="email" id="email" placeholder="Your Email Address" /></div>
-                    <div class="col-4 col-12-xsmall"><input type="submit" value="Submit" class="fit primary" onclick="SubmitEmail()" /></div>
-                </div>
+                <footer class="major">
+                    <ul class="actions special">
+                        <li><a href="{% url 'bb_accounts:register' %}" class="button">Get Started</a></li>
+                    </ul>
+                </footer>
             </div>
-            <!-- </form> -->
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer id="footer">
-        <ul class="icons">
-            <li><a href="https://twitter.com/brickbox_io" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
-            <li><a href="https://www.facebook.com/brickboxio" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-            <li><a href="https://www.linkedin.com/company/brickbox-io/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-            <li><a href="https://www.instagram.com/brickbox.io/" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-            <li><a href="https://github.com/brickbox-io" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-            <li><a href="mailto: info@brickbox.io" target="_blank" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
-        </ul>
-        <ul class="copyright">
-            <li>&copy; {% now "Y" %} brickbox.io | All rights reserved.</li>
-        </ul>
-    </footer>
+        <!-- Five -->
+        <section id="five" class="wrapper style2 special fade">
+            <div class="container">
+                <header>
+                    <h2>BUILD THE FUTURE</h2>
+                    <p> Sign up below to be the first to receive news and updates! </p>
+                </header>
+                <!-- <form method="post" action="{% url 'bb_public:forms_email_list' %}" class="cta" id="email_input"> {% csrf_token %} -->
+                <div class="cta" id="email_input" style="max-width: 35em; margin-left: auto; margin-right:auto;">
+                    <div class="row gtr-uniform gtr-50">
+                        <div class="col-8 col-12-xsmall"><input type="email" name="email" id="email" placeholder="Your Email Address" /></div>
+                        <div class="col-4 col-12-xsmall"><input type="submit" value="Submit" class="fit primary" onclick="SubmitEmail()" /></div>
+                    </div>
+                </div>
+                <!-- </form> -->
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <ul class="icons">
+                <li><a href="https://twitter.com/brickbox_io" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+                <li><a href="https://www.facebook.com/brickboxio" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+                <li><a href="https://www.linkedin.com/company/brickbox-io/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+                <li><a href="https://www.instagram.com/brickbox.io/" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+                <li><a href="https://github.com/brickbox-io" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+                <li><a href="mailto: info@brickbox.io" target="_blank" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
+            </ul>
+            <ul class="copyright">
+                <li>&copy; {% now "Y" %} brickbox.io | All rights reserved.</li>
+            </ul>
+        </footer>
 
     </div>
 
