@@ -1,10 +1,17 @@
 #!/bin/bash
 
 # ---------------------------------------------------------------------------- #
+#                                 Pulls Updates                                #
+# ---------------------------------------------------------------------------- #
+git pull --no-edit
+
+
+# ---------------------------------------------------------------------------- #
 #                            System Update/Updgrade                            #
 # ---------------------------------------------------------------------------- #
 
 sudo apt-get update -y && sudo apt-get upgrade -y &
+
 
 # ---------------------------------------------------------------------------- #
 #                                Update Packages                               #
@@ -19,9 +26,10 @@ python3 -m pip install -U Django
 # Install or Update Required Packages
 pip3 install --force-reinstall --upgrade -r requirements.txt
 
-# Pulls the latest code from GitHub, performs the required steps then deploys.
 
-git pull --no-edit
+# ---------------------------------------------------------------------------- #
+#                                    Deploy                                    #
+# ---------------------------------------------------------------------------- #
 python3 /opt/brickbox/manage.py collectstatic --noinput --clear
 python3 /opt/brickbox/manage.py migrate
 
@@ -29,7 +37,6 @@ python3 /opt/brickbox/manage.py migrate
 # ---------------------------------------------------------------------------- #
 #                                Update Services                               #
 # ---------------------------------------------------------------------------- #
-
 python3 /opt/brickbox/manage.py update_services
 
 # ---------------------------------------------------------------------------- #

@@ -116,6 +116,9 @@ def token_signin(request):
             )
             return redirect('/dash/')
 
+        if not idinfo['email']:
+            return HttpResponseServerError('No email returned.')
+
         try:
             new_user = User.objects.create_user(
                 username = idinfo['email'],
@@ -146,6 +149,8 @@ def token_signin(request):
 
         user_profile = UserProfile(
                             user = new_user,
+                            brick_access = True,
+                            is_beta = True,
                         )
         user_profile.save()
 
