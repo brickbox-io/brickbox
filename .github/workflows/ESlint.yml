@@ -29,4 +29,5 @@ jobs:
         with:
           continue_on_error: false
           eslint: true
-          prettier: true
+          # prettier: true
+          # Need to find where the error logs go
