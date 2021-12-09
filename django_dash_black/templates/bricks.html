@@ -141,9 +141,15 @@
 
 </div>
 
+<button type="button" id="feedback-btn" class="btn btn-info vertical-right-aligned">
+    Feedback <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
+</button>
+
 {% include "modals/brick_destroy_confirm.html" %}
 
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
-{% block javascripts %}{% endblock javascripts %}
+{% block javascripts %}
+{%  include 'tellme/js_inc.html' %}
+{% endblock javascripts %}

@@ -12,6 +12,7 @@ django-filter>=21.1
 django-health-check>=3.16.4
 django-oauth-toolkit>=1.5.0
 django-pwa>=1.0.10
+django-tellme>=0.7.2
 django-celery-beat>=2.2.1
 django-celery-results>=2.2.0
 django_compressor>=2.4.1
@@ -21,6 +22,7 @@ gunicorn>=20.1.0
 idna==2.10
 markdown>=3.3.6
 packaging==19.2
+Pillow>=8.4.0
 pip-upgrader>=1.4.15
 prompt-toolkit==3.0.18
 psutil>=5.8.0

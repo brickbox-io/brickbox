@@ -44,6 +44,8 @@ urlpatterns = [
 
     path('accounts/', include('allauth.urls')),     # django-allauth
 
+    url(r'^tellme/', include("tellme.urls")),       # tellme
+
     path('puller/', include('puller.urls')),        # Puller App
 
     path('status/', include('health_check.urls')),  # django-health-check
