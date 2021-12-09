@@ -161,7 +161,7 @@ def brick_reboot(request):
     brick.is_rebooting = True
     brick.save()
 
-    reboot_vm_subprocess.delay(vm_id, brick.host.ssh_username)
+    reboot_vm_subprocess.delay(vm_id) # Celery Task - Reboot VM
     # subprocess.Popen(['/opt/brickbox/bb_vm/bash_scripts/brick_reboot.sh', f'{str(vm_id)}'])
 
     return HttpResponse(status=200)
