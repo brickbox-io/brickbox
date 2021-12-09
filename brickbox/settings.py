@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
     # Other Apps
     'puller',                   # CI/CD Automation Tool
+    'tellme',                   # https://github.com/ludrao/django-tellme
     'django_devops',            # Custom DevOps Package
 
     # Other Apps (3rd Party)
@@ -237,6 +238,12 @@ STATICFILES_FINDERS = (
     # other finders..
     'compressor.finders.CompressorFinder',
 )
+
+# ----------------------------------- Media ---------------------------------- #
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = '/var/www/brickbox/media/' # Directory/Path where media files will be located
+
 
 # Login OPTIONS
 
