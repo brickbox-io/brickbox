@@ -21,8 +21,11 @@
 
     <!-- CSS Files -->
     <link href="/static/assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
-    <link href="{% static 'tellme/vendor/feedback/feedback.css' %}" rel="stylesheet"> <!-- django-tellme -->
-    <link href="{% static '/assets/css/tellme.css' %}" rel="stylesheet">
+    {% comment %} <link href="{% static 'tellme/vendor/feedback/feedback.css' %}" rel="stylesheet"> <!-- django-tellme --> {% endcomment %}
+    {% comment %} <link href="{% static '/assets/css/tellme.css' %}" rel="stylesheet"> {% endcomment %}
+
+    <link href="/static/tellme/vendor/feedback/feedback.css" rel="stylesheet"> <!-- django-tellme -->
+    <link href="/static/assets/css/tellme.css" rel="stylesheet">
 
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="/static/assets/demo/demo.css" rel="stylesheet" />
