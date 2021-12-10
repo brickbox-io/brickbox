@@ -29,7 +29,10 @@ def method(request):
     profile = UserProfile.objects.get(user=request.user)
 
     if not profile.cus_id:
-        new_customer = stripe.Customer.create()
+        new_customer = stripe.Customer.create(
+            name=profile.user.get_full_name,
+            email=profile.user.email,
+        )
 
         profile.cus_id = new_customer.id
         profile.save()
