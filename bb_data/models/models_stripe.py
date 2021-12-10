@@ -12,8 +12,8 @@ class PaymentMethod(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     pm_id = models.CharField(max_length=100, blank=True, null=True)
 
-    # type = models.CharField(max_length=100, blank=True, null=True)
-    # last_fours = models.CharField(max_length=100, blank=True, null=True)
+    brand = models.CharField(max_length=32, blank=True, null=True)
+    last4 = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return f"{self.user}"
