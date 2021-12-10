@@ -7,6 +7,10 @@ from bb_data.models import (
     ColocationClientOwner, CryptoPayout, FiatPayout
 )
 
+from bb_data.models import (
+    PaymentMethod, PaymentMethodOwner
+)
+
 class ColocationClientOwnerAdmin(admin.ModelAdmin):
     '''
     Admin configuration for ColocationClientOwner model.
@@ -45,3 +49,6 @@ admin.site.register(CryptoSnapshot, CryptoSnapshotAdmin)
 admin.site.register(FiatSnapshot, FiatSnapshotAdmin)
 admin.site.register(CryptoPayout, CryptoPayoutAdmin)
 admin.site.register(FiatPayout, FiatPayoutAdmin)
+
+admin.site.register(PaymentMethod)
+admin.site.register(PaymentMethodOwner)

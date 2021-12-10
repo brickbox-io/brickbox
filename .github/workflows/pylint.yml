@@ -29,7 +29,7 @@ jobs:
 
     - name: Lint Project Level
       run: |
-       find . -path '**/migrations' -prune -false -o -name '*.py' | xargs pylint --load-plugins pylint_django --disable=django-not-configured,R0901  --ignore-patterns=manage.py
+       find . -path '**/migrations' -prune -false -o -name '*.py' | xargs pylint --load-plugins pylint_django --disable=django-not-configured,R0901,R0801  --ignore-patterns=manage.py
 
     - name: Lint brickbox
       run: |

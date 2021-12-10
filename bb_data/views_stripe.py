@@ -40,3 +40,12 @@ def method(request):
     )
 
     return HttpResponse(intent.client_secret, status=200)
+
+
+# def method_sucess(request):
+#     '''
+#     URL: /data/stripe/pay/method/success
+#     '''
+#     print(request)
+
+#     return HttpResponse(intent.client_secret, status=200)

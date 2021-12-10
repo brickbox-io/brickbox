@@ -19,7 +19,11 @@ from django.contrib.auth.forms import UserCreationForm
 
 from bb_accounts.forms import RegistrationForm
 
-from bb_data.models import UserProfile, User
+from bb_data.models import UserProfile
+
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 def account_registration(request):
