@@ -43,11 +43,21 @@ class UserProfile(models.Model):
     # Stripe
     cus_id = models.CharField(max_length=100, blank=True, null=True)
 
+    pay_methods = models.ManyToManyField(
+                                                'bb_data.PaymentMethod',
+                                                through='bb_data.PaymentMethodOwner',
+                                                related_name='payment_methods_saved'
+                                            )
+
+    def __str__(self):
+        return self.user.username
+
     def __str__(self):
         return f"{self.user.get_full_name()} ({self.user})"
 
     class Meta:
         verbose_name_plural = "User Profiles"
+        app_label='bb_data'
 
 # ---------------------------------- Client ---------------------------------- #
 class ColocationClient(models.Model):
@@ -80,6 +90,7 @@ class ColocationClient(models.Model):
 
     class Meta:
         verbose_name_plural = "Colocation Clients"
+        app_label='bb_data'
 
 
 # ------------------------------- Client Owner ------------------------------- #
@@ -94,6 +105,7 @@ class ColocationClientOwner(models.Model):
     class Meta:
         verbose_name_plural = "Colocation Client Owners"
         unique_together = ('owner_profile', 'client_account')
+        app_label='bb_data'
 
 
 # ---------------------------------------------------------------------------- #
@@ -116,6 +128,7 @@ class CryptoSnapshot(models.Model):
 
     class Meta:
         verbose_name_plural = "Crypto Snapshot"
+        app_label='bb_data'
 
 @receiver(post_save, sender=CryptoSnapshot)
 def check_new_period_crypto(sender, instance, created, **kwargs):
@@ -146,6 +159,7 @@ class FiatSnapshot(models.Model):
 
     class Meta:
         verbose_name_plural = "Fiat Snapshot"
+        app_label='bb_data'
 
 @receiver(post_save, sender=FiatSnapshot)
 def check_new_period_fiat(sender, instance, created, **kwargs):
@@ -183,6 +197,7 @@ class CryptoPayout(models.Model):
 
     class Meta:
         verbose_name_plural = "Crypto Payouts"
+        app_label='bb_data'
 
 # ----------------------------------- Fiat ----------------------------------- #
 class FiatPayout(models.Model):
@@ -199,6 +214,7 @@ class FiatPayout(models.Model):
 
     class Meta:
         verbose_name_plural = "Fiat Payouts"
+        app_label='bb_data'
 
 
 @receiver(post_save, sender=CryptoPayout)

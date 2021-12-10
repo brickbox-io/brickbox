@@ -7,7 +7,10 @@ from django.shortcuts import HttpResponse
 
 from django.views.decorators.csrf import csrf_exempt
 
-from bb_data.models import ColocationClient
+from bb_data.models import (
+    UserProfile, ColocationClient, PaymentMethod,
+    PaymentMethodOwner
+)
 
 
 @csrf_exempt
@@ -53,5 +56,42 @@ def account_event(request):
         # ... handle other event types
     else:
         print(f'Unhandled event type {event.type}')
+
+    return HttpResponse(status=200)
+
+@csrf_exempt
+def payment_method_event(request):
+    '''
+    URL: webhook/stripe/payment_method
+    '''
+    payload = request.body
+    event = None
+
+    try:
+        event = stripe.Event.construct_from(
+            json.loads(payload), stripe.api_key
+        )
+    except ValueError:
+        # Invalid payload
+        return HttpResponse(status=400)
+
+    # Handle the event
+    if event.type == 'payment_method.attached':
+        payment_method = event.data.object
+        print(payment_method)
+
+        profile = UserProfile.objects.get(cus_id=payment_method.customer)
+
+        payment_method = PaymentMethod(
+            user = profile.user,
+            pm_id = payment_method.id,
+        )
+        payment_method.save()
+
+        PaymentMethodOwner.objects.create(
+            user = profile.user,
+            profile = profile,
+            method = payment_method,
+        )
 
     return HttpResponse(status=200)

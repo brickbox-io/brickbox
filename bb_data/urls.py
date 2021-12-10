@@ -22,4 +22,5 @@ urlpatterns = [
 
    # ---------------------------------- Stripe ---------------------------------- #
    path('stripe/pay/method', views_stripe.method, name='stripe_pay_method'),
+#    path('stripe/pay/method/sucess', views_stripe.method_sucess, name='stripe_pay_method_sucess'),
 ]
