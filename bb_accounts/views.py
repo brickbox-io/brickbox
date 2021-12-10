@@ -13,15 +13,13 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponseServerEr
 
 from django.conf import settings
 
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, get_user_model
 
 from django.contrib.auth.forms import UserCreationForm
 
 from bb_accounts.forms import RegistrationForm
 
 from bb_data.models import UserProfile
-
-from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
