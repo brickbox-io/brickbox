@@ -85,6 +85,8 @@ def payment_method_event(request):
         payment_method = PaymentMethod(
             user = profile.user,
             pm_id = payment_method.id,
+            brand = payment_method.card.brand,
+            last4 = payment_method.card.last4,
         )
         payment_method.save()
 

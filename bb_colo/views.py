@@ -1,9 +1,11 @@
 ''' bb_colo - views.py '''
 
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 from bb_data.models import UserProfile, ColocationClientOwner
 
+@login_required()
 def agreement(request):
     '''
     URL: /colo/agreement
