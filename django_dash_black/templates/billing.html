@@ -14,11 +14,11 @@
             <h3 class="title">Payment Methods</h3>
         </div>
 
-        {{  profile.pay_methods.all }}
         {% if profile.pay_methods.all.count >= 1 %}
         <div class="card-body">
             {% for payment_method in profile.pay_methods.all %}
-            {{ payment_method }}
+            {{ payment_method.brand }} - {{ payment_method.last4 }}
+            <br>
             {% endfor %}
         </div>
         {% endif %}

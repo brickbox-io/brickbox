@@ -12,6 +12,11 @@ from django import template
 from bb_data.models import UserProfile, CryptoPayout, FiatPayout, ColocationClient
 from bb_vm.models import VirtualBrickOwner, GPU, RentedGPU
 
+if settings.DEBUG:
+    stripe_pk = settings.STRIPE_PUBLISHABLE_KEY_TEST
+else:
+    stripe_pk = settings.STRIPE_PUBLISHABLE_KEY
+
 @login_required()
 def index(request, colo=0):
     '''
@@ -68,6 +73,8 @@ def pages(request):
         context['ssh_url'] = settings.SSH_URL
 
         context['colo_clients'] = ColocationClient.objects.all()
+
+        context['stripe_pk'] = stripe_pk
 
         context['3090_gpu_available'] = False
         for gpu in GPU.objects.filter(model="3090", host__connected_status=True):

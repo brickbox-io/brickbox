@@ -11,6 +11,7 @@ urlpatterns = [
    path('about/', views.about, name='about_page'),
    path('contact/', views.contact, name='contact_page'),
    path('colo/', views.landing_colo, name='colo_landing_page'),
+   path('legal', views.legal, name='legal_page'),
 
     # ----------------------------------- Forms ---------------------------------- #
     path('forms/email_list/', views.forms_email_list, name='forms_email_list'),

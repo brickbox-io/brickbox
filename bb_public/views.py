@@ -29,6 +29,12 @@ def landing_colo(request):
     '''
     return render(request, 'landing_colo.html')
 
+def legal(request):
+    '''
+    URL: brickbox.io/legal
+    '''
+    return render(request, 'privacy_policy.html')
+
 # ---------------------------------------------------------------------------- #
 #                                     Forms                                    #
 # ---------------------------------------------------------------------------- #
