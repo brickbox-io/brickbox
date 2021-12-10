@@ -9,8 +9,6 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.contrib.auth import get_user_model
 
-# from bb_vm.models import EquipmentOwner
-
 User = get_user_model()
 
 # ----------------------------- Selection Options ---------------------------- #
@@ -29,18 +27,21 @@ class UserProfile(models.Model):
     Any user related settings, prefrences.
     '''
     user = models.OneToOneField(User, related_name='profile', on_delete=models.CASCADE)
+
     clients = models.ManyToManyField(
                                     'ColocationClient',
                                     through='ColocationClientOwner',
                                     related_name='clients_owned'
                                     )
 
-    brick_access = models.BooleanField(default=False)
-
     # Flags
-    is_colo = models.BooleanField(default=False)
-    is_manager = models.BooleanField(default=False)
-    is_beta = models.BooleanField(default=True)
+    brick_access = models.BooleanField(default=False)   # Brcik VM Access
+    is_colo = models.BooleanField(default=False)        # "Investor"
+    is_manager = models.BooleanField(default=False)     # Can manage colocation clients
+    is_beta = models.BooleanField(default=True)         # Beta Access User
+
+    # Stripe
+    cus_id = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):
         return f"{self.user.get_full_name()} ({self.user})"

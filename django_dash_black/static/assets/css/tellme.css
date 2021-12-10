@@ -5,8 +5,19 @@
     transform-origin: 100% 100%;
     position        : fixed;
     right           : 0;
-    top             : 50%;
+    top             : 65%;
     z-index         : 100;
+    padding-left    : 11px;
+    padding-right   : 11px;
+}
+
+.vertical-right-aligned:hover {
+    transform          : rotate(-90deg) !important;
+    /* transform-origin: 100% 100%;
+    position           : fixed;
+    right              : 0;
+    top                : 50%;
+    z-index            : 100; */
 }
 
 /* #feedback-overview {
