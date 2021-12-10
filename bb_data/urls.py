@@ -2,7 +2,7 @@
 
 from django.urls import path
 
-from bb_data import views_charts
+from bb_data import views_charts, views_stripe
 
 app_name = 'bb_data'
 
@@ -19,4 +19,7 @@ urlpatterns = [
        views_charts.monthly_breakdown_chart,
        name='monthly_breakdown_colo'
     ),
+
+   # ---------------------------------- Stripe ---------------------------------- #
+   path('stripe/pay/method', views_stripe.method, name='stripe_pay_method'),
 ]
