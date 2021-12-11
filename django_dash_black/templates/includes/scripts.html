@@ -1,15 +1,19 @@
 {% load compress %}
 
 {% compress js inline %}
+
 <!--   Core JS Files   -->
 <script src="/static/assets/js/core/jquery.min.js"></script>
 <script src="/static/assets/js/core/popper.min.js"></script>
 <script src="/static/assets/js/core/bootstrap.min.js"></script>
 <script src="/static/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+
 <!-- Chart JS -->
 <script src="/static/assets/js/plugins/chartjs.min.js"></script>
+
 <!--  Notifications Plugin    -->
 <script src="/static/assets/js/plugins/bootstrap-notify.js"></script>
+
 <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="/static/assets/js/black-dashboard.min.js?v=1.0.0"></script><!-- Black Dashboard DEMO methods, don't include it in your project! -->
 
@@ -24,10 +28,11 @@
 
 <!-- ----------------------------- Billing JS ------------------------------ -->
 <script src="/static/assets/js/billing/method.js"></script>
-{% endcompress %}
 
 <script>
     // Set your publishable key: remember to change this to your live publishable key in production
     // See your keys here: https://dashboard.stripe.com/apikeys
     const stripe = Stripe('{{ stripe_pk }}');
 </script>
+
+{% endcompress %}

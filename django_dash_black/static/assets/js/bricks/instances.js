@@ -115,6 +115,7 @@ function BrickReboot(brick_id) {
 
 function BrickDestroy(brick_id) {
     $("#brick_destroy_confirmation").modal('toggle');
+
     $("#confirm_button").click(function () {
         $("#brick_destroy_confirmation").modal('toggle');
         var formData = new FormData();
