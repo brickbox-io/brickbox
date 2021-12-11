@@ -7,6 +7,8 @@ import stripe
 from django.conf import settings
 from django.http import HttpResponse
 
+from django.contrib.auth.decorators import login_required
+
 from bb_data.models import UserProfile
 
 
@@ -20,6 +22,7 @@ else:
     stripe_clident_id = settings.CLIENT_ID_TEST
 
 
+@login_required()
 def method(request):
     '''
     URL: /data/stripe/pay/method
@@ -30,7 +33,7 @@ def method(request):
 
     if not profile.cus_id:
         new_customer = stripe.Customer.create(
-            name=profile.user.get_full_name,
+            name=profile.user.get_full_name(),
             email=profile.user.email,
         )
 
