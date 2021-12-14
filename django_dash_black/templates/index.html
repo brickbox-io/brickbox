@@ -162,6 +162,62 @@
         </div>
     </div>
 
+    <!-- -------------------------- START - Unit List -------------------------- -->
+    <div class="col-lg-6 col-md-6">
+        <div class="card card-chart">
+            <div class="card-header">
+                <h4 class="card-title">Unit List</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+
+                    <table class="table tablesorter" id="">
+                        <thead class=" text-primary">
+                            <tr>
+                                <th>
+                                    Purchase Date
+                                </th>
+                                <th>
+                                    QTY
+                                </th>
+                                <th>
+                                    Status
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for units in profile.clients.all %}
+
+                            <tr>
+
+                                <!-- Date -->
+                                <td>
+                                    {{ unit.equipment.date_ordered }}
+                                </td>
+
+                                <!-- QTY -->
+                                <td>
+                                    {{ units.equipment.all.count }}
+                                </td>
+
+                                <!-- Status -->
+                                <td>
+
+                                </td>
+                            </tr>
+
+                            {% endfor %}
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- --------------------------- END - Unit List --------------------------- -->
+
 </div>
 
 {% else %}

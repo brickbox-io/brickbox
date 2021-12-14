@@ -113,26 +113,30 @@
             </div>
 
             <div class="card-body">
-                <table class="table">
+                <div class="table-responsive">
 
-                    <!-- Table Head -->
-                    <thead>
-                        <tr>
-                            <!-- <th class="text-center">#</th> -->
-                            <th>Name</th>
-                            <th class="text-center">SSH</th>
-                            <!-- <th>Root Password</th> -->
-                            <th class="text-right">Status</th>
-                            <th class="text-right">Actions</th>
-                        </tr>
-                    </thead>
+                    <table class="table">
 
-                    <!-- Table Body -->
-                    <tbody id="brick_wall">
-                        {% include "bricks/bricks-instances_table.html" %}
-                    </tbody>
+                        <!-- Table Head -->
+                        <thead>
+                            <tr>
+                                <!-- <th class="text-center">#</th> -->
+                                <th>Name</th>
+                                <th class="text-center">SSH</th>
+                                <!-- <th>Root Password</th> -->
+                                <th class="text-right">Status</th>
+                                <th class="text-right">Actions</th>
+                            </tr>
+                        </thead>
 
-                </table>
+                        <!-- Table Body -->
+                        <tbody id="brick_wall">
+                            {% include "bricks/bricks-instances_table.html" %}
+                        </tbody>
+
+                    </table>
+
+                </div>
             </div>
 
         </div>
