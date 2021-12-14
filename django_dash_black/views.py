@@ -50,7 +50,6 @@ def index(request, colo=0):
                                         key=attrgetter('dated'),
                                         reverse=True
                                     )
-
     context['segment'] = 'index'
 
     html_template = loader.get_template( 'index.html' )

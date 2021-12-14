@@ -55,6 +55,7 @@ class EquipmentOwner(models.Model):
     '''
     client_account = models.ForeignKey(ColocationClient, on_delete=models.PROTECT)
     server = models.ForeignKey('HostFoundation', on_delete=models.PROTECT)
+    date_ordered = models.DateField(blank=True, null=True)
 
 
 # ----------------------------------- GPUs ----------------------------------- #
