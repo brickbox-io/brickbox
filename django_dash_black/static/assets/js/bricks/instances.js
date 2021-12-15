@@ -113,8 +113,10 @@ function BrickReboot(brick_id) {
     xhttp.send(formData);
 }
 
-function BrickDestroy(brick_id) {
+function BrickDestroy(brick_id, brick_name) {
     $("#brick_destroy_confirmation").modal('toggle');
+
+    document.getElementById("destry_notice_text").innerHTML="Brick will be turned into dust and can not be recovered, are you sure you want to destroy "+ brick_name + "?";
 
     $("#confirm_button").click(function () {
         $("#brick_destroy_confirmation").modal('toggle');
