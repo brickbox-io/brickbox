@@ -29,7 +29,7 @@
         <button type="button" rel="tooltip" class="btn btn-success btn-link btn-icon btn-sm" id="power_button" data-brickid="{{ brick.virt_brick.id }}" onclick="BrickPause(this.dataset.brickid)">
             <i class="tim-icons icon-button-pause"></i>
         </button>
-        <button type="button" rel="tooltip" class="btn btn-danger btn-link btn-icon btn-sm" data-brickid="{{ brick.virt_brick.id }}" onclick="BrickDestroy(this.dataset.brickid)">
+        <button type="button" rel="tooltip" class="btn btn-danger btn-link btn-icon btn-sm" data-brickid="{{ brick.virt_brick.id }}" data-brickname="{{ brick.virt_brick.name }}" onclick="BrickDestroy(this.dataset.brickid, this.dataset.brickname)">
             <i class="tim-icons icon-trash-simple"></i>
         </button>
     </td>
@@ -46,7 +46,7 @@
         <button type="button" rel="tooltip" class="btn btn-success btn-link btn-icon btn-sm" disabled>
             <i class="tim-icons icon-button-pause"></i>
         </button>
-        <button type="button" rel="tooltip" class="btn btn-danger btn-link btn-icon btn-sm" data-brickid="{{ brick.virt_brick.id }}" onclick="BrickDestroy(this.dataset.brickid)">
+        <button type="button" rel="tooltip" class="btn btn-danger btn-link btn-icon btn-sm" data-brickid="{{ brick.virt_brick.id }}" data-brickname="{{ brick.virt_brick.name }}" onclick="BrickDestroy(this.dataset.brickid, this.dataset.brickname)">
             <i class="tim-icons icon-trash-simple"></i>
         </button>
     </td>
@@ -81,7 +81,7 @@
         <button type="button" rel="tooltip" class="btn btn-success btn-link btn-icon btn-sm" id="power_button" data-brickid="{{ brick.virt_brick.id }}" onclick="BrickPlay(this.dataset.brickid)">
             <i class="tim-icons icon-triangle-right-17"></i>
         </button>
-        <button type="button" rel="tooltip" class="btn btn-danger btn-link btn-icon btn-sm" data-brickid="{{ brick.virt_brick.id }}" onclick="BrickDestroy(this.dataset.brickid)">
+        <button type="button" rel="tooltip" class="btn btn-danger btn-link btn-icon btn-sm" data-brickid="{{ brick.virt_brick.id }}" data-brickname="{{ brick.virt_brick.name }}" onclick="BrickDestroy(this.dataset.brickid, this.dataset.brickname)">
             <i class="tim-icons icon-trash-simple"></i>
         </button>
     </td>

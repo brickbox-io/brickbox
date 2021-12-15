@@ -72,8 +72,10 @@ def verify_brick_connectivity():
                         PortTunnel.objects.filter(
                             port_number=brick.ssh_port.port_number
                         ).update(is_alive=True)
-                        # brick.ssh_port.is_alive = True
-                        # brick.save()
+
+                        VirtualBrick.objects.filter(
+                            id=brick.id
+                        ).update(is_rebooting=False)
                     elif not port_result and brick.is_online:
                         PortTunnel.objects.filter(
                             port_number=brick.ssh_port.port_number
