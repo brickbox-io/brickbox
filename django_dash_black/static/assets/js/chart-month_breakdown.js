@@ -1,6 +1,6 @@
 monthly_chart = {
 
-    initMonthlyBreakdown: function (user) {
+    initMonthlyBreakdown: function (user, ReqYear) {
 
         var MonthlyBreakdownAmount = false
 
@@ -23,7 +23,7 @@ monthly_chart = {
 
             xhttp.onload = function () {
                 console.log(this.responseText);
-                MonthlyBreakdownAmount = JSON.parse(this.responseText)[2021];
+                MonthlyBreakdownAmount = JSON.parse(this.responseText)[ReqYear];
                 MonthlyBalanceChart();
             };
 
