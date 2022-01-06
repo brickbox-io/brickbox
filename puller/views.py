@@ -15,8 +15,8 @@ def pull_update(request):
     script_directory = '/opt/brickbox/puller/scripts/'
 
     with subprocess.Popen([f'{script_directory}continuous_deployment.sh']) as script:
-        # print(script)
         print("Pulling latest changes from github...")
+        print(script)
 
     # subprocess.Popen([f'{script_directory}continuous_deployment.sh'])
 
