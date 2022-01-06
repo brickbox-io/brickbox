@@ -122,43 +122,47 @@ def monthly_breakdown_chart(request, colo=0):
     Returns a month to month cumulative amount generated.
     DOES NOT HANDLE YEARS DYNAMICALLY YET
     '''
-    formated_data = None
+    formated_data = {}
 
-    try:
-        user_client = UserProfile.objects.get(user = request.user).clients.all()[colo]
+    years = [2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030]
 
-        crypto_payouts = CryptoPayout.objects.filter(account_holder=user_client)
-        fiat_payouts = FiatPayout.objects.filter(account_holder=user_client)
+    for year in years:
 
-        monthly_payout = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        try:
+            user_client = UserProfile.objects.get(user = request.user).clients.all()[colo]
 
-        for payout in crypto_payouts:
-            if payout.recorded.year == 2021:
-                selected_month = payout.recorded.month - 1
-                month_total = monthly_payout[selected_month]
-                try:
-                    monthly_payout[selected_month] = month_total + float(payout.dollar_price)
-                except TypeError:
-                    monthly_payout[selected_month] = month_total
+            crypto_payouts = CryptoPayout.objects.filter(account_holder=user_client)
+            fiat_payouts = FiatPayout.objects.filter(account_holder=user_client)
 
-        for payout in fiat_payouts:
-            if payout.recorded.year == 2021:
-                selected_month = payout.recorded.month - 1
-                month_total = monthly_payout[selected_month]
-                try:
-                    monthly_payout[selected_month] = month_total + float(payout.amount)
-                except TypeError:
-                    monthly_payout[selected_month] = month_total
+            monthly_payout = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-        monthly_payout_cleaned = [round(num, 2) for num in monthly_payout]
+            for payout in crypto_payouts:
+                if payout.recorded.year == year:
+                    selected_month = payout.recorded.month - 1
+                    month_total = monthly_payout[selected_month]
+                    try:
+                        monthly_payout[selected_month] = month_total + float(payout.dollar_price)
+                    except TypeError:
+                        monthly_payout[selected_month] = month_total
 
-    except IndexError:
-        monthly_payout_cleaned = None
+            for payout in fiat_payouts:
+                if payout.recorded.year == year:
+                    selected_month = payout.recorded.month - 1
+                    month_total = monthly_payout[selected_month]
+                    try:
+                        monthly_payout[selected_month] = month_total + float(payout.amount)
+                    except TypeError:
+                        monthly_payout[selected_month] = month_total
 
-    except UnboundLocalError:
-        monthly_payout_cleaned = None
+            monthly_payout_cleaned = [round(num, 2) for num in monthly_payout]
 
-    formated_data = {2021: monthly_payout_cleaned}
+        except IndexError:
+            monthly_payout_cleaned = None
+
+        except UnboundLocalError:
+            monthly_payout_cleaned = None
+
+        formated_data[f"{year}"] = monthly_payout_cleaned
 
     return JsonResponse(formated_data, safe=False)
 

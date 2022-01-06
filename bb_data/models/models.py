@@ -137,7 +137,11 @@ def check_new_period_crypto(sender, instance, created, **kwargs):
         previous_records = CryptoSnapshot.objects.filter(
             account_holder = instance.account_holder).order_by('-id')[:2]
 
-        if previous_records[0].balance < previous_records[1].balance:
+        try:
+            if previous_records[0].balance < previous_records[1].balance:
+                instance.start_period = True
+                instance.save()
+        except IndexError:
             instance.start_period = True
             instance.save()
 
@@ -168,7 +172,11 @@ def check_new_period_fiat(sender, instance, created, **kwargs):
         previous_records = FiatSnapshot.objects.filter(
             account_holder = instance.account_holder).order_by('-id')[:2]
 
-        if previous_records[0].balance < previous_records[1].balance:
+        try:
+            if previous_records[0].balance < previous_records[1].balance:
+                instance.start_period = True
+                instance.save()
+        except IndexError:
             instance.start_period = True
             instance.save()
 
