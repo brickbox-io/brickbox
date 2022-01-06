@@ -90,7 +90,12 @@ monthly_chart = {
             gradientStroke.addColorStop(0.4, 'rgba(29,140,248,0.0)');
             gradientStroke.addColorStop(0, 'rgba(29,140,248,0)'); //blue colors
 
-            var myChart = new Chart(ctx, {
+            if (MonthlyBalanceChartCanvas) {
+                MonthlyBalanceChartCanvas.destroy();
+            }
+
+
+            MonthlyBalanceChartCanvas = new Chart(ctx, {
                 type: 'bar',
                 responsive: true,
                 legend: {
