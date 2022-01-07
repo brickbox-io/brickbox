@@ -53,7 +53,8 @@ def clone_img(request):
             brick_owner = VirtualBrickOwner(owner=profile, virt_brick=instance)
             brick_owner.save()
 
-            new_vm_subprocess.delay(instance.id)
+            # new_vm_subprocess.delay(instance.id)
+            new_vm_subprocess.apply_async((instance.id,), queue='ssh_queue')
 
             bricks = VirtualBrickOwner.objects.filter(owner=profile) # All bricks owned.
             response_data = {}
@@ -121,7 +122,8 @@ def brick_pause(request):
     brick.is_on = False
     brick.save()
 
-    pause_vm_subprocess.delay(vm_id)
+    # pause_vm_subprocess.delay(vm_id)
+    pause_vm_subprocess.apply_async((vm_id,), queue='ssh_queue')
 
     return HttpResponse(status=200)
 
@@ -141,7 +143,8 @@ def brick_play(request):
     brick.is_on = True
     brick.save()
 
-    play_vm_subprocess.delay(vm_id)
+    # play_vm_subprocess.delay(vm_id)
+    play_vm_subprocess.apply_async((vm_id,), queue='ssh_queue')
 
     return HttpResponse(status=200)
 
@@ -161,7 +164,8 @@ def brick_reboot(request):
     brick.is_rebooting = True
     brick.save()
 
-    reboot_vm_subprocess.delay(vm_id) # Celery Task - Reboot VM
+    # reboot_vm_subprocess.delay(vm_id) # Celery Task - Reboot VM
+    reboot_vm_subprocess.apply_async((vm_id,), queue='ssh_queue')
     # subprocess.Popen(['/opt/brickbox/bb_vm/bash_scripts/brick_reboot.sh', f'{str(vm_id)}'])
 
     return HttpResponse(status=200)
@@ -184,7 +188,8 @@ def brick_destroy(request):
     # brick.ssh_port.delete()
     close_ssh_port.apply_async((brick.ssh_port.port_number,), countdown=43200)
 
-    destroy_vm_subprocess.delay(vm_id)
+    # destroy_vm_subprocess.delay(vm_id)
+    destroy_vm_subprocess.apply_async((vm_id,), queue='ssh_queue')
     # brick.delete()
 
     profile = UserProfile.objects.get(user = request.user)
