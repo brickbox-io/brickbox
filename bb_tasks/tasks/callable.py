@@ -28,8 +28,8 @@ def new_vm_subprocess(instance_id):
     brick = VirtualBrick.objects.get(id=instance_id)
     host = brick.host
 
-    catch_clone_errors.apply_async((instance_id,), countdown=60)
-    remove_stale_clone.apply_async((instance_id,), countdown=180)
+    catch_clone_errors.apply_async((instance_id,), countdown=120, queue='ssh_queue')
+    remove_stale_clone.apply_async((instance_id,), countdown=360, queue='ssh_queue')
 
     gpu_xml = RentedGPU.objects.filter(virt_brick=brick)[0].gpu.xml
 
