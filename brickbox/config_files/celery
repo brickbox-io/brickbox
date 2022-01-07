@@ -1,13 +1,20 @@
-CELERYD_NODES="worker"
+# Names of nodes to start.
+CELERYD_NODES="worker1 ssh_worker"
 
+# Absolute or relative path to the 'celery' command:
 CELERY_BIN="/usr/local/bin/celery"
 
+# App instance to use:
 CELERY_APP="brickbox"
 
+# Where to chdir at start.
 CELERYD_CHDIR="/opt/brickbox/"
 
-CELERYD_OPTS="--time-limit=300 --concurrency=8"
+# Configure node-specific settings by appending node name to arguments:
+# -c = --concurrency
+CELERYD_OPTS="--time-limit=600 -c 10 -c:ssh_worker 1 -Q:ssh_worker ssh_queue"
 
+# %n will be replaced with the first part of the nodename.
 CELERYD_LOG_FILE="/var/log/celery/%n%I.log"
 CELERYD_PID_FILE="/var/run/celery/%n.pid"
 
@@ -17,10 +24,10 @@ CELERYD_PID_FILE="/var/run/celery/%n.pid"
 CELERYD_USER="root"
 #CELERYD_GROUP="www-data"
 CELERYD_LOG_LEVEL="INFO"
+
 # If enabled PID and log directories will be created if missing,
 # and owned by the userid/group configured.
 CELERY_CREATE_DIRS=1
-
 
 CELERYBEAT_PID_FILE="/var/run/celery/beat.pid"
 CELERYBEAT_LOG_FILE="/var/log/celery/beat.log"
