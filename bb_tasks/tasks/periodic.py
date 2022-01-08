@@ -6,6 +6,7 @@ import json
 
 from subprocess import Popen, PIPE
 
+from django.conf import settings
 from django.contrib.sites.models import Site
 
 from celery import shared_task
@@ -111,6 +112,9 @@ def reconnect_host(host):
                             f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
                             'brick_prep', f'{str(Site.objects.get_current().domain)}',
                         ]
+
+    if settings.DEBUG:
+        preperation_script.append('-d')
 
     with Popen(preperation_script, stdout=PIPE) as script:
         try:
