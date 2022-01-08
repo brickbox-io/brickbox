@@ -4,6 +4,32 @@
 
 # url=$1
 
+# Flags
+DEBUG=0 # -d
+
+# ---------------------------------------------------------------------------- #
+#                                 Configuration                                #
+# ---------------------------------------------------------------------------- #
+
+while getopts ":d" flags; do
+  case "${flags}" in
+    d) DEBUG=1 ;;
+    \?) echo "Invalid option: -${OPTARG}" >&2;
+    exit 1 ;;
+  esac
+done
+
+if [ $DEBUG -eq 1 ]; then
+    os_url='https://os-imgs.nyc3.digitaloceanspaces.com/dev-brickbox-U20.04.img'
+elif [ $DEBUG -eq 0 ]; then
+    os_url='https://os-imgs.nyc3.digitaloceanspaces.com/brickbox-U20.04.img'
+fi
+
+
+# ---------------------------------------------------------------------------- #
+#                            Verification Processes                            #
+# ---------------------------------------------------------------------------- #
+
 # Verify that QEMU is installed.
 if [ ! -f /usr/bin/qemu-system-x86_64 ]; then
     echo "QEMU is not installed. Attempting to install."
@@ -45,7 +71,7 @@ fi
 
 # Verify base image exists. (Need to change to long lasting task)
 if [ ! -f /var/lib/libvirt/images/brickbox-U20.04.img ]; then
-    curl https://os-imgs.nyc3.digitaloceanspaces.com/brickbox-U20.04.img \
+    curl "$os_url" \
     --output /var/lib/libvirt/images/brickbox-U20.04.img &
 fi
 
