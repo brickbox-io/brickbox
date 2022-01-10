@@ -34,8 +34,9 @@ def verify_host_connectivity():
             port_result = f"{script.stdout.read().decode('ascii')}"
 
             # Reconnect if host goes from offline > online
-            if port_result and not host.is_online:
-                reconnect_host.delay(host.id)
+            if port_result and not host.is_online and host.connected_status:
+                # reconnect_host.delay(host.id)
+                reconnect_host.apply_async((host.id,), queue='ssh_queue')
 
                 host.is_online = True
                 host.save()
