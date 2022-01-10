@@ -50,6 +50,13 @@ if [ ! -x /vfio-pci-bind/vfio-pci-bind ]; then
     sudo chmod +x vfio-pci-bind/vfio-pci-bind.sh
 fi
 
+# -------------------------------- Networking -------------------------------- #
+
+# sudo ip link set dev enp3s0f1 up
+# sudo dhclient -r enp3s0f1 && sudo dhclient enp3s0f1
+# use "ip route show" to see the routes
+# ip route del default via 0.0.0.0 dev enp3s0f1
+
 # check if br0 exists, if not, create it.
 if [ ! -d /sys/class/net/br0 ]; then
     sudo ip link add name br0 type bridge
