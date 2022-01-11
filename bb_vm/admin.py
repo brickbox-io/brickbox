@@ -18,7 +18,7 @@ class HostFoundationAdmin(admin.ModelAdmin):
     '''
     Admin configuration for HostFoundation model.
     '''
-    list_display = ('ssh_port', 'active', 'connected_status', 'is_online', 'gpus_online')
+    list_display = ('vpn_ip', 'ssh_port', 'is_enabled', 'is_online', 'is_ready')
 
 class GPUAdmin(admin.ModelAdmin):
     '''

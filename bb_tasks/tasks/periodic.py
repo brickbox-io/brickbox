@@ -34,7 +34,7 @@ def verify_host_connectivity():
             port_result = f"{script.stdout.read().decode('ascii')}"
 
             # Reconnect if host goes from offline > online
-            if port_result and not host.is_online and host.connected_status:
+            if port_result and not host.is_online and host.is_enabled:
                 # reconnect_host.delay(host.id)
                 reconnect_host.apply_async((host.id,), queue='ssh_queue')
 
@@ -111,11 +111,13 @@ def reconnect_host(host):
     preperation_script = [
                             f'{DIR}brick_connect.sh',
                             f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
-                            'brick_prep', f'{str(Site.objects.get_current().domain)}',
+                            'brick_prep',
                         ]
 
     if settings.DEBUG:
         preperation_script.append('-d')
+
+    # preperation_script.append(f'{str(Site.objects.get_current().domain)}')
 
     with Popen(preperation_script, stdout=PIPE) as script:
         try:
