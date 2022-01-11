@@ -28,6 +28,8 @@ class HostFoundation(models.Model):
     Represents the host computer/server where the virtual machines will reside.
     Recivers(s): assign_host_ssh_port
     '''
+    vpn_ip = models.GenericIPAddressField(unique=True, null=True, blank=True) # OpenVPN IP
+
     serial_number = models.CharField(max_length=64, null=True, unique=True)  # Host serial number
 
     # SSH Tunnel
@@ -37,15 +39,18 @@ class HostFoundation(models.Model):
     # Root User
     ssh_username = models.CharField(max_length = 64, default="bb_root")
 
-    active = models.BooleanField(default=True)
+    # Flags
+    is_enabled = models.BooleanField(default=False)      # Enabled/Disabled for use
+    is_online = models.BooleanField(default=False)      # Online if tunnel is alive
+    is_ready = models.BooleanField(default=False)       # All checks passed
 
-    is_online = models.BooleanField(default=False)          # Online if tunnel is alive
-    gpus_online = models.BooleanField(default=False)
-
-    connected_status = models.BooleanField(default=False)   # Replaced by is_online
+    def __str__(self):
+        if self.vpn_ip:
+            return f"{self.vpn_ip}"
+        return f"{self.serial_number}"
 
     class Meta:
-        verbose_name_plural = "Host Foundations/Servers"
+        verbose_name_plural = "Hosts"
 
 
 # ------------------------------ Equipment Owner ----------------------------- #

@@ -2,10 +2,20 @@
 
 # Confirms that the host is ready for virtualization.
 
-# url=$1
+# url=$1 (NOT USED)
 
 # Flags
 DEBUG=0 # -d
+
+# Logging
+function log {
+    log_file=brick_prep.log
+    echo "$(date) - $1" >> $log_file
+}
+
+echo "fdsfgfsgfsgfs" >> test.test
+
+log "START"
 
 # ---------------------------------------------------------------------------- #
 #                                 Configuration                                #
@@ -18,6 +28,9 @@ while getopts ":d" flags; do
     exit 1 ;;
   esac
 done
+
+log "brick_prep.sh started with DEBUG=$DEBUG"
+
 
 if [ $DEBUG -eq 1 ]; then
     os_url='https://os-imgs.nyc3.digitaloceanspaces.com/dev-brickbox-U20.04.img'
@@ -32,21 +45,20 @@ fi
 
 # Verify that QEMU is installed.
 if [ ! -f /usr/bin/qemu-system-x86_64 ]; then
-    echo "QEMU is not installed. Attempting to install."
-    # sudo apt-get install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils -y
+    log "QEMU is not installed. Attempting to install." # Logging
     sudo apt-get install qemu-kvm qemu-utils libvirt-daemon-system libvirt-clients bridge-utils virt-manager ovmf -y
-    # apt-get install qemu-kvm -y
-    # sudo apt-get install qemu -y
-    exit 1
+    # exit 1
 fi
 
-# Check if directory exists.
+# Check if pci binding tool directory exists.
 if [ ! -d "vfio-pci-bind/" ]; then
+    log "vfio-pci-bind/ directory does not exist. Attempting to clone." # Logging
     sudo git clone https://github.com/andre-richter/vfio-pci-bind.git
 fi
 
 # Check that file is executable, if not, make it executable.
 if [ ! -x /vfio-pci-bind/vfio-pci-bind ]; then
+    log "vfio-pci-bind/vfio-pci-bind is not executable. Attempting to make it executable." # Logging
     sudo chmod +x vfio-pci-bind/vfio-pci-bind.sh
 fi
 
@@ -59,6 +71,7 @@ fi
 
 # check if br0 exists, if not, create it.
 if [ ! -d /sys/class/net/br0 ]; then
+    log "br0 does not exist. Attempting to create." # Logging
     sudo ip link add name br0 type bridge
 
     sudo ip link set dev br0 up
@@ -69,21 +82,22 @@ fi
 
 # Verify that br0 has an IP address.
 if [[ $(ip -f inet addr show br0) ]] ; then
-    echo "br0 has an IP address."
+    log "br0 has an IP address." # Logging
 else
-    echo "br0 does not have an IP address."
+    log "br0 does not have an IP address. Attempting to assign one." # Logging
     sudo dhclient -r br0 && sudo dhclient br0
 fi
 
 
 # Verify base image exists. (Need to change to long lasting task)
 if [ ! -f /var/lib/libvirt/images/brickbox-U20.04.img ]; then
-    curl "$os_url" \
-    --output /var/lib/libvirt/images/brickbox-U20.04.img &
+    log "Base image does not exist. Attempting to download." # Logging
+    curl "$os_url" --output /var/lib/libvirt/images/brickbox-U20.04.img &
 fi
 
 # Verify that the XML file exists.
 if [ ! -f /var/lib/libvirt/images/brickbox-U20.04.xml ]; then
+    log "XML file does not exist. Attempting to create." # Logging
     curl https://os-imgs.nyc3.digitaloceanspaces.com/brickbox-U20.04.xml \
     --output /var/lib/libvirt/images/brickbox-U20.04.xml && sudo virsh define /var/lib/libvirt/images/brickbox-U20.04.xml &
 fi
@@ -98,4 +112,5 @@ sudo rmmod nvidia_drm
 sudo rmmod nvidia_modeset
 sudo rmmod nvidia
 
+log "END" # Logging
 exit
