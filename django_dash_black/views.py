@@ -76,12 +76,12 @@ def pages(request):
         context['stripe_pk'] = stripe_pk
 
         context['3090_gpu_available'] = False
-        for gpu in GPU.objects.filter(model="3090", host__connected_status=True):
+        for gpu in GPU.objects.filter(model="3090", host__is_enabled=True, host__is_ready=True):
             if RentedGPU.objects.filter(gpu=gpu).count() < 1:
                 context['3090_gpu_available'] = True
 
         context['3070_gpu_available'] = False
-        for gpu in GPU.objects.filter(model="3070", host__connected_status=True):
+        for gpu in GPU.objects.filter(model="3070", host__is_enabled=True, host__is_ready=True):
             if RentedGPU.objects.filter(gpu=gpu).count() < 1:
                 context['3070_gpu_available'] = True
 
