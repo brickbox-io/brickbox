@@ -2,8 +2,6 @@
 
 from __future__ import absolute_import, unicode_literals
 
-import json
-
 from subprocess import Popen, PIPE
 
 from django.conf import settings
@@ -35,10 +33,9 @@ def verify_host_connectivity():
 
             # Reconnect if host goes from offline > online
             if port_result and not host.is_online and host.is_enabled:
-                # reconnect_host.delay(host.id)
                 reconnect_host.apply_async((host.id,), queue='ssh_queue')
-
                 host.is_online = True
+                host.is_ready = False
                 host.save()
             elif not port_result and host.is_online:
                 host.is_online = False

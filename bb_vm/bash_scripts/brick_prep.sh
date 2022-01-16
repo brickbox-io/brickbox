@@ -19,9 +19,9 @@ function log {
 log "START - brick_prep.sh started with DEBUG=$DEBUG"
 
 
-if [ $DEBUG -eq 1 ]; then
+if [ "$DEBUG" -eq 1 ]; then
     os_url='https://os-imgs.nyc3.digitaloceanspaces.com/dev-brickbox-U20.04.img'
-elif [ $DEBUG -eq 0 ]; then
+elif [ "$DEBUG" -eq 0 ]; then
     os_url='https://os-imgs.nyc3.digitaloceanspaces.com/brickbox-U20.04.img'
 fi
 

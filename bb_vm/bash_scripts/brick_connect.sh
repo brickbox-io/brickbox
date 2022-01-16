@@ -57,7 +57,7 @@ if lsof -i tcp:"$port"; then
     -d "host=$port" \
     -d "virt_brick=$instance" \
     -d "message=Successfully connected to host via tunnel." \
-    -d "command=ssh -i /opt/brickbox/bb_vm/keys/""$host_user"" -o StrictHostKeyChecking=no -p ""$port"" ""$host_user""@localhost 'sudo bash -s' < /opt/brickbox/bb_vm/bash_scripts/""$action"".sh ""$url"" ""$instance"" \"""$xml_data""\"" ""$DEBUG""
+    -d "command=ssh -i /opt/brickbox/bb_vm/keys/""$host_user"" -o StrictHostKeyChecking=no -p ""$port"" ""$host_user""@localhost 'sudo bash -s' < /opt/brickbox/bb_vm/bash_scripts/""$action"".sh ""$url"" ""$instance"" \"""$xml_data""\" ""$DEBUG"" "
 
     exit 0
 
@@ -68,7 +68,7 @@ else
     -d "host=$port" \
     -d "virt_brick=$instance" \
     -d "message=Could not connect to host port." \
-    -d "command=ssh -i /opt/brickbox/bb_vm/keys/""$host_user"" -o StrictHostKeyChecking=no -p ""$port"" ""$host_user""@localhost 'sudo bash -s' < /opt/brickbox/bb_vm/bash_scripts/""$action"".sh ""$url"" ""$instance"" \"""$xml_data""\"" ""$DEBUG""
+    -d "command=ssh -i /opt/brickbox/bb_vm/keys/""$host_user"" -o StrictHostKeyChecking=no -p ""$port"" ""$host_user""@localhost 'sudo bash -s' < /opt/brickbox/bb_vm/bash_scripts/""$action"".sh ""$url"" ""$instance"" \"""$xml_data""\" ""$DEBUG"" "
 
     exit 1
 
