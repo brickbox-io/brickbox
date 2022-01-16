@@ -5,31 +5,18 @@
 # url=$1 (NOT USED)
 
 # Flags
-DEBUG=0 # -d
+DEBUG=$4 # -d
 
-# Logging
+# ---------------------------------------------------------------------------- #
+#                                    Logging                                   #
+# ---------------------------------------------------------------------------- #
+
 function log {
     log_file=brick_prep.log
     echo "$(date) - $1" >> $log_file
 }
 
-echo "fdsfgfsgfsgfs" >> test.test
-
-log "START"
-
-# ---------------------------------------------------------------------------- #
-#                                 Configuration                                #
-# ---------------------------------------------------------------------------- #
-
-while getopts ":d" flags; do
-  case "${flags}" in
-    d) DEBUG=1 ;;
-    \?) echo "Invalid option: -${OPTARG}" >&2;
-    exit 1 ;;
-  esac
-done
-
-log "brick_prep.sh started with DEBUG=$DEBUG"
+log "START - brick_prep.sh started with DEBUG=$DEBUG"
 
 
 if [ $DEBUG -eq 1 ]; then
@@ -57,7 +44,7 @@ if [ ! -d "vfio-pci-bind/" ]; then
 fi
 
 # Check that file is executable, if not, make it executable.
-if [ ! -x /vfio-pci-bind/vfio-pci-bind ]; then
+if [ ! -x /home/bb_root/vfio-pci-bind/vfio-pci-bind.sh ]; then
     log "vfio-pci-bind/vfio-pci-bind is not executable. Attempting to make it executable." # Logging
     sudo chmod +x vfio-pci-bind/vfio-pci-bind.sh
 fi
@@ -102,8 +89,16 @@ if [ ! -f /var/lib/libvirt/images/brickbox-U20.04.xml ]; then
     --output /var/lib/libvirt/images/brickbox-U20.04.xml && sudo virsh define /var/lib/libvirt/images/brickbox-U20.04.xml &
 fi
 
-sudo ip link set dev enp3s0f1 up
-sudo dhclient -r enp3s0f1 && sudo dhclient enp3s0f1
+# Verify that enp3s0f1 is up.
+if [[ $(ip -f inet addr show enp3s0f1) ]] ; then
+    log "enp3s0f1 is up." # Logging
+else
+    log "enp3s0f1 is not up. Attempting to bring it up." # Logging
+    sudo ip link set dev enp3s0f1 up
+    sudo dhclient -r enp3s0f1 && sudo dhclient enp3s0f1
+fi
+# sudo ip link set dev enp3s0f1 up
+# sudo dhclient -r enp3s0f1 && sudo dhclient enp3s0f1
 
 sudo service gdm3 stop
 
@@ -113,4 +108,4 @@ sudo rmmod nvidia_modeset
 sudo rmmod nvidia
 
 log "END" # Logging
-exit
+exit 0
