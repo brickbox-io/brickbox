@@ -2,8 +2,6 @@
 
 from __future__ import absolute_import, unicode_literals
 
-import json
-
 from subprocess import Popen, PIPE
 
 from django.conf import settings
@@ -35,20 +33,20 @@ def verify_host_connectivity():
 
             # Reconnect if host goes from offline > online
             if port_result and not host.is_online and host.is_enabled:
-                # reconnect_host.delay(host.id)
                 reconnect_host.apply_async((host.id,), queue='ssh_queue')
-
                 host.is_online = True
+                host.is_ready = False
                 host.save()
             elif not port_result and host.is_online:
                 host.is_online = False
+                host.is_ready = False
                 host.save()
 
-    return json.dumps({
+    return {
         'hosts':f'{hosts.values()}',
         'script':f'{command}',
         'Port_Result':f'{port_result}'
-    })
+    }
 
 
 @shared_task
@@ -88,11 +86,11 @@ def verify_brick_connectivity():
             port_result = f"{err}"
 
 
-    return json.dumps({
+    return {
         'bricks':f'{bricks.values()}',
         'script':f'{command}',
         'Port_Result':f'{port_result}'
-    })
+    }
 
 
 # ---------------------------------------------------------------------------- #
@@ -107,23 +105,26 @@ def reconnect_host(host):
     VM - Cycles through all VMs and updates their power status.
     '''
     host = HostFoundation.objects.get(id=host)
+    is_ready = False    # Used to indicate all checks have completed successfully.
 
     preperation_script = [
                             f'{DIR}brick_connect.sh',
                             f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
-                            'brick_prep',
+                            'brick_prep', f'{str(Site.objects.get_current().domain)}',
+                            'NONE', 'NONE',
                         ]
-
     if settings.DEBUG:
-        preperation_script.append('-d')
-
-    # preperation_script.append(f'{str(Site.objects.get_current().domain)}')
+        preperation_script.insert(1, '-d')
 
     with Popen(preperation_script, stdout=PIPE) as script:
         try:
             prep_script_result = f"{script.stdout.read().decode('ascii')}"
+            prep_script_result_code = script.poll()
+            if prep_script_result_code == 0:
+                is_ready = True
         except AttributeError:
             prep_script_result = 'No output'
+            prep_script_result_code = 'No return code'
 
     reconnect_script = "No GPUs"
     reconnect_script_result = "Not Ran"
@@ -140,6 +141,8 @@ def reconnect_host(host):
         with Popen(reconnect_script) as script:
             try:
                 reconnect_script_result = f"{script.stdout.read().decode('ascii')}"
+                if script.poll() != 0:
+                    is_ready = False
             except AttributeError:
                 reconnect_script_result = 'No output'
 
@@ -149,13 +152,17 @@ def reconnect_host(host):
     #         restore_vm_state.delay(brick_vm.id)
 
 
-    return json.dumps({
+    host.is_ready = is_ready
+    host.save()
+
+    return {
         'host':f'{host}',
         'PrepScript':f'{preperation_script}',
         'PrepScriptResult':f'{prep_script_result}',
+        'PrepScriptResultCode':f'{prep_script_result_code}',
         'ReconnectScript':f'{reconnect_script}',
         'ReconnectScriptResult':f'{reconnect_script_result}',
-    })
+    }
 
 @shared_task
 def restore_vm_state(instance):
