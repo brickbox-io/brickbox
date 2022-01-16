@@ -26,7 +26,7 @@ class PortTunnel(models.Model):
 class HostFoundation(models.Model):
     '''
     Represents the host computer/server where the virtual machines will reside.
-    Recivers(s): assign_host_ssh_port
+    Recivers(s): assign_host_ssh_port, update_host_ready_status
     '''
     vpn_ip = models.GenericIPAddressField(unique=True, null=True, blank=True) # OpenVPN IP
 
@@ -193,11 +193,18 @@ def assign_host_ssh_port(sender, instance, **kwargs):
     Assigns first available port number to new SSH instance.
     '''
     print(sender)
+
+    # Host Ready Status
+    if not instance.is_online:
+        instance.is_ready = False
+
     if instance.ssh_port is None:
         assigned_port = PortTunnel()
         assigned_port.save()
         instance.ssh_port = assigned_port
         instance.save()
+
+
 
 
 # ----------------------------- GPU Rented Status ---------------------------- #
