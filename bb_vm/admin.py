@@ -56,7 +56,10 @@ class VMLogAdmin(admin.ModelAdmin):
     Admin configuration for VMLog model.
     '''
     list_display = ('timestamp', 'level', 'command', 'virt_brick')
-    readonly_fields = ('timestamp', 'level', 'host', 'virt_brick', 'message', 'command', 'command_output')
+    readonly_fields = (
+                        'timestamp', 'level', 'host', 'virt_brick',
+                       'message', 'command', 'command_output'
+                      )
     search_fields = ('virt_brick',)
     list_filter = ('host',)
 
