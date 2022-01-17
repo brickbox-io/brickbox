@@ -3,7 +3,7 @@
 from django.contrib import admin
 
 from bb_vm.models import(
-     PortTunnel, VirtualBrick, VirtualBrickOwner,
+     PortTunnel, VirtualBrick, VirtualBrickHistory, VirtualBrickOwner,
      GPU, HostFoundation, EquipmentOwner, RentedGPU, VMLog
 )
 
@@ -39,6 +39,12 @@ class VirtualBrickAdmin(admin.ModelAdmin):
     '''
     list_display = ('id', 'domain_uuid', 'host', 'ssh_port', 'img_cloned', 'is_rebooting', 'is_on')
 
+class VirtualBrickHistoryAdmin(admin.ModelAdmin):
+    '''
+    Admin configuration for VirtualBrickHistory model.
+    '''
+    list_display = ('brick', 'creator')
+
 class VirtualBrickOwnerAdmin(admin.ModelAdmin):
     '''
     Admin configuration for VirtualBrickOwner model.
@@ -49,7 +55,11 @@ class VMLogAdmin(admin.ModelAdmin):
     '''
     Admin configuration for VMLog model.
     '''
-    list_display = ('timestamp', 'command', 'level', 'virt_brick')
+    list_display = ('timestamp', 'level', 'command', 'virt_brick')
+    readonly_fields = ('timestamp', 'level', 'host', 'virt_brick', 'message', 'command', 'command_output')
+    search_fields = ('virt_brick',)
+    list_filter = ('host',)
+
 
 admin.site.register(PortTunnel, PortTunnelAdmin)
 admin.site.register(HostFoundation, HostFoundationAdmin)
@@ -57,5 +67,6 @@ admin.site.register(EquipmentOwner)
 admin.site.register(GPU, GPUAdmin)
 admin.site.register(RentedGPU, RentedGPUAdmin)
 admin.site.register(VirtualBrick, VirtualBrickAdmin)
+admin.site.register(VirtualBrickHistory, VirtualBrickHistoryAdmin)
 admin.site.register(VirtualBrickOwner, VirtualBrickOwnerAdmin)
 admin.site.register(VMLog, VMLogAdmin)
