@@ -7,9 +7,9 @@ User=root
 Group=www-data
 WorkingDirectory=/opt/brickbox/
 # ExecStart=/usr/local/bin/gunicorn --access-logfile - --workers 3 --bind unix:/opt/brickbox/brickbox.sock brickbox.wsgi:application
-ExecStart=/opt/brickbox/bbenv/bin/gunicorn --access-logfile - --workers 5 --bind unix:/opt/brickbox/brickbox.sock brickbox.wsgi:application
+ExecStart=/opt/brickbox/bbenv/bin/gunicorn --access-logfile - --workers 5 --timeout 120 --bind unix:/opt/brickbox/brickbox.sock brickbox.wsgi:application
 
-ExecReload=/opt/brickbox/bbenv/bin/gunicorn --access-logfile - --workers 5 --bind unix:/opt/brickbox/brickbox.sock brickbox.wsgi:application
+ExecReload=/opt/brickbox/bbenv/bin/gunicorn --access-logfile - --workers 5 --timeout 120 --bind unix:/opt/brickbox/brickbox.sock brickbox.wsgi:application
 
 Restart=always
 
