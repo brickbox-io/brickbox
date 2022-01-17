@@ -26,7 +26,7 @@ class PortTunnel(models.Model):
 class HostFoundation(models.Model):
     '''
     Represents the host computer/server where the virtual machines will reside.
-    Recivers(s): assign_host_ssh_port, update_host_ready_status
+    Recivers(s): assign_host_ssh_port
     '''
     vpn_ip = models.GenericIPAddressField(unique=True, null=True, blank=True) # OpenVPN IP
 
@@ -99,6 +99,7 @@ class RentedGPU(models.Model):
 class VirtualBrick(models.Model):
     '''
     Represents a single VM instance.
+    Recivers(s): update_vm_history,
     '''
     host = models.ForeignKey(HostFoundation, on_delete=models.PROTECT, null=True)  # Physical host.
     name = models.CharField(max_length = 36, null=True)         # Arbitrary Name
@@ -131,12 +132,28 @@ class VirtualBrick(models.Model):
 class VirtualBrickOwner(models.Model):
     '''
     Pairs a virtual brick to a user.
+    Recivers(s): update_vm_woner_history
     '''
     owner = models.ForeignKey(UserProfile, on_delete=models.PROTECT)
     virt_brick = models.ForeignKey(VirtualBrick, on_delete=models.PROTECT)
 
     class Meta:
         verbose_name_plural = "VM Owners"
+
+
+# ----------------------------- VM History (Log) ----------------------------- #
+class VirtualBrickHistory(models.Model):
+    '''
+    Contains history of a virtual brick.
+    '''
+    brick = models.CharField(max_length=32)
+    creator = models.ForeignKey(UserProfile, blank=True, null=True, on_delete=models.PROTECT)
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    date_destroyed = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        verbose_name_plural = "Virtual Brick History"
 
 
 # ---------------------------------- Logging --------------------------------- #
@@ -204,9 +221,6 @@ def assign_host_ssh_port(sender, instance, **kwargs):
         instance.ssh_port = assigned_port
         instance.save()
 
-
-
-
 # ----------------------------- GPU Rented Status ---------------------------- #
 @receiver(post_save, sender=RentedGPU)
 def update_rent_status(sender, instance, created, **kwargs):
@@ -228,3 +242,27 @@ def update_rent_status_available(sender, instance, **kwargs):
     selected_gpu = instance.gpu
     selected_gpu.rented = False
     selected_gpu.save()
+
+# ------------------------------- Brick Hstory ------------------------------- #
+@receiver(post_save, sender=VirtualBrick)
+def update_vm_history(sender, instance, created, **kwargs):
+    '''
+    Updates the history of the virtual brick.
+    '''
+    print(sender)
+    if created:
+        history = VirtualBrickHistory()
+        history.brick = instance.id
+        history.save()
+
+
+@receiver(post_save, sender=VirtualBrickOwner)
+def update_vm_owner_history(sender, instance, created, **kwargs):
+    '''
+    Updates the history of the virtual brick.
+    '''
+    print(sender)
+    if created:
+        VirtualBrickHistory.objects.filter(brick=instance.virt_brick.id).update(
+            creator=instance.owner
+        )

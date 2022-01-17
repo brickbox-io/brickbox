@@ -19,20 +19,20 @@ from bb_tasks.tasks import(
 
 DIR = '/opt/brickbox/bb_vm/bash_scripts/'
 
-@csrf_exempt
-@login_required(login_url="/login/")
+@login_required()
 def clone_img(request):
     '''
     URL: /vm/create/
     Method: AJAX
-    Clone exsisting image to create a new istance.
+    Clone exsisting base img to create a new virtual istance.
     '''
     profile = UserProfile.objects.get(user=request.user)
     selected_gpu = request.POST.get('selected_gpu')
     designated_gpu_xml = None
 
-    if profile.is_beta and VirtualBrickOwner.objects.filter(owner=profile).count() >= 2:
-        return HttpResponse("Max Beta VMs Reached", status=200)
+    if not request.user.is_superuser:
+        if profile.is_beta and VirtualBrickOwner.objects.filter(owner=profile).count() >= 2:
+            return HttpResponse("Max Beta VMs Reached", status=200)
 
     for gpu in GPU.objects.filter(model=selected_gpu):
         if RentedGPU.objects.filter(gpu=gpu).count() < 1:
@@ -73,8 +73,7 @@ def clone_img(request):
 
 
 # ------------------------------- Status Update ------------------------------ #
-@csrf_exempt
-@login_required(login_url="/login/")
+@login_required()
 def brick_status(request):
     '''
     URL: /vm/status/
@@ -108,8 +107,7 @@ def brick_status(request):
 # ---------------------------------------------------------------------------- #
 
 # -------------------------------- Shutdown VM ------------------------------- #
-@csrf_exempt
-@login_required(login_url="/login/")
+@login_required()
 def brick_pause(request):
     '''
     URL:
@@ -129,8 +127,7 @@ def brick_pause(request):
 
 
 # ---------------------------------- Boot VM --------------------------------- #
-@csrf_exempt
-@login_required(login_url="/login/")
+@login_required()
 def brick_play(request):
     '''
     URL:
@@ -149,8 +146,7 @@ def brick_play(request):
     return HttpResponse(status=200)
 
 # --------------------------------- Reboot VM -------------------------------- #
-@csrf_exempt
-@login_required(login_url="/login/")
+@login_required()
 def brick_reboot(request):
     '''
     URL:
@@ -172,8 +168,7 @@ def brick_reboot(request):
 
 
 # --------------------------------- Remove VM -------------------------------- #
-@csrf_exempt
-@login_required(login_url="/login/")
+@login_required()
 def brick_destroy(request):
     '''
     URL: /vm/brick/destroy/
@@ -181,24 +176,27 @@ def brick_destroy(request):
     Permanently delete a brick instance.
     '''
     vm_id = request.POST.get('brick_id')
+    profile = UserProfile.objects.get(user=request.user)
 
-    brick = VirtualBrick.objects.get(id=vm_id)
-    VirtualBrickOwner.objects.filter(virt_brick=brick).delete()
+    try:
+        brick = VirtualBrick.objects.get(id=vm_id)
+        VirtualBrickOwner.objects.filter(virt_brick=brick, owner=profile).delete()
 
-    # brick.ssh_port.delete()
-    close_ssh_port.apply_async((brick.ssh_port.port_number,), countdown=43200)
+        # Start Port Release Timer
+        close_ssh_port.apply_async((brick.ssh_port.port_number,), countdown=43200)
 
-    # destroy_vm_subprocess.delay(vm_id)
-    destroy_vm_subprocess.apply_async((vm_id,), queue='ssh_queue')
-    # brick.delete()
+        destroy_vm_subprocess.apply_async((vm_id,), queue='ssh_queue')
 
-    profile = UserProfile.objects.get(user = request.user)
-    bricks = VirtualBrickOwner.objects.filter(owner=profile) # All bricks owned.
-    response_data = {}
-    response_data['table'] = f"""{render_to_string(
-                                    'bricks/bricks-instances_table.html',
-                                    {'bricks':bricks, 'ssh_url':settings.SSH_URL,}
-                                )}"""
+        profile = UserProfile.objects.get(user = request.user)
+        bricks = VirtualBrickOwner.objects.filter(owner=profile) # All bricks owned.
+        response_data = {}
+        response_data['table'] = f"""{render_to_string(
+                                        'bricks/bricks-instances_table.html',
+                                        {'bricks':bricks, 'ssh_url':settings.SSH_URL,}
+                                    )}"""
+
+    except VirtualBrick.DoesNotExist:
+        return HttpResponse("Brick Deleted", status=200)
 
     return JsonResponse(response_data, status=200, safe=False)
 
