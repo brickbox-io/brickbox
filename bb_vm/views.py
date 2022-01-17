@@ -210,22 +210,23 @@ def vm_tunnel(request):
     '''
     URL: /vm/tunnel/
     Method: POST
+    Arguments: pub_key, domain_uuid
     A public SSH key is provided and added to the authorised keys.
     Returns the port number that has been assigned to the VM.
     '''
-    # print(request.POST.get("pub_key"))
-    # print(request.POST.get('domain_uuid'))
+    try:
+        brick = VirtualBrick.objects.get(domain_uuid=request.POST.get('domain_uuid'))
+
+        assigned_port = PortTunnel()
+        assigned_port.save()
+
+        brick.ssh_port = assigned_port
+        brick.is_on = True
+        brick.save()
+    except VirtualBrick.DoesNotExist:
+        return HttpResponse(status=500)
 
     pub_key = urllib.parse.unquote(request.POST.get("pub_key"))
-    # print(pub_key)
-    assigned_port = PortTunnel()
-    assigned_port.save()
-
-    brick = VirtualBrick.objects.get(domain_uuid=request.POST.get('domain_uuid'))
-    brick.ssh_port = assigned_port
-    brick.is_on = True
-    brick.save()
-
     with subprocess.Popen([f'{DIR}auth_key.sh', f'{str(pub_key)}']) as script:
         print(script)
 
