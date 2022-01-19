@@ -1,6 +1,7 @@
 # Virtualenv
 brickbox-env/*
 bbenv/*
+env/*
 
 # python
 */__pycache__/*
