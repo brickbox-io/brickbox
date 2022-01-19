@@ -2,13 +2,17 @@ name: Django CI
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - "**"
+      - "master"
+      - "!master-ci"
+      - "!release"
+
   pull_request:
     branches:
-     - master
+      - master
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
     # strategy:
@@ -16,8 +20,6 @@ jobs:
     #     python-version: [ '3.8.10', '3.9.0', '3.10.0' ]
 
     steps:
-
-
       # Step 1, add the IP address
       - name: Add IP address to trusted source (managed database)
         uses: GarreauArthur/manage-digital-ocean-managed-database-trusted-sources-gh-action@main
@@ -25,7 +27,6 @@ jobs:
           action: "add"
           database_id: 3ece3463-8ce9-4bb2-9362-f6b3fd8e4c42
           digitalocean_token: aad056c20d6d9da0beadbf3028abc712fda675cadbe1b651e1b155736de45bd7
-
 
       # Step 2, do whatever you need to do with you database
       - uses: actions/checkout@v2
@@ -45,8 +46,6 @@ jobs:
       - name: Run Tests
         run: |
           python3 manage.py test --noinput
-
-
 
       # Step 3, remove the IP address
       - name: Remove IP address to trusted source (managed database)
