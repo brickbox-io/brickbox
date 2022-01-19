@@ -3,7 +3,10 @@ name: Script Check
 on:
   push:
     branches:
-      - master
+      - "**"
+      - "master"
+      - "!master-ci"
+      - "!release"
 
   pull_request:
     branches:
