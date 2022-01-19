@@ -27,11 +27,16 @@ The web interface is built on the [Django](https://www.djangoproject.com/) frame
 ## Getting Started
 
 ```bash
-apt-get install python3-venv -y
-python3 -m venv brickbox-env
+sudo apt update && sudo apt upgrade -y
+sudo apt install software-properties-common -y
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt install python3.10 -y
 
-source brickbox-env/bin/activate
-python3 -m pip install -r requirements.txt
+sudo apt-get install python3.10-venv -y
+python3.10 -m venv env
+
+source env/bin/activate
+python -m pip install -r requirements.txt
 ```
 
 To update requirements.txt after a new package is installed
