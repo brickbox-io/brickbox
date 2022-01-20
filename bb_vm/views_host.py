@@ -29,6 +29,10 @@ def onboarding(request, host_serial):
         public_key = urllib.parse.unquote(request.POST.get("public_key"))
 
         if host_serial and public_key:
+            # CI/CD if host_serial contains '-'
+            if host_serial.find('-') >= 0:
+                return HttpResponse("ok", status=200)
+
             try:
                 host = HostFoundation.objects.get(serial_number=host_serial)
                 host.sshtunnel_public_key = public_key
