@@ -60,11 +60,19 @@ fi
 if [ ! -d /sys/class/net/br0 ]; then
     log "br0 does not exist. Attempting to create." # Logging
     sudo ip link add name br0 type bridge
+    sudo ip link set dev br0 up && sudo ip link set dev enp3s0f1 master br0
+    #sudo dhclient -r br0 && sudo dhclient br0
+fi
 
-    sudo ip link set dev br0 up
-    sudo ip link set dev enp3s0f1 master br0
+# Verify that enp3s0f1 is up.
+if [[ $(ip -f inet addr show enp3s0f1) ]] ; then
+    log "enp3s0f1 is up." # Logging
+else
+    log "enp3s0f1 is not up. Attempting to bring it up." # Logging
+    sudo ip link set dev enp3s0f1 up
+    sudo dhclient -r enp3s0f1 && sudo dhclient enp3s0f1
+    sudo ip route del default dev enp3s0f1 # Remove default route (TESTING)
 
-    sudo dhclient -r br0 && sudo dhclient br0
 fi
 
 # Verify that br0 has an IP address.
@@ -78,7 +86,7 @@ fi
 
 # Verify base image exists. (Need to change to long lasting task)
 if [ ! -f /var/lib/libvirt/images/brickbox-U20.04.img ]; then
-    log "Base image does not exist. Attempting to download." # Logging
+    log "Base img does not exist. Attempting to download." # Logging
     curl "$os_url" --output /var/lib/libvirt/images/brickbox-U20.04.img &
 fi
 
@@ -89,14 +97,6 @@ if [ ! -f /var/lib/libvirt/images/brickbox-U20.04.xml ]; then
     --output /var/lib/libvirt/images/brickbox-U20.04.xml && sudo virsh define /var/lib/libvirt/images/brickbox-U20.04.xml &
 fi
 
-# Verify that enp3s0f1 is up.
-if [[ $(ip -f inet addr show enp3s0f1) ]] ; then
-    log "enp3s0f1 is up." # Logging
-else
-    log "enp3s0f1 is not up. Attempting to bring it up." # Logging
-    sudo ip link set dev enp3s0f1 up
-    sudo dhclient -r enp3s0f1 && sudo dhclient enp3s0f1
-fi
 # sudo ip link set dev enp3s0f1 up
 # sudo dhclient -r enp3s0f1 && sudo dhclient enp3s0f1
 
