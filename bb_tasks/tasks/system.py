@@ -2,7 +2,6 @@
 
 import subprocess
 
-from django.conf import settings
 from django.contrib.sites.models import Site
 
 from celery import shared_task
