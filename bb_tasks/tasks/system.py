@@ -1,28 +1,28 @@
 ''' Tasks that support overall system operations. '''
 
-from subprocess import Popen, PIPE
+import subprocess
 
 from django.conf import settings
 from django.contrib.sites.models import Site
 
 from celery import shared_task
 
-from bb_vm.models import PortTunnel, HostFoundation, GPU, VirtualBrick
+from bb_vm.models import GPU
 
 # Script directory on server.
 DIR = '/opt/brickbox/bb_vm/bash_scripts/'
+
 
 @shared_task
 def prepare_gpu_background_task():
     '''
     Cycles through available GPUs to confirm all have background VM ready to launch.
     '''
-
-    gpu_list = GPU.objects.filter(host=host)
+    gpu_list = GPU.objects.all()
     for gpu in gpu_list:
-        if not gpu.bg_ready and not gpu.is_rented and gpu.host.is_ready:
+        if not gpu.bg_ready and not gpu.rented and gpu.host.is_ready:
             clone_bg.apply_async((gpu.id,), queue='ssh_queue')
-            gpu_list.update(bg_ready=True)
+
 
 @shared_task
 def clone_bg(gpu_id):
@@ -42,3 +42,52 @@ def clone_bg(gpu_id):
 
     with subprocess.Popen(new_vm_script) as script:
         print(script)
+
+    gpu.bg_ready = True
+    gpu.bg_running = True
+    gpu.save()
+
+
+
+@shared_task
+def stop_bg(gpu_id):
+    '''
+    Called to stop the background img for a particular GPU.
+    '''
+    gpu = GPU.objects.get(id=gpu_id)
+    host = gpu.host
+
+    stop_bg_script = [
+                        f'{DIR}brick_connect.sh',
+                        f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
+                        'brick_pause', f'{str(Site.objects.get_current().domain)}',
+                        f'gpu_{str(gpu_id)}'
+                    ]
+
+    with subprocess.Popen(stop_bg_script) as script:
+        print(script)
+
+    gpu.bg_running = False
+    gpu.save()
+
+
+@shared_task
+def start_bg(gpu_id):
+    '''
+    Called to start the background img for a particular GPU.
+    '''
+    gpu = GPU.objects.get(id=gpu_id)
+    host = gpu.host
+
+    resume_bg_script = [
+                        f'{DIR}brick_connect.sh',
+                        f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
+                        'brick_play', f'{str(Site.objects.get_current().domain)}',
+                        f'gpu_{str(gpu_id)}'
+                    ]
+
+    with subprocess.Popen(resume_bg_script) as script:
+        print(script)
+
+    gpu.bg_running = True
+    gpu.save()

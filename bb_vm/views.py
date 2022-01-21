@@ -15,6 +15,7 @@ from bb_vm.models import PortTunnel, VirtualBrick, VirtualBrickOwner, GPU, Rente
 from bb_tasks.tasks import(
         new_vm_subprocess, destroy_vm_subprocess, close_ssh_port,
         pause_vm_subprocess, play_vm_subprocess, reboot_vm_subprocess,
+        stop_bg,
     )
 
 DIR = '/opt/brickbox/bb_vm/bash_scripts/'
@@ -53,7 +54,10 @@ def clone_img(request):
             brick_owner = VirtualBrickOwner(owner=profile, virt_brick=instance)
             brick_owner.save()
 
-            # new_vm_subprocess.delay(instance.id)
+            # Free GPU by shutting down background task
+            if gpu.bg_ready:
+                stop_bg.apply_async((gpu.id,), queue='ssh_queue')
+
             new_vm_subprocess.apply_async((instance.id,), queue='ssh_queue')
 
             bricks = VirtualBrickOwner.objects.filter(owner=profile) # All bricks owned.
