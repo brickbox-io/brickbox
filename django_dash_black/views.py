@@ -1,5 +1,7 @@
 ''' Django Black Dashboard views.py '''
 
+import datetime
+
 from itertools import chain
 from operator import attrgetter
 
@@ -9,7 +11,8 @@ from django.template import loader
 from django.http import HttpResponse
 from django import template
 
-from bb_data.models import UserProfile, CryptoPayout, FiatPayout, ColocationClient
+from bb_data.models import ( UserProfile, CryptoPayout, FiatPayout,
+                            ColocationClient, ResourceTimeTracking)
 from bb_vm.models import VirtualBrickOwner, GPU, RentedGPU
 
 if settings.DEBUG:
@@ -33,6 +36,18 @@ def index(request, colo=0):
         user_profile.save()
 
         context['profile'] = user_profile
+
+    # ------------------------------ Cycyle Balance ------------------------------ #
+    tracker, created = ResourceTimeTracking.objects.get_or_create(
+                                    user = context['profile'].user,
+                                    balance_paid = False,
+                                    billing_cycle_end__gte=datetime.datetime.today()
+                                )
+    if created:
+        tracker.billing_cycle_end = tracker.billing_cycle_start + datetime.timedelta(days=30)
+        tracker.save()
+
+    context['tracker'] = tracker
 
 
     # Only grabs the first client for now until there is a proper way to dysplay multiple.
@@ -84,6 +99,18 @@ def pages(request):
         for gpu in GPU.objects.filter(model="3070", host__is_enabled=True, host__is_ready=True):
             if RentedGPU.objects.filter(gpu=gpu).count() < 1:
                 context['3070_gpu_available'] = True
+
+        # ------------------------------ Cycyle Balance ------------------------------ #
+        tracker, created = ResourceTimeTracking.objects.get_or_create(
+                                        user = context['profile'].user,
+                                        balance_paid = False,
+                                        billing_cycle_end__gte=datetime.datetime.today()
+                                    )
+        if created:
+            tracker.billing_cycle_end = tracker.billing_cycle_start + datetime.timedelta(days=30)
+            tracker.save()
+
+        context['tracker'] = tracker
 
         html_template = loader.get_template( f'{load_template}.html' )
         return HttpResponse(html_template.render(context, request))

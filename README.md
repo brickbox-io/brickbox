@@ -36,7 +36,7 @@ sudo apt install nginx -y
 sudo apt-get install python3.10-venv -y
 python3.10 -m venv bbenv
 
-source env/bin/activate
+source bbenv/bin/activate
 python -m pip install -r requirements.txt
 ```
 
