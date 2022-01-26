@@ -6,5 +6,5 @@ from .models import (
 )
 
 from .models_stripe import (
-    PaymentMethod, PaymentMethodOwner
+    PaymentMethod, PaymentMethodOwner, ResourceTimeTracking
 )

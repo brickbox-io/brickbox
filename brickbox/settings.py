@@ -124,7 +124,7 @@ SITE_ID = 1
 ACCOUNT_USER_MODEL_USERNAME_FIELD = 'email'
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
+# ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
 # Provider specific settings
@@ -348,3 +348,7 @@ CLIENT_ID = 'ca_KbUZatPIraDbaExd7VA0jkTR6Cb2et76'
 STRIPE_SECRET_KEY = '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' # pylint: disable=line-too-long
 
 STRIPE_PUBLISHABLE_KEY = 'pk_live_51Jb9T1AFJmW5oMdb3WcUDAIySK9NYUmd3JrP4rb7NvDupmnM8HfVYdpWHxoNf1HFLcwTAcXGmM23D9VKjfu2vTnz00LAAcLjtx' # pylint: disable=line-too-long
+
+# ---------------------- DigitalOcean Spaces Credentials --------------------- #
+DO_SPACES_KEY = 'OU6N4IAG7LSM7B7SZHM7'
+DO_SPACES_SECRET = 'Rx93aM8pMDXOh8IKtPFIJv5egFg8/Gbqr1AEtA7XUr0'

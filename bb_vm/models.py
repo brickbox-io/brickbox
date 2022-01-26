@@ -78,6 +78,9 @@ class GPU(models.Model):
 
     rented = models.BooleanField(default = False)
 
+    bg_ready = models.BooleanField(default = False) # Indicates that an img is ready for the GPU
+    bg_running = models.BooleanField(default = False) # Background task running
+
     class Meta:
         verbose_name_plural = "GPUs"
 
@@ -106,6 +109,8 @@ class VirtualBrick(models.Model):
     domain_uuid = models.UUIDField(max_length = 36, null=True)  # UUID of the VM (serial="domain")
     assigned_gpus = models.ManyToManyField('GPU', through='RentedGPU', related_name='assigned_gpus')
     ssh_port = models.ForeignKey(PortTunnel, on_delete=models.PROTECT, null=True)
+    sshtunnel_public_key = models.TextField(blank=True, null=True)  # Key to establish SSH tunnel
+
 
     owners = models.ManyToManyField(
                     UserProfile,

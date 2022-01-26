@@ -65,6 +65,7 @@ if sudo virsh domblklist "$instance" | grep "\/var\/lib\/libvirt\/images\/$insta
         curl -X POST https://"$url"/api/vmlog/ -d "level=30&virt_brick=$instance&message=Attempting%20to%20attach%20GPU%20again&command=$last_command&command_output=$last_command_output"
 
         sudo virsh start "$instance" 2>> bash_errors.log
+        sudo virsh autostart "$instance" 2>> /dev/null # Enable autostart.
 
         sleep 20
 
@@ -88,6 +89,7 @@ if sudo virsh domblklist "$instance" | grep "\/var\/lib\/libvirt\/images\/$insta
     fi
 
     sudo virsh start "$instance" 2>> bash_errors.log
+    sudo virsh autostart "$instance" 2>> /dev/null # Enable autostart.
 
     if [[ -f GPU.xml ]]; then
         sudo rm GPU.xml 2>> bash_errors.log
