@@ -71,7 +71,7 @@ class ResourceTimeTracking(models.Model):
         total_3070 = float(self.minutes_3070/60) * float(self.rate_3070)
         total_3090 = float(self.minutes_3090/60) * float(self.rate_3090)
 
-        return "%0.2f" % round((total_3070+total_3090), 2)
+        return "%0.2f" % round((total_3070+total_3090), 2) #pylint: disable=consider-using-f-string
 
     class Meta:
         verbose_name_plural = "Resource Time Tracking"
