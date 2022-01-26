@@ -3,13 +3,16 @@
 from __future__ import absolute_import, unicode_literals
 
 from subprocess import Popen, PIPE
+import datetime
+
 
 from django.conf import settings
 from django.contrib.sites.models import Site
 
 from celery import shared_task
 
-from bb_vm.models import PortTunnel, HostFoundation, GPU, VirtualBrick
+from bb_vm.models import PortTunnel, HostFoundation, GPU, VirtualBrick, VirtualBrickOwner
+from bb_data.models import ResourceTimeTracking
 
 # Script directory on server.
 DIR = '/opt/brickbox/bb_vm/bash_scripts/'
@@ -180,3 +183,36 @@ def restore_vm_state(instance):
 
     with Popen(play_vm_script) as script:
         print(script)
+
+# ---------------------------------------------------------------------------- #
+#                                    Billing                                   #
+# ---------------------------------------------------------------------------- #
+@shared_task
+def resource_time_track():
+    '''
+    Increments the time a resource is used every minute.
+    '''
+    bricks = VirtualBrick.objects.all()
+
+    for brick in bricks:
+        user = VirtualBrickOwner.objects.get(virt_brick=brick).owner.user
+        gpus = brick.assigned_gpus.all()
+
+        for gpu in gpus:
+            model = gpu.model
+
+            tracker, created = ResourceTimeTracking.objects.get_or_create(
+                                    user = user,
+                                    balance_paid = False,
+                                    billing_cycle_end__gte=datetime.datetime.today()
+                                )
+
+            if created:
+                tracker.billing_cycle_end = tracker.billing_cycle_start + datetime.timedelta(days=30)
+
+            setattr(
+                tracker, f'minutes_{model}',
+                (getattr(tracker, f'minutes_{model}') + 1)
+            )
+
+            tracker.save()

@@ -33,7 +33,7 @@ fi
 # Verify that QEMU is installed.
 if [ ! -f /usr/bin/qemu-system-x86_64 ]; then
     log "QEMU is not installed. Attempting to install." # Logging
-    sudo apt-get install qemu-kvm qemu-utils libvirt-daemon-system libvirt-clients bridge-utils virt-manager ovmf -y
+    sudo apt-get install qemu-kvm qemu-utils libvirt-daemon-system libvirt-clients bridge-utils virt-manager ovmf libguestfs-tools -y
     # exit 1
 fi
 

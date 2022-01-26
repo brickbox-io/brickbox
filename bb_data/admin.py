@@ -8,7 +8,7 @@ from bb_data.models import (
 )
 
 from bb_data.models import (
-    PaymentMethod, PaymentMethodOwner
+    PaymentMethod, PaymentMethodOwner, ResourceTimeTracking
 )
 
 class ColocationClientOwnerAdmin(admin.ModelAdmin):
@@ -52,3 +52,4 @@ admin.site.register(FiatPayout, FiatPayoutAdmin)
 
 admin.site.register(PaymentMethod)
 admin.site.register(PaymentMethodOwner)
+admin.site.register(ResourceTimeTracking)
