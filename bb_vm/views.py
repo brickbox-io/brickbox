@@ -15,6 +15,7 @@ from bb_vm.models import PortTunnel, VirtualBrick, VirtualBrickOwner, GPU, Rente
 from bb_tasks.tasks import(
         new_vm_subprocess, destroy_vm_subprocess, close_ssh_port,
         pause_vm_subprocess, play_vm_subprocess, reboot_vm_subprocess,
+        stop_bg,
     )
 
 DIR = '/opt/brickbox/bb_vm/bash_scripts/'
@@ -53,7 +54,10 @@ def clone_img(request):
             brick_owner = VirtualBrickOwner(owner=profile, virt_brick=instance)
             brick_owner.save()
 
-            # new_vm_subprocess.delay(instance.id)
+            # Free GPU by shutting down background task
+            if gpu.bg_ready:
+                stop_bg.apply_async((gpu.id,), queue='ssh_queue')
+
             new_vm_subprocess.apply_async((instance.id,), queue='ssh_queue')
 
             bricks = VirtualBrickOwner.objects.filter(owner=profile) # All bricks owned.
@@ -187,6 +191,10 @@ def brick_destroy(request):
 
         destroy_vm_subprocess.apply_async((vm_id,), queue='ssh_queue')
 
+        pub_key = brick.sshtunnel_public_key
+        with subprocess.Popen([f'{DIR}remove_auth_key.sh', f'{str(pub_key)}']) as script:
+            print(script)
+
         profile = UserProfile.objects.get(user = request.user)
         bricks = VirtualBrickOwner.objects.filter(owner=profile) # All bricks owned.
         response_data = {}
@@ -216,19 +224,21 @@ def vm_tunnel(request):
     '''
     try:
         brick = VirtualBrick.objects.get(domain_uuid=request.POST.get('domain_uuid'))
+        pub_key = urllib.parse.unquote(request.POST.get("pub_key"))
 
         assigned_port = PortTunnel()
         assigned_port.save()
 
         brick.ssh_port = assigned_port
+        brick.sshtunnel_public_key = pub_key
         brick.is_on = True
         brick.save()
+
+        with subprocess.Popen([f'{DIR}auth_key.sh', f'{str(pub_key)}']) as script:
+            print(script)
+
     except VirtualBrick.DoesNotExist:
         return HttpResponse(status=500)
-
-    pub_key = urllib.parse.unquote(request.POST.get("pub_key"))
-    with subprocess.Popen([f'{DIR}auth_key.sh', f'{str(pub_key)}']) as script:
-        print(script)
 
     return HttpResponse(brick.ssh_port.port_number, status=200)
 
