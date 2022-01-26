@@ -30,6 +30,14 @@
                     </button>
                 </li> -->
 
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <p>
+                            USAGE | ${{ tracker.cycle_total }}
+                        </p>
+                    </a>
+                </li>
+
                 <li class="dropdown nav-item">
                     <a href="javascript:void(0)" class="dropdown-toggle nav-link" data-toggle="dropdown">
 
@@ -59,9 +67,10 @@
                         </div> -->
                         <b class="caret d-none d-lg-block d-xl-block"></b>
                         <p class="d-lg-none">
-                            {{ user.username }}
+                            {{ request.user.username }}
                         </p>
                     </a>
+
                     <ul class="dropdown-menu dropdown-navbar">
                         <li class="nav-link"><a href="{% url 'django_dash_black:pages' %}page-user" class="nav-item dropdown-item">Profile</a></li>
                         <li class="dropdown-divider"></li>
