@@ -85,6 +85,10 @@ def verify_brick_connectivity():
                         ).update(is_alive=False)
                         # brick.ssh_port.is_alive = False
                         # brick.save()
+                    else:
+                        VirtualBrick.objects.filter(
+                            id=brick.id
+                        ).update(is_rebooting=False)
         except AttributeError as err:
             port_result = f"{err}"
 
