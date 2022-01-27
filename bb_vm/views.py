@@ -1,5 +1,6 @@
 ''' bb_vm views.py '''
 
+from logging import root
 import subprocess
 import urllib.parse
 
@@ -29,7 +30,9 @@ def clone_img(request):
     '''
     profile = UserProfile.objects.get(user=request.user)
     selected_gpu = request.POST.get('selected_gpu')
-    root_pass = request.POST.get('root_pass', 'root')
+    root_pass = request.POST.get('root_pass')
+    if not root_pass:
+        root_pass = "root"
     designated_gpu_xml = None
 
     if not request.user.is_superuser:
