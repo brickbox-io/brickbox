@@ -9,7 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
 
-from bb_data.models import UserProfile
+from bb_data.models import UserProfile, PaymentMethod
 from bb_vm.models import PortTunnel, VirtualBrick, VirtualBrickOwner, GPU, RentedGPU
 
 from bb_tasks.tasks import(
@@ -34,9 +34,13 @@ def clone_img(request):
         root_pass = 'root'
     designated_gpu_xml = None
 
+    cards_available = PaymentMethod.objects.filter(user=profile.user).count()
+    rented = VirtualBrickOwner.objects.filter(owner=profile).count()
+
     if not request.user.is_superuser:
-        if profile.is_beta and VirtualBrickOwner.objects.filter(owner=profile).count() >= 1:
-            return HttpResponse("Max Beta VMs Reached", status=200)
+        if cards_available<1:
+            if profile.is_beta and rented >= 1:
+                return HttpResponse("Max Beta VMs Reached", status=200)
 
     for gpu in GPU.objects.filter(model=selected_gpu):
         if RentedGPU.objects.filter(gpu=gpu).count() < 1:

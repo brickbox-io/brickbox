@@ -95,7 +95,9 @@
                 <p class="card-text text-muted">
                     $ 0.50 /hr
                 </p>
-                <button type="button" class="btn btn-success" onclick="CreateNewBrick('3070')" {% if 3070_gpu_available != True %} disabled {% endif %}> Place Brick </button>
+                <!-- <button type="button" class="btn btn-success" onclick="CreateNewBrick('3070')" {% if 3070_gpu_available != True %} disabled {% endif %}> Place Brick </button> -->
+                <button type="button" class="btn btn-success" onclick="SetRootPassword('3070')" {% if 3070_gpu_available != True %} disabled {% endif %}> Place Brick </button>
+
             </div>
 
         </div>
