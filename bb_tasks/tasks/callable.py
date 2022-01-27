@@ -21,7 +21,7 @@ DIR = '/opt/brickbox/bb_vm/bash_scripts/'
 
 # ---------------------------------- New VM ---------------------------------- #
 @shared_task
-def new_vm_subprocess(instance_id):
+def new_vm_subprocess(instance_id, root_pass):
     '''
     Called to start the creation of a VM in the background.
     '''
@@ -37,7 +37,7 @@ def new_vm_subprocess(instance_id):
                         f'{DIR}brick_connect.sh',
                         f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
                         'brick_img', f'{str(Site.objects.get_current().domain)}',
-                        f'{str(instance_id)}', f'{str(gpu_xml)}'
+                        f'{str(instance_id)}', f'{str(gpu_xml)}', f'{str(root_pass)}',
                     ]
 
     with subprocess.Popen(new_vm_script) as script:
