@@ -33,7 +33,7 @@ def clone_img(request):
     designated_gpu_xml = None
 
     if not request.user.is_superuser:
-        if profile.is_beta and VirtualBrickOwner.objects.filter(owner=profile).count() >= 2:
+        if profile.is_beta and VirtualBrickOwner.objects.filter(owner=profile).count() >= 1:
             return HttpResponse("Max Beta VMs Reached", status=200)
 
     for gpu in GPU.objects.filter(model=selected_gpu):
