@@ -118,7 +118,7 @@ def reconnect_host(host):
                             f'{DIR}brick_connect.sh',
                             f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
                             'brick_prep', f'{str(Site.objects.get_current().domain)}',
-                            'NONE', 'NONE',
+                            'NONE', 'NONE', 'NONE'
                         ]
     if settings.DEBUG:
         preperation_script.insert(1, '-d')

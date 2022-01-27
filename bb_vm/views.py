@@ -29,6 +29,7 @@ def clone_img(request):
     '''
     profile = UserProfile.objects.get(user=request.user)
     selected_gpu = request.POST.get('selected_gpu')
+    root_pass = request.POST.get('root_pass', 'root')
     designated_gpu_xml = None
 
     if not request.user.is_superuser:
@@ -58,7 +59,7 @@ def clone_img(request):
             if gpu.bg_ready:
                 stop_bg.apply_async((gpu.id,), queue='ssh_queue')
 
-            new_vm_subprocess.apply_async((instance.id,), queue='ssh_queue')
+            new_vm_subprocess.apply_async((instance.id, root_pass,), queue='ssh_queue')
 
             bricks = VirtualBrickOwner.objects.filter(owner=profile) # All bricks owned.
             response_data = {}

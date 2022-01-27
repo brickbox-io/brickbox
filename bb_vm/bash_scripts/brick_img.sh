@@ -17,6 +17,7 @@
 url=$1
 instance=$2
 xml_data=$3
+root_pass=$4
 
 sudo echo "$xml_data" | sudo tee -a bash_errors.log > /dev/null
 
@@ -27,6 +28,7 @@ curl -X POST https://"$url"/api/vmlog/ -d "level=20&virt_brick=$instance&message
 
 last_command_output=$(sudo virt-clone --original brickbox-U20.04 --name "$instance" --auto-clone 2>> bash_errors.log)
 last_command="sudo virt-clone --original brickbox-U20.04 --name $instance --auto-clone"
+sudo virt-customize -a /var/lib/libvirt/images/"$instance".img --root-password password:"$root_pass" 2>> bash_errors.log
 
 if sudo virsh domblklist "$instance" | grep "\/var\/lib\/libvirt\/images\/$instance.img"; then
 
