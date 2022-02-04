@@ -14,15 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.staticfiles.views import serve
 from django.urls import path, include
 
+from django.conf import settings
 from django.conf.urls import url
-
+from django.conf.urls.static import static
+from django.views.decorators.cache import cache_control
 
 # --------------------------- Admin Customizations --------------------------- #
 admin.site.site_header = "brickbox.io"
 admin.site.site_title = "brickbox.io"
 admin.site.index_title = "Admin Interface"
+
 
 urlpatterns = [
     path('admin/doc/', include('django.contrib.admindocs.urls')),
@@ -52,3 +56,7 @@ urlpatterns = [
 
     url('', include('pwa.urls')),                   # Progressive Web App (PWA)
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL,
+                      view=cache_control(no_cache=True, must_revalidate=True)(serve))
