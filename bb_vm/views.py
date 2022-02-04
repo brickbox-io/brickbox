@@ -9,12 +9,13 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
 
-from bb_data.models import UserProfile
+from bb_data.models import UserProfile, PaymentMethod
 from bb_vm.models import PortTunnel, VirtualBrick, VirtualBrickOwner, GPU, RentedGPU
 
 from bb_tasks.tasks import(
         new_vm_subprocess, destroy_vm_subprocess, close_ssh_port,
         pause_vm_subprocess, play_vm_subprocess, reboot_vm_subprocess,
+        stop_bg,
     )
 
 DIR = '/opt/brickbox/bb_vm/bash_scripts/'
@@ -28,11 +29,18 @@ def clone_img(request):
     '''
     profile = UserProfile.objects.get(user=request.user)
     selected_gpu = request.POST.get('selected_gpu')
+    root_pass = request.POST.get('root_pass')
+    if not root_pass:
+        root_pass = 'root'
     designated_gpu_xml = None
 
+    cards_available = PaymentMethod.objects.filter(user=profile.user).count()
+    rented = VirtualBrickOwner.objects.filter(owner=profile).count()
+
     if not request.user.is_superuser:
-        if profile.is_beta and VirtualBrickOwner.objects.filter(owner=profile).count() >= 2:
-            return HttpResponse("Max Beta VMs Reached", status=200)
+        if cards_available<1:
+            if profile.is_beta and rented >= 1:
+                return HttpResponse("Max Beta VMs Reached", status=200)
 
     for gpu in GPU.objects.filter(model=selected_gpu):
         if RentedGPU.objects.filter(gpu=gpu).count() < 1:
@@ -53,8 +61,11 @@ def clone_img(request):
             brick_owner = VirtualBrickOwner(owner=profile, virt_brick=instance)
             brick_owner.save()
 
-            # new_vm_subprocess.delay(instance.id)
-            new_vm_subprocess.apply_async((instance.id,), queue='ssh_queue')
+            # Free GPU by shutting down background task
+            if gpu.bg_ready:
+                stop_bg.apply_async((gpu.id,), queue='ssh_queue')
+
+            new_vm_subprocess.apply_async((instance.id, root_pass,), queue='ssh_queue')
 
             bricks = VirtualBrickOwner.objects.filter(owner=profile) # All bricks owned.
             response_data = {}
@@ -187,6 +198,10 @@ def brick_destroy(request):
 
         destroy_vm_subprocess.apply_async((vm_id,), queue='ssh_queue')
 
+        pub_key = brick.sshtunnel_public_key
+        with subprocess.Popen([f'{DIR}remove_auth_key.sh', f'{str(pub_key)}']) as script:
+            print(script)
+
         profile = UserProfile.objects.get(user = request.user)
         bricks = VirtualBrickOwner.objects.filter(owner=profile) # All bricks owned.
         response_data = {}
@@ -216,19 +231,21 @@ def vm_tunnel(request):
     '''
     try:
         brick = VirtualBrick.objects.get(domain_uuid=request.POST.get('domain_uuid'))
+        pub_key = urllib.parse.unquote(request.POST.get("pub_key"))
 
         assigned_port = PortTunnel()
         assigned_port.save()
 
         brick.ssh_port = assigned_port
+        brick.sshtunnel_public_key = pub_key
         brick.is_on = True
         brick.save()
+
+        with subprocess.Popen([f'{DIR}auth_key.sh', f'{str(pub_key)}']) as script:
+            print(script)
+
     except VirtualBrick.DoesNotExist:
         return HttpResponse(status=500)
-
-    pub_key = urllib.parse.unquote(request.POST.get("pub_key"))
-    with subprocess.Popen([f'{DIR}auth_key.sh', f'{str(pub_key)}']) as script:
-        print(script)
 
     return HttpResponse(brick.ssh_port.port_number, status=200)
 

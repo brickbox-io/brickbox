@@ -42,6 +42,7 @@ action=$3
 url=$4
 instance=$5
 xml_data=$6
+root_pass=$7
 
 
 # ---------------------------------------------------------------------------- #
@@ -50,14 +51,14 @@ xml_data=$6
 if lsof -i tcp:"$port"; then
 
     # sudo cat /opt/brickbox/bb_vm/bash_scripts/"$action".sh "$url" "$instance" \""$xml_data"\" 2>> /opt/brickbox/bb_vm/bash_scripts/logs/brick_connect_errors.log) | sudo ssh -i /opt/brickbox/bb_vm/keys/"$host_user" -o StrictHostKeyChecking=no -p "$port" "$host_user"@localhost 'sudo bash -s' 2>> /opt/brickbox/bb_vm/bash_scripts/logs/brick_connect_errors.log
-    ssh -i /opt/brickbox/bb_vm/keys/"$host_user" -o StrictHostKeyChecking=no -p "$port" "$host_user"@localhost 'sudo bash -s' < /opt/brickbox/bb_vm/bash_scripts/"$action".sh "$url" "$instance" \""$xml_data"\" "$DEBUG" 2>> /opt/brickbox/bb_vm/bash_scripts/logs/brick_connect_errors.log
+    ssh -i /opt/brickbox/bb_vm/keys/"$host_user" -o StrictHostKeyChecking=no -p "$port" "$host_user"@localhost 'sudo bash -s' < /opt/brickbox/bb_vm/bash_scripts/"$action".sh "$url" "$instance" \""$xml_data"\" "$root_pass" "$DEBUG" 2>> /opt/brickbox/bb_vm/bash_scripts/logs/brick_connect_errors.log
 
     curl -X POST https://"$url"/api/vmlog/ \
     -d "level=20" \
     -d "host=$port" \
     -d "virt_brick=$instance" \
     -d "message=Successfully connected to host via tunnel." \
-    -d "command=ssh -i /opt/brickbox/bb_vm/keys/""$host_user"" -o StrictHostKeyChecking=no -p ""$port"" ""$host_user""@localhost 'sudo bash -s' < /opt/brickbox/bb_vm/bash_scripts/""$action"".sh ""$url"" ""$instance"" \"""$xml_data""\" ""$DEBUG"" "
+    -d "command=ssh -i /opt/brickbox/bb_vm/keys/""$host_user"" -o StrictHostKeyChecking=no -p ""$port"" ""$host_user""@localhost 'sudo bash -s' < /opt/brickbox/bb_vm/bash_scripts/""$action"".sh ""$url"" ""$instance"" \"""$xml_data""\" ""$root_pass"" ""$DEBUG"" "
 
     exit 0
 
@@ -68,7 +69,7 @@ else
     -d "host=$port" \
     -d "virt_brick=$instance" \
     -d "message=Could not connect to host port." \
-    -d "command=ssh -i /opt/brickbox/bb_vm/keys/""$host_user"" -o StrictHostKeyChecking=no -p ""$port"" ""$host_user""@localhost 'sudo bash -s' < /opt/brickbox/bb_vm/bash_scripts/""$action"".sh ""$url"" ""$instance"" \"""$xml_data""\" ""$DEBUG"" "
+    -d "command=ssh -i /opt/brickbox/bb_vm/keys/""$host_user"" -o StrictHostKeyChecking=no -p ""$port"" ""$host_user""@localhost 'sudo bash -s' < /opt/brickbox/bb_vm/bash_scripts/""$action"".sh ""$url"" ""$instance"" \"""$xml_data""\" ""$root_pass"" ""$DEBUG"" "
 
     exit 1
 

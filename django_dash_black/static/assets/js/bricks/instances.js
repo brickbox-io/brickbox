@@ -1,10 +1,18 @@
 /* ------------------------------ Create New VM ----------------------------- */
+function SetRootPassword(selected_gpu) {
+    document.getElementById("confirm_pass_button").setAttribute('data-model', selected_gpu);
+    $("#set_root_password").modal('toggle');
+}
+
 function CreateNewBrick(selected_gpu) {
+    var root_pass = document.getElementById("root_password").value;
+    $("#set_root_password").modal('toggle');
     var formData = new FormData();
     var xhttp = new XMLHttpRequest();
     var url = '/vm/create/'
 
     formData.append('selected_gpu', selected_gpu);
+    formData.append('root_pass', root_pass);
 
     xhttp.onload = function () {
         BrickNotice('bottom', 'center', 'Firing Bricks');

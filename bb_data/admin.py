@@ -8,7 +8,7 @@ from bb_data.models import (
 )
 
 from bb_data.models import (
-    PaymentMethod, PaymentMethodOwner
+    PaymentMethod, PaymentMethodOwner, ResourceTimeTracking
 )
 
 class ColocationClientOwnerAdmin(admin.ModelAdmin):
@@ -42,6 +42,12 @@ class FiatPayoutAdmin(admin.ModelAdmin):
     '''
     list_display = ('dated', 'account_holder', 'amount', 'currency', 'tx_vast_id')
 
+class ResourceTimeTrackingAdmin(admin.ModelAdmin):
+    '''
+    Admin configuration for ResourceTimeTracking DB model.
+    '''
+    readonly_fields = ('cycle_total',)
+
 admin.site.register(UserProfile)
 admin.site.register(ColocationClient)
 admin.site.register(ColocationClientOwner, ColocationClientOwnerAdmin)
@@ -52,3 +58,4 @@ admin.site.register(FiatPayout, FiatPayoutAdmin)
 
 admin.site.register(PaymentMethod)
 admin.site.register(PaymentMethodOwner)
+admin.site.register(ResourceTimeTracking, ResourceTimeTrackingAdmin)
