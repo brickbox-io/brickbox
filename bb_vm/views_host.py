@@ -3,6 +3,7 @@ bb_vm views for hosts
 - Onboarding
 '''
 
+import re
 import subprocess
 import urllib.parse
 
@@ -10,7 +11,9 @@ from django.http import HttpResponse
 # from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 
-from bb_vm.models import HostFoundation, GPU
+from bb_vm.models import HostFoundation, GPU, VirtualBrick
+
+from bb_tasks.tasks import destroy_vm_subprocess
 
 DIR = '/opt/brickbox/bb_vm/bash_scripts/'
 
@@ -144,3 +147,23 @@ def onboarding_gpu(request, host_serial):
         return HttpResponse("error", status=404)
 
     return HttpResponse("error", status=405)
+
+
+@csrf_exempt
+def garbage_collection(request, host_serial):
+    '''
+    URL: brickbox.io/vm/host/garbage
+    Recives a list of images on the host and then removes stale ones.
+    '''
+    if request.method == 'POST':
+        print(request.POST)
+        files_names = re.findall(r'((?<!_|\.)\d+(?<!_)\d+)\.img', request.POST.get("files"))
+        print(f'Host: {host_serial}')
+        for vm_id in files_names:
+            print(vm_id)
+
+            if not VirtualBrick.objects.filter(id=vm_id).exists():
+                print(f'Removing {vm_id}')
+                destroy_vm_subprocess.apply_async((vm_id, host_serial), queue='ssh_queue')
+
+    return HttpResponse("ok", status=200)

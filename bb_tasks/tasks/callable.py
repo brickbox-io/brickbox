@@ -10,7 +10,7 @@ from django.contrib.sites.models import Site
 from celery import shared_task
 
 from bb_vm.models import (
-    PortTunnel, VirtualBrickOwner, VirtualBrick, RentedGPU
+    PortTunnel, VirtualBrickOwner, VirtualBrick, RentedGPU, HostFoundation
 )
 
 DIR = '/opt/brickbox/bb_vm/bash_scripts/'
@@ -102,15 +102,19 @@ def reboot_vm_subprocess(instance_id):
 
 # --------------------------------- Delete VM -------------------------------- #
 @shared_task
-def destroy_vm_subprocess(instance_id):
+def destroy_vm_subprocess(instance_id, host_id=None):
     '''
     Called to destroy VM.
     '''
-    brick = VirtualBrick.objects.get(id=instance_id)
+    if host_id is None:
+        brick = VirtualBrick.objects.get(id=instance_id)
+        host = brick.host
+    else:
+        host = HostFoundation.objects.get(id=host_id)
 
     destroy_vm_script = [
                         f'{DIR}brick_connect.sh',
-                        f'{str(brick.host.ssh_username)}', f'{str(brick.host.ssh_port)}',
+                        f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
                         'brick_destroy', f'{str(Site.objects.get_current().domain)}',
                         f'{str(instance_id)}',
                     ]
