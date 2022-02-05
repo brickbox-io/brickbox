@@ -33,7 +33,11 @@ urlpatterns = [
             views_host.onboarding_gpu,
             name='host_onboarding_gpu'
     ),
-
+    path(
+            'host/garbage/<host_serial>/',
+            views_host.garbage_collection,
+            name='host_garbage_collection'
+    ),
 
     # ------------------------------- Brick Actions ------------------------------ #
     path('brick/pause/', views.brick_pause, name='brick_pause'),

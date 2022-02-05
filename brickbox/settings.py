@@ -130,9 +130,9 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 # Provider specific settings
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
-        # For each OAuth based provider, either add a ``SocialApp``
-        # (``socialaccount`` app) containing the required client
-        # credentials, or list them here:
+        'SCOPE': [
+            'email',
+        ],
         'APP': {
             'client_id': '918414840239-qljh31euklmcem5ec7s72a726r3aofsr.apps.googleusercontent.com',
             'secret': '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',

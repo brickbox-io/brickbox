@@ -220,3 +220,25 @@ def resource_time_track():
             )
 
             tracker.save()
+
+@shared_task
+def host_cleanup():
+    '''
+    Ensures tempory issues are resolved.
+    '''
+    hosts = HostFoundation.objects.all()
+
+    for host in hosts:
+        cleanup_script = [
+                                f'{DIR}brick_connect.sh',
+                                f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
+                                'host_cleanup', f'{str(Site.objects.get_current().domain)}',
+                                f'{str(host.id)}', 'NONE', 'NONE'
+                            ]
+
+        with Popen(cleanup_script) as script:
+            print(script)
+
+    return {
+        'hosts':f'{hosts.values()}',
+    }
