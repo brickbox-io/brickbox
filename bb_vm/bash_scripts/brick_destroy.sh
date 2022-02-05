@@ -22,10 +22,18 @@ sudo rm /var/lib/libvirt/images/"$instance".img 2>> bash_errors.log
 
 # Confirm that the image is deleted
 if [ -f /var/lib/libvirt/images/"$instance".img ]; then
-    echo "Image not deleted"
-    curl -X POST https://"$url"/api/vmlog/ -d "level=50&virt_brick=$instance&message=Brick%20was%20not%20destroyed." &
+
+    curl -X POST https://"$url"/api/vmlog/ \
+    -d "level=50" \
+    -d "virt_brick=$instance"\
+    -d "message=Brick was not destroyed."
 
     exit 1
 fi
 
-exit
+# files=$(sudo ls /var/lib/libvirt/images/)
+
+# curl -X POST https://"$url"/vm/host/garbage \
+# -d "files=$files"
+
+exit 0
