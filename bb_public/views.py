@@ -5,6 +5,14 @@ from django.http import HttpResponse
 
 from bb_public.models import EmailUpdateList
 
+# --------------------------------- Home Page -------------------------------- #
+def landing(request):
+    '''
+    URL: brickbox.io
+    '''
+    return render(request, 'landing.html')
+
+
 def landing_ai(request):
     '''
     URL: brickbox.io
