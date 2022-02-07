@@ -9,7 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from bb_data.models import (
     UserProfile, ColocationClient, PaymentMethod,
-    PaymentMethodOwner
+    PaymentMethodOwner, ResourceTimeTracking, BillingHistory
 )
 
 
@@ -95,5 +95,44 @@ def payment_method_event(request):
             profile = profile,
             method = payment_method,
         )
+
+    return HttpResponse(status=200)
+
+@csrf_exempt
+def invoice_event(request):
+    '''
+    URL: webhook/stripe/invoice_event
+    '''
+    payload = request.body
+    event = None
+
+    try:
+        event = stripe.Event.construct_from(
+            json.loads(payload), stripe.api_key
+        )
+    except ValueError:
+        # Invalid payload
+        return HttpResponse(status=400)
+
+    # Handle the event
+    if event.type == 'invoice.payment_succeeded':
+        invoice = event.data.object
+        #print(invoice)
+        bill = BillingHistory.objects.get(invoice_id=invoice.id)
+        bill.status = 'paid'
+        bill.invoice_link = invoice.invoice_pdf
+        bill.save()
+
+        tracking = ResourceTimeTracking.objects.get(id=bill.usage.id)
+        tracking.balance_paid = True
+        tracking.stripe_transaction = invoice.charge
+        tracking.save()
+
+
+    elif event.type == 'invoice.payment_failed':
+        invoice = event.data.object
+        print(invoice)
+    else:
+        print(f'Unhandled event type {event.type}')
 
     return HttpResponse(status=200)

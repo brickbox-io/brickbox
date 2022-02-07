@@ -4,12 +4,10 @@ from django.contrib import admin
 
 from bb_data.models import (
     UserProfile, ColocationClient, CryptoSnapshot, FiatSnapshot,
-    ColocationClientOwner, CryptoPayout, FiatPayout
+    ColocationClientOwner, CryptoPayout, FiatPayout,
+    PaymentMethod, PaymentMethodOwner, ResourceRates, ResourceTimeTracking, BillingHistory
 )
 
-from bb_data.models import (
-    PaymentMethod, PaymentMethodOwner, ResourceTimeTracking
-)
 
 class ColocationClientOwnerAdmin(admin.ModelAdmin):
     '''
@@ -42,11 +40,27 @@ class FiatPayoutAdmin(admin.ModelAdmin):
     '''
     list_display = ('dated', 'account_holder', 'amount', 'currency', 'tx_vast_id')
 
+class ResourceRatesAdmin(admin.ModelAdmin):
+    '''
+    Admin configuration for ResourceRates DB model.
+    '''
+    list_display = ('resource', 'stripe_price_id',)
+
 class ResourceTimeTrackingAdmin(admin.ModelAdmin):
     '''
     Admin configuration for ResourceTimeTracking DB model.
     '''
+    list_display = (
+                    'user', 'billing_cycle_start',
+                    'billing_cycle_end', 'balance_paid', 'cycle_total'
+                    )
     readonly_fields = ('cycle_total',)
+
+class BillingHistoryAdmin(admin.ModelAdmin):
+    '''
+    Admin configuration for BillingHistory DB model.
+    '''
+    list_display = ('user', 'date', 'invoice_link', 'invoice_id',)
 
 admin.site.register(UserProfile)
 admin.site.register(ColocationClient)
@@ -58,4 +72,6 @@ admin.site.register(FiatPayout, FiatPayoutAdmin)
 
 admin.site.register(PaymentMethod)
 admin.site.register(PaymentMethodOwner)
+admin.site.register(ResourceRates, ResourceRatesAdmin)
 admin.site.register(ResourceTimeTracking, ResourceTimeTrackingAdmin)
+admin.site.register(BillingHistory, BillingHistoryAdmin)
