@@ -50,7 +50,10 @@ class ResourceTimeTrackingAdmin(admin.ModelAdmin):
     '''
     Admin configuration for ResourceTimeTracking DB model.
     '''
-    list_display = ('user', 'billing_cycle_start', 'billing_cycle_end', 'balance_paid', 'cycle_total')
+    list_display = (
+                    'user', 'billing_cycle_start',
+                    'billing_cycle_end', 'balance_paid', 'cycle_total'
+                    )
     readonly_fields = ('cycle_total',)
 
 class BillingHistoryAdmin(admin.ModelAdmin):

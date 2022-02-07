@@ -3,9 +3,8 @@
 from __future__ import absolute_import, unicode_literals
 
 from subprocess import Popen, PIPE
-from dateutil.relativedelta import relativedelta
 import datetime
-
+from dateutil.relativedelta import relativedelta
 
 from django.conf import settings
 from django.contrib.sites.models import Site
