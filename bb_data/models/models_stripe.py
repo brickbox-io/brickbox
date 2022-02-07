@@ -96,7 +96,7 @@ class BillingHistory(models.Model):
     date = models.DateField(auto_now_add=True)
 
     usage = models.ForeignKey(ResourceTimeTracking, on_delete=models.CASCADE, blank=True,null=True)
-    amount_alt = models.DecimalField(max_digits=5, decimal_places=2, default=0.00)
+    amount_alt = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
 
     invoice_link = models.TextField(blank=True, null=True)
     invoice_id = models.CharField(max_length=100, blank=True, null=True) # Stripe Invoice ID
