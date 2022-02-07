@@ -31,7 +31,7 @@ def monthly_resource_invoicing():
                                 )
     for invoice_due in invoices_due:
         user_profile = UserProfile.objects.get(user=invoice_due.user)
-        if user_profile.cus_id:
+        if user_profile.cus_id and float(invoice_due.cycle_total) > 0:
 
             # 3070 Line Item
             if invoice_due.minutes_3070 > 0:
