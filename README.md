@@ -91,6 +91,10 @@ To quickly see that services are operational the app [django-health-check](https
 └── puller              # Internal CI/CD tools.
 ```
 
+## Design Strategy
+
+The platform has a combination of both passive and active components. These are broken into either endpoints or background tasks. The majority of functionality occurs under bb_tasks.
+
 ## Definitions
 
 **Colocation Client** <br>

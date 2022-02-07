@@ -39,7 +39,7 @@ def clone_img(request):
 
     if not request.user.is_superuser:
         if cards_available<1:
-            if profile.is_beta and rented >= 1:
+            if profile.is_beta and rented >= 2:
                 return HttpResponse("Max Beta VMs Reached", status=200)
 
     for gpu in GPU.objects.filter(model=selected_gpu):

@@ -31,6 +31,46 @@
 </div>
 <!-- ----------------------- END - Payment Methods ----------------------- -->
 
+
+<!-- ----------------------- START - Billing History ----------------------- -->
+{% if billing_history.all.count >= 1 %}
+<div class="col-lg-12 col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="title">Billing History</h3>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+
+                <table class="table">
+
+                    <!-- Table Head -->
+                    <thead>
+                        <tr>
+                            <!-- <th class="text-center">#</th> -->
+                            <th>DATE</th>
+                            <th class="text-center">AMOUNT</th>
+                            <th class="text-center">INVOICE</th>
+                            <th class="text-right">STATUS</th>
+                        </tr>
+                    </thead>
+
+                    <!-- Table Body -->
+                    <tbody id="brick_wall">
+                        {% include "billing/billing_history_table.html" %}
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endif %}
+<!-- ------------------------ END - Billing History ------------------------ -->
+
 {% include "modals/payment_method.html" %}
 
 {% endblock content %}
