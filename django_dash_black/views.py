@@ -12,7 +12,7 @@ from django.http import HttpResponse
 from django import template
 
 from bb_data.models import ( UserProfile, CryptoPayout, FiatPayout,
-                            ColocationClient, ResourceTimeTracking)
+                            ColocationClient, ResourceTimeTracking, BillingHistory)
 from bb_vm.models import VirtualBrickOwner, GPU, RentedGPU
 
 if settings.DEBUG:
@@ -106,6 +106,8 @@ def pages(request):
                                         balance_paid = False,
                                         billing_cycle_end__gte=datetime.datetime.today()
                                     )
+        context['billing_history'] = BillingHistory.objects.filter(user=context['profile'].user)
+
         if created:
             tracker.billing_cycle_end = tracker.billing_cycle_start + datetime.timedelta(days=30)
             tracker.save()

@@ -1,0 +1,13 @@
+{% for entry in billing_history %}
+<tr>
+    <td>{{ entry.date }}</td>
+    <td class="text-center">${{ entry.usage.cycle_total }}</td>
+    <td class="text-center">
+        <a href="{{ entry.invoice_link }}" download>
+            <i class="material-icons">file_download</i>
+        </a>
+
+    </td>
+    <td class="text-right">{{ entry.get_status_display }}</td>
+</tr>
+{% endfor %}

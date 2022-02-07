@@ -3,6 +3,7 @@
 from __future__ import absolute_import, unicode_literals
 
 from subprocess import Popen, PIPE
+from dateutil.relativedelta import relativedelta
 import datetime
 
 
@@ -212,7 +213,8 @@ def resource_time_track():
                                 )
 
             if created:
-                tracker.billing_cycle_end = tracker.billing_cycle_start+datetime.timedelta(days=30)
+                tracker.billing_cycle_end = tracker.billing_cycle_start+relativedelta(months=+1)
+                tracker.billing_cycle_end = (tracker.billing_cycle_end).replace(day=1)
 
             setattr(
                 tracker, f'minutes_{model}',
@@ -220,6 +222,8 @@ def resource_time_track():
             )
 
             tracker.save()
+
+
 
 @shared_task
 def host_cleanup():
