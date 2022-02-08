@@ -1,0 +1,27 @@
+name: HTML5 Validator
+on:
+  push:
+    branches:
+      - "**"
+      - "master"
+      - "!master-ci"
+      - "!release"
+
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out master
+        uses: actions/checkout@master
+        with:
+          fetch-depth: 1
+    - name: HTML5Validator
+      uses: Cyb3r-Jak3/html5validator-action
+      with:
+        root: /
+        blacklist: invalid
