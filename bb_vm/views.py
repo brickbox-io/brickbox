@@ -42,6 +42,8 @@ def clone_img(request):
             if profile.is_beta and rented >= 2:
                 return HttpResponse("Max Beta VMs Reached", status=200)
 
+            return HttpResponse("No payment method provided.", status=200)
+
     for gpu in GPU.objects.filter(model=selected_gpu):
         if RentedGPU.objects.filter(gpu=gpu).count() < 1:
             designated_gpu_xml = gpu.xml
