@@ -96,6 +96,13 @@ def payment_method_event(request):
             method = payment_method,
         )
 
+        stripe.Customer.modify(
+            profile.cus_id,
+            invoice_settings = {
+                "default_payment_method": payment_method.pm_id,
+            }
+        )
+
     return HttpResponse(status=200)
 
 @csrf_exempt
