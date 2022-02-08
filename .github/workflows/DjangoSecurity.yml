@@ -21,7 +21,7 @@ env:
   # EXTRA_ARGS: "--settings=app.settings.production"
 
 jobs:
-  build:
+  security:
     runs-on: ubuntu-latest
 
     steps:
