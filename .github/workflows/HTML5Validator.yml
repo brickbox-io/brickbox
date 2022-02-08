@@ -20,7 +20,7 @@ jobs:
 
     steps:
       - name: Check out master
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
 
       - name: HTML5Validator
         uses: Cyb3r-Jak3/html5validator-action
