@@ -38,7 +38,7 @@ class UserProfile(models.Model):
     brick_access = models.BooleanField(default=False)   # Brcik VM Access
     is_colo = models.BooleanField(default=False)        # "Investor"
     is_manager = models.BooleanField(default=False)     # Can manage colocation clients
-    is_beta = models.BooleanField(default=True)         # Beta Access User
+    is_beta = models.BooleanField(default=False)        # Beta Access User
 
     # Stripe
     cus_id = models.CharField(max_length=100, blank=True, null=True)
