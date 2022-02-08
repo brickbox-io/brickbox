@@ -18,7 +18,7 @@ env:
   ENV_TYPE: venv
   DEP_PATH: requirements.txt
   APP_PATH:
-  EXTRA_ARGS: "--settings=app.settings.production"
+  # EXTRA_ARGS: "--settings=app.settings.production"
 
 jobs:
   build:
