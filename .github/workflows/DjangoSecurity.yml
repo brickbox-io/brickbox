@@ -29,11 +29,7 @@ jobs:
         uses: actions/checkout@master
         with:
           fetch-depth: 1
+
       - name: Scan Django settings for security issues
         id: check
         uses: victoriadrake/django-security-check@master
-      - name: Upload output
-        uses: actions/upload-artifact@v2
-        with:
-          name: security-check-output
-          path: output.txt
