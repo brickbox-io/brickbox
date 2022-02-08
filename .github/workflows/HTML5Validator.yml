@@ -22,8 +22,8 @@ jobs:
       - name: Check out master
         uses: actions/checkout@master
 
-    - name: HTML5Validator
-      uses: Cyb3r-Jak3/html5validator-action
-      with:
-        root: /
-        blacklist: invalid
+      - name: HTML5Validator
+        uses: Cyb3r-Jak3/html5validator-action
+        with:
+          root: /
+          blacklist: invalid
