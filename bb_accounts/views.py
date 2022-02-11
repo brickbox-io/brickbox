@@ -152,7 +152,7 @@ def token_signin(request):
         user_profile = UserProfile(
                             user = new_user,
                             brick_access = True,
-                            is_beta = True,
+                            is_beta = False,
                         )
         user_profile.save()
 
