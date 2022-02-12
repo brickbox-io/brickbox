@@ -49,6 +49,9 @@ class UserProfile(models.Model):
                                                 related_name='payment_methods_saved'
                                             )
 
+    # Billing Threshold - $0.00 indicates no threshold (month to month)
+    threshold = models.DecimalField(max_digits=8, decimal_places=2, default=1.00)
+
     def __str__(self):
         return f"{self.user.get_full_name()} ({self.user})"
 
