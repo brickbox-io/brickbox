@@ -133,6 +133,19 @@ def invoice_event(request):
         tracking = ResourceTimeTracking.objects.get(id=bill.usage.id)
         tracking.balance_paid = True
         tracking.stripe_transaction = invoice.charge
+
+        if tracking.threshold == 1.00:
+            tracking.threshold = 10.00
+
+        elif tracking.threshold == 10.00:
+            tracking.threshold = 100.00
+
+        elif tracking.threshold == 100.00:
+            tracking.threshold = 1000.00
+
+        elif tracking.threshold == 1000.00:
+            tracking.threshold = 0.00
+
         tracking.save()
 
 

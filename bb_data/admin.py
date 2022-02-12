@@ -51,8 +51,8 @@ class ResourceTimeTrackingAdmin(admin.ModelAdmin):
     Admin configuration for ResourceTimeTracking DB model.
     '''
     list_display = (
-                    'user', 'billing_cycle_start',
-                    'billing_cycle_end', 'balance_paid', 'cycle_total'
+                    'user', 'billing_cycle_start', 'billing_cycle_end',
+                    'threshold', 'cycle_total', 'balance_paid',
                     )
     readonly_fields = ('cycle_total',)
 

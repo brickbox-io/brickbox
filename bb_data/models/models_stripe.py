@@ -69,8 +69,11 @@ class ResourceTimeTracking(models.Model):
     minutes_3070 = models.IntegerField(default=0)   # Running total of active 3070 usage
     minutes_3090 = models.IntegerField(default=0)   # Running total of active 3090 usage
 
-    rate_3070 = models.DecimalField(max_digits=5, decimal_places=2, default=0.50) # 3070 Rate/H
-    rate_3090 = models.DecimalField(max_digits=5, decimal_places=2, default=0.75) # 3090 Rate/H
+    rate_3070 = models.DecimalField(max_digits=8, decimal_places=2, default=0.50) # 3070 Rate/H
+    rate_3090 = models.DecimalField(max_digits=8, decimal_places=2, default=0.75) # 3090 Rate/H
+
+    # Billing Threshold - $0.00 indicates no threshold (month to month)
+    threshold = models.DecimalField(max_digits=8, decimal_places=2, default=1.00)
 
     balance_paid = models.BooleanField(default=False)
     stripe_transaction = models.CharField(max_length=100, blank=True, null=True) # Transaction ID
