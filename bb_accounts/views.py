@@ -66,7 +66,7 @@ def account_registration(request):
             user_profile = UserProfile(
                                 user = request.user,
                                 brick_access = True,
-                                is_beta = True,
+                                is_beta = False,
                             )
             user_profile.save()
 
@@ -152,7 +152,7 @@ def token_signin(request):
         user_profile = UserProfile(
                             user = new_user,
                             brick_access = True,
-                            is_beta = True,
+                            is_beta = False,
                         )
         user_profile.save()
 

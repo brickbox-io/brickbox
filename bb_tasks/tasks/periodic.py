@@ -4,7 +4,7 @@ from __future__ import absolute_import, unicode_literals
 
 from subprocess import Popen, PIPE
 import datetime
-
+from dateutil.relativedelta import relativedelta
 
 from django.conf import settings
 from django.contrib.sites.models import Site
@@ -212,7 +212,8 @@ def resource_time_track():
                                 )
 
             if created:
-                tracker.billing_cycle_end = tracker.billing_cycle_start+datetime.timedelta(days=30)
+                tracker.billing_cycle_end = tracker.billing_cycle_start+relativedelta(months=+1)
+                tracker.billing_cycle_end = (tracker.billing_cycle_end).replace(day=1)
 
             setattr(
                 tracker, f'minutes_{model}',
@@ -220,3 +221,27 @@ def resource_time_track():
             )
 
             tracker.save()
+
+
+
+@shared_task
+def host_cleanup():
+    '''
+    Ensures tempory issues are resolved.
+    '''
+    hosts = HostFoundation.objects.all()
+
+    for host in hosts:
+        cleanup_script = [
+                                f'{DIR}brick_connect.sh',
+                                f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
+                                'host_cleanup', f'{str(Site.objects.get_current().domain)}',
+                                f'{str(host.id)}', 'NONE', 'NONE'
+                            ]
+
+        with Popen(cleanup_script) as script:
+            print(script)
+
+    return {
+        'hosts':f'{hosts.values()}',
+    }
