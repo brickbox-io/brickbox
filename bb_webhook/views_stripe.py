@@ -131,22 +131,25 @@ def invoice_event(request):
         bill.save()
 
         tracking = ResourceTimeTracking.objects.get(id=bill.usage.id)
+        user_profile = UserProfile.objects.get(user=tracking.user)
+
         tracking.balance_paid = True
         tracking.stripe_transaction = invoice.charge
-
-        if tracking.threshold == 1.00:
-            tracking.threshold = 10.00
-
-        elif tracking.threshold == 10.00:
-            tracking.threshold = 100.00
-
-        elif tracking.threshold == 100.00:
-            tracking.threshold = 1000.00
-
-        elif tracking.threshold == 1000.00:
-            tracking.threshold = 0.00
-
         tracking.save()
+
+        if user_profile.threshold == 1.00:
+            user_profile.threshold = 10.00
+
+        elif user_profile.threshold == 10.00:
+            user_profile.threshold = 100.00
+
+        elif user_profile.threshold == 100.00:
+            user_profile.threshold = 1000.00
+
+        elif user_profile.threshold == 1000.00:
+            user_profile.threshold = 0.00
+
+        user_profile.save()
 
 
     elif event.type == 'invoice.payment_failed':

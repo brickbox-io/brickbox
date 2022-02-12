@@ -27,16 +27,18 @@ def threshold_resource_invoicing():
     '''
     invoices_due = ResourceTimeTracking.objects.filter(
                                     balance_paid = False,
-                                    threshold__gt=0
                                 )
 
     for invoice_due in invoices_due:
         user_profile = UserProfile.objects.get(user=invoice_due.user)
 
+        if user_profile.threshold == 0:
+            continue
+
         if user_profile.user.is_superuser or not user_profile.pay_methods.exists():
             continue
 
-        if user_profile.cus_id and invoice_due.threshold <= float(invoice_due.cycle_total) > 0:
+        if user_profile.cus_id and user_profile.threshold <= float(invoice_due.cycle_total) > 0:
 
             # 3070 Line Item
             if invoice_due.minutes_3070 > 0:
@@ -83,10 +85,12 @@ def monthly_resource_invoicing():
     invoices_due = ResourceTimeTracking.objects.filter(
                                     balance_paid = False,
                                     billing_cycle_end__lte=datetime.datetime.today(),
-                                    threshold=0.00
                                 )
     for invoice_due in invoices_due:
         user_profile = UserProfile.objects.get(user=invoice_due.user)
+
+        if user_profile.threshold != 0:
+            continue
 
         if user_profile.user.is_superuser or not user_profile.pay_methods.exists():
             continue
