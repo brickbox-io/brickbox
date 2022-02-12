@@ -1,5 +1,6 @@
 ''' Models for bb_vm '''
 
+from faulthandler import is_enabled
 from django.db import models
 from django.dispatch import receiver
 from django.db.models.signals import pre_save, post_save, post_delete
@@ -70,6 +71,8 @@ class GPU(models.Model):
     '''
     host = models.ForeignKey(HostFoundation, on_delete=models.PROTECT) # The physical host.
     model = models.CharField(max_length = 36) # i.e. 1080, 3090
+
+    is_enabled = models.BooleanField(default=True) # Enabled/Disabled for use
 
     pcie = models.CharField(max_length = 64) # Domain:Bus:Device.Function - dddd:vv:dd.f
     device = models.CharField(max_length = 32) # Vendor:Device - vvvv:dddd
