@@ -469,7 +469,6 @@ nav {
 	padding: 80px;
 	display: flex;
 	justify-content: center;
-	display: none;
 }
 
 .customer-reviews-content {
@@ -489,7 +488,13 @@ nav {
 .customer-review-container {
 	display: flex;
 	flex-wrap: wrap;
-	width: 30%;
+	justify-content: center;
+	width: 25%;
+}
+
+.customer-review-container img {
+	width: 175px;
+	height: 175px;
 }
 
 .customer-review-container p{
@@ -504,7 +509,11 @@ nav {
 	border: 2px solid #30323e;
 }
 
-@media only screen and (max-width: 672px) {
+@media only screen and (max-width: 780px) {
+	.customer-reviews-content {
+		justify-content: center;
+	}
+
 	.customer-review-container {
 		width: 80%;
 		padding-bottom: 30px;
