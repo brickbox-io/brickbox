@@ -52,7 +52,7 @@ class ResourceTimeTrackingAdmin(admin.ModelAdmin):
     '''
     list_display = (
                     'user', 'billing_cycle_start', 'billing_cycle_end',
-                    'threshold', 'cycle_total', 'balance_paid',
+                    'cycle_total', 'balance_paid',
                     )
     readonly_fields = ('cycle_total',)
 
