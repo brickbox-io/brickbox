@@ -71,6 +71,8 @@ class GPU(models.Model):
     host = models.ForeignKey(HostFoundation, on_delete=models.PROTECT) # The physical host.
     model = models.CharField(max_length = 36) # i.e. 1080, 3090
 
+    is_enabled = models.BooleanField(default=True) # Enabled/Disabled for use
+
     pcie = models.CharField(max_length = 64) # Domain:Bus:Device.Function - dddd:vv:dd.f
     device = models.CharField(max_length = 32) # Vendor:Device - vvvv:dddd
 
@@ -78,6 +80,7 @@ class GPU(models.Model):
 
     rented = models.BooleanField(default = False)
 
+    # Background Tasks
     bg_ready = models.BooleanField(default = False) # Indicates that an img is ready for the GPU
     bg_running = models.BooleanField(default = False) # Background task running
 

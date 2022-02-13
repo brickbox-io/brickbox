@@ -12,11 +12,11 @@ DEBUG=$5 # -d
 # ---------------------------------------------------------------------------- #
 
 function log {
-    log_file=brick_prep.log
+    log_file=host_prep.log
     echo "$(date) - $1" >> $log_file
 }
 
-log "START - brick_prep.sh started with DEBUG=$DEBUG"
+log "START - host_prep.sh started with DEBUG=$DEBUG"
 
 
 if [ "$DEBUG" -eq 1 ]; then
