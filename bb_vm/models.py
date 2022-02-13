@@ -81,6 +81,7 @@ class GPU(models.Model):
 
     rented = models.BooleanField(default = False)
 
+    # Background Tasks
     bg_ready = models.BooleanField(default = False) # Indicates that an img is ready for the GPU
     bg_running = models.BooleanField(default = False) # Background task running
 

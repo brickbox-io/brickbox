@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # ---------------------------------- Process --------------------------------- #
 # 1) SSH into host with available hardware.
 # 2) Clone template to img with virtual brick ID as name.
@@ -19,10 +18,25 @@ instance=$2
 xml_data=$3
 root_pass=$4
 
-sudo echo "$xml_data" | sudo tee -a bash_errors.log > /dev/null
+# sudo echo "$xml_data" | sudo tee -a bash_errors.log > /dev/null
 
-# Logging
-curl -X POST https://"$url"/api/vmlog/ -d "level=20&virt_brick=$instance&message=Successfully%20SSH%20connection%20to%20host,%20creating%20$instance."
+# ---------------------------------------------------------------------------- #
+#                                    Logging                                   #
+# ---------------------------------------------------------------------------- #
+$script_name=$(basename -s .sh $BASH_SOURCE)
+
+function log {
+    log_file=brick_img.log
+    echo "$(date) - $1" >> $log_file
+}
+
+log "START - brick_img.sh started with url=$url, instance=$instance"
+
+# Remote Logging
+curl -X POST https://"$url"/api/vmlog/ \
+-d "level=20" \
+-d "virt_brick=$instance" \
+-d "message=Successfully SSH connection to host, creating $instance."
 
 # ------------------------------ Clone Template ------------------------------ #
 
@@ -32,23 +46,34 @@ sudo virt-customize -a /var/lib/libvirt/images/"$instance".img --root-password p
 
 if sudo virsh domblklist "$instance" | grep "\/var\/lib\/libvirt\/images\/$instance.img"; then
 
-    # Logging
-    curl -X POST https://"$url"/api/vmlog/ -d "level=20&host=1&virt_brick=$instance&message=VM%20clone%20validated&command=$last_command&command_output=$last_command_output"
+    log "$instance.img was cloned sucessfully." # Logging
+
+    # Remote Logging
+    curl -X POST https://"$url"/api/vmlog/ \
+    -d "level=20" \
+    -d "host=1" \
+    -d "virt_brick=$instance" \
+    -d "message=VM clone validated" \
+    -d "command=$last_command" \
+    -d "command_output=$last_command_output"
 
 
     curl -X POST https://"$url"/vm/state/ -d "instance=$instance&verify=clone" &
 
     if [[ -f GPU.xml ]]; then
         sudo rm GPU.xml 2>> bash_errors.log
+        log "GPU.xml was removed sucessfully." # Logging
     fi
 
     sleep 1
 
     sudo echo "$xml_data" | sudo tee -a GPU.xml > /dev/null 2>> bash_errors.log
 
-
-    # Logging
-    curl -X POST https://"$url"/api/vmlog/ -d "level=20&virt_brick=$instance&message=GPU%20XML%0D%0A$xml_data"
+    # Remote Logging
+    curl -X POST https://"$url"/api/vmlog/ \
+    -d "level=20" \
+    -d "virt_brick=$instance" \
+    -d "message=GPU XML%0D%0A$xml_data"
 
 
     last_command_output=$(sudo virsh attach-device "$instance" GPU.xml --persistent 2>> bash_errors.log)
@@ -59,12 +84,25 @@ if sudo virsh domblklist "$instance" | grep "\/var\/lib\/libvirt\/images\/$insta
 
     if sudo virsh dumpxml "$instance" | grep "hostdev"; then
 
-        curl -X POST https://"$url"/api/vmlog/ -d "level=20&virt_brick=$instance&message=GPU%20attached%20successfully."  # Logging
+        log "GPU was attached sucessfully." # Logging
+
+        # Remote Logging
+        curl -X POST https://"$url"/api/vmlog/ \
+        -d "level=20" \
+        -d "virt_brick=$instance" \
+        -d "message=GPU attached successfully."
 
     else
 
-        # Logging
-        curl -X POST https://"$url"/api/vmlog/ -d "level=30&virt_brick=$instance&message=Attempting%20to%20attach%20GPU%20again&command=$last_command&command_output=$last_command_output"
+        log "GPU was not attached sucessfully, attempting to attach again." # Logging
+
+        # Remote Logging
+        curl -X POST https://"$url"/api/vmlog/ \
+        -d "level=30" \
+        -d "virt_brick=$instance" \
+        -d "message=Attempting to attach GPU again" \
+        -d "command=$last_command" \
+        -d "command_output=$last_command_output"
 
         sudo virsh start "$instance" 2>> bash_errors.log
         sudo virsh autostart "$instance" 2>> /dev/null # Enable autostart.
@@ -77,18 +115,28 @@ if sudo virsh domblklist "$instance" | grep "\/var\/lib\/libvirt\/images\/$insta
 
         sudo virsh reboot "$instance" 2>> bash_errors.log
 
+        # Verify that the GPU was attached sucessfully the second time.
+        if sudo virsh dumpxml "$instance" | grep "hostdev"; then
+            log "GPU was attached sucessfully." # Logging
+
+            # Remote Logging
+            curl -X POST https://"$url"/api/vmlog/ \
+            -d "level=20" \
+            -d "virt_brick=$instance" \
+            -d "message=GPU attached successfully."
+        else
+            log "GPU was not attached sucessfully." # Logging
+
+            # Remote Logging
+            curl -X POST https://"$url"/api/vmlog/ \
+            -d "level=40" \
+            -d "virt_brick=$instance" \
+            -d "message=Failled to attach GPU."
+        fi
+
     fi
 
-    # Verify that the GPU was attached sucessfully
-    if sudo virsh dumpxml "$instance" | grep "hostdev"; then
 
-        curl -X POST https://"$url"/api/vmlog/ -d "level=20&virt_brick=$instance&message=GPU%20attached%20successfully."  # Logging
-
-    else
-
-        curl -X POST https://"$url"/api/vmlog/ -d "level=40&virt_brick=$instance&message=Failled%20to%20attach%20GPU."    # Logging
-
-    fi
 
     sudo virsh start "$instance" 2>> bash_errors.log
     sudo virsh autostart "$instance" 2>> /dev/null # Enable autostart.
@@ -97,15 +145,21 @@ if sudo virsh domblklist "$instance" | grep "\/var\/lib\/libvirt\/images\/$insta
         sudo rm GPU.xml 2>> bash_errors.log
     fi
 
-
     curl https://"$url"/vm/register/"$instance"/"$(sudo virsh domuuid "$instance")"/ 2>> bash_errors.log
 
-    echo "VM Cloned"
+    log "END - Successfully completed brick_img.sh" # Logging
+
+    exit 0
 
 else
 
-    curl -X POST https://"$url"/vm/error/ -d "instance=$instance&error=clone" 2>> bash_errors.log
+    log "END - $instance.img failed to clone." # Logging
+
+    # Remote Logging
+    curl -X POST https://"$url"/vm/error/ \
+    -d "instance=$instance" \
+    -d "error=clone" 2>> bash_errors.log
+
+    exit 1
 
 fi
-
-exit
