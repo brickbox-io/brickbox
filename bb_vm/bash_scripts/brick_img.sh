@@ -23,10 +23,10 @@ root_pass=$4
 # ---------------------------------------------------------------------------- #
 #                                    Logging                                   #
 # ---------------------------------------------------------------------------- #
-script_name=$(basename -s .sh "$BASH_SOURCE")
+#script_name=$(basename -s .sh "$BASH_SOURCE[0]")
 
 function log {
-    log_file="$script_name".log
+    log_file=brick_img.log
     echo "$(date) - $1" >> $log_file
 }
 
