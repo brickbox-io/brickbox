@@ -1,6 +1,7 @@
 ''' Tasks that are setup to run continiously in the background. '''
 
 from __future__ import absolute_import, unicode_literals
+from faulthandler import is_enabled
 
 from subprocess import Popen, PIPE
 import datetime
@@ -229,7 +230,7 @@ def host_cleanup():
     '''
     Ensures tempory issues are resolved.
     '''
-    hosts = HostFoundation.objects.all()
+    hosts = HostFoundation.objects.filter(is_enabled=True, is_ready=True)
 
     for host in hosts:
         cleanup_script = [

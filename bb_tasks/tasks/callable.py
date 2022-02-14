@@ -4,6 +4,7 @@ from __future__ import absolute_import, unicode_literals
 
 import json
 import subprocess
+from typing import final
 
 from django.contrib.sites.models import Site
 
@@ -28,20 +29,25 @@ def new_vm_subprocess(instance_id, root_pass):
     brick = VirtualBrick.objects.get(id=instance_id)
     host = brick.host
 
-    catch_clone_errors.apply_async((instance_id,), countdown=120, queue='ssh_queue')
-    remove_stale_clone.apply_async((instance_id,), countdown=360, queue='ssh_queue')
+    try:
+        gpu_xml = RentedGPU.objects.filter(virt_brick=brick)[0].gpu.xml
 
-    gpu_xml = RentedGPU.objects.filter(virt_brick=brick)[0].gpu.xml
+        new_vm_script = [
+                            f'{DIR}brick_connect.sh',
+                            f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
+                            'brick_img', f'{str(Site.objects.get_current().domain)}',
+                            f'{str(instance_id)}', f'{str(gpu_xml)}', f'{str(root_pass)}',
+                        ]
 
-    new_vm_script = [
-                        f'{DIR}brick_connect.sh',
-                        f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
-                        'brick_img', f'{str(Site.objects.get_current().domain)}',
-                        f'{str(instance_id)}', f'{str(gpu_xml)}', f'{str(root_pass)}',
-                    ]
+        with subprocess.Popen(new_vm_script) as script:
+            print(script)
 
-    with subprocess.Popen(new_vm_script) as script:
-        print(script)
+    except IndexError as err:
+        print(err)
+
+    finally:
+        catch_clone_errors.apply_async((instance_id,), countdown=120, queue='ssh_queue')
+        remove_stale_clone.apply_async((instance_id,), countdown=360, queue='ssh_queue')
 
 
 # -------------------------------- Shutdown VM ------------------------------- #
