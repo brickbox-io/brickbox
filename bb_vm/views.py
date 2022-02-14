@@ -44,7 +44,7 @@ def clone_img(request):
 
             return HttpResponse("No payment method provided.", status=200)
 
-    for gpu in GPU.objects.filter(model=selected_gpu):
+    for gpu in GPU.objects.filter(model=selected_gpu, host__is_ready=True):
         if RentedGPU.objects.filter(gpu=gpu).count() < 1:
             designated_gpu_xml = gpu.xml
 
