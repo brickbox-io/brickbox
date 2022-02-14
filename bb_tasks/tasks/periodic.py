@@ -229,7 +229,7 @@ def host_cleanup():
     '''
     Ensures tempory issues are resolved.
     '''
-    hosts = HostFoundation.objects.all()
+    hosts = HostFoundation.objects.filter(is_enabled=True, is_ready=True)
 
     for host in hosts:
         cleanup_script = [
