@@ -117,7 +117,7 @@ def reconnect_host(host):
     preperation_script = [
                             f'{DIR}brick_connect.sh',
                             f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
-                            'brick_prep', f'{str(Site.objects.get_current().domain)}',
+                            'host_prep', f'{str(Site.objects.get_current().domain)}',
                             'NONE', 'NONE', 'NONE'
                         ]
     if settings.DEBUG:
@@ -229,7 +229,7 @@ def host_cleanup():
     '''
     Ensures tempory issues are resolved.
     '''
-    hosts = HostFoundation.objects.all()
+    hosts = HostFoundation.objects.filter(is_enabled=True, is_ready=True)
 
     for host in hosts:
         cleanup_script = [
@@ -243,5 +243,5 @@ def host_cleanup():
             print(script)
 
     return {
-        'hosts':f'{hosts.values()}',
+        'hosts':f'{hosts}',
     }

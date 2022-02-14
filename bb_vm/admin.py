@@ -25,7 +25,8 @@ class GPUAdmin(admin.ModelAdmin):
     '''
     Admin configuration for GPU model.
     '''
-    list_display = ('id', 'host', 'model', 'pcie', 'device', 'rented')
+    list_display = ('id', 'host', 'model', 'pcie', 'device', 'is_enabled', 'rented')
+    readonly_fields = ('rented',)
 
 class RentedGPUAdmin(admin.ModelAdmin):
     '''
@@ -62,7 +63,7 @@ class VMLogAdmin(admin.ModelAdmin):
                        'message', 'command', 'command_output'
                       )
     search_fields = ('virt_brick',)
-    list_filter = ('host',)
+    list_filter = ('host', 'level',)
 
 
 admin.site.register(PortTunnel, PortTunnelAdmin)
