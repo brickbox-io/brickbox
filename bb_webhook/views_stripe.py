@@ -126,7 +126,9 @@ def invoice_event(request):
         invoice = event.data.object
         customer = UserProfile.objects.get(cus_id=invoice.customer)
 
-        bill, created = BillingHistory.objects.get_or_create(user = customer.user, invoice_id=invoice.id)
+        bill, created = BillingHistory.objects.get_or_create(
+                            user = customer.user, invoice_id=invoice.id
+                        )
         bill.status = 'paid'
         bill.invoice_link = invoice.invoice_pdf
 
