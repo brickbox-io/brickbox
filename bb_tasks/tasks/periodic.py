@@ -243,5 +243,5 @@ def host_cleanup():
             print(script)
 
     return {
-        'hosts':f'{hosts.values()}',
+        'hosts':f'{hosts}',
     }
