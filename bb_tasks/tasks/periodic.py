@@ -1,7 +1,6 @@
 ''' Tasks that are setup to run continiously in the background. '''
 
 from __future__ import absolute_import, unicode_literals
-from faulthandler import is_enabled
 
 from subprocess import Popen, PIPE
 import datetime

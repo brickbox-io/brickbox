@@ -4,7 +4,6 @@ from __future__ import absolute_import, unicode_literals
 
 import json
 import subprocess
-from typing import final
 
 from django.contrib.sites.models import Site
 
