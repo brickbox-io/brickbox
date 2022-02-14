@@ -54,7 +54,6 @@ def onboarding(request, host_serial):
 
 
 @csrf_exempt
-# @login_required
 def onboarding_pubkey(request, host_serial):
     '''
     Endpoint for onboarding a host.
@@ -82,7 +81,6 @@ def onboarding_pubkey(request, host_serial):
 
 
 @csrf_exempt
-# @login_required
 def onboarding_sshport(request, host_serial):
     '''
     Endpoint for the process of onboarding a new host.
