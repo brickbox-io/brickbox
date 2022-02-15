@@ -5,26 +5,21 @@ from django.http import HttpResponse
 
 from bb_public.models import EmailUpdateList
 
-# --------------------------------- Home Page -------------------------------- #
+# ------------------------------- Landing Page ------------------------------- #
 def landing(request):
     '''
     URL: brickbox.io
     '''
     return render(request, 'landing.html')
 
-
-def landing_ai(request):
-    '''
-    URL: brickbox.io
-    '''
-    return render(request, 'landing_ai.html')
-
+# -------------------------------- About Page -------------------------------- #
 def about(request):
     '''
     URL: brickbox.io/about
     '''
     return render(request, 'about.html')
 
+# ------------------------------- Contact Page ------------------------------- #
 def contact(request):
     '''
     URL: brickbox.io/contact
@@ -37,6 +32,7 @@ def landing_colo(request):
     '''
     return render(request, 'landing_colo.html')
 
+# -------------------------------- Legal Page -------------------------------- #
 def legal(request):
     '''
     URL: brickbox.io/legal
