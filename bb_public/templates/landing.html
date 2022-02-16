@@ -58,14 +58,14 @@
                                     <a href="{% url 'bb_public:ai_landing_page' %}">brickbox.io</a>
                                 </li>
                                 <li>
+                                    <a href="">Products</a>
+                                </li>
+                                <li>
+                                    <a href="#price">Pricing</a>
+                                </li>
+                                <li>
                                     <a href="https://knowledge.brickbox.io/">Knowledgebase</a>
                                 </li>
-                                <!-- <li>
-                                    <a href="">Products</a>
-                                </li> -->
-                                <!-- <li>
-                                    <a href="">Pricing</a>
-                                </li> -->
                             </ul>
 
                             {%  if user.is_authenticated %}
@@ -180,7 +180,8 @@
                             Share your journey, showcase your projects, discuss best practices, and learn faster
                             along with other data scientists and developers at the brickbox.io community.
                         </p>
-                        <button><a href="{% url 'bb_accounts:register' %}">Sign Up</a></button>
+                        <!-- <button><a href="{% url 'bb_accounts:register' %}">Sign Up</a></button> -->
+                        <button><a href="https://knowledge.brickbox.io/">Knowledgebase</a></button>
                     </div>
                     <div class="about-image-container">
                         <img src="{% static 'images/placeholder-2.jpg' %}" alt="" />
@@ -235,7 +236,7 @@
                 </div>
             </div>
         </section>
-        <div class="ready-to-get-started" style="background-image: url();">
+        <div class="ready-to-get-started" style="background-image: url();" name="price">
             <img class="demo-bg" src="{% static 'images/hi-def-brickbox.png' %}" alt="">
             <div class="content-container rtgs-content">
                 <h2>
@@ -245,6 +246,7 @@
             </div>
         </div>
         <section class="products">
+            <a name="price"></a>
             <div class="product-container">
                 <div class="product-image-container">
                     <img src="{% static 'images/single.png' %}" alt="" />
