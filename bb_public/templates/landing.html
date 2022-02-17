@@ -32,6 +32,7 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{% static 'brickbox_icon/ms-icon-144x144.png' %}">
     <meta name="theme-color" content="#ffffff">
+    <script src="https://kit.fontawesome.com/4378fd235d.js" crossorigin="anonymous"></script>
 
     <!-- START - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QZQPQ7EV5P"></script>
@@ -293,25 +294,30 @@
                             <input type="email" name="email" id="email" class="email" placeholder="Your Email Address" />
                             <input class="submit" type="submit" value="Submit" onclick="SubmitEmail()" />
                         </form>
+                        <ul class="icons">
+                            <li><a href="https://twitter.com/brickbox_io"><i class="fa-brands fa-twitter fa-lg"></i></a></li>
+                            <li><a href="https://www.facebook.com/brickboxio"><i class="fa-brands fa-facebook fa-lg"></i></a></li>
+                            <li><a href="https://www.linkedin.com/company/brickbox-io/"><i class="fa-brands fa-linkedin fa-lg"></i></a></li>
+                            <li><a href="https://www.instagram.com/brickbox.io/"><i class="fa-brands fa-instagram fa-lg"></i></a></li>
+                            <li><a href="https://github.com/brickbox-io"><i class="fa-brands fa-github fa-lg"></i></a></li>
+                            <li><a href="mailto: info@brickbox.io" target="_blank"><i class="fa-solid fa-envelope fa-lg"></i></a></li>
+                        </ul>
                     </div>
 
-                    <ul class="icons">
-                        <li><a href="https://twitter.com/brickbox_io" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
-                        <li><a href="https://www.facebook.com/brickboxio" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-                        <li><a href="https://www.linkedin.com/company/brickbox-io/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-                        <li><a href="https://www.instagram.com/brickbox.io/" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-                        <li><a href="https://github.com/brickbox-io" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-                        <li><a href="mailto: info@brickbox.io" target="_blank" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
-                    </ul>
 
-                    <ul class="copyright">
-                        <li>&copy; {% now "Y" %} brickbox.io | All rights reserved. | <a href="{% url 'bb_public:legal_page' %}" target="_blank" style="text-decoration:none">Legal</a></li>
-                    </ul>
+                    
+
+                    
 
                 </div>
+               
             </div>
         </footer>
-        <div class="bottom"></div>
+        <div class="bottom">
+            <ul class="copyright">
+                <li>&copy; {% now "Y" %} brickbox.io | All rights reserved. | <a href="{% url 'bb_public:legal_page' %}" target="_blank" style="text-decoration:none">Legal</a></li>
+            </ul>
+        </div>
     </div>
 
     <script>

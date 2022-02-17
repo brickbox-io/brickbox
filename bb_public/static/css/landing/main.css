@@ -631,10 +631,31 @@ footer {
 	width: 100%;
 }
 
+.form-container ul {
+	display: flex;
+}
+
+.form-container li {
+	padding-right: 7px;
+}
+
+.form-title {
+	margin-bottom: 10px;
+}
+
+.form-description {
+	margin-bottom: 10px;
+}
+
 .email {
 	padding: 9px;
 	width: 75%;
 	border-radius: 5px;
+	margin-bottom: 10px;
+}
+
+.submit {
+	margin-bottom: 10px;
 }
 
 .email::placeholder {
@@ -646,6 +667,11 @@ footer {
     height: auto !important;
     height: 200px;
 	background-color: #1D1F28;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+	font-size: 12px;
 }
 
 
