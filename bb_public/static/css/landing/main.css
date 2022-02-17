@@ -47,14 +47,9 @@ a {
 }
 
 a:hover {
-	color: pink;
+	color: #CB4154;
 	text-decoration: none;
 	cursor: pointer;
-}
-
-a:visited {
-	color: white;
-	text-decoration: none;
 }
 
 button {
