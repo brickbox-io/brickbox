@@ -8,6 +8,27 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
+/* Works on Firefox */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: #CB4154 #1D1F28;
+  }
+  
+  /* Works on Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+	width: 12px;
+  }
+  
+  *::-webkit-scrollbar-track {
+	background: #1D1F28;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+	background-color: #CB4154;
+	border-radius: 10px;
+	border: 3px solid #1D1F28;
+  }
+
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 pre, a, abbr, acronym, address, big, cite,
@@ -52,6 +73,11 @@ a:hover {
 	cursor: pointer;
 }
 
+a img {
+	width: 30px;
+	padding-right: 5px;
+}
+
 button {
 	color: white;
     background-color: #CB4154;
@@ -59,6 +85,7 @@ button {
     border: none;
     font-size: 14px;
     font-weight: 700;
+	height: 40px;
     padding: 10px 15px;
 }
 
@@ -200,6 +227,13 @@ nav {
 
 .header-links li {
 	padding: 10px;
+	display: flex;
+	align-items: center;
+}
+
+.header-links a {
+	display: flex;
+	align-items: center;
 }
 
 .header-content h1 span {
@@ -249,7 +283,7 @@ nav {
 	}
   }
 
-  @media only screen and (max-width: 603px) {
+  @media only screen and (max-width: 669px) {
 
 	.mobile-icon {
 		display: block;
@@ -299,7 +333,7 @@ nav {
 	padding: 14px 16px;
 	text-decoration: none;
 	font-size: 17px;
-	display: block;
+	display: flex;
 	transition-duration: 1s;
 	}
 
@@ -607,6 +641,11 @@ footer {
 
 .footer-links li {
 	padding-top: 15px;
+}
+
+.footer-links a {
+	display: flex;
+	align-items: center;
 }
 
 .form-container {
