@@ -284,6 +284,9 @@
                             <li>
                                 <a href="https://knowledge.brickbox.io/">Knowledgebase</a>
                             </li>
+                            <li>
+                                <button id="contact">Contact</button></li>
+                            </li>
                             <!-- <li>
                                 <a href="">Products</a>
                             </li>
@@ -321,9 +324,52 @@
         </footer>
         <div class="bottom">
             <ul class="copyright">
-                <li>&copy; {% now "Y" %} brickbox.io | All rights reserved. | <a href="{% url 'bb_public:legal_page' %}" target="_blank" style="text-decoration:none">Legal</a></li>
+                <li>&copy; {% now "Y" %} brickbox.io | All rights reserved. | <button id="legal">Legal</button></li>
             </ul>
         </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="legalModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+        <span class="close">&times;</span>
+        {% include "legal.html" %}
+        </div>
+    
+    </div>
+
+    <div id="contactModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+        <span class="contactclose">&times;</span>
+        <div class="form-container">
+            <h3>Contact us</h3>
+            <form id="fcf-form-id" class="fcf-form-class" method="post" action="{% static 'contact.php' %}"">
+                <label for="Name" class="fcf-label">Your name</label>
+                <div class="fcf-input-group">
+                    <input type="text" id="Name" name="Name" class="fcf-form-control" required>
+                </div>
+            <div class="fcf-form-group">
+                <label for="Email" class="fcf-label">Your email address</label>
+                <div class="fcf-input-group">
+                    <input type="email" id="Email" name="Email" class="fcf-form-control" required>
+                </div>
+            <div class="fcf-form-group">
+                <label for="Message" class="fcf-label">Your message</label>
+                <div class="fcf-input-group">
+                    <textarea id="Message" name="Message" class="fcf-form-control" rows="6" maxlength="3000" required></textarea>
+                </div>
+            </div>
+            <div class="fcf-form-group">
+                <button type="submit" id="fcf-button" class="fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block">Send</button>
+            </div>
+            </div>
+        </div>
+        
+    
     </div>
 
     <script>
@@ -335,6 +381,58 @@
             } else {
                 x.style.display = "flex";
             }
+        }
+
+        // Get the modal
+        var legalmodal = document.getElementById("legalModal");
+
+        // Get the button that opens the modal
+        var legalbtn = document.getElementById("legal");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on the button, open the modal
+        legalbtn.onclick = function() {
+        legalmodal.style.display = "flex";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+        legalmodal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+        if (event.target == legalmodal) {
+            legalmodal.style.display = "none";
+        }
+        }
+
+         // Get the modal
+         var contactmodal = document.getElementById("contactModal");
+
+        // Get the button that opens the modal
+        var contactbtn = document.getElementById("contact");
+
+        // Get the <span> element that closes the modal
+        var cspan = document.getElementsByClassName("contactclose")[0];
+
+        // When the user clicks on the button, open the modal
+        contactbtn.onclick = function() {
+        contactmodal.style.display = "flex";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        cspan.onclick = function() {
+        contactmodal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+        if (event.target == contactmodal) {
+            contactmodal.style.display = "none";
+        }
         }
     </script>
 

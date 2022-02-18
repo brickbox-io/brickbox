@@ -709,10 +709,149 @@ footer {
 	display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
 	font-size: 12px;
 }
 
+.bottom ul {
+	transform: translateY(20px);
+}
+
+#legal {
+	background-color: #0000;
+	padding: 0;
+	font-size: 12px;
+	font-weight: 400;
+	cursor: pointer;
+}
+
+#contact {
+	background-color: #0000;
+	padding: 0;
+	font-size: 16px;
+	font-weight: 400;
+	cursor: pointer;
+	height: 0;
+}
+
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: none; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	justify-content: center;
+	align-items: center;
+  }
+
+   /* Modal Content/Box */
+   .modal-content {
+	background-color: #1D1F28;
+	color: white;
+	 /* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid #888;
+	border-radius: 5px;
+	width: 80%; 
+	height: 80%;
+
+	overflow: auto;/* Could be more or less, depending on screen size */
+	animation-name: animatetop;
+  	animation-duration: 0.4s
+  }
+  
+  /* Modal Content/Box */
+  #contactModal .modal-content {
+	background-color: #1D1F28;
+	color: white;
+	 /* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid #888;
+	border-radius: 5px;
+	width: 80%; 
+	height: 80%;
+	max-width: 500px;
+	max-height: 400px;
+
+	overflow: auto;/* Could be more or less, depending on screen size */
+	animation-name: animatetop;
+  	animation-duration: 0.4s
+  }
+
+  .modal-content .form-container {
+	  display: flex;
+	  flex-wrap: wrap;
+	  justify-content: center;
+	  align-items: center;
+	  width: 100%;
+  }
+
+  .modal-content .form-container h3 {
+	text-align: center;
+	width: 100%;
+	padding-bottom: 20px;
+}
+
+  .modal-content .form-container form {
+	  display: flex;
+	  flex-wrap: wrap;
+	  max-width: 500px;
+	  flex-direction: column;
+  }
+
+  .modal-content .form-container form input {
+	width: 100%;
+}
+
+.modal-content .form-container form textarea {
+	width: 100%;
+}
+
+  .modal-content .form-container > * {
+	width: 100%;
+}
+
+  .modal-content 
+  
+  /* The Close Button */
+  .close {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+  }
+
+  .contactclose {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+  }
+  
+  .contactclose:hover,
+  .contactclose:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+  }
+
+
+  @keyframes animatetop {
+	from {top: -300px; opacity: 0}
+	to {top: 0; opacity: 1}
+  }
 
 
 
