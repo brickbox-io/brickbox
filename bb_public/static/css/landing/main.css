@@ -774,9 +774,9 @@ footer {
 	border: 1px solid #888;
 	border-radius: 5px;
 	width: 80%; 
-	height: 80%;
+	height: 90%;
 	max-width: 500px;
-	max-height: 400px;
+	max-height: 475px;
 
 	overflow: auto;/* Could be more or less, depending on screen size */
 	animation-name: animatetop;
@@ -800,20 +800,30 @@ footer {
   .modal-content .form-container form {
 	  display: flex;
 	  flex-wrap: wrap;
-	  max-width: 500px;
+	  max-width: 550px;
 	  flex-direction: column;
   }
 
   .modal-content .form-container form input {
-	width: 100%;
+	padding: 9px;
+	border-radius: 5px;
+	font-size: 14px;
+	width: 95%;
+}
+
+.modal-content .form-container div {
+	padding-bottom: 7px;
 }
 
 .modal-content .form-container form textarea {
-	width: 100%;
+	padding: 9px;
+	border-radius: 5px;
+	font-size: 17px;
+	width: 95%;
 }
 
   .modal-content .form-container > * {
-	width: 100%;
+	width: 95%;
 }
 
   .modal-content 
