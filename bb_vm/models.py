@@ -122,6 +122,7 @@ class VirtualBrick(models.Model):
                 )
 
     img_cloned = models.BooleanField(default = False) # True when img clone verified
+    is_booting = models.BooleanField(default = True) # True when VM is booting
     is_rebooting = models.BooleanField(default = False)
     is_on = models.BooleanField(default = False)
 

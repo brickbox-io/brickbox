@@ -34,6 +34,9 @@ class UserProfile(models.Model):
                                     related_name='clients_owned'
                                     )
 
+    # SSH
+    keys = models.ManyToManyField('SSHKey', through='SSHKeyOwner', related_name='keys_owned')
+
     # Flags
     brick_access = models.BooleanField(default=False)   # Brcik VM Access
     is_colo = models.BooleanField(default=False)        # "Investor"
@@ -58,6 +61,21 @@ class UserProfile(models.Model):
     class Meta:
         verbose_name_plural = "User Profiles"
         app_label='bb_data'
+
+# --------------------------------- SSH Keys --------------------------------- #
+class SSHKey(models.Model):
+    '''
+    SSH Keys for users.
+    '''
+    name = models.CharField(max_length=100, blank=True,)
+    pub_key = models.TextField(max_length=5000, unique=True)
+
+class SSHKeyOwner(models.Model):
+    '''
+    The owner of a SSH Key.
+    '''
+    profile = models.ForeignKey(UserProfile, related_name='profile', on_delete=models.CASCADE)
+    key = models.ForeignKey(SSHKey, related_name='key', on_delete=models.CASCADE)
 
 # ---------------------------------- Client ---------------------------------- #
 class ColocationClient(models.Model):
