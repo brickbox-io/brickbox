@@ -1,0 +1,447 @@
+<!DOCTYPE HTML>
+
+{% load static %}
+{% load compress %}
+
+<html>
+
+<head>
+    <title>brickbox.io</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="{% static 'css/landing/main.css' %}" />
+    <noscript>
+        <link rel="stylesheet" href="{% static 'css/landing/noscript.css' %}" />
+    </noscript>
+
+    <link rel="shortcut icon" type="image/png" href="{% static 'brickbox_icon/favicon.ico' %}" />
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'brickbox_icon/apple-icon-57x57.png' %}" />
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'brickbox_icon/apple-icon-60x60.png' %}" />
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'brickbox_icon/apple-icon-72x72.png' %}" />
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'brickbox_icon/apple-icon-76x76.png' %}" />
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'brickbox_icon/apple-icon-114x114.png' %}" />
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'brickbox_icon/apple-icon-120x120.png' %}" />
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'brickbox_icon/apple-icon-144x144.png' %}" />
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'brickbox_icon/apple-icon-152x152.png' %}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'brickbox_icon/apple-icon-180x180.png' %}" />
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'brickbox_icon/android-icon-192x192.png' %}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'brickbox_icon/favicon-32x32.png' %}" />
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'brickbox_icon/favicon-96x96.png' %}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'brickbox_icon/favicon-16x16.png' %}" />
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{% static 'brickbox_icon/ms-icon-144x144.png' %}">
+    <meta name="theme-color" content="#ffffff">
+    <script src="https://kit.fontawesome.com/4378fd235d.js" crossorigin="anonymous"></script>
+
+    <!-- START - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QZQPQ7EV5P"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-QZQPQ7EV5P', { cookie_flags: 'SameSite=None;Secure' });
+    </script>
+    <!-- END - Google Analytics -->
+
+    <script id="mcjs">!function (c, h, i, m, p) { m = c.createElement(h), p = c.getElementsByTagName(h)[0], m.async = 1, m.src = i, p.parentNode.insertBefore(m, p) }(document, "script", "https://chimpstatic.com/mcjs-connected/js/users/a626d38bfb20209717cccbbe3/96eabc780208eb0d6c7af5c15.js");</script>
+</head>
+
+<body class="is-preload">
+    <div class="main-container">
+        <header>
+            <div class="content-container">
+                <nav>
+                    <div class="nav-container">
+                        <div class="header-links" id="nav-links">
+                            <ul>
+                                <li style="font-weight: 700;">
+                                    <a href="{% url 'bb_public:landing_page' %}">
+                                        <img src="{% static 'images/brickbox-transparent.png' %}" alt="" />
+                                        brickbox.io
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">Products</a>
+                                </li>
+                                <li>
+                                    <a href="#price">Pricing</a>
+                                </li>
+                                <li>
+                                    <a href="https://knowledge.brickbox.io/">Knowledgebase</a>
+                                </li>
+                            </ul>
+
+                            {%  if user.is_authenticated %}
+                            <button><a href="{% url 'django_dash_black:dash' %}">Log In</a></button>
+                            {% else %}
+                            <button><a href="{% url 'bb_accounts:register' %}">Sign Up</a></button>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                    <a href="javascript:void(0);" class="icon mobile-icon" onclick="myFunction()">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </nav>
+                <div class="header-content-container">
+                    <div class="header-content">
+                        <h1>
+                            GPU Rental<br />
+                            <span>marketplace</span><br />
+                            by<br />
+                            brickbox.io
+                        </h1>
+                        <div class="header-image-container2">
+                            <img src="{% static 'images/hi-def-brickbox.png' %}" alt="" />
+                        </div>
+                        <p>The GPU computing services you need, with accessible pricing, developer-friendly features, and scalability for deep learning and AI.</p>
+                        <div class="header-button-container">
+                            <button>Learn more</button>
+                        </div>
+                        <div class="header-statistics">
+                            <div class="static-container">
+                                <span class="statistic">100+</span>
+                                <span class="stat-description">GPUs</span>
+                            </div>
+                            <div class="static-container">
+                                <span class="statistic">>1G</span>
+                                <span class="stat-description">Transfer Speeds</span>
+                            </div>
+                            <div class="static-container">
+                                <span class="statistic">98%</span>
+                                <span class="stat-description">Uptime</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header-image-container">
+                        <img src="{% static 'images/hi-def-brickbox.png' %}" alt="" />
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section class="about">
+            <div class="content-container">
+                <div class="about-content-container">
+                    <div class="about-content">
+                        <h2>
+                            Humanity’s Last <br />
+                            Invention
+                        </h2>
+                        <div class="about-image-container2">
+                            <img src="{% static 'images/placeholder-2.jpg' %}" alt="" />
+                        </div>
+                        <!-- <span><strong>"The future is already here -- it's just not very evenly distributed." </strong></span> -->
+                        <p>
+                            At brickbox.io, we believe that, like fire or electricity, Artificial Intelligence
+                            is the next major catalyst of humanity's transformation. By democratizing and
+                            distributing processing power at affordable rates around the globe, we are providing
+                            the tools and infrastructure to the architects of the future.
+                        </p>
+                        <p>
+                            Using brickbox.io's infrastructure, our clients are laying the foundation for the future.
+                        </p>
+                    </div>
+                    <div class="about-image-container">
+                        <img src="{% static 'images/placeholder-2.jpg' %}" alt="" />
+                    </div>
+                </div>
+                <div class="about-content-container">
+                    <div class="about-image-container">
+                        <img src="{% static 'images/place-holder-img.jpg' %}" alt="" />
+                    </div>
+                    <div class="about-content">
+                        <h2>
+                            Hardware Dedicated<br />
+                            to Your Needs
+                        </h2>
+                        <div class="about-image-container2">
+                            <img src="{% static 'images/place-holder-img.jpg' %}" alt="" />
+                        </div>
+                        <!-- <span><strong>Hardware Dedicated to Your Needs</strong></span> -->
+                        <p>
+                            The infrastructure at brickbox.io is built with machine learning in mind, therefore,
+                            each brick’s resources are dedicated to YOU and tailored to your needs ensuring all
+                            of the libraries you know and love, like TensorFlow and PyTorch, are readily available.
+                        </p>
+                    </div>
+                </div>
+                <div class="about-content-container">
+                    <div class="about-content">
+                        <h2>
+                            Change the<br />
+                            World With Us
+                        </h2>
+                        <div class="about-image-container2">
+                            <img src="{% static 'images/placeholder-3.jpg' %}" alt="" />
+                        </div>
+                        <!-- <span><strong>Humanity's Last Invention</strong></span> -->
+                        <p>
+                            With a robust API, command line tools (coming soon!), and documentation; development
+                            at brickbox.io is easier and faster than ever.
+                        </p>
+                        <p>
+                            Share your journey, showcase your projects, discuss best practices, and learn faster
+                            along with other data scientists and developers at the brickbox.io community.
+                        </p>
+                        <!-- <button><a href="{% url 'bb_accounts:register' %}">Sign Up</a></button> -->
+                        <button><a href="https://knowledge.brickbox.io/">Knowledgebase</a></button>
+                    </div>
+                    <div class="about-image-container">
+                        <img src="{% static 'images/placeholder-3.jpg' %}" alt="" />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="customer-reviews">
+            <div class="content-container customer-reviews-content">
+                <div class="customer-reviews-title">
+                    <h2>Compatible with</h2>
+                </div>
+                <div class="customer-review-container">
+                    <img src="{% static 'images/TF.png' %}" alt="" />
+                    <!-- <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam in arcu cursus euismod. Id interdum velit laoreet id donec ultrices tincidunt.
+                    </p>
+                    <div class="customer-info">
+                        <img src="{% static 'images/placeholder-2.jpg' %}" alt="" />
+                        <span class="customer-name"><strong style="font-weight: 700;">John Smith</strong></span>
+                    </div> -->
+                </div>
+                <div class="customer-review-container">
+                    <img src="{% static 'images/pytorch.png' %}" alt="" />
+                    <!-- <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam in arcu cursus euismod. Id interdum velit laoreet id donec ultrices tincidunt.
+                    </p>
+                    <div class="customer-info">
+                        <img src="{% static 'images/placeholder-2.jpg' %}" alt="" />
+                        <span class="customer-name"><strong style="font-weight: 700;">John Smith</strong></span>
+                    </div> -->
+                </div>
+                <div class="customer-review-container">
+                    <img src="{% static 'images/keras.png' %}" alt="" />
+                    <!-- <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam in arcu cursus euismod. Id interdum velit laoreet id donec ultrices tincidunt.
+                    </p>
+                    <div class="customer-info">
+                        <img src="{% static 'images/placeholder-2.jpg' %}" alt="" />
+                        <span class="customer-name"><strong style="font-weight: 700;">John Smith</strong></span>
+                    </div> -->
+                </div>
+                <div class="customer-review-container">
+                    <img src="{% static 'images/jupyter.png' %}" alt="" />
+                    <!-- <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam in arcu cursus euismod. Id interdum velit laoreet id donec ultrices tincidunt.
+                    </p>
+                    <div class="customer-info">
+                        <img src="{% static 'images/placeholder-2.jpg' %}" alt="" />
+                        <span class="customer-name"><strong style="font-weight: 700;">John Smith</strong></span>
+                    </div> -->
+                </div>
+            </div>
+        </section>
+        <div class="ready-to-get-started" style="background-image: url();" name="price">
+            <img class="demo-bg" src="{% static 'images/hi-def-brickbox.png' %}" alt="">
+            <div class="content-container rtgs-content">
+                <h2>
+                    Ready to <br />
+                    get started?
+                </h2>
+            </div>
+        </div>
+        <section class="products">
+            <a name="price"></a>
+            <div class="product-container">
+                <div class="product-image-container">
+                    <img src="{% static 'images/single.png' %}" alt="" />
+                </div>
+                <h3 class="price">$0.50/hr</h3>
+                <span class="product-name"><strong style="font-weight: 700;">GPU:</strong> RTX 3070</span>
+                <!-- <span class="product-description">4x vCPU, 12GB RAM, 25GB SSD</span> -->
+                <button><a href="{% url 'bb_accounts:register' %}">Get Started</a></button>
+            </div>
+            <div class="product-container">
+                <div class="product-image-container">
+                    <img src="{% static 'images/double.png' %}" alt="" />
+                </div>
+                <h3 class="price">$0.75/hr</h3>
+                <span class="product-name"><strong style="font-weight: 700;">GPU:</strong> RTX 3090</span>
+                <!-- <span class="product-description">4x vCPU, 12GB RAM, 25GB SSD</span> -->
+                <button><a href="{% url 'bb_accounts:register' %}">Get Started</a></button>
+            </div>
+        </section>
+        <footer>
+            <div class="content-container footer-content-conatiner">
+                <div class="footer-content">
+                    <div class="footer-links">
+                        <ul>
+                            <li style="font-weight: 700;">
+                                <a href="{% url 'bb_public:landing_page' %}">
+                                    <img src="{% static 'images/brickbox-transparent.png' %}" alt="" />
+                                    brickbox.io
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://knowledge.brickbox.io/">Knowledgebase</a>
+                            </li>
+                            <li>
+                                <button id="contact">Contact</button></li>
+                            </li>
+                            <!-- <li>
+                                <a href="">Products</a>
+                            </li>
+                            <li>
+                                <a href="">Pricing</a>
+                            </li> -->
+                        </ul>
+                    </div>
+                    <div class="form-container">
+
+                        <span class="form-title"><strong style="font-weight: 700; font-size: 18px;">Build the future</strong></span>
+                        <span class="form-description">Sign up below to be the first to receive news and updates!</span>
+                        <form>
+                            <input type="email" name="email" id="email" class="email" placeholder="Your Email Address" />
+                            <input class="submit" type="submit" value="Submit" onclick="SubmitEmail()" />
+                        </form>
+                        <ul class="icons">
+                            <li><a href="https://twitter.com/brickbox_io"><i class="fa-brands fa-twitter fa-lg"></i></a></li>
+                            <li><a href="https://www.facebook.com/brickboxio"><i class="fa-brands fa-facebook fa-lg"></i></a></li>
+                            <li><a href="https://www.linkedin.com/company/brickbox-io/"><i class="fa-brands fa-linkedin fa-lg"></i></a></li>
+                            <li><a href="https://www.instagram.com/brickbox.io/"><i class="fa-brands fa-instagram fa-lg"></i></a></li>
+                            <li><a href="https://github.com/brickbox-io"><i class="fa-brands fa-github fa-lg"></i></a></li>
+                            <li><a href="mailto: info@brickbox.io" target="_blank"><i class="fa-solid fa-envelope fa-lg"></i></a></li>
+                        </ul>
+                    </div>
+
+
+
+
+
+
+                </div>
+
+            </div>
+        </footer>
+        <div class="bottom">
+            <ul class="copyright">
+                <li>&copy; {% now "Y" %} brickbox.io | All rights reserved. | <button id="legal">Legal</button></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="legalModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+        <span class="close">&times;</span>
+        {% include "legal.html" %}
+        </div>
+
+    </div>
+
+    <div id="contactModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+        <span class="contactclose">&times;</span>
+        <div class="form-container">
+            <h3>Contact us</h3>
+            <form id="fcf-form-id" class="fcf-form-class" method="post">
+                <label for="Name" class="fcf-label">Your name</label>
+                <div class="fcf-input-group">
+                    <input type="text" id="Name" name="Name" class="fcf-form-control" required>
+                </div>
+            <div class="fcf-form-group">
+                <label for="Email" class="fcf-label">Your email address</label>
+                <div class="fcf-input-group">
+                    <input type="email" id="Email" name="Email" class="fcf-form-control" required>
+                </div>
+            <div class="fcf-form-group">
+                <label for="Message" class="fcf-label">Your message</label>
+                <div class="fcf-input-group">
+                    <textarea id="Message" name="Message" class="fcf-form-control" rows="6" maxlength="3000" required></textarea>
+                </div>
+            </div>
+            <div class="fcf-form-group">
+                <button type="submit" id="fcf-button" class="fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block">Send</button>
+            </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script>
+        function myFunction() {
+            const x = document.getElementById("nav-links");
+            if (x.style.display === "flex") {
+                x.style.display = "none";
+
+            } else {
+                x.style.display = "flex";
+            }
+        }
+
+        // Get the modal
+        var legalmodal = document.getElementById("legalModal");
+
+        // Get the button that opens the modal
+        var legalbtn = document.getElementById("legal");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on the button, open the modal
+        legalbtn.onclick = function() {
+        legalmodal.style.display = "flex";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+        legalmodal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+        if (event.target == legalmodal) {
+            legalmodal.style.display = "none";
+        }
+        }
+
+         // Get the modal
+         var contactmodal = document.getElementById("contactModal");
+
+        // Get the button that opens the modal
+        var contactbtn = document.getElementById("contact");
+
+        // Get the <span> element that closes the modal
+        var cspan = document.getElementsByClassName("contactclose")[0];
+
+        // When the user clicks on the button, open the modal
+        contactbtn.onclick = function() {
+        contactmodal.style.display = "flex";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        cspan.onclick = function() {
+        contactmodal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+        if (event.target == contactmodal) {
+            contactmodal.style.display = "none";
+        }
+        }
+    </script>
+
+    <script src="{% static 'js/landing.js' %}"></script>
+
+    {% compress js inline %}
+    <script src="{% static 'js/csrf.js' %}"></script>
+    {% endcompress %}
+
+</body>
+
+</html>

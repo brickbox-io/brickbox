@@ -1,56 +1,114 @@
-{% extends 'base.html' %}
+{% extends 'layouts/base.html' %}
 
 {% load static %}
 
 {% load socialaccount %}
 
-{% block title %}Login | brickbox.io{% endblock %}
-{% block menu_title %}Login{% endblock %}
+{% block title %} Login {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+<link href="/static/css/register.css" rel="stylesheet" />
+{% endblock stylesheets %}
 
 {% block body_class %}is-preload{% endblock %}
 
-{% block content %}
-<!-- Main -->
-<article id="main">
-    <header>
-        <h2>Dashboard</h2>
-    </header>
-    <section class="wrapper style5">
-        <div class="inner">
+{% block login %}
+
+<div class="row justify-content-center">
+    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-6">
+        <div class="card">
+
+            <div class="card-header">
+
+                <h5 class="title" style="text-align:center;">Login</h5>
+
+                <h6 class="card-category" style="text-align:center;">
+                    Another brick in the wall.
+                </h6>
+
+            </div>
 
             <form id="login-form" method="post" action="{% url 'bb_accounts:login' %}">
-                {% csrf_token %}
 
-                <h3>Enter your username and password.</h3>
-                <!-- <div>
-								    <label for="username">Username:</label>
-								    <input type="text" id="username" name="username">
-								</div> -->
-                {{ form.non_field_errors }}
-                <div class="fieldWrapper">
-                    {{ form.username.errors }}
-                    <label for="{{ form.username.id_for_label }}">Username:</label>
-                    {{ form.username }}
-                </div>
+                <div class="card-body">
 
-                <!-- <div>
-                        <label for="pass">Password:</label>
-                        <input type="password" id="pass" name="password" minlength="8" required>
+                    <!-- ------------------------- START - Google Auth ------------------------- -->
+                    <!-- <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <a href="{% provider_login_url 'google' %}">Login With Google</a>
+                            </div>
+                        </div>
                     </div> -->
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <div id="g_id_onload" data-client_id="918414840239-qljh31euklmcem5ec7s72a726r3aofsr.apps.googleusercontent.com" data-login_uri="/tokensignin/" data-auto_prompt="false">
+                                </div>
+                                <div class="g_id_signin" data-type="standard" data-size="large" data-theme="filled_black" data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- -------------------------- END - Google Auth -------------------------- -->
 
-                <div class="fieldWrapper">
-                    {{ form.password.errors }}
-                    <label for="{{ form.password.id_for_label }}">Password:</label>
-                    {{ form.password }}
-                </div>
 
-                <br>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group" style="text-align: center;">
+                                OR
+                            </div>
+                        </div>
+                    </div>
 
-                <input type="submit" value="Log In"> or <a href="{% provider_login_url 'google' %}">Login With Google</a>
+                    {% csrf_token %}
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+
+                                {{ form.non_field_errors }}
+                                <div class="fieldWrapper">
+                                    {{ form.username.errors }}
+                                    <label for="{{ form.username.id_for_label }}">Email</label>
+                                    <input type="text" name="username" autofocus autocapitalize="none" autocomplete="username" maxlength="150" class="form-control" id="id_username" placeholder="Email" required>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+
+                                <div class="fieldWrapper">
+                                    {{ form.password.errors }}
+                                    <label for="{{ form.password.id_for_label }}">Password</label>
+                                    <input type="password" name="password" autocomplete="current-password" required id="id_password" placeholder="Password" class="form-control">
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="card-footer" style="text-align: center;">
+                        <button type="submit" value="Log In" name="login" class="btn btn-fill btn-primary">Login</button>
+                        <br><br>
+                        Don't have an account? <a href="{% url 'bb_accounts:register' %}" class="text-primary">Register</a>
+                    </div>
+
             </form>
+
         </div>
+    </div>
+</div>
 
-    </section>
-</article>
 
-{% endblock %}
+
+
+{% endblock login %}
