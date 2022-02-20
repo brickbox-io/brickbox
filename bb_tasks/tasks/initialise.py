@@ -121,7 +121,19 @@ def remove_stale_clone(instance_id):
         if brick.ssh_port is None and brick.is_on is False:
             VirtualBrickOwner.objects.filter(virt_brick=instance_id).delete()
             brick.delete()
-            destroy_vm_subprocess(instance_id)
+
+            brick = VirtualBrick.objects.get(id=instance_id)
+            host = brick.host
+
+            destroy_vm_script = [
+                        f'{DIR}brick_connect.sh',
+                        f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
+                        'brick_destroy', f'{str(Site.objects.get_current().domain)}',
+                        f'{str(instance_id)}',
+                    ]
+
+            with subprocess.Popen(destroy_vm_script) as script:
+                print(script)
 
         return True
 

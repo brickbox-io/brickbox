@@ -64,10 +64,16 @@ class UserProfile(models.Model):
 
 # --------------------------------- SSH Keys --------------------------------- #
 class SSHKey(models.Model):
+    '''
+    SSH Keys for users.
+    '''
     name = models.CharField(max_length=100, blank=True,)
     pub_key = models.TextField(max_length=5000, unique=True)
 
 class SSHKeyOwner(models.Model):
+    '''
+    The owner of a SSH Key.
+    '''
     profile = models.ForeignKey(UserProfile, related_name='profile', on_delete=models.CASCADE)
     key = models.ForeignKey(SSHKey, related_name='key', on_delete=models.CASCADE)
 
