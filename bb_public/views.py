@@ -26,12 +26,6 @@ def contact(request):
     '''
     return render(request, 'contact.html')
 
-def landing_colo(request):
-    '''
-    URL: brickbox.io/colo
-    '''
-    return render(request, 'landing_colo.html')
-
 # -------------------------------- Legal Page -------------------------------- #
 def legal(request):
     '''
