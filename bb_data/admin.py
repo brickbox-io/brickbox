@@ -3,9 +3,10 @@
 from django.contrib import admin
 
 from bb_data.models import (
-    UserProfile, ColocationClient, CryptoSnapshot, FiatSnapshot,
+    UserProfile, SSHKey, SSHKeyOwner,
+    ColocationClient, CryptoSnapshot, FiatSnapshot,
     ColocationClientOwner, CryptoPayout, FiatPayout,
-    PaymentMethod, PaymentMethodOwner, ResourceRates, ResourceTimeTracking, BillingHistory
+    PaymentMethod, PaymentMethodOwner, ResourceRates, ResourceTimeTracking, BillingHistory,
 )
 
 
@@ -63,6 +64,8 @@ class BillingHistoryAdmin(admin.ModelAdmin):
     list_display = ('user', 'date', 'invoice_link', 'invoice_id',)
 
 admin.site.register(UserProfile)
+admin.site.register(SSHKey)
+admin.site.register(SSHKeyOwner)
 admin.site.register(ColocationClient)
 admin.site.register(ColocationClientOwner, ColocationClientOwnerAdmin)
 admin.site.register(CryptoSnapshot, CryptoSnapshotAdmin)

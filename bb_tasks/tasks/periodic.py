@@ -2,6 +2,7 @@
 
 from __future__ import absolute_import, unicode_literals
 
+import subprocess
 from subprocess import Popen, PIPE
 import datetime
 from dateutil.relativedelta import relativedelta
@@ -78,13 +79,22 @@ def verify_brick_connectivity():
 
                         VirtualBrick.objects.filter(
                             id=brick.id
-                        ).update(is_rebooting=False)
+                        ).update(is_rebooting=False, is_booting=False)
                     elif not port_result and brick.is_online:
                         PortTunnel.objects.filter(
                             port_number=brick.ssh_port.port_number
                         ).update(is_alive=False)
-                        # brick.ssh_port.is_alive = False
-                        # brick.save()
+
+                        brick_dhcp = [
+                                        f'{DIR}brick_connect.sh',
+                                        f'{str(brick.host.ssh_username)}', f'{str(brick.host.ssh_port)}',
+                                        'maintenance/brick_dhcp', f'{str(Site.objects.get_current().domain)}',
+                                        f'{str(brick.id)}', 'NONE', 'NONE',
+                                    ]
+                        with subprocess.Popen(brick_dhcp) as script:
+                                print(script)
+
+
                     else:
                         VirtualBrick.objects.filter(
                             id=brick.id

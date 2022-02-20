@@ -15,7 +15,7 @@ from bb_vm.models import PortTunnel, VirtualBrick, VirtualBrickOwner, GPU, Rente
 from bb_tasks.tasks import(
         new_vm_subprocess, destroy_vm_subprocess, close_ssh_port,
         pause_vm_subprocess, play_vm_subprocess, reboot_vm_subprocess,
-        stop_bg,
+        stop_bg, host_cleanup,
     )
 
 DIR = '/opt/brickbox/bb_vm/bash_scripts/'
@@ -40,10 +40,14 @@ def clone_img(request):
     if not request.user.is_superuser:
         if cards_available<1:
             if profile.is_beta and rented >= 2:
-                return HttpResponse("Max Beta VMs Reached", status=200)
+                response_data['error'] = "Max Beta VMs Reached"
+                return JsonResponse(response_data, status=200, safe=False)
 
-            return HttpResponse("No payment method provided.", status=200)
+            response_data['error'] = "No payment method provided."
+            return JsonResponse(response_data, status=200, safe=False)
 
+
+    response_data = {}
     for gpu in GPU.objects.filter(model=selected_gpu, host__is_ready=True):
         if RentedGPU.objects.filter(gpu=gpu).count() < 1:
             designated_gpu_xml = gpu.xml
@@ -70,7 +74,7 @@ def clone_img(request):
             new_vm_subprocess.apply_async((instance.id, root_pass,), queue='ssh_queue')
 
             bricks = VirtualBrickOwner.objects.filter(owner=profile) # All bricks owned.
-            response_data = {}
+
             response_data['brick_id'] = instance.id
             response_data['table'] = f"""{render_to_string(
                                             'bricks/bricks-instances_table.html',
@@ -80,7 +84,8 @@ def clone_img(request):
             return JsonResponse(response_data, status=200, safe=False)
 
     if designated_gpu_xml is None:
-        return HttpResponse("No Available GPUs", status=200)
+        response_data['error'] = f'No available {selected_gpu} GPUs'
+        return JsonResponse(response_data, status=200, safe=False)
 
     return HttpResponse("Error", status=200)
 
@@ -233,21 +238,24 @@ def vm_tunnel(request):
     '''
     try:
         brick = VirtualBrick.objects.get(domain_uuid=request.POST.get('domain_uuid'))
-        pub_key = urllib.parse.unquote(request.POST.get("pub_key"))
-
-        assigned_port = PortTunnel()
-        assigned_port.save()
-
-        brick.ssh_port = assigned_port
-        brick.sshtunnel_public_key = pub_key
-        brick.is_on = True
-        brick.save()
-
-        with subprocess.Popen([f'{DIR}auth_key.sh', f'{str(pub_key)}']) as script:
-            print(script)
-
     except VirtualBrick.DoesNotExist:
-        return HttpResponse(status=500)
+        host_cleanup.apply_async()
+        return HttpResponse(status=400)
+
+    pub_key = urllib.parse.unquote(request.POST.get("pub_key"))
+
+    assigned_port = PortTunnel()
+    assigned_port.save()
+
+    brick.ssh_port = assigned_port
+    brick.sshtunnel_public_key = pub_key
+    brick.is_on = True
+    brick.save()
+
+    with subprocess.Popen([f'{DIR}auth_key.sh', f'{str(pub_key)}']) as script:
+        print(script)
+
+
 
     return HttpResponse(brick.ssh_port.port_number, status=200)
 

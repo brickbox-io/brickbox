@@ -22,7 +22,7 @@ else:
     stripe_clident_id = settings.CLIENT_ID_TEST
 
 
-@login_required()
+@login_required
 def method(request):
     '''
     URL: /data/stripe/pay/method
