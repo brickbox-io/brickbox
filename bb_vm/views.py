@@ -36,6 +36,7 @@ def clone_img(request):
 
     cards_available = PaymentMethod.objects.filter(user=profile.user).count()
     rented = VirtualBrickOwner.objects.filter(owner=profile).count()
+    response_data = {}
 
     if not request.user.is_superuser:
         if cards_available<1:
@@ -46,8 +47,6 @@ def clone_img(request):
             response_data['error'] = "No payment method provided."
             return JsonResponse(response_data, status=200, safe=False)
 
-
-    response_data = {}
     for gpu in GPU.objects.filter(model=selected_gpu, host__is_ready=True):
         if RentedGPU.objects.filter(gpu=gpu).count() < 1:
             designated_gpu_xml = gpu.xml

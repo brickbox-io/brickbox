@@ -37,7 +37,7 @@ def new_vm_subprocess(instance_id, root_pass):
                             f'{str(instance_id)}', 'NONE', 'NONE',
                         ]
         with subprocess.Popen(brick_clone) as script:
-                print(script)
+            print(script)
 
         if not VirtualBrick.objects.get(id=instance_id).img_cloned:
             return
@@ -50,17 +50,17 @@ def new_vm_subprocess(instance_id, root_pass):
                             f'{str(instance_id)}', '0', f'{str(root_pass)}',
                         ]
         with subprocess.Popen(brick_auth) as script:
-                print(script)
+            print(script)
 
         # ------------------------------------- 3 ------------------------------------ #
         for owner in brick.owners.all():
             for key in owner.keys.all():
                 brick_auth = [
-                                    f'{DIR}brick_connect.sh',
-                                    f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
-                                    'initialise/brick_auth', f'{str(Site.objects.get_current().domain)}',
-                                    f'{str(instance_id)}', f'{str(key.pub_key)}', '0',
-                                ]
+                            f'{DIR}brick_connect.sh',
+                            f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
+                            'initialise/brick_auth', f'{str(Site.objects.get_current().domain)}',
+                            f'{str(instance_id)}', f'{str(key.pub_key)}', '0',
+                        ]
             with subprocess.Popen(brick_auth) as script:
                 print(script)
 

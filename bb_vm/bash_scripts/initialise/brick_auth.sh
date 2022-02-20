@@ -28,7 +28,7 @@ if [ "$root_pass" != '0' ]; then
 
 elif [ "$key" != '0' ]; then
     log "key is set, adding ssh key: $key"
-    sudo echo "$key" | sudo tee -a ssh.key > /dev/null 2>> bash_errors.log
+    sudo echo "$key" | sudo tee -a ssh.key > /dev/null
     sudo virt-customize -a /var/lib/libvirt/images/"$instance".img --ssh-inject root:file:ssh.key 2>> bash_errors.log
     sudo rm ssh.key 2>> bash_errors.log
 
