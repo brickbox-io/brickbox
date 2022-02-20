@@ -2,7 +2,7 @@
 
 from .models import (
     UserProfile, ColocationClient, ColocationClientOwner,
-    CryptoSnapshot, FiatSnapshot, CryptoPayout, FiatPayout
+    CryptoSnapshot, FiatSnapshot, CryptoPayout, FiatPayout, SSHKey, SSHKeyOwner
 )
 
 from .models_stripe import (

@@ -15,11 +15,16 @@ function CreateNewBrick(selected_gpu) {
     formData.append('root_pass', root_pass);
 
     xhttp.onload = function () {
-        BrickNotice('bottom', 'center', 'Firing Bricks');
         var vm_status = JSON.parse(this.responseText);
-        document.getElementById("brick_wall").innerHTML = vm_status.table;
-        CheckBrickStatus(vm_status.brick_id);
-
+        if (vm_status.error) {
+            BrickNotice('bottom', 'center', vm_status.error, 4);
+            document.getElementById("place"+selected_gpu).disabled = true;
+        }
+        else {
+            BrickNotice('bottom', 'center', 'Firing Bricks', 2);
+            document.getElementById("brick_wall").innerHTML = vm_status.table;
+            CheckBrickStatus(vm_status.brick_id);
+        }
         // setTimeout(() => {
         //     CheckBrickStatus(BrickInfo);
         // }, 5000);
@@ -78,7 +83,7 @@ function BrickPause(brick_id) {
     formData.append('brick_id', brick_id);
 
     xhttp.onload = function () {
-        BrickNotice('bottom', 'center', 'Brick Paused');
+        BrickNotice('bottom', 'center', 'Brick Paused', 2);
     }
 
     xhttp.open('POST', url, true);
@@ -94,7 +99,7 @@ function BrickPlay(brick_id) {
     formData.append('brick_id', brick_id);
 
     xhttp.onload = function () {
-        BrickNotice('bottom', 'center', 'Brick Booting');
+        BrickNotice('bottom', 'center', 'Brick Booting', 2);
     }
 
     xhttp.open('POST', url, true);
@@ -113,7 +118,7 @@ function BrickReboot(brick_id) {
         document.getElementById('status_text').innerHTML = "Rebooting"
         document.getElementById('reboot_button').disabled = true;
         document.getElementById('power_button').disabled = true;
-        BrickNotice('bottom', 'center', 'Brick Restarting');
+        BrickNotice('bottom', 'center', 'Brick Restarting', 2);
     }
 
     xhttp.open('POST', url, true);
@@ -136,7 +141,7 @@ function BrickDestroy(brick_id, brick_name) {
 
         xhttp.onload = function () {
             var vm_status = JSON.parse(this.responseText);
-            BrickNotice('bottom', 'center', 'Brick Crumbled');
+            BrickNotice('bottom', 'center', 'Brick Crumbled', 3);
             document.getElementById("brick_wall").innerHTML = vm_status.table;
         }
 
@@ -148,7 +153,7 @@ function BrickDestroy(brick_id, brick_name) {
 
 /* --------------------------------- Notices -------------------------------- */
 function CoppiedNotice(from, align) {
-    color = Math.floor((Math.random() * 4) + 1);
+    color = 1;
 
     $.notify({
         icon: "tim-icons icon-single-copy-04",
@@ -164,9 +169,7 @@ function CoppiedNotice(from, align) {
     });
 }
 
-function BrickNotice(from, align, notice) {
-    color = Math.floor((Math.random() * 4) + 1);
-
+function BrickNotice(from, align, notice, color = 1) {
     $.notify({
         icon: "tim-icons icon-bell-55",
         message: notice

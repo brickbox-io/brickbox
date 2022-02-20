@@ -1,0 +1,27 @@
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="NewKey" aria-hidden="true" id="new_ssh_key">
+
+    <div class="modal-dialog modal-md" style="transform: translate(0, 0)">
+        <div class="modal-content">
+            <div class="modal-body">
+
+
+                <form class="form-group" autocomplete="off">
+
+                    <!-- SSH Name -->
+                    <label for="ssh_name">Name</label>
+                    <input type="text" class="form-control" id="ssh_name" style="color: black;" placeholder="" required>
+
+                    <!-- SSH Key -->
+                    <label for="ssh_key">SSH Key</label>
+                    <textarea class="form-control" id="ssh_key" style="color: black;" rows="10" required></textarea>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="confirm_ssh_button" onclick="SaveKey()">Add SSH Key</button>
+            </div>
+        </div>
+    </div>
+
+</div>

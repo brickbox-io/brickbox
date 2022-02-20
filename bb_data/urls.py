@@ -2,7 +2,7 @@
 
 from django.urls import path
 
-from bb_data import views_charts, views_stripe
+from bb_data import views_charts, views_stripe, views_key
 
 app_name = 'bb_data'
 
@@ -23,4 +23,7 @@ urlpatterns = [
    # ---------------------------------- Stripe ---------------------------------- #
    path('stripe/pay/method', views_stripe.method, name='stripe_pay_method'),
 #    path('stripe/pay/method/sucess', views_stripe.method_sucess, name='stripe_pay_method_sucess'),
+
+    # ---------------------------------- SSH Key --------------------------------- #
+    path('key/add', views_key.add, name='add_ssh_key'),
 ]
