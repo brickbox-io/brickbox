@@ -12,25 +12,12 @@ def landing(request):
     '''
     return render(request, 'landing.html')
 
-# -------------------------------- About Page -------------------------------- #
-def about(request):
-    '''
-    URL: brickbox.io/about
-    '''
-    return render(request, 'about.html')
-
 # ------------------------------- Contact Page ------------------------------- #
 def contact(request):
     '''
     URL: brickbox.io/contact
     '''
     return render(request, 'contact.html')
-
-def landing_colo(request):
-    '''
-    URL: brickbox.io/colo
-    '''
-    return render(request, 'landing_colo.html')
 
 # -------------------------------- Legal Page -------------------------------- #
 def legal(request):
