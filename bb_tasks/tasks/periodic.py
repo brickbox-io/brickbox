@@ -85,14 +85,14 @@ def verify_brick_connectivity():
                             port_number=brick.ssh_port.port_number
                         ).update(is_alive=False)
 
-                        brick_dhcp = [
-                            f'{DIR}brick_connect.sh',
-                            f'{str(brick.host.ssh_username)}', f'{str(brick.host.ssh_port)}',
-                            'maintenance/brick_dhcp', f'{str(Site.objects.get_current().domain)}',
-                            f'{str(brick.id)}', 'NONE', 'NONE',
-                        ]
-                        with subprocess.Popen(brick_dhcp) as script:
-                            print(script)
+                        # brick_dhcp = [
+                        #     f'{DIR}brick_connect.sh',
+                        #     f'{str(brick.host.ssh_username)}', f'{str(brick.host.ssh_port)}',
+                        #     'maintenance/brick_dhcp', f'{str(Site.objects.get_current().domain)}',
+                        #     f'{str(brick.id)}', 'NONE', 'NONE',
+                        # ]
+                        # with subprocess.Popen(brick_dhcp) as script:
+                        #     print(script)
 
 
                     else:
