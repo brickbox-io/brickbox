@@ -73,9 +73,9 @@
                             </ul>
 
                             {%  if user.is_authenticated %}
-                            <button><a href="{% url 'django_dash_black:dash' %}">Log In</a></button>
+                            <a class="btn" href="{% url 'django_dash_black:dash' %}">Log In</a>
                             {% else %}
-                            <button><a href="{% url 'bb_accounts:register' %}">Sign Up</a></button>
+                            <a class="btn" href="{% url 'bb_accounts:register' %}">Sign Up</a>
                             {% endif %}
 
                         </div>
@@ -185,7 +185,7 @@
                             along with other data scientists and developers at the brickbox.io community.
                         </p>
                         <!-- <button><a href="{% url 'bb_accounts:register' %}">Sign Up</a></button> -->
-                        <button><a href="https://knowledge.brickbox.io/">Knowledgebase</a></button>
+                        <a class="btn" style="margin-top: 10px;" href="https://knowledge.brickbox.io/">Knowledgebase</a>
                     </div>
                     <div class="about-image-container">
                         <img src="{% static 'images/placeholder-3.jpg' %}" alt="" />
@@ -258,7 +258,7 @@
                 <h3 class="price">$0.50/hr</h3>
                 <span class="product-name"><strong style="font-weight: 700;">GPU:</strong> RTX 3070</span>
                 <!-- <span class="product-description">4x vCPU, 12GB RAM, 25GB SSD</span> -->
-                <button><a href="{% url 'bb_accounts:register' %}">Get Started</a></button>
+                <a class="btn" href="{% url 'bb_accounts:register' %}">Get Started</a>
             </div>
             <div class="product-container">
                 <div class="product-image-container">
@@ -267,7 +267,7 @@
                 <h3 class="price">$0.75/hr</h3>
                 <span class="product-name"><strong style="font-weight: 700;">GPU:</strong> RTX 3090</span>
                 <!-- <span class="product-description">4x vCPU, 12GB RAM, 25GB SSD</span> -->
-                <button><a href="{% url 'bb_accounts:register' %}">Get Started</a></button>
+                <a class="btn" href="{% url 'bb_accounts:register' %}">Get Started</a>
             </div>
         </section>
         <footer>
