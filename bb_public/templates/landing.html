@@ -402,14 +402,6 @@
         legalmodal.style.display = "none";
         }
 
-        // When the user clicks anywhere outside of the modal, close it
-        // window.onclick = function(event) {
-        // if (event.target == legalmodal) {
-        //     legalmodal.style.display = "none";
-        //     console.log(event.target)
-        // }
-        // }
-
          // Get the modal
          var contactmodal = document.getElementById("contactModal");
 
@@ -433,10 +425,8 @@
         window.onclick = function(event) {
             if (event.target == contactmodal) {
                 contactmodal.style.display = "none";
-                console.log(event.target)
             } else if (event.target == legalmodal) {
                 legalmodal.style.display = "none";
-                console.log(event.target)
             }
         }
 
