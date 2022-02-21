@@ -56,7 +56,7 @@
                         <div class="header-links" id="nav-links">
                             <ul>
                                 <li style="font-weight: 700;">
-                                    <a href="{% url 'bb_public:landing_page' %}">
+                                    <a href="">
                                         <img src="{% static 'images/brickbox-transparent.png' %}" alt="" />
                                         brickbox.io
                                     </a>
@@ -276,7 +276,7 @@
                     <div class="footer-links">
                         <ul>
                             <li style="font-weight: 700;">
-                                <a href="{% url 'bb_public:landing_page' %}">
+                                <a href="">
                                     <img src="{% static 'images/brickbox-transparent.png' %}" alt="" />
                                     brickbox.io
                                 </a>
@@ -403,11 +403,12 @@
         }
 
         // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-        if (event.target == legalmodal) {
-            legalmodal.style.display = "none";
-        }
-        }
+        // window.onclick = function(event) {
+        // if (event.target == legalmodal) {
+        //     legalmodal.style.display = "none";
+        //     console.log(event.target)
+        // }
+        // }
 
          // Get the modal
          var contactmodal = document.getElementById("contactModal");
@@ -430,10 +431,16 @@
 
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
-        if (event.target == contactmodal) {
-            contactmodal.style.display = "none";
+            if (event.target == contactmodal) {
+                contactmodal.style.display = "none";
+                console.log(event.target)
+            } else if (event.target == legalmodal) {
+                legalmodal.style.display = "none";
+                console.log(event.target)
+            }
         }
-        }
+
+        
     </script>
 
     <script src="{% static 'js/landing.js' %}"></script>
