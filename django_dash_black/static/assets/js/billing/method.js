@@ -32,7 +32,7 @@ function AddMethod() {
                 //`Elements` instance that was used to create the Payment Element
                 elements,
                 confirmParams: {
-                    return_url: 'https://dev.brickbox.io/dash/billing',
+                    return_url: 'https://'+window.location.hostname+'/dash/billing',
                 }
             });
 
