@@ -9,10 +9,15 @@
     <title>brickbox.io | Privacy Policy</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+    {% compress css %}
     <link rel="stylesheet" href="{% static 'css/ai/main.css' %}" />
+    {% endcompress %}
     <noscript>
         <link rel="stylesheet" href="{% static 'css/ai/noscript.css' %}" />
     </noscript>
+
+
 
     <link rel="shortcut icon" type="image/png" href="{% static 'brickbox_icon/favicon.ico' %}" />
     <link rel="apple-touch-icon" sizes="57x57" href="{% static 'brickbox_icon/apple-icon-57x57.png' %}" />
@@ -32,6 +37,7 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{% static 'brickbox_icon/ms-icon-144x144.png' %}">
     <meta name="theme-color" content="#ffffff">
+
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QZQPQ7EV5P"></script>
