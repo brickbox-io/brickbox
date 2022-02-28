@@ -50,13 +50,14 @@
 <body class="is-preload">
     <div class="main-container">
         <header>
+            <a name="home"></a>
             <div class="content-container">
                 <nav>
                     <div class="nav-container">
                         <div class="header-links" id="nav-links">
                             <ul>
                                 <li style="font-weight: 700;">
-                                    <a href="{% url 'bb_public:landing_page' %}">
+                                    <a href="#home">
                                         <img src="{% static 'images/brickbox-transparent.png' %}" alt="" />
                                         brickbox.io
                                     </a>
@@ -68,14 +69,14 @@
                                     <a href="#price">Pricing</a>
                                 </li>
                                 <li>
-                                    <a href="https://knowledge.brickbox.io/">Knowledgebase</a>
+                                    <a href="https://knowledge.brickbox.io/" target="_blank">Knowledgebase</a>
                                 </li>
                             </ul>
 
                             {%  if user.is_authenticated %}
-                            <button><a href="{% url 'django_dash_black:dash' %}">Log In</a></button>
+                            <a class="btn" href="{% url 'django_dash_black:dash' %}">Log In</a>
                             {% else %}
-                            <button><a href="{% url 'bb_accounts:register' %}">Sign Up</a></button>
+                            <a class="btn" href="{% url 'bb_accounts:register' %}">Sign Up</a>
                             {% endif %}
 
                         </div>
@@ -185,7 +186,7 @@
                             along with other data scientists and developers at the brickbox.io community.
                         </p>
                         <!-- <button><a href="{% url 'bb_accounts:register' %}">Sign Up</a></button> -->
-                        <button><a href="https://knowledge.brickbox.io/">Knowledgebase</a></button>
+                        <a class="btn" style="margin-top: 10px;" href="https://knowledge.brickbox.io/" target="_blank">Knowledgebase</a>
                     </div>
                     <div class="about-image-container">
                         <img src="{% static 'images/placeholder-3.jpg' %}" alt="" />
@@ -258,7 +259,7 @@
                 <h3 class="price">$0.50/hr</h3>
                 <span class="product-name"><strong style="font-weight: 700;">GPU:</strong> RTX 3070</span>
                 <!-- <span class="product-description">4x vCPU, 12GB RAM, 25GB SSD</span> -->
-                <button><a href="{% url 'bb_accounts:register' %}">Get Started</a></button>
+                <a class="btn" href="{% url 'bb_accounts:register' %}">Get Started</a>
             </div>
             <div class="product-container">
                 <div class="product-image-container">
@@ -267,7 +268,7 @@
                 <h3 class="price">$0.75/hr</h3>
                 <span class="product-name"><strong style="font-weight: 700;">GPU:</strong> RTX 3090</span>
                 <!-- <span class="product-description">4x vCPU, 12GB RAM, 25GB SSD</span> -->
-                <button><a href="{% url 'bb_accounts:register' %}">Get Started</a></button>
+                <a class="btn" href="{% url 'bb_accounts:register' %}">Get Started</a>
             </div>
         </section>
         <footer>
@@ -276,13 +277,13 @@
                     <div class="footer-links">
                         <ul>
                             <li style="font-weight: 700;">
-                                <a href="{% url 'bb_public:landing_page' %}">
+                                <a href="#home">
                                     <img src="{% static 'images/brickbox-transparent.png' %}" alt="" />
                                     brickbox.io
                                 </a>
                             </li>
                             <li>
-                                <a href="https://knowledge.brickbox.io/">Knowledgebase</a>
+                                <a href="https://knowledge.brickbox.io/" target="_blank">Knowledgebase</a>
                             </li>
                             <li>
                                 <button id="contact">Contact</button></li>
@@ -309,6 +310,7 @@
                             <li><a href="https://www.linkedin.com/company/brickbox-io/"><i class="fa-brands fa-linkedin fa-lg"></i></a></li>
                             <li><a href="https://www.instagram.com/brickbox.io/"><i class="fa-brands fa-instagram fa-lg"></i></a></li>
                             <li><a href="https://github.com/brickbox-io"><i class="fa-brands fa-github fa-lg"></i></a></li>
+                            <li><a href="https://discord.gg/ThUy55Zf8T"><i class="fa-brands fa-discord fa-lg"></i></a></li>
                             <li><a href="mailto: info@brickbox.io" target="_blank"><i class="fa-solid fa-envelope fa-lg"></i></a></li>
                         </ul>
                     </div>
@@ -402,13 +404,6 @@
         legalmodal.style.display = "none";
         }
 
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-        if (event.target == legalmodal) {
-            legalmodal.style.display = "none";
-        }
-        }
-
          // Get the modal
          var contactmodal = document.getElementById("contactModal");
 
@@ -430,10 +425,14 @@
 
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
-        if (event.target == contactmodal) {
-            contactmodal.style.display = "none";
+            if (event.target == contactmodal) {
+                contactmodal.style.display = "none";
+            } else if (event.target == legalmodal) {
+                legalmodal.style.display = "none";
+            }
         }
-        }
+
+        
     </script>
 
     <script src="{% static 'js/landing.js' %}"></script>
