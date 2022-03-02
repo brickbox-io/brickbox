@@ -13,7 +13,7 @@ jobs:
 
       - uses: actions/hello-world-javascript-action@v1.1
       - name: Select branch name
-          if: ${{ steps.extract_branch.outputs.branch }} == "master"
+          if: ${{ ${{ steps.extract_branch.outputs.branch }} == "master" }}
           ${{ steps.extract_branch.outputs.branch }} = "dev"
 
       - uses: actions/checkout@v3
