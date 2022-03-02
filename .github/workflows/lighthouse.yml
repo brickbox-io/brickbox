@@ -37,7 +37,7 @@ jobs:
         uses: treosh/lighthouse-ci-action@v9
         with:
           urls: |
-            echo "https://${{ env.DOMAIN }}.brickbox.io"
+            "https://${{ env.DOMAIN }}.brickbox.io"
           uploadArtifacts: true
           temporaryPublicStorage: true
           configPath: .github/lighthouserc.js
