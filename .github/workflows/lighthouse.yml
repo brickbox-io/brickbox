@@ -3,13 +3,25 @@ on: push
 jobs:
   lighthouse:
     runs-on: ubuntu-latest
+
     steps:
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
+      - uses: actions/hello-world-javascript-action@v1.1
+      - name: Select branch name
+          if: ${{ steps.extract_branch.outputs.branch }} == "master"
+            ${{ steps.extract_branch.outputs.branch }} = "dev"
+
       - uses: actions/checkout@v3
       - name: Audit URLs using Lighthouse
         uses: treosh/lighthouse-ci-action@v9
         with:
           urls: |
-            https://dev.brickbox.io
+            https://${{ steps.extract_branch.outputs.branch }}.brickbox.io
           uploadArtifacts: true
           temporaryPublicStorage: true
           configPath: .github/lighthouserc.js
