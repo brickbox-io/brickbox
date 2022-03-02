@@ -44,7 +44,7 @@ jobs:
 
       - name: Verify Deployment Settings
         run: |
-          python3 manage.py check --deploy
+          python3 manage.py check --deploy --fail-level=WARNING --debug-mode
 
       # Step 3, remove the IP address
       - name: Remove IP address to trusted source (managed database)

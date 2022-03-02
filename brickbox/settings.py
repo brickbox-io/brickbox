@@ -216,6 +216,10 @@ USE_L10N = True
 USE_TZ = True
 
 
+SECURE_HSTS_SECONDS = 518400
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+
 # ---------------------------------------------------------------------------- #
 #                                 Static Files                                 #
 # ---------------------------------------------------------------------------- #
