@@ -10,3 +10,5 @@ jobs:
         with:
           urls: |
             https://dev.brickbox.io
+          uploadArtifacts: true
+          temporaryPublicStorage: true
