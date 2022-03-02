@@ -13,7 +13,7 @@ jobs:
         id: extract_branch
 
       - name: Select branch name
-      - uses: actions/hello-world-javascript-action@v1.1
+        uses: actions/hello-world-javascript-action@v1.1
         if: ${{ ${{ steps.extract_branch.outputs.branch }} != "master" }}
         env:
           DOMAIN: ${{ steps.extract_branch.outputs.branch }}
