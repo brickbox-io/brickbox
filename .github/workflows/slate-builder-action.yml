@@ -8,7 +8,7 @@ jobs:
   slate-documentation:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v3
 
     - name: Build API Documentation
       uses: docker://decathlon/slate-builder-action:latest
