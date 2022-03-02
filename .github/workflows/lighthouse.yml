@@ -13,7 +13,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  lighthouse:
+  lint:
     runs-on: ubuntu-latest
 
     steps:
@@ -35,7 +35,7 @@ jobs:
         uses: treosh/lighthouse-ci-action@v9
         with:
           urls: |
-            https://${{ env.DOMAIN }}.brickbox.io
+            https://$DOMAIN.brickbox.io
           uploadArtifacts: true
           temporaryPublicStorage: true
           configPath: .github/lighthouserc.js
