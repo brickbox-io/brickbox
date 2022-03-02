@@ -13,14 +13,15 @@ on:
 
   workflow_dispatch:
 
+env:
+  DOMAIN: dev
+
 jobs:
   lint:
     runs-on: ubuntu-latest
 
     steps:
       - name: Extract branch name
-        env:
-          DOMAIN: dev
         shell: bash
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: extract_branch
@@ -36,7 +37,7 @@ jobs:
         uses: treosh/lighthouse-ci-action@v9
         with:
           urls: |
-            https://${{ env.DOMAIN }}.brickbox.io
+            echo "https://${{ env.DOMAIN }}.brickbox.io"
           uploadArtifacts: true
           temporaryPublicStorage: true
           configPath: .github/lighthouserc.js
