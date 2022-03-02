@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     name: start master-ci
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
 
       - name: Wait on check
         uses: fountainhead/action-wait-for-check@v1.0.0
@@ -35,7 +35,7 @@ jobs:
   merge:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
 
       - name: Wait on check
         uses: fountainhead/action-wait-for-check@v1.0.0
@@ -69,7 +69,7 @@ jobs:
   sanitize:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
         with:
           ref: release
           fetch-depth: 0
