@@ -45,7 +45,8 @@ jobs:
 
       - name: Run Tests
         run: |
-          python3 manage.py test --noinput
+          python3 manage.py test --noinput --keepdb
+          django-admin check --deploy
 
       # Step 3, remove the IP address
       - name: Remove IP address to trusted source (managed database)
