@@ -12,3 +12,4 @@ jobs:
             https://dev.brickbox.io
           uploadArtifacts: true
           temporaryPublicStorage: true
+          configPath: .github/lighthouserc.js
