@@ -4,8 +4,10 @@ jobs:
   lighthouse:
     runs-on: ubuntu-latest
 
-    steps:
+    env:
+      DOMAIN: "dev"
 
+    steps:
       - name: Extract branch name
         shell: bash
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
@@ -13,8 +15,9 @@ jobs:
 
       - name: Select branch name
       - uses: actions/hello-world-javascript-action@v1.1
-        if: ${{ ${{ steps.extract_branch.outputs.branch }} == "master" }}
-        ${{ steps.extract_branch.outputs.branch }} = "dev"
+        if: ${{ ${{ steps.extract_branch.outputs.branch }} != "master" }}
+        env:
+          DOMAIN: ${{ steps.extract_branch.outputs.branch }}
 
       - uses: actions/checkout@v3
       - name: Audit URLs using Lighthouse
