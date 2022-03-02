@@ -1,4 +1,5 @@
 name: Lighthouse CI
+
 on:
   push:
     branches:
@@ -35,7 +36,7 @@ jobs:
         uses: treosh/lighthouse-ci-action@v9
         with:
           urls: |
-            https://$DOMAIN.brickbox.io
+            https://${{ DOMAIN }}.brickbox.io
           uploadArtifacts: true
           temporaryPublicStorage: true
           configPath: .github/lighthouserc.js
