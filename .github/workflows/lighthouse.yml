@@ -4,11 +4,10 @@ jobs:
   lighthouse:
     runs-on: ubuntu-latest
 
-    env:
-      DOMAIN: "dev"
-
     steps:
       - name: Extract branch name
+        env:
+          DOMAIN: "dev"
         shell: bash
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: extract_branch
