@@ -66,6 +66,7 @@ def index(request, colo=0):
                                         reverse=True
                                     )
     context['segment'] = 'index'
+    context['debug'] = settings.DEBUG
 
     html_template = loader.get_template( 'index.html' )
     return HttpResponse(html_template.render(context, request))
@@ -114,7 +115,8 @@ def pages(request):
                                         balance_paid = False,
                                         billing_cycle_end__gte=datetime.datetime.today()
                                     )
-        context['billing_history'] = BillingHistory.objects.filter(user=context['profile'].user)
+        context['billing_history'] = BillingHistory.objects.filter(
+                                        user=context['profile'].user).order_by('-id')
 
         if created:
             tracker.billing_cycle_end = tracker.billing_cycle_start + datetime.timedelta(days=30)

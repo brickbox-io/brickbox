@@ -110,8 +110,16 @@ def fiat_balance_chart(request, colo=0):
     except IndexError:
         user_client = None
 
-
     return JsonResponse(formated_data, safe=False)
+
+# @login_required
+# def brickbox_breakdown_chart(request, colo=0):
+#     '''
+#     Work in progress, unot implemented.
+#     '''
+#     formated_data = None
+
+#     return JsonResponse(formated_data, safe=False)
 
 
 @login_required(login_url='/login/')

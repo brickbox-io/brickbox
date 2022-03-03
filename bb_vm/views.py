@@ -39,12 +39,17 @@ def clone_img(request):
     response_data = {}
 
     if not request.user.is_superuser:
+
         if cards_available<1:
             if profile.is_beta and rented >= 2:
                 response_data['error'] = "Max Beta VMs Reached"
                 return JsonResponse(response_data, status=200, safe=False)
 
             response_data['error'] = "No payment method provided."
+            return JsonResponse(response_data, status=200, safe=False)
+
+        if profile.strikes >= 3:
+            response_data['error'] = "Max Strikes Reached"
             return JsonResponse(response_data, status=200, safe=False)
 
     for gpu in GPU.objects.filter(model=selected_gpu, host__is_ready=True):
