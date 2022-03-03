@@ -11,6 +11,7 @@ invoice_status_choices = (
     ('paid', 'Paid'),
 )
 
+# ------------------------------ Payment Method ------------------------------ #
 class PaymentMethod(models.Model):
     '''
     All stored paymetment methods
@@ -21,6 +22,9 @@ class PaymentMethod(models.Model):
     brand = models.CharField(max_length=32, blank=True, null=True)
     last4 = models.IntegerField(blank=True, null=True)
 
+    #Flags
+    is_default = models.BooleanField(default=False)
+
     def __str__(self):
         return f"{self.user}"
 
@@ -28,6 +32,7 @@ class PaymentMethod(models.Model):
         verbose_name = 'Payment Methods'
         app_label='bb_data'
 
+# --------------------------- Payment Method Owner --------------------------- #
 class PaymentMethodOwner(models.Model):
     '''
     Records all available payment methods available for a user.
@@ -35,9 +40,6 @@ class PaymentMethodOwner(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     profile = models.ForeignKey('bb_data.UserProfile', on_delete=models.CASCADE)
     method = models.ForeignKey(PaymentMethod, on_delete=models.CASCADE)
-
-    #Flags
-    is_default = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.user}"

@@ -32,7 +32,7 @@ def threshold_resource_invoicing():
     for invoice_due in invoices_due:
         user_profile = UserProfile.objects.get(user=invoice_due.user)
 
-        if user_profile.threshold == 0:
+        if user_profile.threshold == 0 or user_profile.strikes >= 3:
             continue
 
         if user_profile.user.is_superuser or not user_profile.pay_methods.exists():

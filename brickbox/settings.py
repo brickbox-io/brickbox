@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     # brickbox.io Apps
     'django_dash_black',        # https://appseed.us/admin-dashboards/django-dashboard-black
     'bb_api',                   # API endpoints and handlers
+    'bb_billing',               # Billing and payment processing
     'bb_colo',                  # Colocation management
     'bb_public',                # Public landing pages
     'bb_accounts',              # Account creation and login
@@ -215,6 +216,15 @@ USE_L10N = True
 
 USE_TZ = True
 
+
+SECURE_HSTS_SECONDS = 518400
+SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
+SECURE_SSL_REDIRECT = True
+
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
 # ---------------------------------------------------------------------------- #
 #                                 Static Files                                 #
