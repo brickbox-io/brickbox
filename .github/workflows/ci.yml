@@ -71,7 +71,7 @@ jobs:
 
     steps:
 
-       # Step 1, add the IP address
+      # Step 1, add the IP address
       - name: Add IP address to trusted source (managed database)
         uses: GarreauArthur/manage-digital-ocean-managed-database-trusted-sources-gh-action@main
         with:
@@ -127,7 +127,7 @@ jobs:
 
           git push --force
 
-     # Step 3, remove the IP address
+      # Step 3, remove the IP address
       - name: Remove IP address to trusted source (managed database)
         if: always()
         uses: GarreauArthur/manage-digital-ocean-managed-database-trusted-sources-gh-action@main
