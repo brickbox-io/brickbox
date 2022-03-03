@@ -125,6 +125,8 @@ jobs:
 
           git add .
 
+          git commit -m "Sanitized"
+
           git push --force
 
       - name: Remove IP address to trusted source (managed database)
