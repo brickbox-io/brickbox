@@ -8,8 +8,7 @@ from django.shortcuts import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from bb_data.models import (
-    UserProfile, ColocationClient, PaymentMethod,
-    PaymentMethodOwner, ResourceTimeTracking, BillingHistory
+    UserProfile, ResourceTimeTracking, BillingHistory
 )
 
 @csrf_exempt

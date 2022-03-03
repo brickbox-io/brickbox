@@ -42,9 +42,9 @@ jobs:
         run: |
           python3 manage.py test --noinput --keepdb
 
-      - name: Verify Deployment Settings
-        run: |
-          python3 manage.py check --deploy --fail-level=WARNING
+      # - name: Verify Deployment Settings
+      #   run: |
+      #     python3 manage.py check --deploy --fail-level=WARNING
 
       # Step 3, remove the IP address
       - name: Remove IP address to trusted source (managed database)
