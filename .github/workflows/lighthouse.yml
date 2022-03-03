@@ -17,7 +17,7 @@ env:
   DOMAIN: dev
 
 jobs:
-  lint:
+  lint-lighthouse:
     runs-on: ubuntu-latest
 
     steps:
