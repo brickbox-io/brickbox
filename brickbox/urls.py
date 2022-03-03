@@ -31,13 +31,24 @@ admin.site.index_title = "Admin Interface"
 urlpatterns = [
     path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('admin/', admin.site.urls),
+
     path('api/', include('bb_api.urls')),               # bb_api
-    path('colo/', include('bb_colo.urls')),             # bb_colo
+
     path('', include('bb_accounts.urls')),              # bb_accounts
+
+    path('', include('bb_billing.urls')),               # bb_billing
+
+    path('colo/', include('bb_colo.urls')),             # bb_colo
+
+
     path('', include('bb_public.urls')),                # bb_public
+
     path('dashboard/', include('bb_dashboard.urls')),   # bb_dashboard
+
     path('dash/', include('django_dash_black.urls')),
+
     path('data/', include('bb_data.urls')),             # bb_data
+
     path('webhook/', include('bb_webhook.urls')),       # bb_webhook
 
     # ---------------------------- Virtulization URLS ---------------------------- #

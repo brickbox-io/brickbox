@@ -1,17 +1,17 @@
 [Unit]
-Description=gunicorn daemon
-After=network.target
+Description = gunicorn daemon
+After = network.target
 
 [Service]
-User=root
-Group=www-data
-WorkingDirectory=/opt/brickbox/
-# ExecStart=/usr/local/bin/gunicorn --access-logfile - --workers 3 --bind unix:/opt/brickbox/brickbox.sock brickbox.wsgi:application
-ExecStart=/opt/brickbox/bbenv/bin/gunicorn --access-logfile - --workers 5 --timeout 120 --bind unix:/opt/brickbox/brickbox.sock brickbox.wsgi:application
+User = root
+Group = www-data
+WorkingDirectory = /opt/brickbox/
 
-ExecReload=/opt/brickbox/bbenv/bin/gunicorn --access-logfile - --workers 5 --timeout 120 --bind unix:/opt/brickbox/brickbox.sock brickbox.wsgi:application
+ExecStart   =   /opt/brickbox/bbenv/bin/gunicorn --access-logfile - --workers 5 --timeout 120 --bind unix:/opt/brickbox/brickbox.sock brickbox.wsgi:application --reload
 
-Restart=always
+ExecReload  =   /opt/brickbox/bbenv/bin/gunicorn --access-logfile - --workers 5 --timeout 120 --bind unix:/opt/brickbox/brickbox.sock brickbox.wsgi:application --reload
+
+Restart = always
 
 [Install]
-WantedBy=multi-user.target
+WantedBy = multi-user.target

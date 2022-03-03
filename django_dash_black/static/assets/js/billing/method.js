@@ -19,10 +19,6 @@ function AddMethod() {
         const paymentElement = elements.create('payment');
         paymentElement.mount('#payment-element');
 
-
-        $("#payment_method").modal('toggle');
-
-
         const form = document.getElementById('payment-form');
 
         form.addEventListener('submit', async (event) => {
@@ -32,7 +28,7 @@ function AddMethod() {
                 //`Elements` instance that was used to create the Payment Element
                 elements,
                 confirmParams: {
-                    return_url: 'https://'+window.location.hostname+'/dash/billing',
+                    return_url: 'https://' + window.location.hostname + '/dash/billing',
                 }
             });
 
@@ -48,7 +44,9 @@ function AddMethod() {
                 // site first to authorize the payment, then redirected to the `return_url`.
             }
         });
-    }
+
+        $("#payment_method").modal('toggle');
+    };
 
     xhttp.open('POST', url, true);
     xhttp.setRequestHeader("X-CSRFToken", csrftoken);
