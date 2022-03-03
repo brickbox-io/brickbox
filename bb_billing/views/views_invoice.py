@@ -70,7 +70,16 @@ def invoice_event(request):
 
     elif event.type == 'invoice.payment_failed':
         invoice = event.data.object
-        print(invoice)
+        customer = UserProfile.objects.get(cus_id=invoice.customer)
+
+        if customer.threshold == 1.00:
+            customer.strikes = customer.strikes + 3
+
+        if customer.threshold == 10.00:
+            customer.strikes = customer.strikes + 2
+
+        customer.save()
+
     else:
         print(f'Unhandled event type {event.type}')
 

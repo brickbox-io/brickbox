@@ -8,9 +8,8 @@ from django.shortcuts import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from bb_data.models import (
-    UserProfile, ColocationClient, PaymentMethod,
-    PaymentMethodOwner, ResourceTimeTracking, BillingHistory
-)
+    UserProfile, PaymentMethod,
+    PaymentMethodOwner)
 
 @csrf_exempt
 def payment_method_event(request):
@@ -35,12 +34,20 @@ def payment_method_event(request):
 
         profile = UserProfile.objects.get(cus_id=payment_method.customer)
 
+        # New card will be set as default
         payment_method = PaymentMethod(
             user = profile.user,
             pm_id = payment_method.id,
             brand = payment_method.card.brand,
             last4 = payment_method.card.last4,
+            is_default = True
         )
+
+        PaymentMethod.objects.filter(
+            user = profile.user,
+            is_default = True
+        ).update(is_default = False)
+
         payment_method.save()
 
         PaymentMethodOwner.objects.create(
