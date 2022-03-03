@@ -123,6 +123,8 @@ jobs:
 
           rm -r .github
 
+          git add .
+
           git push --force
 
       - name: Remove IP address to trusted source (managed database)
