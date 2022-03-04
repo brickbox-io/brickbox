@@ -89,9 +89,6 @@ def monthly_resource_invoicing():
     for invoice_due in invoices_due:
         user_profile = UserProfile.objects.get(user=invoice_due.user)
 
-        if user_profile.threshold != 0:
-            continue
-
         if user_profile.user.is_superuser or not user_profile.pay_methods.exists():
             continue
 
@@ -124,7 +121,13 @@ def monthly_resource_invoicing():
                 description="Monthly Resource Usage Invoice",
             )
 
-            stripe.Invoice.pay(invoice.id)
+            try:
+                stripe.Invoice.pay(invoice.id)
+            except stripe.error.CardError as err:
+                if err.code == 'card_declined':
+                    user_profile.strikes += 1
+                    user_profile.save()
+
 
             billing_record = BillingHistory(
                                 user = invoice_due.user,
