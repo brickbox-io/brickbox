@@ -1,83 +1,56 @@
-/*
-	Spectral by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
+function myFunction() {
+	const x = document.getElementById("nav-links");
+	if (x.style.display === "flex") {
+		x.style.display = "none";
 
-(function($) {
+	} else {
+		x.style.display = "flex";
+	}
+}
 
-	var	$window = $(window),
-		$body = $('body'),
-		$wrapper = $('#page-wrapper'),
-		$banner = $('#banner'),
-		$header = $('#header');
+// Get the modal
+var legalmodal = document.getElementById("legalModal");
 
-	// Breakpoints.
-		breakpoints({
-			xlarge:   [ '1281px',  '1680px' ],
-			large:    [ '981px',   '1280px' ],
-			medium:   [ '737px',   '980px'  ],
-			small:    [ '481px',   '736px'  ],
-			xsmall:   [ null,      '480px'  ]
-		});
+// Get the button that opens the modal
+var legalbtn = document.getElementById("legal");
 
-	// Play initial animations on page load.
-		$window.on('load', function() {
-			window.setTimeout(function() {
-				$body.removeClass('is-preload');
-			}, 100);
-		});
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
 
-	// Mobile?
-		if (browser.mobile)
-			$body.addClass('is-mobile');
-		else {
+// When the user clicks on the button, open the modal
+legalbtn.onclick = function() {
+legalmodal.style.display = "flex";
+}
 
-			breakpoints.on('>medium', function() {
-				$body.removeClass('is-mobile');
-			});
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+legalmodal.style.display = "none";
+}
 
-			breakpoints.on('<=medium', function() {
-				$body.addClass('is-mobile');
-			});
+ // Get the modal
+ var contactmodal = document.getElementById("contactModal");
 
-		}
+// Get the button that opens the modal
+var contactbtn = document.getElementById("contact");
 
-	// Scrolly.
-		$('.scrolly')
-			.scrolly({
-				speed: 1500,
-				offset: $header.outerHeight()
-			});
+// Get the <span> element that closes the modal
+var cspan = document.getElementsByClassName("contactclose")[0];
 
-	// Menu.
-		$('#menu')
-			.append('<a href="#menu" class="close"></a>')
-			.appendTo($body)
-			.panel({
-				delay: 500,
-				hideOnClick: true,
-				hideOnSwipe: true,
-				resetScroll: true,
-				resetForms: true,
-				side: 'right',
-				target: $body,
-				visibleClass: 'is-menu-visible'
-			});
+// When the user clicks on the button, open the modal
+contactbtn.onclick = function() {
+contactmodal.style.display = "flex";
+}
 
-	// Header.
-		if ($banner.length > 0
-		&&	$header.hasClass('alt')) {
+// When the user clicks on <span> (x), close the modal
+cspan.onclick = function() {
+contactmodal.style.display = "none";
+}
 
-			$window.on('resize', function() { $window.trigger('scroll'); });
-
-			$banner.scrollex({
-				bottom:		$header.outerHeight() + 1,
-				terminate:	function() { $header.removeClass('alt'); },
-				enter:		function() { $header.addClass('alt'); },
-				leave:		function() { $header.removeClass('alt'); }
-			});
-
-		}
-
-})(jQuery);
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+	if (event.target == contactmodal) {
+		contactmodal.style.display = "none";
+	} else if (event.target == legalmodal) {
+		legalmodal.style.display = "none";
+	}
+}
