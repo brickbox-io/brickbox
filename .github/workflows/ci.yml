@@ -121,8 +121,6 @@ jobs:
 
           python3 manage.py check --deploy --fail-level=WARNING
 
-          rm -r .github
-
           git add .
 
           git commit -m "Sanitized"
