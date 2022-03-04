@@ -54,7 +54,7 @@ a.text-primary:hover {
 }
 
 .form-control {
-    background-color: white;
+    border: 1px solid rgb(78, 78, 90);
 }
 
 .form-control:focus {
@@ -69,6 +69,3 @@ a.text-primary:hover {
     color: white !important;
 }
 
-input:-internal-autofill-selected {
-    background-color: white !important;
-}
