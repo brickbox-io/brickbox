@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'bb_webhook',               # Handle incoming and outgoing webhook events
 
     # Other Apps
+    'box',                      # Internal Management API Layer
     'puller',                   # CI/CD Automation Tool
     'tellme',                   # https://github.com/ludrao/django-tellme
     'django_devops',            # Custom DevOps Package
