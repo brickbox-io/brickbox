@@ -15,9 +15,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # strategy:
-    #   matrix:
-    #     python-version: [ '3.8.10', '3.9.0', '3.10.0' ]
 
     steps:
       # Step 1, add the IP address
@@ -29,14 +26,12 @@ jobs:
           digitalocean_token: aad056c20d6d9da0beadbf3028abc712fda675cadbe1b651e1b155736de45bd7
 
       # Step 2, do whatever you need to do with you database
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      # - name: Set up Python ${{ matrix.python-version }}
       - name: Set up Python 3.10.0
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: 3.10.0
-          # python-version: ${{ matrix.python-version }}
 
       - name: Install Dependencies
         run: |
@@ -45,7 +40,11 @@ jobs:
 
       - name: Run Tests
         run: |
-          python3 manage.py test --noinput
+          python3 manage.py test --noinput --keepdb
+
+      # - name: Verify Deployment Settings
+      #   run: |
+      #     python3 manage.py check --deploy --fail-level=WARNING
 
       # Step 3, remove the IP address
       - name: Remove IP address to trusted source (managed database)

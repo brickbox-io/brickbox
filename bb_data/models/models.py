@@ -55,6 +55,9 @@ class UserProfile(models.Model):
     # Billing Threshold - $0.00 indicates no threshold (month to month)
     threshold = models.DecimalField(max_digits=8, decimal_places=2, default=1.00)
 
+    # Used to mark problematic users, including failed payments.
+    strikes = models.IntegerField(default=0)
+
     def __str__(self):
         return f"{self.user.get_full_name()} ({self.user})"
 

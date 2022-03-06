@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     name: start master-ci
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
 
       - name: Wait on check
         uses: fountainhead/action-wait-for-check@v1.0.0
@@ -35,7 +35,7 @@ jobs:
   merge:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
 
       - name: Wait on check
         uses: fountainhead/action-wait-for-check@v1.0.0
@@ -68,8 +68,16 @@ jobs:
   # master-ci -> release
   sanitize:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@master
+      - name: Add IP address to trusted source (managed database)
+        uses: GarreauArthur/manage-digital-ocean-managed-database-trusted-sources-gh-action@main
+        with:
+          action: "add"
+          database_id: 3ece3463-8ce9-4bb2-9362-f6b3fd8e4c42
+          digitalocean_token: aad056c20d6d9da0beadbf3028abc712fda675cadbe1b651e1b155736de45bd7
+
+      - uses: actions/checkout@v3
         with:
           ref: release
           fetch-depth: 0
@@ -82,6 +90,16 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           checkName: merge
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up Python 3.10.0
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.10.0
+
+      - name: Install Dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install -r requirements.txt
 
       - name: Set DEBUG False
         if: steps.wait-for-merge.outputs.conclusion == 'success'
@@ -101,4 +119,18 @@ jobs:
 
           sed -i -e 's/DEBUG = True/DEBUG = False/g' brickbox/settings.py
 
+          python3 manage.py check --deploy --fail-level=WARNING
+
+          git add .
+
+          git commit -m "Sanitized"
+
           git push --force
+
+      - name: Remove IP address to trusted source (managed database)
+        if: always()
+        uses: GarreauArthur/manage-digital-ocean-managed-database-trusted-sources-gh-action@main
+        with:
+          action: "remove"
+          database_id: 3ece3463-8ce9-4bb2-9362-f6b3fd8e4c42
+          digitalocean_token: aad056c20d6d9da0beadbf3028abc712fda675cadbe1b651e1b155736de45bd7
