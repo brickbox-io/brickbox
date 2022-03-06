@@ -5,6 +5,8 @@ import stripe
 from django.conf import settings
 from django.http import JsonResponse
 
+from django.contrib.auth.decorators import login_required
+
 from bb_data.models import UserProfile, ResourceTimeTracking, BillingHistory, ResourceRates
 
 if settings.DEBUG is False:
@@ -16,6 +18,7 @@ else:
     stripePubKey = settings.STRIPE_PUBLISHABLE_KEY_TEST
     stripe_clident_id = settings.CLIENT_ID_TEST
 
+@login_required
 def manual_payment(request):
     '''
     URL: /bb_billing/manual_payment/
@@ -52,7 +55,17 @@ def manual_payment(request):
         description="Monthly Resource Usage Invoice",
     )
 
-    stripe.Invoice.pay(invoice.id)
+    try:
+        stripe.Invoice.pay(invoice.id)
+    except stripe.error.CardError as err:
+        return JsonResponse(
+                    {
+                        'notice': err.user_message,
+                        'balance': open_balance.cycle_total,
+
+                    },
+                    status=200, safe=False
+                )
 
     billing_record = BillingHistory(
                         user = open_balance.user,
