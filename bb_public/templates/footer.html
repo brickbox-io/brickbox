@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load static %}
+
+<footer>
+    <div class="content-container footer-content-conatiner">
+        <div class="footer-content">
+            <div class="footer-links">
+                <ul>
+                    <li style="font-weight: 700;">
+                        <a href="#home">
+                            <img src="{% static 'images/brickbox-transparent.webp' %}" alt="" />
+                            brickbox.io
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://knowledge.brickbox.io/" target="_blank">Knowledgebase</a>
+                    </li>
+                    <li>
+                        <button id="contact">Contact</button></li>
+                    </li>
+                    <!-- <li>
+                        <a href="">Products</a>
+                    </li>
+                    <li>
+                        <a href="">Pricing</a>
+                    </li> -->
+                </ul>
+            </div>
+            <div class="form-container">
+
+                <span class="form-title"><strong style="font-weight: 700; font-size: 18px;">Build the future</strong></span>
+                <span class="form-description">Sign up below to be the first to receive news and updates!</span>
+                <form>
+                    <input type="email" name="email" id="email" class="email" placeholder="Your Email Address" />
+                    <input class="submit" type="submit" value="Submit" onclick="SubmitEmail()" />
+                </form>
+                <ul class="icons">
+                    <li><a href="https://twitter.com/brickbox_io"><i class="fa-brands fa-twitter fa-lg" alt="twitter"></i></a></li>
+                    <li><a href="https://www.facebook.com/brickboxio"><i class="fa-brands fa-facebook fa-lg" alt="facebook"></i></a></li>
+                    <li><a href="https://www.linkedin.com/company/brickbox-io/"><i class="fa-brands fa-linkedin fa-lg" alt="linkedin"></i></a></li>
+                    <li><a href="https://www.instagram.com/brickbox.io/"><i class="fa-brands fa-instagram fa-lg" alt="instagram"></i></a></li>
+                    <li><a href="https://github.com/brickbox-io"><i class="fa-brands fa-github fa-lg" alt="github"></i></a></li>
+                    <li><a href="https://discord.gg/ThUy55Zf8T"><i class="fa-brands fa-discord fa-lg" alt="discord"></i></a></li>
+                    <li><a href="mailto: info@brickbox.io" target="_blank"><i class="fa-solid fa-envelope fa-lg" alt="email"></i></a></li>
+                </ul>
+            </div>
+
+
+
+
+
+
+        </div>
+
+    </div>
+</footer>
+<div class="bottom">
+    <ul class="copyright">
+        <li>&copy; {% now "Y" %} brickbox.io | All rights reserved. | <button id="legal">Legal</button></li>
+    </ul>
+</div>

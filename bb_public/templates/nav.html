@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load static %}
+
+<nav>
+    <div class="nav-container">
+        <div class="header-links" id="nav-links">
+            <ul>
+                <li style="font-weight: 700;">
+                    <a href="#home">
+                        <img src="{% static 'images/brickbox-transparent.webp' %}" alt="" />
+                        brickbox.io
+                    </a>
+                </li>
+                <!-- <li>
+                    <a href="">Products</a>
+                </li> -->
+                <li>
+                    <a href="#price">Pricing</a>
+                </li>
+                <li>
+                    <a href="https://knowledge.brickbox.io/" target="_blank">Knowledgebase</a>
+                </li>
+            </ul>
+
+            {%  if user.is_authenticated %}
+            <a class="btn" href="{% url 'django_dash_black:dash' %}">Log In</a>
+            {% else %}
+            <a class="btn" href="{% url 'bb_accounts:register' %}">Sign Up</a>
+            {% endif %}
+
+        </div>
+    </div>
+    <a href="javascript:void(0);" class="icon mobile-icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+    </a>
+</nav>
+

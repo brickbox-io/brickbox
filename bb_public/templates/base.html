@@ -1,109 +1,39 @@
 <!DOCTYPE HTML>
 
-{% load pwa %}
 {% load static %}
-
-<!--
-	TODO:
-	Optimize images
-	convet png -> jpg unless transparency required
-	build subpages
-	prep for django
--->
+{% load compress %}
 
 <html>
 
-<head>
-    {% progressive_web_app_meta %}
-    <title>{% block title %}brickbox.io{% endblock %}</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
-    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+{% include "head.html" %}
 
-    <noscript>
-        <link rel="stylesheet" href="{% static 'css/noscript.css' %}" />
-    </noscript>
-
-    <link rel="shortcut icon" type="image/png" href="{% static 'brickbox_icon/favicon.ico' %}" />
-    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'brickbox_icon/apple-icon-57x57.png' %}" />
-    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'brickbox_icon/apple-icon-60x60.png' %}" />
-    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'brickbox_icon/apple-icon-72x72.png' %}" />
-    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'brickbox_icon/apple-icon-76x76.png' %}" />
-    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'brickbox_icon/apple-icon-114x114.png' %}" />
-    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'brickbox_icon/apple-icon-120x120.png' %}" />
-    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'brickbox_icon/apple-icon-144x144.png' %}" />
-    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'brickbox_icon/apple-icon-152x152.png' %}" />
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'brickbox_icon/apple-icon-180x180.png' %}" />
-    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'brickbox_icon/android-icon-192x192.png' %}" />
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'brickbox_icon/favicon-32x32.png' %}" />
-    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'brickbox_icon/favicon-96x96.png' %}" />
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'brickbox_icon/favicon-16x16.png' %}" />
-    <link rel="manifest" href="/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="{% static 'brickbox_icon/ms-icon-144x144.png' %}">
-    <meta name="theme-color" content="#ffffff">
-</head>
-
-<body class="{% block body_class %}landing is-preload{% endblock %}">
-
-    <div id="page-wrapper">
-
-        <!-- Header -->
-        <header id="header" class="alt">
-            <h1><a href="{% url 'bb_public:landing_page' %}">{% block menu_title %}brickbox.io{% endblock %}</a></h1>
-            <nav id="nav">
-                <ul>
-                    <li class="special">
-                        <a href="#menu" class="menuToggle"><span>Menu</span></a>
-                        <div id="menu">
-                            <ul>
-                                <li><a href="{% url 'bb_public:landing_page' %}">Home</a></li>
-                                <li><a href="{% url 'bb_public:about_page' %}">About</a></li>
-                                <li><a href="{% url 'bb_public:contact_page' %}">Contact</a></li>
-                                <!--<li><a href="generic.html">Generic</a></li>
-											<li><a href="elements.html">Elements</a></li>>
-											<li><a href="#">Sign Up</a></li>-->
-                                {%  if user.is_authenticated %}
-                                <li><a href="{% url 'django_dash_black:dash' %}">View Dashboard</a></li>
-                                {% else %}
-                                <li><a href="{% url 'bb_accounts:login' %}">Log In</a></li>
-                                {% endif %}
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
+<body class="is-preload">
+    <div class="main-container">
+        <header>
+            <a name="home"></a>
+            <div class="content-container">
+                {% include "nav.html" %}
+            </div>
         </header>
-
-        {% block content %}{% endblock %}
-
-        <!-- Footer -->
-        <footer id="footer">
-            <ul class="icons">
-                <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-                <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-                <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-                <li><a href="mailto:info@brickbox.io" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-            </ul>
-            <ul class="copyright">
-                <li>&copy; brickbox.io</li>
-            </ul>
-        </footer>
-
+        <section class="content">
+            <div class="content-container">
+                content goes here
+            </div>
+        </section>
+        {% include "footer.html" %}
     </div>
 
+    {% include "modals.html" %}
 
-    <!-- Scripts -->
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/jquery.scrollex.min.js' %}"></script>
-    <script src="{% static 'js/jquery.scrolly.min.js' %}"></script>
-    <script src="{% static 'js/browser.min.js' %}"></script>
-    <script src="{% static 'js/breakpoints.min.js' %}"></script>
-    <script src="{% static 'js/util.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script>
+
+    <script src="{% static 'js/landing.js' %}"></script>
+
+    {% compress js inline %}
+    <script src="{% static 'js/csrf.js' %}"></script>
+    {% endcompress %}
 
 </body>
 
 </html>
+

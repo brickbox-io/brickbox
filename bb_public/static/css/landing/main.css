@@ -79,6 +79,7 @@ a:hover {
 
 a img {
 	width: 30px;
+	height: 30px;
 	padding-right: 5px;
 }
 
@@ -155,6 +156,7 @@ header {
 }
 .content-container {
 	max-width: 1080px;
+	width: 100%;
 }
 nav {
 	display: flex; 
@@ -239,6 +241,7 @@ nav {
 .header-image-container img {
 	padding-left: 20px;
 	width: 100%;
+	height: auto;
 }
 
 .header-links ul {
@@ -304,6 +307,7 @@ nav {
 
 	.header-image-container2 img {
 		width: 50%;
+		height: auto;
 	}
   }
 
@@ -401,6 +405,12 @@ nav {
 	}
   }
 
+  .content {
+	padding: 40px 80px;
+    display: flex;
+    justify-content: center;
+}
+
 .about {
 	background-color: #1D1F28;
 	display: flex;
@@ -409,6 +419,7 @@ nav {
 	padding-top: 40px;
 	padding-bottom: 40px;
 }
+
 
 .about-content-container {
 	display: flex;
@@ -648,6 +659,7 @@ nav {
 
 .product-container img {
 	width: 125px;
+	height: 141px;
 }
 
 .product-description {
