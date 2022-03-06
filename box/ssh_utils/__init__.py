@@ -1,3 +1,3 @@
 ''' module that contains SSH functionalities.'''
 
-from .ssh_connect import connect
+from box.ssh_utils.ssh_connect import connect
