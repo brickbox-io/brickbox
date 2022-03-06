@@ -2,3 +2,70 @@
     padding   : 20px 20px 20px;
     min-height: calc(100vh - 70px);
 }
+
+body, .main-panel {
+    background: #1D1F28;
+    border-top: none;
+    color: white;
+}
+
+a {
+    color: #CB4154 !important;
+}
+
+a:hover {
+    color: white !important;
+}
+
+.card {
+    background: #272935;
+}
+
+.title {
+    color: white !important;
+}
+
+.card-category {
+    color: white !important;
+}
+
+.btn-primary {
+    color: white;
+    background: #CB4154;
+    border-radius: 5px;
+    border: none;
+    font-size: 14px;
+    font-weight: 700;
+	height: 40px;
+    padding: 10px 15px;
+}
+
+.btn-primary:hover {
+	color: #CB4154;
+	background: white !important;
+}
+
+.text-primary {
+    color: #CB4154 !important;
+}
+
+a.text-primary:hover {
+    color: white !important;
+}
+
+.form-control {
+    border: 1px solid rgb(78, 78, 90);
+}
+
+.form-control:focus {
+    border-color: #CB4154;
+}
+
+.form-control::placeholder {
+	color: #CB4154;
+}
+
+.card label  {
+    color: white !important;
+}
+
