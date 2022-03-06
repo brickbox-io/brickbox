@@ -3,9 +3,11 @@
 from __future__ import absolute_import, unicode_literals
 
 import re
-import box
 
 from celery import shared_task
+
+import box
+
 
 from bb_vm.models import HostFoundation, CloudImage
 

@@ -1,6 +1,6 @@
 ''' Used to send commands to the host. '''
 
-from box import ssh_utils
+from box.ssh_utils import connect
 
 from box import error
 
@@ -13,16 +13,20 @@ class Command:
         self.stderr = None
 
         if command is not None:
-            self.stdout, self.stderr = ssh_utils.connect(
+            self.stdout, self.stderr = connect(
                                             ssh_command = self.command
                                         )
+            if stderr:
+                raise error.SSHError(self.stderr)
+
+            return self.stdout
 
     @staticmethod
     def list_directory(directory):
         '''
         Lists the contents of a directory on the host.
         '''
-        stdout, stderr = ssh_utils.connect(
+        stdout, stderr = connect(
                                     ssh_command = f'ls {directory}'
                                     )
         if stderr:
@@ -35,7 +39,11 @@ class Command:
         '''
         Downloads a file to the host from a given URL to a given path.
         '''
-        stdout, stderr = ssh_utils.connect(
+        stdout, stderr = connect(
             ssh_command = f'curl {file_url} --output {file_path}{file_name} &',
         )
-        return (stdout, stderr)
+
+        if stderr:
+            raise error.SSHError(stderr)
+
+        return stdout

@@ -60,7 +60,7 @@ def manual_payment(request):
     except stripe.error.CardError as err:
         return JsonResponse(
                     {
-                        'notice': err.message,
+                        'notice': err.user_message,
                         'balance': open_balance.cycle_total,
 
                     },
