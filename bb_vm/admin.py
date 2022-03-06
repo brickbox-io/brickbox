@@ -3,9 +3,18 @@
 from django.contrib import admin
 
 from bb_vm.models import(
-     PortTunnel, VirtualBrick, VirtualBrickHistory, VirtualBrickOwner,
-     GPU, HostFoundation, EquipmentOwner, RentedGPU, VMLog
+    PortTunnel, VirtualBrick, VirtualBrickHistory, VirtualBrickOwner,
+    GPU, HostFoundation, EquipmentOwner, RentedGPU, VMLog,
+
+    # Models Config
+    CloudImage
 )
+
+
+# ---------------------------------------------------------------------------- #
+#                             Admin Configurations                             #
+# ---------------------------------------------------------------------------- #
+
 
 class PortTunnelAdmin(admin.ModelAdmin):
     ''' PortTunnel admin view model registration '''
@@ -65,6 +74,17 @@ class VMLogAdmin(admin.ModelAdmin):
     search_fields = ('virt_brick',)
     list_filter = ('host', 'level',)
 
+# ------------------------------- Models Config ------------------------------ #
+class CloudImageAdmin(admin.ModelAdmin):
+    '''
+    Admin configuration for CloudImage model.
+    '''
+    list_display = ('distribution', 'version', 'is_active')
+
+# ---------------------------------------------------------------------------- #
+#                              Admin Registrations                             #
+# ---------------------------------------------------------------------------- #
+
 
 admin.site.register(PortTunnel, PortTunnelAdmin)
 admin.site.register(HostFoundation, HostFoundationAdmin)
@@ -75,3 +95,6 @@ admin.site.register(VirtualBrick, VirtualBrickAdmin)
 admin.site.register(VirtualBrickHistory, VirtualBrickHistoryAdmin)
 admin.site.register(VirtualBrickOwner, VirtualBrickOwnerAdmin)
 admin.site.register(VMLog, VMLogAdmin)
+
+# ------------------------------- Models Config ------------------------------ #
+admin.site.register(CloudImage, CloudImageAdmin)

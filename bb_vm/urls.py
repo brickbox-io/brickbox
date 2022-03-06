@@ -33,6 +33,7 @@ urlpatterns = [
             views_host.onboarding_gpu,
             name='host_onboarding_gpu'
     ),
+
     path(
             'host/garbage/<host_serial>/',
             views_host.garbage_collection,
