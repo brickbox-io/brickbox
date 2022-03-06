@@ -16,10 +16,8 @@ class Command:
             self.stdout, self.stderr = connect(
                                             ssh_command = self.command
                                         )
-            if stderr:
+            if self.stderr:
                 raise error.SSHError(self.stderr)
-
-            return self.stdout
 
     @staticmethod
     def list_directory(directory):
