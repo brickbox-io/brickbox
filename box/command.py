@@ -2,6 +2,8 @@
 
 from box import ssh_utils
 
+from box import error
+
 class Command:
     ''' Executes commands on the host. '''
 
@@ -15,7 +17,7 @@ class Command:
                                             ssh_command = self.command
                                         )
 
-
+    @staticmethod
     def list_directory(directory):
         '''
         Lists the contents of a directory on the host.
@@ -23,9 +25,12 @@ class Command:
         stdout, stderr = ssh_utils.connect(
                                     ssh_command = f'ls {directory}'
                                     )
-        return (stdout, stderr)
+        if stderr:
+            raise error.SSHError(stderr)
 
+        return stdout
 
+    @staticmethod
     def download_file(file_url, file_path, file_name=None):
         '''
         Downloads a file to the host from a given URL to a given path.
