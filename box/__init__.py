@@ -1,3 +1,5 @@
+# pylint: disable=C0103, C0413
+
 ''' Called when needed to communicate with hosts.'''
 
 host_ip = 'localhost'

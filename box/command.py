@@ -1,6 +1,5 @@
 ''' Used to send commands to the host. '''
 
-from box import host_ip, host_user, host_port
 from box import ssh_utils
 
 class Command:

@@ -15,7 +15,9 @@ class VirtualBrick(models.Model):
     Represents a single VM instance.
     Recivers(s): update_vm_history,
     '''
-    host = models.ForeignKey('bb_vm.HostFoundation', on_delete=models.PROTECT, null=True)  # Physical host.
+    # Physical host.
+    host = models.ForeignKey('bb_vm.HostFoundation', on_delete=models.PROTECT, null=True)
+
     name = models.CharField(max_length = 36, null=True)         # Arbitrary Name
     domain_uuid = models.UUIDField(max_length = 36, null=True)  # UUID of the VM (serial="domain")
     assigned_gpus = models.ManyToManyField('GPU', through='RentedGPU', related_name='assigned_gpus')

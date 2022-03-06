@@ -1,8 +1,13 @@
+''' box.ssh_utils - ssh_connect.py '''
+
 from subprocess import Popen, PIPE
 
 import box
 
 def connect(ssh_command):
+    '''
+    Contains the functionality to connect to a remote host via SSH.
+    '''
     script = [
             'sudo', 'ssh',
             '-i', f'{box.key_path}',

@@ -11,11 +11,9 @@ from django.http import HttpResponse
 # from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 
-from bb_vm.models import HostFoundation, GPU, VirtualBrick, CloudImage
+from bb_vm.models import HostFoundation, GPU, VirtualBrick
 
 from bb_tasks.tasks import destroy_vm_subprocess
-
-from bb_vm.tasks import download_base_img
 
 DIR = '/opt/brickbox/bb_vm/bash_scripts/'
 

@@ -4,8 +4,6 @@ from django.db import models
 from django.dispatch import receiver
 from django.db.models.signals import pre_save, post_save, post_delete
 
-from django.utils.translation import gettext_lazy as _
-
 from bb_data.models import ColocationClient
 
 # ----------------------------------- Hosts ---------------------------------- #
@@ -19,7 +17,9 @@ class HostFoundation(models.Model):
     serial_number = models.CharField(max_length=64, null=True, unique=True)  # Host serial number
 
     # SSH Tunnel
-    ssh_port = models.ForeignKey('bb_vm.PortTunnel', blank=True, null=True, on_delete=models.PROTECT)
+    ssh_port = models.ForeignKey(
+                    'bb_vm.PortTunnel', blank=True, null=True, on_delete=models.PROTECT)
+
     sshtunnel_public_key = models.TextField(blank=True, null=True)  # Key to establish SSH tunnel
 
     # Root User

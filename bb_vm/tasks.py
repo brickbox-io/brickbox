@@ -5,11 +5,6 @@ from __future__ import absolute_import, unicode_literals
 import re
 import box
 
-# import subprocess
-from subprocess import Popen, PIPE
-import datetime
-from dateutil.relativedelta import relativedelta
-
 from django.conf import settings
 from django.contrib.sites.models import Site
 
