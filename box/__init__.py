@@ -1,4 +1,4 @@
-# pylint: disable=C0103, C0413
+# pylint: disable=C0103, C0413, R0401
 
 ''' Called when needed to communicate with hosts.'''
 
