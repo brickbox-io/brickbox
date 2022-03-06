@@ -79,6 +79,7 @@ a:hover {
 
 a img {
 	width: 30px;
+	height: 30px;
 	padding-right: 5px;
 }
 
@@ -240,6 +241,7 @@ nav {
 .header-image-container img {
 	padding-left: 20px;
 	width: 100%;
+	height: auto;
 }
 
 .header-links ul {
@@ -305,6 +307,7 @@ nav {
 
 	.header-image-container2 img {
 		width: 50%;
+		height: auto;
 	}
   }
 
@@ -656,6 +659,7 @@ nav {
 
 .product-container img {
 	width: 125px;
+	height: 141px;
 }
 
 .product-description {
