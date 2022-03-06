@@ -115,7 +115,7 @@ jobs:
 
           git checkout release
 
-          git merge master-ci
+          git merge -X theirs master-ci
 
           sed -i -e 's/DEBUG = True/DEBUG = False/g' brickbox/settings.py
 
@@ -125,7 +125,7 @@ jobs:
 
           git commit -m "Sanitized"
 
-          git push --force
+          git push origin release --force
 
       - name: Remove IP address to trusted source (managed database)
         if: always()
