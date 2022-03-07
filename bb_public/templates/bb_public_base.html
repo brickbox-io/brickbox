@@ -3,24 +3,20 @@
 {% load static %}
 {% load compress %}
 
-<html>
+<html lang="en">
 
 {% include "head.html" %}
 
 <body class="is-preload">
     <div class="main-container">
-        <header>
-            <a name="home"></a>
-            <div class="content-container">
-                {% include "nav.html" %}
-            </div>
-        </header>
-        <section class="content">
-            <div class="content-container">
-                content goes here
-            </div>
-        </section>
-        {% include "footer.html" %}
+
+
+        {% block header %}{% endblock %}
+
+        {% block content %}{% endblock %}
+
+        {% include "bb_public_footer.html" %}
+
     </div>
 
     {% include "modals.html" %}
@@ -36,4 +32,3 @@
 </body>
 
 </html>
-
