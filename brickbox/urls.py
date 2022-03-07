@@ -29,9 +29,12 @@ admin.site.index_title = "Admin Interface"
 
 
 urlpatterns = [
+    # -------------------------------- Admmin URLs ------------------------------- #
     path('admin/doc/', include('django.contrib.admindocs.urls')),
+
     path('admin/', admin.site.urls),
 
+    # ----------------------------- brickbox.io URLs ----------------------------- #
     path('api/', include('bb_api.urls')),               # bb_api
 
     path('', include('bb_accounts.urls')),              # bb_accounts
@@ -40,16 +43,15 @@ urlpatterns = [
 
     path('colo/', include('bb_colo.urls')),             # bb_colo
 
-
-    path('', include('bb_public.urls')),                # bb_public
-
     path('dashboard/', include('bb_dashboard.urls')),   # bb_dashboard
-
-    path('dash/', include('django_dash_black.urls')),
 
     path('data/', include('bb_data.urls')),             # bb_data
 
+    path('', include('bb_public.urls')),                # bb_public
+
     path('webhook/', include('bb_webhook.urls')),       # bb_webhook
+
+    path('dash/', include('django_dash_black.urls')),   # django_dash_black
 
     # ---------------------------- Virtulization URLS ---------------------------- #
     path('vm/', include('bb_vm.urls')),                 # bb_vm

@@ -18,7 +18,7 @@ a:hover {
 }
 
 .card-container {
-    width: 275px;
+    min-width: 25vw;
 }
 
 .card {
@@ -72,4 +72,3 @@ a.text-primary:hover {
 .card label  {
     color: white !important;
 }
-
