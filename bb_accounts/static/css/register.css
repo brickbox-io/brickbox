@@ -17,6 +17,10 @@ a:hover {
     color: white !important;
 }
 
+.card-container {
+    width: 275px;
+}
+
 .card {
     background: #272935;
 }
