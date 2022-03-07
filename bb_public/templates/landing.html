@@ -1,217 +1,202 @@
-<!DOCTYPE HTML>
+{% extends "bb_public_base.html" %}
 
 {% load static %}
 {% load compress %}
 
-<html lang="en">
 
-{% include "head.html" %}
-
-<body class="is-preload">
-    <div class="main-container">
-        <header>
-            <a name="home"></a>
-            <div class="content-container">
-                {% include "nav.html" %}
-                <div class="header-content-container">
-                    <div class="header-content">
-                        <h1>
-                            GPU Rental<br />
-                            <span>marketplace</span><br />
-                            by<br />
-                            brickbox.io
-                        </h1>
-                        <div class="header-image-container2">
-                            <img src="{% static 'images/hi-def-brickbox.webp' %}" alt="" />
-                        </div>
-                        <p>The GPU computing services you need, with accessible pricing, developer-friendly features, and scalability for deep learning and AI.</p>
-                        <div class="header-button-container">
-                            <button>Learn more</button>
-                        </div>
-                        <div class="header-statistics">
-                            <div class="static-container">
-                                <span class="statistic">100+</span>
-                                <span class="stat-description">GPUs</span>
-                            </div>
-                            <div class="static-container">
-                                <span class="statistic">>1G</span>
-                                <span class="stat-description">Transfer Speeds</span>
-                            </div>
-                            <div class="static-container">
-                                <span class="statistic">98%</span>
-                                <span class="stat-description">Uptime</span>
-                            </div>
-                        </div>
+{% block header %}
+<header>
+    <a name="home"></a>
+    <div class="content-container">
+        {% include "nav.html" %}
+        <div class="header-content-container">
+            <div class="header-content">
+                <h1>
+                    GPU Rental<br />
+                    <span>marketplace</span><br />
+                    by<br />
+                    brickbox.io
+                </h1>
+                <div class="header-image-container2">
+                    <img src="{% static 'images/hi-def-brickbox.webp' %}" alt="" />
+                </div>
+                <p>The GPU computing services you need, with accessible pricing, developer-friendly features, and scalability for deep learning and AI.</p>
+                <div class="header-button-container">
+                    <button>Learn more</button>
+                </div>
+                <div class="header-statistics">
+                    <div class="static-container">
+                        <span class="statistic">100+</span>
+                        <span class="stat-description">GPUs</span>
                     </div>
-                    <div class="header-image-container">
-                        <img src="{% static 'images/hi-def-brickbox.webp' %}" alt="" />
+                    <div class="static-container">
+                        <span class="statistic">>1G</span>
+                        <span class="stat-description">Transfer Speeds</span>
+                    </div>
+                    <div class="static-container">
+                        <span class="statistic">98%</span>
+                        <span class="stat-description">Uptime</span>
                     </div>
                 </div>
             </div>
-        </header>
-        <section class="about">
-            <div class="content-container">
-                <div class="about-content-container">
-                    <div class="about-content">
-                        <h2>
-                            Humanity’s Last <br />
-                            Invention
-                        </h2>
-                        <div class="about-image-container2">
-                            <img src="{% static 'images/placeholder-2.webp' %}" alt="" />
-                        </div>
-                        <!-- <span><strong>"The future is already here -- it's just not very evenly distributed." </strong></span> -->
-                        <p>
-                            At brickbox.io, we believe that, like fire or electricity, Artificial Intelligence
-                            is the next major catalyst of humanity's transformation. By democratizing and
-                            distributing processing power at affordable rates around the globe, we are providing
-                            the tools and infrastructure to the architects of the future.
-                        </p>
-                        <p>
-                            Using brickbox.io's infrastructure, our clients are laying the foundation for the future.
-                        </p>
-                    </div>
-                    <div class="about-image-container">
-                        <img src="{% static 'images/placeholder-2.webp' %}" alt="" />
-                    </div>
-                </div>
-                <div class="about-content-container">
-                    <div class="about-image-container">
-                        <img src="{% static 'images/place-holder-img.webp' %}" alt="" />
-                    </div>
-                    <div class="about-content">
-                        <h2>
-                            Hardware Dedicated<br />
-                            to Your Needs
-                        </h2>
-                        <div class="about-image-container2">
-                            <img src="{% static 'images/place-holder-img.webp' %}" alt="" />
-                        </div>
-                        <!-- <span><strong>Hardware Dedicated to Your Needs</strong></span> -->
-                        <p>
-                            The infrastructure at brickbox.io is built with machine learning in mind, therefore,
-                            each brick’s resources are dedicated to YOU and tailored to your needs ensuring all
-                            of the libraries you know and love, like TensorFlow and PyTorch, are readily available.
-                        </p>
-                    </div>
-                </div>
-                <div class="about-content-container">
-                    <div class="about-content">
-                        <h2>
-                            Change the<br />
-                            World With Us
-                        </h2>
-                        <div class="about-image-container2">
-                            <img src="{% static 'images/placeholder-3.webp' %}" alt="" />
-                        </div>
-                        <!-- <span><strong>Humanity's Last Invention</strong></span> -->
-                        <p>
-                            With a robust API, command line tools (coming soon!), and documentation; development
-                            at brickbox.io is easier and faster than ever.
-                        </p>
-                        <p>
-                            Share your journey, showcase your projects, discuss best practices, and learn faster
-                            along with other data scientists and developers at the brickbox.io community.
-                        </p>
-                        <!-- <button><a href="{% url 'bb_accounts:register' %}">Sign Up</a></button> -->
-                        <a class="btn" style="margin-top: 10px;" href="https://knowledge.brickbox.io/" target="_blank">Knowledgebase</a>
-                    </div>
-                    <div class="about-image-container">
-                        <img src="{% static 'images/placeholder-3.webp' %}" alt="" />
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="customer-reviews">
-            <div class="content-container customer-reviews-content">
-                <div class="customer-reviews-title">
-                    <h2>Compatible with</h2>
-                </div>
-                <div class="customer-review-container">
-                    <img src="{% static 'images/TF.webp' %}" alt="" />
-                    <!-- <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam in arcu cursus euismod. Id interdum velit laoreet id donec ultrices tincidunt.
-                    </p>
-                    <div class="customer-info">
-                        <img src="{% static 'images/placeholder-2.jpg' %}" alt="" />
-                        <span class="customer-name"><strong style="font-weight: 700;">John Smith</strong></span>
-                    </div> -->
-                </div>
-                <div class="customer-review-container">
-                    <img src="{% static 'images/pytorch.webp' %}" alt="" />
-                    <!-- <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam in arcu cursus euismod. Id interdum velit laoreet id donec ultrices tincidunt.
-                    </p>
-                    <div class="customer-info">
-                        <img src="{% static 'images/placeholder-2.jpg' %}" alt="" />
-                        <span class="customer-name"><strong style="font-weight: 700;">John Smith</strong></span>
-                    </div> -->
-                </div>
-                <div class="customer-review-container">
-                    <img src="{% static 'images/keras.webp' %}" alt="" />
-                    <!-- <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam in arcu cursus euismod. Id interdum velit laoreet id donec ultrices tincidunt.
-                    </p>
-                    <div class="customer-info">
-                        <img src="{% static 'images/placeholder-2.jpg' %}" alt="" />
-                        <span class="customer-name"><strong style="font-weight: 700;">John Smith</strong></span>
-                    </div> -->
-                </div>
-                <div class="customer-review-container">
-                    <img src="{% static 'images/jupyter.webp' %}" alt="" />
-                    <!-- <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam in arcu cursus euismod. Id interdum velit laoreet id donec ultrices tincidunt.
-                    </p>
-                    <div class="customer-info">
-                        <img src="{% static 'images/placeholder-2.jpg' %}" alt="" />
-                        <span class="customer-name"><strong style="font-weight: 700;">John Smith</strong></span>
-                    </div> -->
-                </div>
-            </div>
-        </section>
-        <div class="ready-to-get-started" style="background-image: url();" name="price">
-            <img class="demo-bg" src="{% static 'images/hi-def-brickbox2.webp' %}" alt="">
-            <div class="content-container rtgs-content">
-                <h2>
-                    Ready to <br />
-                    get started?
-                </h2>
+            <div class="header-image-container">
+                <img src="{% static 'images/hi-def-brickbox.webp' %}" alt="" />
             </div>
         </div>
-        <section class="products">
-            <a name="price"></a>
-            <div class="product-container">
-                <div class="product-image-container">
-                    <img src="{% static 'images/single.webp' %}" alt="" />
-                </div>
-                <h3 class="price">$0.50/hr</h3>
-                <span class="product-name"><strong style="font-weight: 700;">GPU:</strong> RTX 3070</span>
-                <!-- <span class="product-description">4x vCPU, 12GB RAM, 25GB SSD</span> -->
-                <a class="btn" href="{% url 'bb_accounts:register' %}">Get Started</a>
-            </div>
-            <div class="product-container">
-                <div class="product-image-container">
-                    <img src="{% static 'images/double.webp' %}" alt="" />
-                </div>
-                <h3 class="price">$0.75/hr</h3>
-                <span class="product-name"><strong style="font-weight: 700;">GPU:</strong> RTX 3090</span>
-                <!-- <span class="product-description">4x vCPU, 12GB RAM, 25GB SSD</span> -->
-                <a class="btn" href="{% url 'bb_accounts:register' %}">Get Started</a>
-            </div>
-        </section>
-        {% include "footer.html" %}
     </div>
+</header>
+{% endblock %}
 
-    {% include "modals.html" %}
 
-    <script src="{% static 'js/main.js' %}"></script>
-
-    <script src="{% static 'js/landing.js' %}"></script>
-
-    {% compress js inline %}
-    <script src="{% static 'js/csrf.js' %}"></script>
-    {% endcompress %}
-
-</body>
-
-</html>
+{% block content %}
+<section class="about">
+    <div class="content-container">
+        <div class="about-content-container">
+            <div class="about-content">
+                <h2>
+                    Humanity’s Last <br />
+                    Invention
+                </h2>
+                <div class="about-image-container2">
+                    <img src="{% static 'images/placeholder-2.webp' %}" alt="" />
+                </div>
+                <!-- <span><strong>"The future is already here -- it's just not very evenly distributed." </strong></span> -->
+                <p>
+                    At brickbox.io, we believe that, like fire or electricity, Artificial Intelligence
+                    is the next major catalyst of humanity's transformation. By democratizing and
+                    distributing processing power at affordable rates around the globe, we are providing
+                    the tools and infrastructure to the architects of the future.
+                </p>
+                <p>
+                    Using brickbox.io's infrastructure, our clients are laying the foundation for the future.
+                </p>
+            </div>
+            <div class="about-image-container">
+                <img src="{% static 'images/placeholder-2.webp' %}" alt="" />
+            </div>
+        </div>
+        <div class="about-content-container">
+            <div class="about-image-container">
+                <img src="{% static 'images/place-holder-img.webp' %}" alt="" />
+            </div>
+            <div class="about-content">
+                <h2>
+                    Hardware Dedicated<br />
+                    to Your Needs
+                </h2>
+                <div class="about-image-container2">
+                    <img src="{% static 'images/place-holder-img.webp' %}" alt="" />
+                </div>
+                <!-- <span><strong>Hardware Dedicated to Your Needs</strong></span> -->
+                <p>
+                    The infrastructure at brickbox.io is built with machine learning in mind, therefore,
+                    each brick’s resources are dedicated to YOU and tailored to your needs ensuring all
+                    of the libraries you know and love, like TensorFlow and PyTorch, are readily available.
+                </p>
+            </div>
+        </div>
+        <div class="about-content-container">
+            <div class="about-content">
+                <h2>
+                    Change the<br />
+                    World With Us
+                </h2>
+                <div class="about-image-container2">
+                    <img src="{% static 'images/placeholder-3.webp' %}" alt="" />
+                </div>
+                <!-- <span><strong>Humanity's Last Invention</strong></span> -->
+                <p>
+                    With a robust API, command line tools (coming soon!), and documentation; development
+                    at brickbox.io is easier and faster than ever.
+                </p>
+                <p>
+                    Share your journey, showcase your projects, discuss best practices, and learn faster
+                    along with other data scientists and developers at the brickbox.io community.
+                </p>
+                <!-- <button><a href="{% url 'bb_accounts:register' %}">Sign Up</a></button> -->
+                <a class="btn" style="margin-top: 10px;" href="https://knowledge.brickbox.io/" target="_blank">Knowledgebase</a>
+            </div>
+            <div class="about-image-container">
+                <img src="{% static 'images/placeholder-3.webp' %}" alt="" />
+            </div>
+        </div>
+    </div>
+</section>
+<section class="customer-reviews">
+    <div class="content-container customer-reviews-content">
+        <div class="customer-reviews-title">
+            <h2>Compatible with</h2>
+        </div>
+        <div class="customer-review-container">
+            <img src="{% static 'images/TF.webp' %}" alt="" />
+            <!-- <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam in arcu cursus euismod. Id interdum velit laoreet id donec ultrices tincidunt.
+                    </p>
+                    <div class="customer-info">
+                        <img src="{% static 'images/placeholder-2.jpg' %}" alt="" />
+                        <span class="customer-name"><strong style="font-weight: 700;">John Smith</strong></span>
+                    </div> -->
+        </div>
+        <div class="customer-review-container">
+            <img src="{% static 'images/pytorch.webp' %}" alt="" />
+            <!-- <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam in arcu cursus euismod. Id interdum velit laoreet id donec ultrices tincidunt.
+                    </p>
+                    <div class="customer-info">
+                        <img src="{% static 'images/placeholder-2.jpg' %}" alt="" />
+                        <span class="customer-name"><strong style="font-weight: 700;">John Smith</strong></span>
+                    </div> -->
+        </div>
+        <div class="customer-review-container">
+            <img src="{% static 'images/keras.webp' %}" alt="" />
+            <!-- <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam in arcu cursus euismod. Id interdum velit laoreet id donec ultrices tincidunt.
+                    </p>
+                    <div class="customer-info">
+                        <img src="{% static 'images/placeholder-2.jpg' %}" alt="" />
+                        <span class="customer-name"><strong style="font-weight: 700;">John Smith</strong></span>
+                    </div> -->
+        </div>
+        <div class="customer-review-container">
+            <img src="{% static 'images/jupyter.webp' %}" alt="" />
+            <!-- <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam in arcu cursus euismod. Id interdum velit laoreet id donec ultrices tincidunt.
+                    </p>
+                    <div class="customer-info">
+                        <img src="{% static 'images/placeholder-2.jpg' %}" alt="" />
+                        <span class="customer-name"><strong style="font-weight: 700;">John Smith</strong></span>
+                    </div> -->
+        </div>
+    </div>
+</section>
+<div class="ready-to-get-started" style="background-image: url();" name="price">
+    <img class="demo-bg" src="{% static 'images/hi-def-brickbox2.webp' %}" alt="">
+    <div class="content-container rtgs-content">
+        <h2>
+            Ready to <br />
+            get started?
+        </h2>
+    </div>
+</div>
+<section class="products">
+    <a name="price"></a>
+    <div class="product-container">
+        <div class="product-image-container">
+            <img src="{% static 'images/single.webp' %}" alt="" />
+        </div>
+        <h3 class="price">$0.50/hr</h3>
+        <span class="product-name"><strong style="font-weight: 700;">GPU:</strong> RTX 3070</span>
+        <!-- <span class="product-description">4x vCPU, 12GB RAM, 25GB SSD</span> -->
+        <a class="btn" href="{% url 'bb_accounts:register' %}">Get Started</a>
+    </div>
+    <div class="product-container">
+        <div class="product-image-container">
+            <img src="{% static 'images/double.webp' %}" alt="" />
+        </div>
+        <h3 class="price">$0.75/hr</h3>
+        <span class="product-name"><strong style="font-weight: 700;">GPU:</strong> RTX 3090</span>
+        <!-- <span class="product-description">4x vCPU, 12GB RAM, 25GB SSD</span> -->
+        <a class="btn" href="{% url 'bb_accounts:register' %}">Get Started</a>
+    </div>
+</section>
+{% endblock %}
