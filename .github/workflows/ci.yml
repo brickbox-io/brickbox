@@ -111,7 +111,7 @@ jobs:
 
           git checkout master-ci
 
-          git pull
+          git pull -X theirs origin master-ci
 
           git checkout release
 
