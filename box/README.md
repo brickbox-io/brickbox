@@ -12,3 +12,11 @@ Celery is used to manage the background tasks that include creating SSH connecti
 |---------|----------------|--------------------------------------------|
 | Command | list_directory | List the contents of a directory on a host |
 | Command | download_file  | Downloads a file from a URL to the host.   |
+
+``` python
+host = box.Connect(
+            host_port = #
+        )
+
+host.list_directory('directory/path')
+```
