@@ -216,7 +216,7 @@ class Brick(BrickConfig):
             ssh_command = f"sudo virt-customize -a /var/lib/libvirt/images/{self.brick_id}.img --ssh-inject root:file:ssh.key"
         )
         host.connect(
-            ssh_command = f"sudo rm ssh.key"
+            ssh_command = "sudo rm ssh.key"
         )
 
         self.toggle_state(set_state="on")

@@ -19,7 +19,7 @@ class HostStatus:
             self.enp3s0f1_is_up(auto_fix = auto_fix),
             self.br0_is_networked(auto_fix = auto_fix),
         ]
-        return bool(not False in stats)
+        return bool(False not in stats)
 
 
     def qemu_installed(self, auto_fix=False):

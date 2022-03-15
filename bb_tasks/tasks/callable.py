@@ -100,8 +100,8 @@ def destroy_vm_subprocess(instance_id, host_id=None):
     # with subprocess.Popen(destroy_vm_script) as script:
     #     print(script)
 
-    vm = box.Brick(host_port=host.ssh_port, brick_id=f'{str(instance_id)}')
-    vm.destroy()
+    virtual_machine = box.Brick(host_port=host.ssh_port, brick_id=f'{str(instance_id)}')
+    virtual_machine.destroy()
 
     if host_id is None:
         brick.delete()
