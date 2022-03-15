@@ -20,3 +20,20 @@ host = box.Connect(
 
 host.list_directory('directory/path')
 ```
+
+## VM Scripts
+
+Scripts that need to be ran on the virtual machines by either the platform or the end user need to be uploaded to a file server. The scripts are then downloaded to the VM via CURL, and then executed.
+
+### Vendor Data
+
+Using the cloud-init system a vendor-data file is created that contains runcmd to curl the scripts from the file server and then execute them.
+
+## Virtual Machine Configuration
+
+SSH
+
+| Categorey | Action             | Description                    | Location   |
+|-----------|--------------------|--------------------------------|------------|
+| SSH       | PermitRootLogin    | Allow root login with password | vm_init.sh |
+| SSH       | AuthorizedKeysFile |                                | vm_init.sh |

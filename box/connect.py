@@ -10,6 +10,7 @@ import box
 from box import  error
 
 class Connect(Command, HostStatus):
+    ''' Contains SSH handlers. '''
 
     def __init__(self, host_port=None, command=None):
         super().__init__(command)

@@ -7,6 +7,7 @@ import subprocess
 
 from django.contrib.sites.models import Site
 
+import box
 from celery import shared_task
 
 from bb_vm.models import (
@@ -28,41 +29,52 @@ def new_vm_subprocess(instance_id, root_pass):
     '''
     brick = VirtualBrick.objects.get(id=instance_id)
     host = brick.host
+
+    vm = box.Brick(host_port=host.ssh_port, brick_id=f'{str(instance_id)}')
     try:
         # ------------------------------------- 1 ------------------------------------ #
-        brick_clone = [
-                            f'{DIR}brick_connect.sh',
-                            f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
-                            'initialise/brick_clone', f'{str(Site.objects.get_current().domain)}',
-                            f'{str(instance_id)}', 'NONE', 'NONE',
-                        ]
-        with subprocess.Popen(brick_clone) as script:
-            print(script)
+        # brick_clone = [
+        #                     f'{DIR}brick_connect.sh',
+        #                     f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
+        #                     'initialise/brick_clone', f'{str(Site.objects.get_current().domain)}',
+        #                     f'{str(instance_id)}', 'NONE', 'NONE',
+        #                 ]
+        # with subprocess.Popen(brick_clone) as script:
+        #     print(script)
 
-        if not VirtualBrick.objects.get(id=instance_id).img_cloned:
-            return
+        # if not VirtualBrick.objects.get(id=instance_id).img_cloned:
+        #     return
+
+        vm.create(base_image="base_os-1")
+        brick.img_cloned = True
+        brick.domain_uuid = vm.domuuid()
+        brick.save()
 
         # ------------------------------------- 2 ------------------------------------ #
-        brick_auth = [
-                            f'{DIR}brick_connect.sh',
-                            f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
-                            'initialise/brick_auth', f'{str(Site.objects.get_current().domain)}',
-                            f'{str(instance_id)}', '0', f'{str(root_pass)}',
-                        ]
-        with subprocess.Popen(brick_auth) as script:
-            print(script)
+        # brick_auth = [
+        #                     f'{DIR}brick_connect.sh',
+        #                     f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
+        #                     'initialise/brick_auth', f'{str(Site.objects.get_current().domain)}',
+        #                     f'{str(instance_id)}', '0', f'{str(root_pass)}',
+        #                 ]
+        # with subprocess.Popen(brick_auth) as script:
+        #     print(script)
+
+        # vm.set_root_password(password=f'{str(root_pass)}')
 
         # ------------------------------------- 3 ------------------------------------ #
-        for owner in brick.owners.all():
-            for key in owner.keys.all():
-                brick_auth = [
-                            f'{DIR}brick_connect.sh',
-                            f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
-                            'initialise/brick_auth', f'{str(Site.objects.get_current().domain)}',
-                            f'{str(instance_id)}', f'{str(key.pub_key)}', '0',
-                        ]
-            with subprocess.Popen(brick_auth) as script:
-                print(script)
+        # for owner in brick.owners.all():
+        #     for key in owner.keys.all():
+        #         # brick_auth = [
+        #         #             f'{DIR}brick_connect.sh',
+        #         #             f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
+        #         #             'initialise/brick_auth', f'{str(Site.objects.get_current().domain)}',
+        #         #             f'{str(instance_id)}', f'{str(key.pub_key)}', '0',
+        #         #         ]
+        #         # with subprocess.Popen(brick_auth) as script:
+        #         #     print(script)
+
+        #         vm.set_ssh_key(key=f'{str(key.pub_key)}')
 
         # ------------------------------------- 4 ------------------------------------ #
         gpu_xml = RentedGPU.objects.filter(virt_brick=brick)[0].gpu.xml
@@ -77,14 +89,19 @@ def new_vm_subprocess(instance_id, root_pass):
             print(script)
 
         # ------------------------------------- 5 ------------------------------------ #
-        brick_boot = [
-                        f'{DIR}brick_connect.sh',
-                            f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
-                            'initialise/brick_boot', f'{str(Site.objects.get_current().domain)}',
-                            f'{str(instance_id)}', 'NONE', 'NONE',
-                        ]
-        with subprocess.Popen(brick_boot) as script:
-            print(script)
+        # brick_boot = [
+        #                 f'{DIR}brick_connect.sh',
+        #                     f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
+        #                     'initialise/brick_boot', f'{str(Site.objects.get_current().domain)}',
+        #                     f'{str(instance_id)}', 'NONE', 'NONE',
+        #                 ]
+        # with subprocess.Popen(brick_boot) as script:
+        #     print(script)
+
+        # brick.domain_uuid = vm.domuuid()
+        # brick.save()
+
+        vm.toggle_state(set_state='on')
 
     except IndexError as err:
         print(err)

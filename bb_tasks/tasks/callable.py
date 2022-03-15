@@ -8,6 +8,8 @@ from django.contrib.sites.models import Site
 
 from celery import shared_task
 
+import box
+
 from bb_vm.models import (
     PortTunnel, VirtualBrick, HostFoundation
 )
@@ -80,24 +82,29 @@ def destroy_vm_subprocess(instance_id, host_id=None):
     '''
     Called to destroy VM.
     '''
+
     if host_id is None:
         brick = VirtualBrick.objects.get(id=instance_id)
         host = brick.host
     else:
         host = HostFoundation.objects.get(id=host_id)
 
-    destroy_vm_script = [
-                        f'{DIR}brick_connect.sh',
-                        f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
-                        'brick_destroy', f'{str(Site.objects.get_current().domain)}',
-                        f'{str(instance_id)}',
-                    ]
+    # destroy_vm_script = [
+    #                     f'{DIR}brick_connect.sh',
+    #                     f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
+    #                     'brick_destroy', f'{str(Site.objects.get_current().domain)}',
+    #                     f'{str(instance_id)}',
+    #                 ]
 
 
-    with subprocess.Popen(destroy_vm_script) as script:
-        print(script)
+    # with subprocess.Popen(destroy_vm_script) as script:
+    #     print(script)
 
-    brick.delete()
+    vm = box.Brick(host_port=host.ssh_port, brick_id=f'{str(instance_id)}')
+    vm.destroy()
+
+    if host_id is None:
+        brick.delete()
 
 # ---------------------------- Terminate SSH Port ---------------------------- #
 @shared_task

@@ -28,6 +28,6 @@ class Command:
         Downloads a file to the host from a given URL to a given path.
         '''
         self.connect(
-            ssh_command = f'sudo curl {file_url} --output {file_path}{file_name} &',
+            ssh_command = f'sudo curl --silent {file_url} --output {file_path}{file_name} &',
         )
         return self.stdout

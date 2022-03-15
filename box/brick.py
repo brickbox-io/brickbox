@@ -1,11 +1,11 @@
 ''' box - brick.py '''
 
-import yaml
 import time
+import yaml
 
 from box import Connect
 
-class BRICK_CONFIG:
+class BrickConfig:
     ''' Contains the definitions of a virtual machine instance.'''
 
     # ------------------------------- VM Properties ------------------------------ #
@@ -21,60 +21,50 @@ class BRICK_CONFIG:
     META_DATA = {}
 
     USER_DATA = {
-        "users":[
-            {
-                "name": "root",
-                "plain_text_passwd": "root",
-            },
+         "packages": [
+            "ubuntu-drivers-common",
+            "nvidia-driver-510",
+            "nvidia-utils-510"
         ],
+         "chpasswd": {
+            "list": "root:root"
+        }
     }
 
     VENDOR_DATA = {
         "runcmd": [
-
-            "domain_uuid=$(sudo dmidecode -s system-uuid)",
-
-            "sudo mkdir -p /etc/sshtunnel",
-
-            'sudo ssh-keygen -qN "" -f /etc/sshtunnel/id_rsa',
-
-            "pub_key=$(cat /etc/sshtunnel/id_rsa.pub)",
-
-            '''available_port=$(curl -H "Content-Type: application/x-www-form-urlencoded; charset=utf-8" \
-                --data-urlencode "pub_key=$pub_key" \
-                -d "domain_uuid=$domain_uuid" \
-                -X POST "https://$url/vm/tunnel/")""",
-
-            """cat <<EOF > /etc/systemd/system/sshtunnel.service
-            [Unit]
-            Description=Service to maintain an ssh reverse tunnel
-            Wants=network-online.target
-            After=network-online.target
-            StartLimitIntervalSec=0
-            [Service]
-            Type=simple
-            ExecStart=/usr/bin/ssh -qNn \\
-            -o ServerAliveInterval=30 \\
-            -o ServerAliveCountMax=3 \\
-            -o ExitOnForwardFailure=yes \\
-            -o StrictHostKeyChecking=no \\
-            -o UserKnownHostsFile=/dev/null \\
-            -i /etc/sshtunnel/id_rsa \\
-            -R :$available_port:localhost:22 \\
-            sshtunnel@$ip -p 22
-            Restart=always
-            RestartSec=60
-            [Install]
-            WantedBy=multi-user.target
-            EOF''',
-
-            "sudo systemctl enable --now sshtunnel",
-
-            "sudo systemctl daemon-reload"
-        ],
+            [
+                "curl",
+                "https://os-imgs.nyc3.digitaloceanspaces.com/yaml/vm_init.sh",
+                "--output",
+                "/usr/local/sbin/vm_init.sh"
+            ],
+            [
+                "chmod",
+                "+x",
+                "/usr/local/sbin/vm_init.sh"
+            ],
+            [
+                "/usr/local/sbin/vm_init.sh"
+            ],
+            [
+                "curl",
+                "https://os-imgs.nyc3.digitaloceanspaces.com/yaml/motd.sh",
+                "--output",
+                "/usr/local/sbin/motd.sh"
+            ],
+            [
+                "chmod",
+                "+x",
+                "/usr/local/sbin/motd.sh"
+            ],
+            [
+                "/usr/local/sbin/motd.sh"
+            ]
+        ]
     }
 
-class Brick(BRICK_CONFIG):
+class Brick(BrickConfig):
     ''' All the functions that can be done to a VM. '''
 
     def __init__(self, brick_id=None, host_port=None):
@@ -109,8 +99,6 @@ class Brick(BRICK_CONFIG):
         )
 
         # Add VENDOR-DATA to the host image
-        self.VENDOR_DATA['runcmd'].insert(0,"url='dev.brickbox.io'")
-        self.VENDOR_DATA['runcmd'].insert(0,"ip='134.209.214.111'")
         host.connect(
             ssh_command = f"sudo bash -c 'echo \"#cloud-config\n\n{yaml.dump(self.VENDOR_DATA)}\" > /var/lib/libvirt/images/{self.brick_id}/vendor-data'"
         )
@@ -143,6 +131,7 @@ class Brick(BRICK_CONFIG):
                                 --graphics=none \
                                 --noautoconsole \
                                 --boot menu=on \
+                                --noreboot \
                                 --autostart
                             """
         )
@@ -195,24 +184,46 @@ class Brick(BRICK_CONFIG):
             ssh_command = f"sudo rm -r /var/lib/libvirt/images/{self.brick_id} && sudo find /var/lib/libvirt/images/ -name '{self.brick_id}*' -delete"
         )
 
-
-    def set_root_password(self, passord='root'):
+    # ------------------------------- Root Password ------------------------------ #
+    def set_root_password(self, password='root'):
         '''
         Called to set the root password, it will turn off the VM first then set the password.
         '''
         host = Connect(host_port=self.HOST_PORT)
 
+        time.sleep(15)
         self.toggle_state(set_state="off")
-
-        time.sleep(5)
+        time.sleep(3)
 
         host.connect(
-            ssh_command = f"sudo virt-customize -a /var/lib/libvirt/images/{self.brick_id}.img --root-password password:root"
+            ssh_command = f"sudo virt-customize -a /var/lib/libvirt/images/{self.brick_id}.img --root-password password:{password}"
         )
 
         self.toggle_state(set_state="on")
 
+    # --------------------------------- SSH Keys --------------------------------- #
+    def set_ssh_key(self, key):
+        host = Connect(host_port=self.HOST_PORT)
 
+        time.sleep(15)
+        self.toggle_state(set_state="off")
+        time.sleep(3)
+
+        host.connect(
+            ssh_command = f"sudo echo {key} | sudo tee -a ssh.key"
+        )
+        host.connect(
+            ssh_command = f"sudo virt-customize -a /var/lib/libvirt/images/{self.brick_id}.img --ssh-inject root:file:ssh.key"
+        )
+        host.connect(
+            ssh_command = f"sudo rm ssh.key"
+        )
+
+        self.toggle_state(set_state="on")
+
+    # ---------------------------------------------------------------------------- #
+    #                                States and Info                               #
+    # ---------------------------------------------------------------------------- #
 
     def is_running(self):
         '''
@@ -225,3 +236,16 @@ class Brick(BRICK_CONFIG):
         )
 
         return bool(host.stdout.decode('utf-8').replace("'", '').rstrip("\n") == 'Running')
+
+
+    def domuuid(self):
+        '''
+        Returns domuuid of the VM
+        '''
+        host = Connect(host_port=self.HOST_PORT)
+
+        host.connect(
+            ssh_command = f'sudo virsh domuuid {self.brick_id}'
+        )
+
+        return host.stdout.decode('utf-8').replace("'", '').rstrip("\n")
