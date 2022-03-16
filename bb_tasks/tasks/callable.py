@@ -27,16 +27,8 @@ def pause_vm_subprocess(instance_id):
     Called to power down a VM.
     '''
     host = VirtualBrick.objects.get(id=instance_id).host
-
-    pause_vm_script = [
-                        f'{DIR}brick_connect.sh',
-                        f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
-                        'brick_pause', f'{str(Site.objects.get_current().domain)}',
-                        f'{str(instance_id)}'
-                    ]
-
-    with subprocess.Popen(pause_vm_script) as script:
-        print(script)
+    virtual_machine = box.Brick(host_port=host.ssh_port, brick_id=f'{str(instance_id)}')
+    virtual_machine.toggle_state(set_state="off")
 
 
 # --------------------------------- Bootup VM -------------------------------- #
@@ -46,17 +38,8 @@ def play_vm_subprocess(instance_id):
     Resume VM from off state.
     '''
     host = VirtualBrick.objects.get(id=instance_id).host
-
-    play_vm_script = [
-                        f'{DIR}brick_connect.sh',
-                        f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
-                        'brick_play', f'{str(Site.objects.get_current().domain)}',
-                        f'{str(instance_id)}',
-                    ]
-
-    with subprocess.Popen(play_vm_script) as script:
-        print(script)
-
+    virtual_machine = box.Brick(host_port=host.ssh_port, brick_id=f'{str(instance_id)}')
+    virtual_machine.toggle_state(set_state="on")
 
 # --------------------------------- Reboot VM -------------------------------- #
 @shared_task
@@ -88,17 +71,6 @@ def destroy_vm_subprocess(instance_id, host_id=None):
         host = brick.host
     else:
         host = HostFoundation.objects.get(id=host_id)
-
-    # destroy_vm_script = [
-    #                     f'{DIR}brick_connect.sh',
-    #                     f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
-    #                     'brick_destroy', f'{str(Site.objects.get_current().domain)}',
-    #                     f'{str(instance_id)}',
-    #                 ]
-
-
-    # with subprocess.Popen(destroy_vm_script) as script:
-    #     print(script)
 
     virtual_machine = box.Brick(host_port=host.ssh_port, brick_id=f'{str(instance_id)}')
     virtual_machine.destroy()

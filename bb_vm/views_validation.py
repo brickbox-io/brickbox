@@ -3,8 +3,6 @@
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
-from bb_vm.models import VirtualBrick
-
 @csrf_exempt
 def brick_errors(request):
     '''
