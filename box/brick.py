@@ -10,11 +10,13 @@ class BrickConfig:
 
     # ------------------------------- VM Properties ------------------------------ #
 
-    HOST_PORT = None
-    BASE_IMAGE = None
-    DISk_SIZE = None    # Units in Gigabytes (G)
-    MEMORY = None       # Units in megabytes, no units
-    CPU_QTY = None      # Number of virtual CPUs
+    port = None
+    base_image = None
+    disk_size = None    # Units in Gigabytes (G)
+    memory = None       # Units in megabytes, no units
+    cpu_qty = None      # Number of virtual CPUs
+
+    image_directory = "/var/lib/libvirt/images/"
 
     # ------------------------- Clound Init Configuration ------------------------ #
 
@@ -66,38 +68,47 @@ class Brick(BrickConfig):
 
     def __init__(self, brick_id=None, host_port=None):
         self.brick_id = brick_id
-        self.HOST_PORT = host_port
+        self.port = host_port
 
     # ---------------------------------- Create ---------------------------------- #
     def create(self, base_image=None, disk_size=25, memory=12288, cpu_qty=4):
         '''
         Creates a new VM using the configuration provided.
         '''
-        self.DISk_SIZE = disk_size
-        self.BASE_IMAGE = base_image
-        self.MEMORY = memory
-        self.CPU_QTY = cpu_qty
+        self.disk_size = disk_size
+        self.base_image = base_image
+        self.memory = memory
+        self.cpu_qty = cpu_qty
 
-        host = Connect(host_port=self.HOST_PORT)
+        host = Connect(host_port=self.port)
 
         # Create Brick Folder
         host.connect(
-            ssh_command = f'sudo mkdir /var/lib/libvirt/images/{self.brick_id}'
+            ssh_command = f'sudo mkdir {self.image_directory}{self.brick_id}'
         )
 
         # Create the VM disk image
         host.connect(
-        ssh_command = f'sudo qemu-img create -b /var/lib/libvirt/images/{self.BASE_IMAGE}.img -f qcow2 -F qcow2 /var/lib/libvirt/images/{self.brick_id}.img {self.DISk_SIZE}G'
+        ssh_command = f"""sudo qemu-img create \
+                            -b {self.image_directory}{self.base_image}.img \
+                            -f qcow2 -F qcow2 {self.image_directory}{self.brick_id}.img {self.disk_size}G
+                        """
         )
 
         # Generate the user-data file on the host
         host.connect(
-            ssh_command = f"sudo bash -c 'echo \"#cloud-config\n\n{yaml.dump(self.USER_DATA)}\" > /var/lib/libvirt/images/{self.brick_id}/user-data'"
+            ssh_command = f"""sudo bash -c \
+                                'echo \"#cloud-config\n\n{yaml.dump(self.USER_DATA)}\" \
+                                > {self.image_directory}{self.brick_id}/user-data'
+                            """
         )
 
         # Add VENDOR-DATA to the host image
         host.connect(
-            ssh_command = f"sudo bash -c 'echo \"#cloud-config\n\n{yaml.dump(self.VENDOR_DATA)}\" > /var/lib/libvirt/images/{self.brick_id}/vendor-data'"
+            ssh_command = f"""sudo bash -c \
+                                'echo \"#cloud-config\n\n{yaml.dump(self.VENDOR_DATA)}\" \
+                                > {self.image_directory}{self.brick_id}/vendor-data'
+                            """
         )
 
         # Generate the meta-data file on the host
@@ -105,12 +116,21 @@ class Brick(BrickConfig):
         self.META_DATA['local-hostname'] = f"brick-{self.brick_id}"
 
         host.connect(
-            ssh_command = f"sudo bash -c 'echo \"{yaml.dump(self.META_DATA)}\" > /var/lib/libvirt/images/{self.brick_id}/meta-data'"
+            ssh_command = f"""sudo bash -c \
+                                'echo \"{yaml.dump(self.META_DATA)}\" \
+                                > {self.image_directory}{self.brick_id}/meta-data'
+                            """
         )
 
         # Create the iso
         host.connect(
-            ssh_command = f"sudo genisoimage -quiet -output /var/lib/libvirt/images/{self.brick_id}/{self.brick_id}.iso -V CIDATA -r -J /var/lib/libvirt/images/{self.brick_id}/user-data /var/lib/libvirt/images/{self.brick_id}/meta-data /var/lib/libvirt/images/{self.brick_id}/vendor-data"
+            ssh_command = f"""sudo genisoimage \
+                                -quiet \
+                                -output {self.image_directory}{self.brick_id}/{self.brick_id}.iso \
+                                -V CIDATA -r -J {self.image_directory}{self.brick_id}/user-data \
+                                {self.image_directory}{self.brick_id}/meta-data \
+                                {self.image_directory}{self.brick_id}/vendor-data
+                            """
         )
 
         # Create the VM
@@ -118,11 +138,11 @@ class Brick(BrickConfig):
             ssh_command = f"""sudo virt-install \
                                 --name={self.brick_id} \
                                 --virt-type=kvm \
-                                --ram={self.MEMORY} \
+                                --ram={self.memory} \
                                 --cpu=host \
-                                --vcpus={self.CPU_QTY} \
-                                --import --disk path=/var/lib/libvirt/images/{self.brick_id}.img,format=qcow2 \
-                                --disk path=/var/lib/libvirt/images/{self.brick_id}/{self.brick_id}.iso,device=cdrom \
+                                --vcpus={self.cpu_qty} \
+                                --import --disk path={self.image_directory}{self.brick_id}.img,format=qcow2 \
+                                --disk path={self.image_directory}{self.brick_id}/{self.brick_id}.iso,device=cdrom \
                                 --os-variant=ubuntu20.04 \
                                 --network bridge=br0,model=virtio \
                                 --graphics=none \
@@ -139,13 +159,18 @@ class Brick(BrickConfig):
         Required: PCIE and DEVICE ID
         Mounts the GPU from the host to the VM.
         '''
-        host = Connect(host_port=self.HOST_PORT)
+        host = Connect(host_port=self.port)
         if xml_data is not None:
             host.connect(
-                ssh_command = f"sudo bash -c 'sudo echo \"{xml_data}\" > /var/lib/libvirt/images/{self.brick_id}/GPU.xml'"
+                ssh_command = f"""sudo bash -c \
+                                    'sudo echo \"{xml_data}\" \
+                                    > {self.image_directory}{self.brick_id}/GPU.xml'
+                                """
             )
         host.connect(
-            ssh_command = f"sudo virsh attach-device {self.brick_id} /var/lib/libvirt/images/{self.brick_id}/GPU.xml --persistent"
+            ssh_command = f"""sudo virsh attach-device {self.brick_id} \
+                                {self.image_directory}{self.brick_id}/GPU.xml --persistent
+                            """
         )
 
     # ------------------------------- Toggle State ------------------------------- #
@@ -154,16 +179,20 @@ class Brick(BrickConfig):
         Called to toggle the current state. If on, turn off. If off, turn on.
         If the state is set to "on" or "off" that state is enforced.
         '''
-        host = Connect(host_port=self.HOST_PORT)
+        host = Connect(host_port=self.port)
 
         if set_state == "on" and not self.is_running():
             host.connect(
-                ssh_command = f"sudo virsh autostart {self.brick_id} && sudo virsh start {self.brick_id}"
+                ssh_command = f"""sudo virsh autostart {self.brick_id} \
+                                    && sudo virsh start {self.brick_id}
+                                """
             )
 
         if set_state == "off" and self.is_running():
             host.connect(
-                ssh_command = f"sudo virsh shutdown {self.brick_id} && sudo virsh autostart {self.brick_id} --disable"
+                ssh_command = f"""sudo virsh shutdown {self.brick_id} \
+                                    && sudo virsh autostart {self.brick_id} --disable
+                                """
             )
 
 
@@ -172,7 +201,7 @@ class Brick(BrickConfig):
         '''
         Called to reboot the VM.
         '''
-        host = Connect(host_port=self.HOST_PORT)
+        host = Connect(host_port=self.port)
         host.connect(
             ssh_command = f"sudo virsh reboot {self.brick_id}"
         )
@@ -183,7 +212,7 @@ class Brick(BrickConfig):
         '''
         Called to destry and delete the VM and assosiated files.
         '''
-        host = Connect(host_port=self.HOST_PORT)
+        host = Connect(host_port=self.port)
 
         # Shutdown if running
         if self.is_running():
@@ -198,7 +227,9 @@ class Brick(BrickConfig):
 
         # File cleanup
         host.connect(
-            ssh_command = f"sudo rm -r /var/lib/libvirt/images/{self.brick_id} && sudo find /var/lib/libvirt/images/ -name '{self.brick_id}*' -delete"
+            ssh_command = f"""sudo rm -r {self.image_directory}{self.brick_id} && \
+                                sudo find {self.image_directory} -name '{self.brick_id}*' -delete
+                            """
         )
 
     # ------------------------------- Root Password ------------------------------ #
@@ -212,9 +243,12 @@ class Brick(BrickConfig):
         self.toggle_state(set_state="off")
         time.sleep(3)
 
-        host = Connect(host_port=self.HOST_PORT)
+        host = Connect(host_port=self.port)
         host.connect(
-            ssh_command = f"sudo virt-customize -a /var/lib/libvirt/images/{self.brick_id}.img --root-password password:{password}"
+            ssh_command = f"""sudo virt-customize \
+                                -a {self.image_directory}{self.brick_id}.img \
+                                --root-password password:{password}
+                            """
         )
 
         if was_running:
@@ -231,12 +265,15 @@ class Brick(BrickConfig):
         self.toggle_state(set_state="off")
         time.sleep(3)
 
-        host = Connect(host_port=self.HOST_PORT)
+        host = Connect(host_port=self.port)
         host.connect(
             ssh_command = f"sudo echo {key} | sudo tee -a ssh.key"
         )
         host.connect(
-            ssh_command = f"sudo virt-customize -a /var/lib/libvirt/images/{self.brick_id}.img --ssh-inject root:file:ssh.key"
+            ssh_command = f"""sudo virt-customize \
+                                -a {self.image_directory}{self.brick_id}.img \
+                                --ssh-inject root:file:ssh.key
+                            """
         )
         host.connect(
             ssh_command = "sudo rm ssh.key"
@@ -253,7 +290,7 @@ class Brick(BrickConfig):
         '''
         Returns True if the VM exsists.
         '''
-        host = Connect(host_port=self.HOST_PORT)
+        host = Connect(host_port=self.port)
 
         host.connect(
             ssh_command = f'[[ sudo virsh domblklist {self.brick_id} | grep "\/var\/lib\/libvirt\/images\/{self.brick_id}.img" ]] && echo Exists || echo DNE'
@@ -266,7 +303,7 @@ class Brick(BrickConfig):
         '''
         Returns True if VM is running, otherwise false.
         '''
-        host = Connect(host_port=self.HOST_PORT)
+        host = Connect(host_port=self.port)
 
         host.connect(
             ssh_command = f'[[ $(sudo virsh domstate {self.brick_id}) == "running" ]] && echo Running || echo Not Running'
@@ -279,7 +316,7 @@ class Brick(BrickConfig):
         '''
         Returns domuuid of the VM
         '''
-        host = Connect(host_port=self.HOST_PORT)
+        host = Connect(host_port=self.port)
 
         host.connect(
             ssh_command = f'sudo virsh domuuid {self.brick_id}'
