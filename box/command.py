@@ -1,7 +1,5 @@
 ''' Used to send commands to the host. '''
 
-from box import  error
-
 class Command:
     ''' Executes commands on the host. '''
 

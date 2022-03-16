@@ -1,7 +1,5 @@
 ''' box - status.py '''
 
-from box import  error
-
 class HostStatus:
     '''
     Returns a summary of a host and its operational status.

@@ -2,6 +2,8 @@
 
 Internal package that provides an API layer for managing hosts and virtual machines.
 
+Assume sucess unless error.
+
 ## Background
 
 Celery is used to manage the background tasks that include creating SSH connections. Each host should have its own celery worker process.

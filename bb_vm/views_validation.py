@@ -15,15 +15,3 @@ def brick_errors(request):
     print(request.POST)
 
     return HttpResponse(status=200)
-
-@csrf_exempt
-def brick_state(request):
-    '''
-    URL: /vm/state/
-    Method: POST
-    Used to update the state of a brick.
-    '''
-    if request.POST.get('verify') == 'clone':
-        VirtualBrick.objects.filter(id=request.POST.get('instance')).update(img_cloned=True)
-
-    return HttpResponse(status=200)

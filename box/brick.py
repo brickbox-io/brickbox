@@ -25,10 +25,7 @@ class BrickConfig:
             "ubuntu-drivers-common",
             "nvidia-driver-510",
             "nvidia-utils-510"
-        ],
-         "chpasswd": {
-            "list": "root:root"
-        }
+        ]
     }
 
     VENDOR_DATA = {
@@ -129,6 +126,7 @@ class Brick(BrickConfig):
                                 --os-variant=ubuntu20.04 \
                                 --network bridge=br0,model=virtio \
                                 --graphics=none \
+                                --video=vga \
                                 --noautoconsole \
                                 --boot menu=on \
                                 --noreboot \
@@ -136,6 +134,19 @@ class Brick(BrickConfig):
                             """
         )
 
+    def attach_gpu(self, pcie=None, device=None, xml_data=None):
+        '''
+        Required: PCIE and DEVICE ID
+        Mounts the GPU from the host to the VM.
+        '''
+        host = Connect(host_port=self.HOST_PORT)
+        if xml_data is not None:
+            host.connect(
+                ssh_command = f"sudo bash -c 'sudo echo \"{xml_data}\" > /var/lib/libvirt/images/{self.brick_id}/GPU.xml'"
+            )
+        host.connect(
+            ssh_command = f"sudo virsh attach-device {self.brick_id} /var/lib/libvirt/images/{self.brick_id}/GPU.xml --persistent"
+        )
 
     # ------------------------------- Toggle State ------------------------------- #
     def toggle_state(self, set_state=None):
@@ -174,9 +185,15 @@ class Brick(BrickConfig):
         '''
         host = Connect(host_port=self.HOST_PORT)
 
+        # Shutdown if running
+        if self.is_running():
+            host.connect(
+                ssh_command = f"sudo virsh destroy {self.brick_id}"
+            )
+
         # Teminate the VM
         host.connect(
-            ssh_command = f"sudo virsh shutdown {self.brick_id} && sudo virsh destroy {self.brick_id} && sudo virsh undefine {self.brick_id}"
+            ssh_command = f"sudo virsh undefine {self.brick_id}"
         )
 
         # File cleanup
@@ -189,26 +206,32 @@ class Brick(BrickConfig):
         '''
         Called to set the root password, it will turn off the VM first then set the password.
         '''
-        host = Connect(host_port=self.HOST_PORT)
+        was_running = self.is_running()
 
         time.sleep(15)
         self.toggle_state(set_state="off")
         time.sleep(3)
 
+        host = Connect(host_port=self.HOST_PORT)
         host.connect(
             ssh_command = f"sudo virt-customize -a /var/lib/libvirt/images/{self.brick_id}.img --root-password password:{password}"
         )
 
-        self.toggle_state(set_state="on")
+        if was_running:
+            self.toggle_state(set_state="on")
 
     # --------------------------------- SSH Keys --------------------------------- #
     def set_ssh_key(self, key):
-        host = Connect(host_port=self.HOST_PORT)
+        '''
+        Called to add SSH keys to the VM.
+        '''
+        was_running = self.is_running()
 
         time.sleep(15)
         self.toggle_state(set_state="off")
         time.sleep(3)
 
+        host = Connect(host_port=self.HOST_PORT)
         host.connect(
             ssh_command = f"sudo echo {key} | sudo tee -a ssh.key"
         )
@@ -219,11 +242,25 @@ class Brick(BrickConfig):
             ssh_command = "sudo rm ssh.key"
         )
 
-        self.toggle_state(set_state="on")
+        if was_running:
+            self.toggle_state(set_state="on")
 
     # ---------------------------------------------------------------------------- #
     #                                States and Info                               #
     # ---------------------------------------------------------------------------- #
+
+    def img_exsists(self):
+        '''
+        Returns True if the VM exsists.
+        '''
+        host = Connect(host_port=self.HOST_PORT)
+
+        host.connect(
+            ssh_command = f'[[ sudo virsh domblklist {self.brick_id} | grep "\/var\/lib\/libvirt\/images\/{self.brick_id}.img" ]] && echo Exists || echo DNE'
+        )
+
+        return bool(host.stdout.decode('utf-8').replace("'", '').rstrip("\n") == 'Exists')
+
 
     def is_running(self):
         '''

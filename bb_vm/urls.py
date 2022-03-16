@@ -14,7 +14,6 @@ urlpatterns = [
     path('status/', views.brick_status, name='brick_status'),
 
     path('error/', views_validation.brick_errors, name='brick_errors'),
-    path('state/', views_validation.brick_state, name='brick_state'),
 
     # ------------------------------- Host Actions ------------------------------- #
     path('host/onboarding/<host_serial>/', views_host.onboarding, name='host_onboarding'),

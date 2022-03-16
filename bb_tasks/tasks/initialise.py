@@ -31,78 +31,28 @@ def new_vm_subprocess(instance_id, root_pass):
     host = brick.host
 
     virtual_machine = box.Brick(host_port=host.ssh_port, brick_id=f'{str(instance_id)}')
+
     try:
         # ------------------------------------- 1 ------------------------------------ #
-        # brick_clone = [
-        #                     f'{DIR}brick_connect.sh',
-        #                     f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
-        #                     'initialise/brick_clone', f'{str(Site.objects.get_current().domain)}',
-        #                     f'{str(instance_id)}', 'NONE', 'NONE',
-        #                 ]
-        # with subprocess.Popen(brick_clone) as script:
-        #     print(script)
-
-        # if not VirtualBrick.objects.get(id=instance_id).img_cloned:
-        #     return
-
         virtual_machine.create(base_image="base_os-1")
+
+        brick.domain_uuid = virtual_machine.domuuid()
         brick.img_cloned = True
         brick.save()
 
         # ------------------------------------- 2 ------------------------------------ #
-        # brick_auth = [
-        #                     f'{DIR}brick_connect.sh',
-        #                     f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
-        #                     'initialise/brick_auth', f'{str(Site.objects.get_current().domain)}',
-        #                     f'{str(instance_id)}', '0', f'{str(root_pass)}',
-        #                 ]
-        # with subprocess.Popen(brick_auth) as script:
-        #     print(script)
-
         virtual_machine.set_root_password(password=f'{str(root_pass)}')
 
         # ------------------------------------- 3 ------------------------------------ #
-        # for owner in brick.owners.all():
-        #     for key in owner.keys.all():
-        #         # brick_auth = [
-        #         #             f'{DIR}brick_connect.sh',
-        #         #             f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
-        #         #             'initialise/brick_auth', f'{str(Site.objects.get_current().domain)}',
-        #         #             f'{str(instance_id)}', f'{str(key.pub_key)}', '0',
-        #         #         ]
-        #         # with subprocess.Popen(brick_auth) as script:
-        #         #     print(script)
-
-        #         virtual_machine.set_ssh_key(key=f'{str(key.pub_key)}')
+        for owner in brick.owners.all():
+            for key in owner.keys.all():
+                virtual_machine.set_ssh_key(key=f'{str(key.pub_key)}')
 
         # ------------------------------------- 4 ------------------------------------ #
         gpu_xml = RentedGPU.objects.filter(virt_brick=brick)[0].gpu.xml
-
-        brick_gpu = [
-                            f'{DIR}brick_connect.sh',
-                            f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
-                            'initialise/brick_gpu', f'{str(Site.objects.get_current().domain)}',
-                            f'{str(instance_id)}', f'{str(gpu_xml)}', 'NONE',
-                        ]
-        with subprocess.Popen(brick_gpu) as script:
-            print(script)
+        virtual_machine.attach_gpu(xml_data=f'{str(gpu_xml)}')
 
         # ------------------------------------- 5 ------------------------------------ #
-        # brick_boot = [
-        #                 f'{DIR}brick_connect.sh',
-        #                     f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
-        #                     'initialise/brick_boot', f'{str(Site.objects.get_current().domain)}',
-        #                     f'{str(instance_id)}', 'NONE', 'NONE',
-        #                 ]
-        # with subprocess.Popen(brick_boot) as script:
-        #     print(script)
-
-        # brick.domain_uuid = virtual_machine.domuuid()
-        # brick.save()
-
-        brick.domain_uuid = virtual_machine.domuuid()
-        brick.save()
-
         virtual_machine.toggle_state(set_state='on')
 
     except IndexError as err:
@@ -110,8 +60,8 @@ def new_vm_subprocess(instance_id, root_pass):
 
 
     finally:
-        catch_clone_errors.apply_async((instance_id,), countdown=240, queue='ssh_queue')
-        remove_stale_clone.apply_async((instance_id,), countdown=720, queue='ssh_queue')
+        catch_clone_errors.apply_async((instance_id,), countdown=300, queue='ssh_queue')
+        remove_stale_clone.apply_async((instance_id,), countdown=780, queue='ssh_queue')
 
 
 # ---------------------------------------------------------------------------- #

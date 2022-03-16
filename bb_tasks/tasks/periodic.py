@@ -237,6 +237,10 @@ def resource_time_track():
                 "Brick Owner DNE": f"{str(brick.id)}"
             }
 
+        return {
+                "Brick Owner": f"{str(brick.id)}"
+            }
+
 
 
 
