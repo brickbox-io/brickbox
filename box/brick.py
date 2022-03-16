@@ -5,8 +5,8 @@ import yaml
 
 from box import Connect
 
-class BrickConfig:
-    ''' Contains the definitions of a virtual machine instance.'''
+class Brick:
+    ''' All the functions that can be done to a VM. '''
 
     # ------------------------------- VM Properties ------------------------------ #
 
@@ -33,38 +33,27 @@ class BrickConfig:
     VENDOR_DATA = {
         "runcmd": [
             [
-                "curl",
-                "https://os-imgs.nyc3.digitaloceanspaces.com/yaml/vm_init.sh",
-                "--output",
-                "/usr/local/sbin/vm_init.sh"
+                "curl", "https://os-imgs.nyc3.digitaloceanspaces.com/yaml/vm_init.sh",
+                "--output", "/usr/local/sbin/vm_init.sh"
             ],
             [
-                "chmod",
-                "+x",
-                "/usr/local/sbin/vm_init.sh"
+                "chmod", "+x", "/usr/local/sbin/vm_init.sh"
             ],
             [
                 "/usr/local/sbin/vm_init.sh"
             ],
             [
-                "curl",
-                "https://os-imgs.nyc3.digitaloceanspaces.com/yaml/motd.sh",
-                "--output",
-                "/usr/local/sbin/motd.sh"
+                "curl", "https://os-imgs.nyc3.digitaloceanspaces.com/yaml/motd.sh",
+                "--output", "/usr/local/sbin/motd.sh"
             ],
             [
-                "chmod",
-                "+x",
-                "/usr/local/sbin/motd.sh"
+                "chmod", "+x", "/usr/local/sbin/motd.sh"
             ],
             [
                 "/usr/local/sbin/motd.sh"
             ]
         ]
     }
-
-class Brick(BrickConfig):
-    ''' All the functions that can be done to a VM. '''
 
     def __init__(self, brick_id=None, host_port=None):
         self.brick_id = brick_id
@@ -154,6 +143,7 @@ class Brick(BrickConfig):
                             """
         )
 
+    # -------------------------------- Attach GPU -------------------------------- #
     def attach_gpu(self, xml_data=None):
         '''
         Required: PCIE and DEVICE ID
