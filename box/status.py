@@ -33,7 +33,17 @@ class HostStatus:
         #Fix
         if not insalled and auto_fix:
             self.connect(
-                ssh_command = 'sudo apt-get install qemu-kvm qemu-utils libvirt-daemon-system libvirt-clients bridge-utils virt-manager ovmf libguestfs-tools -y'
+                ssh_command = """sudo apt-get install \
+                                    qemu-kvm \
+                                    qemu-utils \
+                                    libvirt-daemon-system \
+                                    libvirt-clients \
+                                    bridge-utils \
+                                    virt-manager \
+                                    ovmf \
+                                    libguestfs-tools \
+                                    -y
+                                """
             )
             return self.qemu_installed()
 
@@ -53,7 +63,10 @@ class HostStatus:
         # Fix
         if not exists and auto_fix:
             self.connect(
-                ssh_command = 'sudo git clone https://github.com/andre-richter/vfio-pci-bind.git /home/bb_root/'
+                ssh_command = """sudo git clone \
+                                    https://github.com/andre-richter/vfio-pci-bind.git \
+                                    /home/bb_root/
+                                """
             )
             return self.vfio_pci_bind_exists()
 
@@ -66,9 +79,11 @@ class HostStatus:
         '''
         # Verify
         self.connect(
-            ssh_command = '[[ -x /home/bb_root/vfio-pci-bind/vfio-pci-bind.sh ]] && echo Executable || echo DNE'
+            ssh_command = """[[ -x /home/bb_root/vfio-pci-bind/vfio-pci-bind.sh ]] && \
+                                echo Executable || echo DNE
+                            """
         )
-        is_executable = bool(self.stdout.decode('utf-8').replace("'", '').rstrip("\n") == 'Executable')
+        is_executable = bool(self.stdout.decode('utf-8').rstrip("\n") == 'Executable')
 
         # Fix
         if not is_executable and auto_fix:
@@ -93,7 +108,10 @@ class HostStatus:
         # Fix
         if not exists and auto_fix:
             self.connect(
-                ssh_command = 'sudo ip link add name br0 type bridge && sudo ip link set dev br0 up && sudo ip link set dev enp3s0f1 master br0'
+                ssh_command = """sudo ip link add name br0 type bridge && \
+                                    sudo ip link set dev br0 up && \
+                                    sudo ip link set dev enp3s0f1 master br0
+                                """
             )
             return self.br0_exists()
 
@@ -113,7 +131,10 @@ class HostStatus:
         # Fix
         if not is_up and auto_fix:
             self.connect(
-                ssh_command = 'sudo ip link set dev enp3s0f1 up && sudo dhclient -r enp3s0f1 && sudo dhclient enp3s0f1'
+                ssh_command = """sudo ip link set dev enp3s0f1 up && \
+                                    sudo dhclient -r enp3s0f1 && \
+                                    sudo dhclient enp3s0f1
+                                """
             )
             self.connect(
                 ssh_command = 'sudo ip route del default dev enp3s0f1'
@@ -131,7 +152,7 @@ class HostStatus:
         self.connect(
             ssh_command = '[[ $(ip -f inet addr show br0) ]] && echo Assigned || echo Not Assigned'
         )
-        is_networked = bool(self.stdout.decode('utf-8').replace("'", '').rstrip("\n") == 'Assigned')
+        is_networked = bool(self.stdout.decode('utf-8').rstrip("\n") == 'Assigned')
 
         # Fix
         if not is_networked and auto_fix:

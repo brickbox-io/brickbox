@@ -154,7 +154,7 @@ class Brick(BrickConfig):
                             """
         )
 
-    def attach_gpu(self, pcie=None, device=None, xml_data=None):
+    def attach_gpu(self, xml_data=None):
         '''
         Required: PCIE and DEVICE ID
         Mounts the GPU from the host to the VM.
@@ -293,7 +293,10 @@ class Brick(BrickConfig):
         host = Connect(host_port=self.port)
 
         host.connect(
-            ssh_command = f'[[ sudo virsh domblklist {self.brick_id} | grep "\/var\/lib\/libvirt\/images\/{self.brick_id}.img" ]] && echo Exists || echo DNE'
+            ssh_command = f"""[[ sudo virsh domblklist {self.brick_id} | \
+                                grep "{self.image_directory}{self.brick_id}.img" ]] && \
+                                echo Exists || echo DNE
+                            """
         )
 
         return bool(host.stdout.decode('utf-8').replace("'", '').rstrip("\n") == 'Exists')
@@ -306,7 +309,9 @@ class Brick(BrickConfig):
         host = Connect(host_port=self.port)
 
         host.connect(
-            ssh_command = f'[[ $(sudo virsh domstate {self.brick_id}) == "running" ]] && echo Running || echo Not Running'
+            ssh_command = f"""[[ $(sudo virsh domstate {self.brick_id}) == "running" ]] && \
+                                echo Running || echo Not Running
+                            """
         )
 
         return bool(host.stdout.decode('utf-8').replace("'", '').rstrip("\n") == 'Running')
