@@ -49,9 +49,8 @@
                 {% endif %}
             </div>
 
-
             <div class="card-footer text-center">
-                <button type="button" class="btn btn-success" onclick="PayBalance();"> Pay Now </button>
+                <button type="button" class="btn btn-success" onclick="PayBalance();" {% if tracker.cycle_total == "0.00" %} disabled {% endif %}> Pay Now </button>
             </div>
 
         </div>
