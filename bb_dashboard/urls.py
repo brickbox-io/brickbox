@@ -1,6 +1,5 @@
 '''urls.py for bb_dashboard'''
 
-import imp
 from django.urls import path
 
 from bb_dashboard import views

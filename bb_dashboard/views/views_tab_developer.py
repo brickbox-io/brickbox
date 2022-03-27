@@ -1,6 +1,5 @@
 ''' bb_dashboard - views_tab_developer.py '''
 
-from curses.ascii import HT
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
