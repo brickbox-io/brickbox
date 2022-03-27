@@ -12,7 +12,9 @@ from django.http import HttpResponse
 from django import template
 
 from bb_data.models import ( UserProfile, CryptoPayout, FiatPayout,
-                            ColocationClient, ResourceTimeTracking, BillingHistory)
+                            ColocationClient, ResourceTimeTracking, BillingHistory,
+                            CustomScript
+)
 from bb_vm.models import VirtualBrickOwner, GPU, RentedGPU
 
 if settings.DEBUG:
@@ -85,6 +87,7 @@ def pages(request):
 
         context['profile'] = UserProfile.objects.get(user = request.user)
         context['bricks'] = VirtualBrickOwner.objects.filter(owner=context['profile'])
+        context['scripts'] = CustomScript.objects.filter(user = request.user)
         context['ssh_url'] = settings.SSH_URL
 
         context['colo_clients'] = ColocationClient.objects.all()

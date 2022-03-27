@@ -14,6 +14,7 @@ from bb_vm.models import (
     VirtualBrickOwner, VirtualBrick, RentedGPU,
 )
 
+
 DIR = '/opt/brickbox/bb_vm/bash_scripts/'
 
 # ---------------------------------- New VM ---------------------------------- #
@@ -34,6 +35,9 @@ def new_vm_subprocess(instance_id, root_pass):
 
     try:
         # ------------------------------------- 1 ------------------------------------ #
+        if brick.user_data is not None:
+            virtual_machine.USER_DATA = brick.user_data.script
+
         virtual_machine.create(base_image="base_os-1")
 
         brick.domain_uuid = virtual_machine.domuuid()

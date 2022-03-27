@@ -22,15 +22,14 @@ class Brick:
 
     META_DATA = {}
 
-    USER_DATA = {
-         "packages": [
+    USER_DATA = {}
+
+    VENDOR_DATA = {
+        "packages": [
             "ubuntu-drivers-common",
             "nvidia-driver-510",
             "nvidia-utils-510"
-        ]
-    }
-
-    VENDOR_DATA = {
+        ],
         "runcmd": [
             [
                 "curl", "https://os-imgs.nyc3.digitaloceanspaces.com/yaml/vm_init.sh",
@@ -84,10 +83,14 @@ class Brick:
                         """
         )
 
-        # Generate the user-data file on the host
+        # USER-DATA
         host.connect(
+            # ssh_command = f"""sudo bash -c \
+            #                     'echo \"#cloud-config\n\n{yaml.dump(self.USER_DATA)}\" \
+            #                     > {self.image_directory}{self.brick_id}/user-data'
+            #                 """
             ssh_command = f"""sudo bash -c \
-                                'echo \"#cloud-config\n\n{yaml.dump(self.USER_DATA)}\" \
+                                'echo \"{self.USER_DATA}\" \
                                 > {self.image_directory}{self.brick_id}/user-data'
                             """
         )

@@ -6,6 +6,7 @@ function SetRootPassword(selected_gpu) {
 
 function CreateNewBrick(selected_gpu) {
     var root_pass = document.getElementById("root_password").value;
+    var custom_script = document.getElementById("custom_script").value;
     $("#set_root_password").modal('toggle');
     var formData = new FormData();
     var xhttp = new XMLHttpRequest();
@@ -13,6 +14,7 @@ function CreateNewBrick(selected_gpu) {
 
     formData.append('selected_gpu', selected_gpu);
     formData.append('root_pass', root_pass);
+    formData.append('custom_script', custom_script);
 
     xhttp.onload = function () {
         var vm_status = JSON.parse(this.responseText);

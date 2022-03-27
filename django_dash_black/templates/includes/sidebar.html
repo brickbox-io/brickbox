@@ -62,6 +62,16 @@
             {% endif %}
             <!-- -------------------------- END - Bricks Tab --------------------------- -->
 
+            <!-- ------------------------ START - Developer Tab ------------------------ -->
+            {% if profile.brick_access %}
+            <li class="{% if 'developer' in segment %} active {% endif %}">
+                <a href="/dash/developer">
+                    <i class="material-icons-outlined">developer_board</i>
+                    <p>DEVELOPER</p>
+                </a>
+            </li>
+            {% endif %}
+            <!-- ------------------------- END - Developer Tab ------------------------- -->
 
             <!-- ------------------------- START - Billing Tab ------------------------- -->
             <li class="{% if 'billing' in segment %} active {% endif %}">

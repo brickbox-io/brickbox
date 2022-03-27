@@ -24,6 +24,8 @@ class VirtualBrick(models.Model):
     ssh_port = models.ForeignKey('bb_vm.PortTunnel', on_delete=models.PROTECT, null=True)
     sshtunnel_public_key = models.TextField(blank=True, null=True)  # Key to establish SSH tunnel
 
+    # Cloud-init
+    user_data = models.ForeignKey('bb_data.CustomScript', on_delete=models.RESTRICT, null=True, blank=True)
 
     owners = models.ManyToManyField(
                     UserProfile,

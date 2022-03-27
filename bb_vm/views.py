@@ -9,7 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
 
-from bb_data.models import UserProfile, PaymentMethod
+from bb_data.models import UserProfile, PaymentMethod, CustomScript
 from bb_vm.models import PortTunnel, VirtualBrick, VirtualBrickOwner, GPU, RentedGPU
 
 from bb_tasks.tasks import(
@@ -30,6 +30,7 @@ def clone_img(request):
     profile = UserProfile.objects.get(user=request.user)
     selected_gpu = request.POST.get('selected_gpu')
     root_pass = request.POST.get('root_pass')
+    custom_script = request.POST.get('custom_script')
     if not root_pass:
         root_pass = 'root'
     designated_gpu_xml = None
@@ -64,6 +65,10 @@ def clone_img(request):
 
             instance.name = f'brick-{instance.id} ({gpu.model})'
             instance.save()
+
+            if custom_script.isdigit():
+                instance.user_data = CustomScript.objects.get(id=custom_script)
+                instance.save()
 
             assigned = RentedGPU(gpu=gpu, virt_brick=instance)
             assigned.save()
