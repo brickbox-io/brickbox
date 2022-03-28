@@ -89,7 +89,7 @@ def pages(request):
 
     except template.TemplateDoesNotExist:
 
-        html_template = loader.get_template( 'page-404.html' )
+        html_template = loader.get_template( '404.html' )
         return HttpResponse(html_template.render(context, request))
 
     # except:

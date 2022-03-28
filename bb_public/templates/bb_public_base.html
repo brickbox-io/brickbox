@@ -5,7 +5,15 @@
 
 <html lang="en">
 
-{% include "bb_public_head.html" %}
+<head>
+    <title>
+        brickbox.io {% block title %}{% endblock %}
+    </title>
+
+    {% include "bb_public_head.html" %}
+    {% block stylesheets %}{% endblock %}
+</head>
+
 
 <body class="is-preload">
     <div class="main-container">
