@@ -1,4 +1,3 @@
-{% load static %}
 {% if request.user.is_authenticated %}
 <div class="sidebar">
     <div class="sidebar-wrapper">
@@ -6,7 +5,7 @@
             <a target="_blank" rel="sponsored noopener noreferrer" href="" class="simple-text logo-mini">
                 <!-- BB -->
             </a>
-            <a href="/" rel="sponsored noopener noreferrer" class="simple-text logo-normal">
+            <a href="{% url 'bb_public:landing_page' %}" rel="sponsored noopener noreferrer" class="simple-text logo-normal">
                 brickbox.io
                 <!-- {{ client.account_name }} -->
                 <!-- Navigation -->
