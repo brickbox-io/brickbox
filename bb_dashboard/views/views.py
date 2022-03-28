@@ -1,6 +1,8 @@
 '''views.py for bb_dashboard'''
 
 import datetime
+from itertools import chain
+from operator import attrgetter
 
 from django import template
 from django.template import loader
@@ -9,7 +11,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
-from bb_data.models import ( UserProfile,
+from bb_data.models import ( UserProfile, CryptoPayout, FiatPayout,
                             ColocationClient, ResourceTimeTracking, BillingHistory,
                             CustomScript
 )
@@ -20,14 +22,59 @@ if settings.DEBUG:
 else:
     stripe_pk = settings.STRIPE_PUBLISHABLE_KEY
 
-@login_required(login_url='/login/')
-def dashboard(request):
+@login_required
+def dashboard(request, colo=0):
     '''
     URL: /dash/
     Method: GET
     Returns the main dash board where a user can see statisics and or create bricks.
     '''
-    return render(request, 'dashboard.html')
+    context = {}
+
+    try:
+        context['profile'] = UserProfile.objects.get(user = request.user)
+    except UserProfile.DoesNotExist:
+        user_profile = UserProfile(
+                            user = request.user,
+                        )
+        user_profile.save()
+
+        context['profile'] = user_profile
+
+    # ------------------------------ Cycyle Balance ------------------------------ #
+    tracker, created = ResourceTimeTracking.objects.get_or_create(
+                                    user = context['profile'].user,
+                                    balance_paid = False,
+                                    billing_cycle_end__gte=datetime.datetime.today()
+                                )
+    if created:
+        tracker.billing_cycle_end = tracker.billing_cycle_start + datetime.timedelta(days=30)
+        tracker.save()
+
+    context['tracker'] = tracker
+
+
+    # Only grabs the first client for now until there is a proper way to dysplay multiple.
+    try:
+        context['client'] = context['profile'].clients.all()[colo]
+    except IndexError:
+        context['client'] = None
+
+    # ------------------------------ Payout History ------------------------------ #
+    crypto_payout = CryptoPayout.objects.filter(account_holder=context['client'])
+    fiat_payout = FiatPayout.objects.filter(account_holder=context['client'])
+
+    context['history'] = sorted(chain(
+                                        crypto_payout, fiat_payout),
+                                        key=attrgetter('dated'),
+                                        reverse=True
+                                    )
+    context['segment'] = 'index'
+    context['debug'] = settings.DEBUG
+
+    html_template = loader.get_template( 'dashboard.html' )
+    return HttpResponse(html_template.render(context, request))
+    # return render(request, 'dashboard.html')
 
 # -------------------- Backward Compatibility Page Handler ------------------- #
 @login_required

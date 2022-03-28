@@ -18,7 +18,7 @@
             <!-- --------------------- START - Colo Dashboard Tab ---------------------- -->
             {% if profile.clients.count >= 1 %}
             <li class="{% if 'index' in segment %} active {% endif %}">
-                <a href="{% url 'django_dash_black:dash' %}">
+                <a href="{% url 'bb_dashboard:dashboard' %}">
                     <i class="tim-icons icon-chart-pie-36"></i>
                     <p>Dashboard</p>
                 </a>

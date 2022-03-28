@@ -9,6 +9,10 @@ app_name = 'bb_dashboard'
 urlpatterns = [
     path('', views.dashboard, name='dashboard'),
 
+    # Specific Views
+    path('<int:colo>', views.dashboard, name='dash_colo'),
+    path('colo', views.onboarding, name='colo_onboarding'),
+
     # ----------------------------------- Tabs ----------------------------------- #
     path('tab/developer/script_add/', views.add_new_script, name='add_new_script'),
 

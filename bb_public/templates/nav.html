@@ -23,7 +23,7 @@
             </ul>
 
             {%  if user.is_authenticated %}
-            <a class="btn" href="{% url 'django_dash_black:dash' %}">Log In</a>
+            <a class="btn" href="{% url 'bb_dashboard:dashboard' %}">Log In</a>
             {% else %}
             <a class="btn" href="{% url 'bb_accounts:register' %}">Sign Up</a>
             {% endif %}
@@ -34,4 +34,3 @@
         <i class="fa fa-bars"></i>
     </a>
 </nav>
-
