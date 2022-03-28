@@ -34,7 +34,6 @@ INSTALLED_APPS = [
     'django.contrib.admindocs', # https://docs.djangoproject.com/en/3.2/ref/contrib/admin/admindocs/
 
     # brickbox.io Apps
-    'django_dash_black',        # https://appseed.us/admin-dashboards/django-dashboard-black
     'bb_api',                   # API endpoints and handlers
     'bb_billing',               # Billing and payment processing
     'bb_colo',                  # Colocation management
