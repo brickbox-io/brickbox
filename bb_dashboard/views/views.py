@@ -7,7 +7,6 @@ from operator import attrgetter
 from django import template
 from django.template import loader
 from django.conf import settings
-from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
@@ -74,7 +73,6 @@ def dashboard(request, colo=0):
 
     html_template = loader.get_template( 'dashboard.html' )
     return HttpResponse(html_template.render(context, request))
-    # return render(request, 'dashboard.html')
 
 # -------------------- Backward Compatibility Page Handler ------------------- #
 @login_required
