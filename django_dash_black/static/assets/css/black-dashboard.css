@@ -83,12 +83,12 @@ section {
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
-  font-size: 0.875rem;
+  font-size: 15px;
   font-weight: 400;
   line-height: 1.5;
   color: #525f7f;
   text-align: left;
-  background-color: #1e1e2f;
+  background-color: #1D1F28;
 }
 
 [tabindex="-1"]:focus {
@@ -184,13 +184,13 @@ sup {
 }
 
 a {
-  color: #e14eca;
+  color: #CB4154 !important;
   text-decoration: none;
   background-color: transparent;
 }
 
 a:hover {
-  color: #c221a9;
+  color: #CB4154;
   text-decoration: none;
 }
 
@@ -432,7 +432,7 @@ h4,
 
 h5,
 .h5 {
-  font-size: 0.8125rem;
+  font-size: 16px;
 }
 
 h6,
@@ -2605,12 +2605,12 @@ textarea.form-control.is-invalid {
 
 .btn {
   display: inline-block;
-  font-weight: 600;
-  color: #525f7f;
+  font-weight: 400;
   text-align: center;
   vertical-align: middle;
   user-select: none;
-  background-color: transparent;
+  background-color: #1c1c24;
+  color: #e8eaed;
   border: 1px solid transparent;
   padding: 11px 40px;
   font-size: 0.875rem;
@@ -2658,16 +2658,16 @@ fieldset:disabled a.btn {
 }
 
 .btn-primary {
-  color: #ffffff;
-  background-color: #e14eca;
-  border-color: #e14eca;
+  color: #ffffff !important;
+  background-color: #CB4154 !important;
+  border-color: #CB4154 !important;
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .btn-primary:hover {
-  color: #ffffff;
-  background-color: #db2dc0;
-  border-color: #d725bb;
+  color: #CB4154 !important;
+  background-color: #ffffff !important;
+  border-color: #ffffff !important;
 }
 
 .btn-primary:focus,
@@ -2678,16 +2678,16 @@ fieldset:disabled a.btn {
 .btn-primary.disabled,
 .btn-primary:disabled {
   color: #ffffff;
-  background-color: #e14eca;
-  border-color: #e14eca;
+  background-color: #c4c4c4;
+  border-color: #c4c4c4;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active,
 .btn-primary:not(:disabled):not(.disabled).active,
 .show>.btn-primary.dropdown-toggle {
   color: #ffffff;
-  background-color: #d725bb;
-  border-color: #cd23b2;
+  background-color: #c4c4c4;
+  border-color: #c4c4c4;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active:focus,
@@ -5169,7 +5169,7 @@ input[type="button"].btn-block {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #ffffff;
+  background-color: #272935 !important;
   background-clip: border-box;
   border: 0.0625rem solid rgba(34, 42, 66, 0.05);
   border-radius: 0.2857rem;
@@ -12766,28 +12766,6 @@ a.text-darker:focus {
   color: rgba(255, 255, 255, 0.9);
 }
 
-.btn,
-.navbar .navbar-nav>a.btn {
-  border-width: 2px;
-  border: none;
-  position: relative;
-  overflow: hidden;
-  margin: 4px 1px;
-  border-radius: 0.4285rem;
-  cursor: pointer;
-  background: #344675;
-  background-image: -webkit-linear-gradient(to bottom left, #344675, #263148, #344675);
-  background-image: -o-linear-gradient(to bottom left, #344675, #263148, #344675);
-  background-image: -moz-linear-gradient(to bottom left, #344675, #263148, #344675);
-  background-image: linear-gradient(to bottom left, #344675, #263148, #344675);
-  background-size: 210% 210%;
-  background-position: top right;
-  background-color: #344675;
-  transition: all 0.15s ease;
-  box-shadow: none;
-  color: #ffffff;
-}
-
 .btn.animation-on-hover:hover,
 .navbar .navbar-nav>a.btn.animation-on-hover:hover {
   background-position: bottom left;
@@ -12811,10 +12789,6 @@ a.text-darker:focus {
 .navbar .navbar-nav>a.btn.active:focus,
 .navbar .navbar-nav>a.btn.active:hover {
   background-color: #263148 !important;
-  background-image: linear-gradient(to bottom left, #344675, #263148, #344675) !important;
-  background-image: -webkit-linear-gradient(to bottom left, #344675, #263148, #344675) !important;
-  background-image: -o-linear-gradient(to bottom left, #344675, #263148, #344675) !important;
-  background-image: -moz-linear-gradient(to bottom left, #344675, #263148, #344675) !important;
   color: #ffffff;
   box-shadow: none;
 }
@@ -13084,20 +13058,6 @@ fieldset[disabled] .navbar .navbar-nav>a.btn.active {
   margin-left: 30px !important;
 }
 
-.btn-primary {
-  background: #e14eca;
-  background-image: -webkit-linear-gradient(to bottom left, #e14eca, #ba54f5, #e14eca);
-  background-image: -o-linear-gradient(to bottom left, #e14eca, #ba54f5, #e14eca);
-  background-image: -moz-linear-gradient(to bottom left, #e14eca, #ba54f5, #e14eca);
-  background-image: linear-gradient(to bottom left, #e14eca, #ba54f5, #e14eca);
-  background-size: 210% 210%;
-  background-position: top right;
-  background-color: #e14eca;
-  transition: all 0.15s ease;
-  box-shadow: none;
-  color: #ffffff;
-}
-
 .btn-primary.animation-on-hover:hover {
   background-position: bottom left;
   transition: 0.3s ease-in-out;
@@ -13111,12 +13071,8 @@ fieldset[disabled] .navbar .navbar-nav>a.btn.active {
 .btn-primary:active:hover,
 .btn-primary.active:focus,
 .btn-primary.active:hover {
-  background-color: #ba54f5 !important;
-  background-image: linear-gradient(to bottom left, #e14eca, #ba54f5, #e14eca) !important;
-  background-image: -webkit-linear-gradient(to bottom left, #e14eca, #ba54f5, #e14eca) !important;
-  background-image: -o-linear-gradient(to bottom left, #e14eca, #ba54f5, #e14eca) !important;
-  background-image: -moz-linear-gradient(to bottom left, #e14eca, #ba54f5, #e14eca) !important;
-  color: #ffffff;
+  background-color: #ffffff !important;
+  color: #CB4154;
   box-shadow: none;
 }
 
@@ -13210,14 +13166,8 @@ fieldset[disabled] .btn-primary.active {
 }
 
 .btn-success {
-  background: #00f2c3;
-  background-image: -webkit-linear-gradient(to bottom left, #00f2c3, #0098f0, #00f2c3);
-  background-image: -o-linear-gradient(to bottom left, #00f2c3, #0098f0, #00f2c3);
-  background-image: -moz-linear-gradient(to bottom left, #00f2c3, #0098f0, #00f2c3);
-  background-image: linear-gradient(to bottom left, #00f2c3, #0098f0, #00f2c3);
-  background-size: 210% 210%;
-  background-position: top right;
-  background-color: #00f2c3;
+  background-color: #CB4154 !important;
+  border: 1px solid #CB4154 !important;
   transition: all 0.15s ease;
   box-shadow: none;
   color: #ffffff;
@@ -13236,12 +13186,8 @@ fieldset[disabled] .btn-primary.active {
 .btn-success:active:hover,
 .btn-success.active:focus,
 .btn-success.active:hover {
-  background-color: #0098f0 !important;
-  background-image: linear-gradient(to bottom left, #00f2c3, #0098f0, #00f2c3) !important;
-  background-image: -webkit-linear-gradient(to bottom left, #00f2c3, #0098f0, #00f2c3) !important;
-  background-image: -o-linear-gradient(to bottom left, #00f2c3, #0098f0, #00f2c3) !important;
-  background-image: -moz-linear-gradient(to bottom left, #00f2c3, #0098f0, #00f2c3) !important;
-  color: #ffffff;
+  background-color: #ffffff !important;
+  color: #CB4154;
   box-shadow: none;
 }
 
@@ -14234,7 +14180,6 @@ fieldset[disabled] .btn-link.active {
 
 .dropdown-menu .dropdown-item,
 .bootstrap-select .dropdown-menu.inner li a {
-  font-size: 0.75rem;
   padding-top: .6rem;
   padding-bottom: .6rem;
   margin-top: 5px;
@@ -14691,7 +14636,7 @@ fieldset[disabled] .btn-link.active {
 }
 
 .form-control {
-  border-color: #2b3553;
+  border: 1px solid rgb(78, 78, 90);
   border-radius: 0.4285rem;
   font-size: 0.75rem;
   -webkit-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
@@ -16482,7 +16427,7 @@ textarea {
 .card h5,
 .card h6,
 .card p {
-  color: rgba(255, 255, 255, 0.8);
+  color: white;
 }
 
 h1,
@@ -16492,7 +16437,7 @@ h4,
 h5,
 h6 {
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.8);
+  color: white;
 }
 
 a {
@@ -16556,7 +16501,7 @@ h6,
 }
 
 p {
-  color: rgba(255, 255, 255, 0.8);
+  color: white;
   margin-bottom: 5px;
 }
 
@@ -16594,7 +16539,6 @@ p.description {
   text-transform: capitalize;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.6);
-  font-size: 0.75rem;
 }
 
 .card-category {
@@ -16658,7 +16602,7 @@ hr {
 }
 
 .table>tbody>tr>td {
-  color: rgba(255, 255, 255, 0.7) !important;
+  color: white !important;
 }
 
 .table>tbody>tr>td .photo {
@@ -16746,7 +16690,7 @@ hr {
   text-transform: uppercase;
   font-weight: 700;
   border: 0;
-  color: rgba(255, 255, 255, 0.7);
+  color: white;
 }
 
 .table .radio,
@@ -17334,19 +17278,13 @@ table.tablesorter thead tr .headerSortDown {
 
 .sidebar,
 .off-canvas-sidebar {
-  background: #ba54f5;
-  background: -webkit-linear-gradient(0deg, #ba54f5 0%, #e14eca 100%);
-  background: -o-linear-gradient(0deg, #ba54f5 0%, #e14eca 100%);
-  background: -moz-linear-gradient(0deg, #ba54f5 0%, #e14eca 100%);
-  background: linear-gradient(0deg, #ba54f5 0%, #e14eca 100%);
+  background: #CB4154;
   height: calc(100vh - 90px);
   width: 230px;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1;
-  background-size: cover;
-  background-position: center center;
   display: block;
   box-shadow: 0px 0px 45px 0px rgba(0, 0, 0, 0.6);
   margin-top: 80px;
@@ -17496,7 +17434,7 @@ table.tablesorter thead tr .headerSortDown {
   position: relative;
   text-transform: uppercase;
   cursor: pointer;
-  font-size: 0.62475rem;
+  font-size: 13px;
   padding: 10px 8px;
   line-height: 1.625rem;
 }
@@ -17802,13 +17740,6 @@ table.tablesorter thead tr .headerSortDown {
   float: right;
   width: 100%;
   min-height: 100vh;
-  border-top: 2px solid #e14eca;
-  background: linear-gradient(#1e1e2f, #1e1e24);
-  -webkit-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
-  -moz-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
-  -o-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
-  -ms-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
-  transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
 }
 
 .main-panel[data="blue"] {
@@ -19053,8 +18984,8 @@ code {
 .form-control[disabled],
 .form-control[readonly],
 fieldset[disabled] .form-control {
-  background-color: #1d253b;
-  color: #344675;
+  background-color: transparent;
+  color: #CB4154;
   cursor: not-allowed;
 }
 
@@ -19604,7 +19535,7 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .white-content .sidebar p {
-  color: rgba(255, 255, 255, 0.8);
+  color: white;
 }
 
 .white-content .main-panel {
@@ -19847,7 +19778,7 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .white-content .table>tbody>tr>td {
-  color: rgba(34, 42, 66, 0.7) !important;
+  color: white !important;
 }
 
 .white-content .table>thead>tr>th,
@@ -19863,7 +19794,7 @@ Copyright (c) 2015 Daniel Eden
 
 .white-content .table>thead>tr>th,
 .white-content .table button.btn-neutral.btn-link {
-  color: rgba(34, 42, 66, 0.7);
+  color: white;
 }
 
 .white-content .footer ul li a {
@@ -19938,7 +19869,7 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .card label {
-  color: rgba(255, 255, 255, 0.6);
+  color: white;
 }
 
 .card .card-title {
@@ -19969,7 +19900,7 @@ Copyright (c) 2015 Daniel Eden
 .card .card-header {
   padding: 15px 15px 0;
   border: 0;
-  color: rgba(255, 255, 255, 0.8);
+  color: white;
 }
 
 .card .card-header:not([data-background-color]) {
