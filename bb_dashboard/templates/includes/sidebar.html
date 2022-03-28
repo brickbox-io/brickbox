@@ -1,0 +1,175 @@
+{% if request.user.is_authenticated %}
+<div class="sidebar">
+    <div class="sidebar-wrapper">
+        <div class="logo">
+            <a target="_blank" rel="sponsored noopener noreferrer" href="" class="simple-text logo-mini">
+                <!-- BB -->
+            </a>
+            <a href="{% url 'bb_public:landing_page' %}" rel="sponsored noopener noreferrer" class="simple-text logo-normal">
+                brickbox.io
+                <!-- {{ client.account_name }} -->
+                <!-- Navigation -->
+            </a>
+        </div>
+
+        <ul class="nav">
+
+
+            <!-- --------------------- START - Colo Dashboard Tab ---------------------- -->
+            {% if profile.clients.count >= 1 %}
+            <li class="{% if 'index' in segment %} active {% endif %}">
+                <a href="{% url 'django_dash_black:dash' %}">
+                    <i class="tim-icons icon-chart-pie-36"></i>
+                    <p>Dashboard</p>
+                </a>
+            </li>
+            {% endif %}
+
+            {% if profile.clients.count > 1 and 'index' in segment %}
+            <li class="form-group" style="margin-left: 50px; margin-right: 10px;">
+                <!-- <label for="inputState">Clients</label> -->
+                <select id="inputState" class="form-control" onchange="window.location.replace(this.value)">
+                    <option style="color: black;" selected>Change Client</option>
+                    {% for client_option in profile.clients.all %}
+                    <option style="color: black;" value="{{forloop.counter0}}">{{ client_option }}</option>
+                    {% endfor %}
+                </select>
+            </li>
+            {% endif %}
+            <!-- ---------------------- END - Colo Dashboard Tab ----------------------- -->
+
+
+            <!-- ------------------ START - Colocation Dashboard Tab ------------------- -->
+            {% if profile.is_colo %}
+            <li class="{% if 'colo' in segment %} active {% endif %}">
+                <a href="/dashboard/colo">
+                    <i class="tim-icons icon-paper"></i>
+                    <p>COLOCATION</p>
+                </a>
+            </li>
+            {% endif %}
+            <!-- ------------------- END - Colocation Dashboard Tab -------------------- -->
+
+
+            <!-- ------------------------- START - Bricks Tab -------------------------- -->
+            {% if profile.brick_access %}
+            <li class="{% if 'bricks' in segment %} active {% endif %}">
+                <a href="/dashboard/bricks">
+                    <i class="tim-icons icon-components"></i>
+                    <p>BRICKS</p>
+                </a>
+            </li>
+            {% endif %}
+            <!-- -------------------------- END - Bricks Tab --------------------------- -->
+
+            <!-- ------------------------ START - Developer Tab ------------------------ -->
+            {% if profile.brick_access %}
+            <li class="{% if 'developer' in segment %} active {% endif %}">
+                <a href="/dashboard/developer">
+                    <i class="material-icons-outlined">developer_board</i>
+                    <p>DEVELOPER</p>
+                </a>
+            </li>
+            {% endif %}
+            <!-- ------------------------- END - Developer Tab ------------------------- -->
+
+            <!-- ------------------------- START - Billing Tab ------------------------- -->
+            <li class="{% if 'billing' in segment %} active {% endif %}">
+                <a href="/dashboard/billing">
+                    <i class="material-icons-outlined">payments</i>
+                    <p>BILLING</p>
+                </a>
+            </li>
+            <!-- -------------------------- END - Billing Tab -------------------------- -->
+
+
+            <!-- <li class="{% if 'notifications' in segment %} active {% endif %}">
+                <a href="/ui-notifications.html">
+                    <i class="tim-icons icon-bell-55"></i>
+                    <p>Notifications</p>
+                </a>
+            </li>
+            <li class="{% if 'page-user' in segment %} active {% endif %}">
+                <a href="/page-user.html">
+                    <i class="tim-icons icon-single-02"></i>
+                    <p>User Profile</p>
+                </a>
+            </li>
+            <li class="{% if 'tables' in segment %} active {% endif %}">
+                <a href="/ui-tables.html">
+                    <i class="tim-icons icon-puzzle-10"></i>
+                    <p>Table List</p>
+                </a>
+            </li>
+            <li class="{% if 'typography' in segment %} active {% endif %}">
+                <a href="/ui-typography.html">
+                    <i class="tim-icons icon-align-center"></i>
+                    <p>Typography</p>
+                </a>
+            </li>
+            <li class="{% if 'rtl-support' in segment %} active {% endif %}">
+                <a href="/page-rtl-support.html">
+                    <i class="tim-icons icon-world"></i>
+                    <p>RTL Support</p>
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'bb_accounts:logout' %}">
+                    <i class="tim-icons icon-button-power"></i>
+                    <p>Logout</p>
+                </a>
+            </li>
+
+            -->
+
+
+        </ul>
+
+        <br>
+
+        <!-- ----------------------------------------------------------------------- -->
+        <!--                               ADMIN TOOLS                               -->
+        <!-- ----------------------------------------------------------------------- -->
+        {% if profile.is_manager %}
+
+        <div class="logo">
+            <a target="_blank" rel="sponsored noopener noreferrer" href="" class="simple-text logo-mini">
+                <!-- BB -->
+            </a>
+            <a href="{% url 'bb_public:landing_page' %}" rel="sponsored noopener noreferrer" class="simple-text logo-normal">
+                ADMIN TOOLS
+            </a>
+        </div>
+
+        <ul class="nav">
+
+            <!-- ------------------------ START - Superuser Tab ------------------------ -->
+            {% if user.is_superuser %}
+            <li class="{% if 'superuser' in segment %} active {% endif %}">
+                <a href="/dashboard/superuser">
+                    <i class="tim-icons icon-atom"></i>
+                    <p>SUPERUSER</p>
+                </a>
+            </li>
+            {% endif %}
+            <!-- ------------------------- END - Superuser Tab ------------------------- -->
+
+
+            <!-- --------------------------- START - Clients --------------------------- -->
+            <li class="{% if 'clients' in segment %} active {% endif %}">
+                <a href="/dashboard/clients">
+                    <i class="material-icons-outlined">group</i>
+                    <p>COLO CLIENTS</p>
+                </a>
+            </li>
+            <!-- ---------------------------- END - Clients ---------------------------- -->
+
+
+        </ul>
+
+        {% endif %}
+
+    </div>
+</div>
+{% endif %}
