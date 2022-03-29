@@ -73,18 +73,18 @@
         <div class="main-panel">
             {% if request.user.is_authenticated %}
 
-                {% include 'includes/navigation.html' %}
+            {% include 'includes/navigation.html' %}
 
-                <div class="content">
-                    {% block content %}{% endblock content %}
-                </div>
+            <div class="content">
+                {% block content %}{% endblock content %}
+            </div>
 
             {% else %}
 
-                <div class="registration_pagelayout">
-                    {% block registration %}{% endblock registration %}
-                    {% block login %}{% endblock login %}
-                </div>
+            <div class="registration_pagelayout">
+                {% block registration %}{% endblock registration %}
+                {% block login %}{% endblock login %}
+            </div>
 
             {% endif %}
 
