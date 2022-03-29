@@ -16,35 +16,36 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet"> <!-- Nucleo Icons -->
-    <link href="/static/assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="{% static 'css/nucleo-icons.css' %}" rel="stylesheet" />
 
 
     <!-- CSS Files -->
-    <link href="/static/assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
+    <link href="{% static 'css/black-dashboard.css?v=1.0.0' %}" rel="stylesheet" />
     {% comment %}
-    <link href="{% static 'tellme/vendor/feedback/feedback.css' %}" rel="stylesheet"> <!-- django-tellme --> {% endcomment %}
+    <link href="{% static 'tellme/vendor/feedback/feedback.css' %}' %}" rel="stylesheet"> <!-- django-tellme --> {% endcomment %}
     {% comment %}
     <link href="{% static '/assets/css/tellme.css' %}" rel="stylesheet"> {% endcomment %}
 
     <link href="/static/tellme/vendor/feedback/feedback.css" rel="stylesheet"> <!-- django-tellme -->
-    <link href="/static/assets/css/tellme.css" rel="stylesheet">
+    <link href="{% static 'css/tellme.css' %}" rel="stylesheet">
 
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="/static/assets/demo/demo.css" rel="stylesheet" />
+    <link href="{% static 'demo/demo.css' %}" rel="stylesheet" />
 
     {% compress js inline %}
-    <script src="{% static 'js/csrf.js' %}"></script>
+    <script src=" {% static 'js/csrf.js' %}">
+    </script>
     {% endcompress %}
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://js.stripe.com/v3/"></script>
 
-    <link href="/static/assets/css/spinner.css" rel="stylesheet" />
+    <link href="{% static 'css/spinner.css' %}" rel="stylesheet" />
 
     <!-- Specific Page CSS goes HERE  -->
     {% block stylesheets %}{% endblock stylesheets %}
 
     <link rel="shortcut icon" type="image/png" href="{% static 'brickbox_icon/favicon.ico' %}" />
-    <link rel="apple-touch-icon" sizes="76x76" href="/static/assets/img/apple-icon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/apple-icon.png">
     <link rel="apple-touch-icon" sizes="57x57" href="{% static 'brickbox_icon/apple-icon-57x57.png' %}" />
     <link rel="apple-touch-icon" sizes="60x60" href="{% static 'brickbox_icon/apple-icon-60x60.png' %}" />
     <link rel="apple-touch-icon" sizes="72x72" href="{% static 'brickbox_icon/apple-icon-72x72.png' %}" />

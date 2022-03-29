@@ -59,7 +59,7 @@ class Brick:
         self.port = host_port
 
     # ---------------------------------- Create ---------------------------------- #
-    def create(self, base_image=None, disk_size=25, memory=12288, cpu_qty=4):
+    def create(self, base_image=None, disk_size=50, memory=12288, cpu_qty=4):
         '''
         Creates a new VM using the configuration provided.
         '''
