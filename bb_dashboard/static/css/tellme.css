@@ -1,0 +1,53 @@
+/* Used to attach the button to the side of the page, remaining CSS is part of the package.  */
+
+.vertical-right-aligned {
+    transform       : rotate(-90deg);
+    transform-origin: 100% 100%;
+    position        : fixed;
+    right           : 0;
+    top             : 65%;
+    z-index         : 100;
+    padding-left    : 11px;
+    padding-right   : 11px;
+}
+
+.vertical-right-aligned:hover {
+    transform          : rotate(-90deg) !important;
+    /* transform-origin: 100% 100%;
+    position           : fixed;
+    right              : 0;
+    top                : 50%;
+    z-index            : 100; */
+}
+
+/* #feedback-overview {
+    background-color: lightgray;
+}
+
+#feedback-module {
+    background-color: lightgray;
+} */
+
+#feedback-welcome p {
+    color: black;
+}
+
+#feedback-highlighter p {
+    color: black;
+}
+
+#feedback-submit-success p {
+    color: black;
+}
+
+#feedback-overview p {
+    color: black;
+}
+
+#feedback-overview-description-text h3 {
+    color: black;
+}
+
+#feedback-overview-screenshot h3 {
+    color: black;
+}
