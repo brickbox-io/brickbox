@@ -4,6 +4,7 @@ import time
 import yaml
 
 from box import Connect
+from box import  error
 
 class Brick:
     ''' All the functions that can be done to a VM. '''
@@ -221,14 +222,10 @@ class Brick:
         # File cleanup
         try:
             host.connect(
-                ssh_command = f"sudo rm -r {self.image_directory}{self.brick_id}"
+                ssh_command = f"sudo find {self.image_directory} -name '{self.brick_id}*' -exec rm -r {{}} \;"
             )
-        except host.SSHError as err:
+        except error.SSHError as err:
             print(err)
-
-        host.connect(
-            ssh_command = f"sudo find {self.image_directory} -name '{self.brick_id}*' -delete"
-        )
 
     # ------------------------------- Root Password ------------------------------ #
     def set_root_password(self, password='root'):
