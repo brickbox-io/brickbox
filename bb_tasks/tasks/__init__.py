@@ -10,7 +10,7 @@ from .callable import (
 )
 
 from .system import (
-    prepare_gpu_background_task, clone_bg, stop_bg, start_bg,
+    prepare_gpu_background_task, stop_bg, start_bg,
 )
 
 from .billing import threshold_resource_invoicing, monthly_resource_invoicing

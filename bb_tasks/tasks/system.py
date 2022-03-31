@@ -5,8 +5,9 @@ import subprocess
 from django.contrib.sites.models import Site
 
 from celery import shared_task
+import box
 
-from bb_vm.models import GPU
+from bb_vm.models import GPU, BackgroundTask
 
 # Script directory on server.
 DIR = '/opt/brickbox/bb_vm/bash_scripts/'
@@ -20,33 +21,19 @@ def prepare_gpu_background_task():
     gpu_list = GPU.objects.all()
     for gpu in gpu_list:
         if not gpu.bg_ready and not gpu.rented and gpu.host.is_ready:
-            clone_bg.apply_async((gpu.id,), queue='ssh_queue')
+            host = gpu.host
 
+            background_brick = box.Brick(host_port=host.ssh_port, brick_id=f'gpu_{str(gpu.id)}')
+            background_brick.USER_DATA = BackgroundTask.objects.all().order_by('-id')[0].script
 
-@shared_task
-def clone_bg(gpu_id):
-    '''
-    Called to create the background img for a particular GPU.
-    '''
-    gpu = GPU.objects.get(id=gpu_id)
-    gpu_xml = gpu.xml
-    host = gpu.host
+            background_brick.create(base_image="base_os-1")
+            background_brick.set_root_password(password=f'r0flduqu')
+            background_brick.attach_gpu(xml_data=f'{str(gpu.xml)}')
+            background_brick.toggle_state(set_state='on')
 
-    new_vm_script = [
-                        f'{DIR}brick_connect.sh',
-                        f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
-                        'background_img', f'{str(Site.objects.get_current().domain)}',
-                        f'gpu_{str(gpu.id)}', f'{str(gpu_xml)}'
-                    ]
-
-    with subprocess.Popen(new_vm_script) as script:
-        print(script)
-
-    gpu.bg_ready = True
-    gpu.bg_running = True
-    gpu.save()
-
-
+            gpu.bg_ready = True
+            gpu.bg_running = True
+            gpu.save()
 
 @shared_task
 def stop_bg(gpu_id):

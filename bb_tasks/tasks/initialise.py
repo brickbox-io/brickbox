@@ -64,8 +64,8 @@ def new_vm_subprocess(instance_id, root_pass):
 
 
     finally:
-        catch_clone_errors.apply_async((instance_id,), countdown=300, queue='ssh_queue')
-        remove_stale_clone.apply_async((instance_id,), countdown=780, queue='ssh_queue')
+        catch_clone_errors.apply_async((instance_id,), countdown=600, queue='ssh_queue')
+        remove_stale_clone.apply_async((instance_id,), countdown=1560, queue='ssh_queue')
 
 
 # ---------------------------------------------------------------------------- #

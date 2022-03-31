@@ -220,11 +220,11 @@ class Brick:
 
         # File cleanup
         host.connect(
-            ssh_command = f"sudo rm -r {self.image_directory}{self.brick_id}"
+            ssh_command = f"sudo find {self.image_directory} -name '{self.brick_id}*' -delete"
         )
 
         host.connect(
-            ssh_command = f"sudo find {self.image_directory} -name '{self.brick_id}*' -delete"
+            ssh_command = f"sudo rm -r {self.image_directory}{self.brick_id}"
         )
 
     # ------------------------------- Root Password ------------------------------ #
