@@ -34,7 +34,11 @@ class GPUAdmin(admin.ModelAdmin):
     '''
     Admin configuration for GPU model.
     '''
-    list_display = ('id', 'host', 'model', 'pcie', 'device', 'is_enabled', 'rented', 'bg_ready', 'bg_running')
+    list_display = (
+                        'id', 'host', 'model',
+                        'pcie', 'device', 'is_enabled',
+                        'rented', 'bg_ready', 'bg_running'
+                    )
     readonly_fields = ('rented',)
 
 class RentedGPUAdmin(admin.ModelAdmin):

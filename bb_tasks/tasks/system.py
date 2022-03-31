@@ -1,16 +1,9 @@
 ''' Tasks that support overall system operations. '''
 
-import subprocess
-
-from django.contrib.sites.models import Site
-
 from celery import shared_task
 import box
 
 from bb_vm.models import GPU, BackgroundTask
-
-# Script directory on server.
-DIR = '/opt/brickbox/bb_vm/bash_scripts/'
 
 
 @shared_task
