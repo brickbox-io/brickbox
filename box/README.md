@@ -10,17 +10,27 @@ Celery is used to manage the background tasks that include creating SSH connecti
 
 ## Objects and Methods
 
-| Object  | Method         | Description                                |
-|---------|----------------|--------------------------------------------|
-| Command | list_directory | List the contents of a directory on a host |
-| Command | download_file  | Downloads a file from a URL to the host.   |
+| Object     | Method               | Description                                                            |
+|------------|----------------------|------------------------------------------------------------------------|
+| Command    | list_directory       | List the contents of a directory on a host                             |
+| Command    | download_file        | Downloads a file from a URL to the host.                               |
+| HostStatus | is_ready             | Returns true if the host is ready to use.                              |
+| HostStatus | qemu_installed       | Returns true if qemu is installed on the host.                         |
+| HostStatus | vfio_pci_bind_exists | Returns true if the vfio-pci-bind kernel module is loaded on the host. |
+| HostStatus | br0_exists           | Returns true if the br0 interface exists on the host.                  |
+| HostStatus | enp3s0f1_is_up       | Returns true if the enp3s0f1 interface is up on the host.              |
+| HostStatus | br0_is_networked     | Returns true if the br0 interface is networked on the host.            |
 
 ```python
 host = box.Connect(
             host_port = #
         )
 
-host.list_directory('directory/path')
+# List the contents of a directory on a host
+directory_contense = host.list_directory('directory/path')
+
+# Download a file from a URL to the host
+host.download_file('http://www.example.com/file.txt', 'file.txt', 'directory/path', 'File Name')
 ```
 
 ## VM Scripts

@@ -1,3 +1,5 @@
+# pylint: disable=E1101
+
 ''' Used to send commands to the host. '''
 
 class Command:
