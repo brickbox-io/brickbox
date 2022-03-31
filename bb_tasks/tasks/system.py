@@ -51,22 +51,17 @@ def stop_bg(gpu_id):
 
 
 @shared_task
-def start_bg(gpu_id):
+def start_bg():
     '''
     Called to start the background img for a particular GPU.
     '''
-    gpu = GPU.objects.get(id=gpu_id)
-    host = gpu.host
+    gpu_list = GPU.objects.all()
+    for gpu in gpu_list:
+        if gpu.bg_ready and not gpu.rented and gpu.host.is_ready and not gpu.bg_running:
+            host = gpu.host
 
-    resume_bg_script = [
-                        f'{DIR}brick_connect.sh',
-                        f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
-                        'brick_play', f'{str(Site.objects.get_current().domain)}',
-                        f'gpu_{str(gpu_id)}'
-                    ]
+            background_brick = box.Brick(host_port=host.ssh_port, brick_id=f'gpu_{str(gpu.id)}')
+            background_brick.toggle_state(set_state="on")
 
-    with subprocess.Popen(resume_bg_script) as script:
-        print(script)
-
-    gpu.bg_running = True
-    gpu.save()
+            gpu.bg_running = True
+            gpu.save()
