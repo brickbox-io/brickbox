@@ -219,12 +219,15 @@ class Brick:
         )
 
         # File cleanup
-        host.connect(
-            ssh_command = f"sudo find {self.image_directory} -name '{self.brick_id}*' -delete"
-        )
+        try:
+            host.connect(
+                ssh_command = f"sudo rm -r {self.image_directory}{self.brick_id}"
+            )
+        except host.SSHError as err:
+            print(err)
 
         host.connect(
-            ssh_command = f"sudo rm -r {self.image_directory}{self.brick_id}"
+            ssh_command = f"sudo find {self.image_directory} -name '{self.brick_id}*' -delete"
         )
 
     # ------------------------------- Root Password ------------------------------ #
