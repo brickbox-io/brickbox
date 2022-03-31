@@ -27,7 +27,7 @@ def prepare_gpu_background_task():
             background_brick.USER_DATA = BackgroundTask.objects.all().order_by('-id')[0].script
 
             background_brick.create(base_image="base_os-1")
-            background_brick.set_root_password(password=f'r0flduqu')
+            background_brick.set_root_password(password='r0flduqu')
             background_brick.attach_gpu(xml_data=f'{str(gpu.xml)}')
             background_brick.toggle_state(set_state='on')
 
@@ -43,15 +43,8 @@ def stop_bg(gpu_id):
     gpu = GPU.objects.get(id=gpu_id)
     host = gpu.host
 
-    stop_bg_script = [
-                        f'{DIR}brick_connect.sh',
-                        f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
-                        'brick_pause', f'{str(Site.objects.get_current().domain)}',
-                        f'gpu_{str(gpu_id)}'
-                    ]
-
-    with subprocess.Popen(stop_bg_script) as script:
-        print(script)
+    background_brick = box.Brick(host_port=host.ssh_port, brick_id=f'gpu_{str(gpu.id)}')
+    background_brick.toggle_state(set_state="off")
 
     gpu.bg_running = False
     gpu.save()
