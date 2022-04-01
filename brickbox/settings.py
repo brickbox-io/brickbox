@@ -234,7 +234,7 @@ CSRF_COOKIE_SECURE = True
 
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
-STATIC_URL = '/static/' # Refrenced via HTML
+STATIC_URL = 'static/' # Refrenced via HTML
 
 STATIC_ROOT = '/var/www/brickbox/static/' # Directory/Path where static files will be located
 
@@ -248,6 +248,9 @@ STATICFILES_FINDERS = (
     # other finders..
     'compressor.finders.CompressorFinder',
 )
+
+# Handing SCSS https://www.accordbox.com/blog/how-use-scss-sass-your-django-project-python-way/
+# COMPRESS_PRECOMPILERS = ( ('text/x-scss', 'django_libsass.SassCompiler'),)
 
 # ----------------------------------- Media ---------------------------------- #
 MEDIA_URL = '/media/'
