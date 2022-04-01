@@ -4,4 +4,4 @@ from .models_hosts import HostFoundation, EquipmentOwner, PortTunnel, GPU, Rente
 
 from .models_vms import VirtualBrick, VirtualBrickOwner, VirtualBrickHistory, VMLog
 
-from .models_config import CloudImage
+from .models_config import CloudImage, BackgroundTask

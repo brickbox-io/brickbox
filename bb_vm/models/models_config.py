@@ -21,3 +21,15 @@ class CloudImage(models.Model):
 
     class Meta:
         verbose_name_plural = "Cloud Images"
+
+
+# ------------------------- Background Tasks/Scritps ------------------------- #
+class BackgroundTask(models.Model):
+    '''
+    Stores scripts that can be deployed to GPUs that are not currently rented.
+    '''
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    script = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
