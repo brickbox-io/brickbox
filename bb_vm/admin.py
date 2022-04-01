@@ -7,7 +7,7 @@ from bb_vm.models import(
     GPU, HostFoundation, EquipmentOwner, RentedGPU, VMLog,
 
     # Models Config
-    CloudImage
+    CloudImage, BackgroundTask
 )
 
 
@@ -34,7 +34,11 @@ class GPUAdmin(admin.ModelAdmin):
     '''
     Admin configuration for GPU model.
     '''
-    list_display = ('id', 'host', 'model', 'pcie', 'device', 'is_enabled', 'rented')
+    list_display = (
+                        'id', 'host', 'model',
+                        'pcie', 'device', 'is_enabled',
+                        'rented', 'bg_ready', 'bg_running'
+                    )
     readonly_fields = ('rented',)
 
 class RentedGPUAdmin(admin.ModelAdmin):
@@ -81,6 +85,12 @@ class CloudImageAdmin(admin.ModelAdmin):
     '''
     list_display = ('distribution', 'version', 'is_active')
 
+class BackgroundTaskAdmin(admin.ModelAdmin):
+    '''
+    Admin configuration for BackgroundTask model.
+    '''
+    list_display = ('id', 'name', 'description',)
+
 # ---------------------------------------------------------------------------- #
 #                              Admin Registrations                             #
 # ---------------------------------------------------------------------------- #
@@ -98,3 +108,4 @@ admin.site.register(VMLog, VMLogAdmin)
 
 # ------------------------------- Models Config ------------------------------ #
 admin.site.register(CloudImage, CloudImageAdmin)
+admin.site.register(BackgroundTask, BackgroundTaskAdmin)

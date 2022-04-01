@@ -2,10 +2,6 @@
 
 from __future__ import absolute_import, unicode_literals
 
-import subprocess
-
-from django.contrib.sites.models import Site
-
 from celery import shared_task
 
 import box
@@ -14,7 +10,6 @@ from bb_vm.models import (
     PortTunnel, VirtualBrick, HostFoundation
 )
 
-DIR = '/opt/brickbox/bb_vm/bash_scripts/'
 
 # ---------------------------------------------------------------------------- #
 #                                Scripted Tasks                                #
@@ -48,16 +43,8 @@ def reboot_vm_subprocess(instance_id):
     Called to reboot a VM.
     '''
     host = VirtualBrick.objects.get(id=instance_id).host
-
-    reboot_vm_script = [
-                        f'{DIR}brick_connect.sh',
-                        f'{str(host.ssh_username)}', f'{str(host.ssh_port)}',
-                        'brick_reboot', f'{str(Site.objects.get_current().domain)}',
-                        f'{str(instance_id)}',
-                    ]
-    with subprocess.Popen(reboot_vm_script) as script:
-        print(script)
-
+    virtual_machine = box.Brick(host_port=host.ssh_port, brick_id=f'{str(instance_id)}')
+    virtual_machine.reboot()
 
 # --------------------------------- Delete VM -------------------------------- #
 @shared_task

@@ -1,9 +1,11 @@
 ''' box - brick.py '''
 
 import time
+import subprocess
 import yaml
 
 from box import Connect
+from box import  error
 
 class Brick:
     ''' All the functions that can be done to a VM. '''
@@ -219,13 +221,17 @@ class Brick:
         )
 
         # File cleanup
-        host.connect(
-            ssh_command = f"sudo rm -r {self.image_directory}{self.brick_id}"
-        )
-
-        host.connect(
-            ssh_command = f"sudo find {self.image_directory} -name '{self.brick_id}*' -delete"
-        )
+        try:
+            host.connect(
+                ssh_command = f"""sudo find {self.image_directory} \
+                                    -name '{self.brick_id}*' \
+                                    -exec rm -r {{}} \\;
+                                """
+            )
+        except error.SSHError as err:
+            print(err)
+        except subprocess.CalledProcessError as err:
+            print(err)
 
     # ------------------------------- Root Password ------------------------------ #
     def set_root_password(self, password='root'):

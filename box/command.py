@@ -1,9 +1,13 @@
+# pylint: disable=E1101
+
 ''' Used to send commands to the host. '''
 
+# "Recipies"
 class Command:
     ''' Executes commands on the host. '''
 
     def __init__(self, command=None):
+        # super().__init__()
         self.command = command
 
         if command is not None:
@@ -16,6 +20,8 @@ class Command:
         '''
         Lists the contents of a directory on the host.
         '''
+
+        # ls -1 {directory}
         self.connect(
             ssh_command = f'sudo ls {directory}'
         )
