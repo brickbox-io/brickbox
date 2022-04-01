@@ -1,4 +1,6 @@
 #!/bin/bash
+# shellcheck disable=SC1091,SC2086
+
 
 # ---------------------------------------------------------------------------- #
 #                                 Pulls Updates                                #
@@ -16,6 +18,7 @@ sudo apt-get update -y && sudo apt-get upgrade -y &
 # ---------------------------------------------------------------------------- #
 #                                Update Packages                               #
 # ---------------------------------------------------------------------------- #
+. /opt/brickbox/bbenv/bin/activate
 
 # PIP
 python3 -m pip install --upgrade pip
