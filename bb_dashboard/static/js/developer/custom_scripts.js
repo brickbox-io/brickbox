@@ -5,7 +5,6 @@ function AddScript() {
 
 function DeleteScriptModal() {
     $("#delete_script").modal('toggle');
-    console.log('itworks')
 }
 
 function AddNewScript() {
