@@ -1,8 +1,8 @@
 ''' box - brick.py '''
 
 import time
-import yaml
 import subprocess
+import yaml
 
 from box import Connect
 from box import  error
@@ -223,7 +223,10 @@ class Brick:
         # File cleanup
         try:
             host.connect(
-                ssh_command = f"sudo find {self.image_directory} -name '{self.brick_id}*' -exec rm -r {{}} \;"
+                ssh_command = f"""sudo find {self.image_directory} \
+                                    -name '{self.brick_id}*' \
+                                    -exec rm -r {{}} \\;
+                                """
             )
         except error.SSHError as err:
             print(err)

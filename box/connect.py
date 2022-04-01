@@ -37,7 +37,7 @@ class Connect(Command, HostStatus):
         # with Popen(script, stdout=PIPE, stderr=PIPE) as process:
             # self.stdout, self.stderr = process.communicate()
 
-            # if self.stderr:
-            #     raise error.SSHError(self.stderr)
+        if self.stderr:
+            raise error.SSHError(self.stderr)
 
         return (self.stdout, self.stderr)
