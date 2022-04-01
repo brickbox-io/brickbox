@@ -440,6 +440,25 @@ h6,
   font-size: 0.75rem;
 }
 
+.developer-card {
+  display: flex; 
+  justify-content: space-around;
+}
+
+.scripts-card-container {
+  width: 48%;
+}
+
+@media (max-width: 1300px) {
+  .developer-card {
+    flex-wrap: wrap;
+  }
+
+  .scripts-card-container {
+    width: 95%;
+  }
+}
+
 .lead {
   font-size: 0.78125rem;
   font-weight: 300;
