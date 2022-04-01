@@ -29,10 +29,9 @@
     <link href="/static/tellme/vendor/feedback/feedback.css" rel="stylesheet"> <!-- django-tellme -->
     <link href="{% static 'css/tellme.css' %}" rel="stylesheet">
 
-    {% compress js inline %}
-    <script src=" {% static 'js/csrf.js' %}">
-    </script>
-    {% endcompress %}
+
+    <script src=" {% static 'js/csrf.js' %}"></script>
+
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://js.stripe.com/v3/"></script>
 
