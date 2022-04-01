@@ -34,7 +34,6 @@ INSTALLED_APPS = [
     'django.contrib.admindocs', # https://docs.djangoproject.com/en/3.2/ref/contrib/admin/admindocs/
 
     # brickbox.io Apps
-    'django_dash_black',        # https://appseed.us/admin-dashboards/django-dashboard-black
     'bb_api',                   # API endpoints and handlers
     'bb_billing',               # Billing and payment processing
     'bb_colo',                  # Colocation management
@@ -259,7 +258,7 @@ MEDIA_ROOT = '/var/www/brickbox/media/' # Directory/Path where media files will 
 # Login OPTIONS
 
 LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/dash/'
+LOGIN_REDIRECT_URL = '/dashboard/'
 LOGOUT_REDIRECT_URL = '/login/'
 
 
@@ -298,7 +297,7 @@ PWA_APP_BACKGROUND_COLOR = '#ffffff'
 PWA_APP_DISPLAY = 'standalone'
 PWA_APP_SCOPE = '/'
 PWA_APP_ORIENTATION = 'portrait'
-PWA_APP_START_URL = '/dash/'
+PWA_APP_START_URL = '/dashboard/'
 PWA_APP_STATUS_BAR_COLOR = 'default'
 PWA_APP_ICONS = [
     {

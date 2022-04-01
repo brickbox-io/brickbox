@@ -51,8 +51,6 @@ urlpatterns = [
 
     path('webhook/', include('bb_webhook.urls')),       # bb_webhook
 
-    path('dash/', include('django_dash_black.urls')),   # django_dash_black
-
     # ---------------------------- Virtulization URLS ---------------------------- #
     path('vm/', include('bb_vm.urls')),                 # bb_vm
 

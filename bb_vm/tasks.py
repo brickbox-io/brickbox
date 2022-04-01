@@ -22,15 +22,15 @@ def check_base_imgs():
     hosts = HostFoundation.objects.filter(is_enabled=True, is_ready=True)
 
     for host in hosts:
-        box.host_port = host.ssh_port
-        files = box.Command.list_directory(
+        host_box = box.Connect(host_port = host.ssh_port)
+        files = host_box.list_directory(
                             directory = '/var/lib/libvirt/images/'
                         )
         files_names = re.findall(r'base_os-(\d)+\.img', files.decode('utf-8'))
 
         for os_id in CloudImage.objects.filter(is_active=True):
             if not str(os_id.id) in files_names:
-                files =  box.Command.download_file(
+                files =  host_box.download_file(
                         file_url = f'{os_id.img_url}',
                         file_path = '/var/lib/libvirt/images/',
                         file_name = f'base_os-{str(os_id.id)}.img',

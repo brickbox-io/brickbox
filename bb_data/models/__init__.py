@@ -8,3 +8,7 @@ from .models import (
 from .models_stripe import (
     PaymentMethod, PaymentMethodOwner, ResourceRates, ResourceTimeTracking, BillingHistory
 )
+
+from .models_developer import (
+    CustomScript,
+)

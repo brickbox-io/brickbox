@@ -1,0 +1,109 @@
+{% load static %}
+{% load compress %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>
+        brickbox.io | {% block title %}{% endblock %}
+    </title>
+
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet"> <!-- Nucleo Icons -->
+    <link href="{% static 'css/nucleo-icons.css' %}" rel="stylesheet" />
+
+
+    <!-- CSS Files -->
+    <link href="{% static 'css/black-dashboard.css?v=1.0.0' %}" rel="stylesheet" />
+    {% comment %}
+    <link href="{% static 'tellme/vendor/feedback/feedback.css' %}' %}" rel="stylesheet"> <!-- django-tellme --> {% endcomment %}
+    {% comment %}
+    <link href="{% static '/assets/css/tellme.css' %}" rel="stylesheet"> {% endcomment %}
+
+    <link href="/static/tellme/vendor/feedback/feedback.css" rel="stylesheet"> <!-- django-tellme -->
+    <link href="{% static 'css/tellme.css' %}" rel="stylesheet">
+
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="{% static 'demo/demo.css' %}" rel="stylesheet" />
+
+    {% compress js inline %}
+    <script src=" {% static 'js/csrf.js' %}">
+    </script>
+    {% endcompress %}
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://js.stripe.com/v3/"></script>
+
+    <link href="{% static 'css/spinner.css' %}" rel="stylesheet" />
+
+    <!-- Specific Page CSS goes HERE  -->
+    {% block stylesheets %}{% endblock stylesheets %}
+
+    <link rel="shortcut icon" type="image/png" href="{% static 'brickbox_icon/favicon.ico' %}" />
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/apple-icon.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'brickbox_icon/apple-icon-57x57.png' %}" />
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'brickbox_icon/apple-icon-60x60.png' %}" />
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'brickbox_icon/apple-icon-72x72.png' %}" />
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'brickbox_icon/apple-icon-76x76.png' %}" />
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'brickbox_icon/apple-icon-114x114.png' %}" />
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'brickbox_icon/apple-icon-120x120.png' %}" />
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'brickbox_icon/apple-icon-144x144.png' %}" />
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'brickbox_icon/apple-icon-152x152.png' %}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'brickbox_icon/apple-icon-180x180.png' %}" />
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'brickbox_icon/android-icon-192x192.png' %}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'brickbox_icon/favicon-32x32.png' %}" />
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'brickbox_icon/favicon-96x96.png' %}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'brickbox_icon/favicon-16x16.png' %}" />
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{% static 'brickbox_icon/ms-icon-144x144.png' %}">
+    <meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body class="">
+    <div class="wrapper">
+
+        {% include 'includes/sidebar.html' %}
+
+        <div class="main-panel">
+            {% if request.user.is_authenticated %}
+
+            {% include 'includes/navigation.html' %}
+
+            <div class="content">
+                {% block content %}{% endblock content %}
+            </div>
+
+            {% else %}
+
+            <div class="registration_pagelayout">
+                {% block registration %}{% endblock registration %}
+                {% block login %}{% endblock login %}
+            </div>
+
+            {% endif %}
+
+            {% include 'includes/footer.html' %}
+
+        </div>
+
+    </div>
+
+    <!-- {% include 'includes/fixed-plugin.html' %} -->
+
+    {% include 'includes/scripts.html' %}
+
+    {% include 'includes/scripts-sidebar.html' %}
+
+    <!-- Specific Page JS goes HERE  -->
+    {% block javascripts %}{% endblock javascripts %}
+
+</body>
+
+</html>

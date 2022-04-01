@@ -7,6 +7,7 @@ from bb_data.models import (
     ColocationClient, CryptoSnapshot, FiatSnapshot,
     ColocationClientOwner, CryptoPayout, FiatPayout,
     PaymentMethod, PaymentMethodOwner, ResourceRates, ResourceTimeTracking, BillingHistory,
+    CustomScript
 )
 
 
@@ -63,6 +64,12 @@ class BillingHistoryAdmin(admin.ModelAdmin):
     '''
     list_display = ('user', 'date', 'invoice_link', 'invoice_id',)
 
+class CustomScriptAdmin(admin.ModelAdmin):
+    '''
+    Admin configuration for CustomScript DB model.
+    '''
+    list_display = ('user', 'name',)
+
 admin.site.register(UserProfile)
 admin.site.register(SSHKey)
 admin.site.register(SSHKeyOwner)
@@ -78,3 +85,5 @@ admin.site.register(PaymentMethodOwner)
 admin.site.register(ResourceRates, ResourceRatesAdmin)
 admin.site.register(ResourceTimeTracking, ResourceTimeTrackingAdmin)
 admin.site.register(BillingHistory, BillingHistoryAdmin)
+
+admin.site.register(CustomScript, CustomScriptAdmin)
