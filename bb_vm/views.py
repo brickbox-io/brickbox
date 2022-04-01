@@ -9,13 +9,13 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
 
-from bb_data.models import UserProfile, PaymentMethod
+from bb_data.models import UserProfile, PaymentMethod, CustomScript
 from bb_vm.models import PortTunnel, VirtualBrick, VirtualBrickOwner, GPU, RentedGPU
 
 from bb_tasks.tasks import(
         new_vm_subprocess, destroy_vm_subprocess, close_ssh_port,
         pause_vm_subprocess, play_vm_subprocess, reboot_vm_subprocess,
-        stop_bg, host_cleanup,
+        stop_bg, host_cleanup, start_bg
     )
 
 DIR = '/opt/brickbox/bb_vm/bash_scripts/'
@@ -30,6 +30,7 @@ def clone_img(request):
     profile = UserProfile.objects.get(user=request.user)
     selected_gpu = request.POST.get('selected_gpu')
     root_pass = request.POST.get('root_pass')
+    custom_script = request.POST.get('custom_script')
     if not root_pass:
         root_pass = 'root'
     designated_gpu_xml = None
@@ -64,6 +65,10 @@ def clone_img(request):
 
             instance.name = f'brick-{instance.id} ({gpu.model})'
             instance.save()
+
+            if custom_script.isdigit():
+                instance.user_data = CustomScript.objects.get(id=custom_script)
+                instance.save()
 
             assigned = RentedGPU(gpu=gpu, virt_brick=instance)
             assigned.save()
@@ -208,6 +213,8 @@ def brick_destroy(request):
         close_ssh_port.apply_async((brick.ssh_port.port_number,), countdown=43200)
 
         destroy_vm_subprocess.apply_async((vm_id,), queue='ssh_queue')
+
+        start_bg.apply_async((), queue='ssh_queue')
 
         pub_key = brick.sshtunnel_public_key
         with subprocess.Popen([f'{DIR}remove_auth_key.sh', f'{str(pub_key)}']) as script:

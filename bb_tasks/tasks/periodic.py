@@ -209,28 +209,38 @@ def resource_time_track():
     bricks = VirtualBrick.objects.all()
 
     for brick in bricks:
-        user = VirtualBrickOwner.objects.get(virt_brick=brick).owner.user
-        gpus = brick.assigned_gpus.all()
+        try:
+            user = VirtualBrickOwner.objects.get(virt_brick=brick).owner.user
+            gpus = brick.assigned_gpus.all()
 
-        for gpu in gpus:
-            model = gpu.model
+            for gpu in gpus:
+                model = gpu.model
 
-            tracker, created = ResourceTimeTracking.objects.get_or_create(
-                                    user = user,
-                                    balance_paid = False,
-                                    billing_cycle_end__gte=datetime.datetime.today()
-                                )
+                tracker, created = ResourceTimeTracking.objects.get_or_create(
+                                        user = user,
+                                        balance_paid = False,
+                                        billing_cycle_end__gte=datetime.datetime.today()
+                                    )
 
-            if created:
-                tracker.billing_cycle_end = tracker.billing_cycle_start+relativedelta(months=+1)
-                tracker.billing_cycle_end = (tracker.billing_cycle_end).replace(day=1)
+                if created:
+                    tracker.billing_cycle_end = tracker.billing_cycle_start+relativedelta(months=+1)
+                    tracker.billing_cycle_end = (tracker.billing_cycle_end).replace(day=1)
 
-            setattr(
-                tracker, f'minutes_{model}',
-                (getattr(tracker, f'minutes_{model}') + 1)
-            )
+                setattr(
+                    tracker, f'minutes_{model}',
+                    (getattr(tracker, f'minutes_{model}') + 1)
+                )
 
-            tracker.save()
+                tracker.save()
+        except  VirtualBrickOwner.DoesNotExist:
+            return {
+                "Brick Owner DNE": f"{str(brick.id)}"
+            }
+
+        return {
+                "Brick Owner": f"{str(brick.id)}"
+            }
+
 
 
 

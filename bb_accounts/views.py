@@ -40,7 +40,7 @@ def account_registration(request):
         return HttpResponse(status=405)
 
     if request.user.is_authenticated:
-        return HttpResponseRedirect('/dash/')
+        return HttpResponseRedirect('/dashboard/')
 
     if request.method == 'POST':
         print(request.POST)
@@ -70,7 +70,7 @@ def account_registration(request):
                             )
             user_profile.save()
 
-            return redirect('/dash/')
+            return redirect('/dashboard/')
 
         print(form.errors)
         return render(request, 'registration/register.html',
@@ -116,7 +116,7 @@ def token_signin(request):
                 social_user.user,
                 backend = 'allauth.account.auth_backends.AuthenticationBackend',
             )
-            return redirect('/dash/')
+            return redirect('/dashboard/')
 
         if not idinfo['email']:
             return HttpResponseServerError('No email returned.')
@@ -156,7 +156,7 @@ def token_signin(request):
                         )
         user_profile.save()
 
-        return redirect('/dash/')
+        return redirect('/dashboard/')
 
     except ValueError as err:
         print(err)

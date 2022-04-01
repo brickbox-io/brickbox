@@ -54,16 +54,6 @@ python3 -m pip freeze -l > requirements.txt
 
 Files including images and .js are servered from the location specified in Nginx. Rull the command ```python3 manage.py collectstatic``` to automaticly copy static files from the project directory to the location specified in the settings folder.
 
-## Dashboard Framework
-
-https://www.creative-tim.com/live/black-dashboard-django
-
-https://appseed.us/admin-dashboards/django-dashboard-black <br>
-
-https://docs.appseed.us/products/django-dashboards/black-dashboard
-<br>
-https://demos.creative-tim.com/black-dashboard-django/docs/1.0/getting-started/getting-started-django.html
-
 ## Continuous Integration
 
 To facilitate the rapid integration of new code the brickbox.io DevOps process includes a set of continuous integration tools. These tools are a combination of both best practices and enforced code policies with the aid of GitHub Actions.
@@ -87,7 +77,6 @@ To quickly see that services are operational the app [django-health-check](https
 ├── bb_tasks            # Task management framework, celery.
 ├── bb_vm               # Virtual machine component.
 ├── brickbox            # Django project settings and configuration.
-├── django_dash_black   # Main website dashboard.
 └── puller              # Internal CI/CD tools.
 ```
 

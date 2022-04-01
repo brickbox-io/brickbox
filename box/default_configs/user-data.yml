@@ -1,0 +1,9 @@
+#cloud-config
+
+users:
+  - name: sumit
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDDzMSSuEky2HWKy3/p01BXURLkYhDkJ+Wpd45kU7s0737LXx9zhRqWyX0pnUcGf1A5uKpy6JiaHNjRT/PBKMye0ej1CSurPZXOEyjSSK4MlW8NkRAHiLBuBAhetG3jANWKxcvsvsp172XdK8yP81B0w4qlKQz7J5GbALuwSwFEQu01tjf4aErEvV8xXxl2y1O8DMxjTiXT2WLTeoUDQldBm3m56ogtajnJz7USiZPePUZHcm6DMp9/2+ucef3/1AAtK0adQzwhnj6W+0eCTqdQz+DF9erqsMkd7QoRaQ0/ZK/rqljMwdbux6NySA1U5Zx2JaNUlClmfqxlkBm8TbY7 sumit@sumit-ghosh.com
+    sudo: ["ALL=(ALL) NOPASSWD:ALL"]
+    groups: sudo
+    shell: /bin/bash
