@@ -15,7 +15,7 @@ from bb_vm.models import PortTunnel, VirtualBrick, VirtualBrickOwner, GPU, Rente
 from bb_tasks.tasks import(
         new_vm_subprocess, destroy_vm_subprocess, close_ssh_port,
         pause_vm_subprocess, play_vm_subprocess, reboot_vm_subprocess,
-        stop_bg, host_cleanup,
+        stop_bg, host_cleanup, start_bg
     )
 
 DIR = '/opt/brickbox/bb_vm/bash_scripts/'
@@ -213,6 +213,8 @@ def brick_destroy(request):
         close_ssh_port.apply_async((brick.ssh_port.port_number,), countdown=43200)
 
         destroy_vm_subprocess.apply_async((vm_id,), queue='ssh_queue')
+
+        start_bg.apply_async((), queue='ssh_queue')
 
         pub_key = brick.sshtunnel_public_key
         with subprocess.Popen([f'{DIR}remove_auth_key.sh', f'{str(pub_key)}']) as script:

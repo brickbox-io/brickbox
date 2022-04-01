@@ -2,6 +2,7 @@
 
 import time
 import yaml
+import subprocess
 
 from box import Connect
 from box import  error
@@ -225,6 +226,8 @@ class Brick:
                 ssh_command = f"sudo find {self.image_directory} -name '{self.brick_id}*' -exec rm -r {{}} \;"
             )
         except error.SSHError as err:
+            print(err)
+        except subprocess.CalledProcessError as err:
             print(err)
 
     # ------------------------------- Root Password ------------------------------ #

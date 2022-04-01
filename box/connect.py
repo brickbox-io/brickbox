@@ -1,7 +1,6 @@
 ''' box - connect.py '''
 
-from subprocess import Popen, PIPE
-
+import subprocess
 
 from box.command import Command
 from box.status import HostStatus
@@ -18,12 +17,13 @@ class Connect(Command, HostStatus):
         self.stdout = None
         self.stderr = None
 
+    # run_command (rename)
     def connect(self, ssh_command):
         '''
         Contains the functionality to connect to a remote host via SSH.
         '''
         script = [
-                'sudo', 'ssh',
+                'ssh',
                 '-i', f'{box.key_path}',
                 '-o', 'StrictHostKeyChecking=no',
                 '-p', f'{self.port}',
@@ -31,10 +31,13 @@ class Connect(Command, HostStatus):
                 f'{ssh_command}'
             ]
 
-        with Popen(script, stdout=PIPE, stderr=PIPE) as process:
-            self.stdout, self.stderr = process.communicate()
+        result = subprocess.run(script,  check=True, capture_output=True)
+        self.stdout = result.stdout
+        self.stderr = result.stderr
+        # with Popen(script, stdout=PIPE, stderr=PIPE) as process:
+            # self.stdout, self.stderr = process.communicate()
 
-            if self.stderr:
-                raise error.SSHError(self.stderr)
+            # if self.stderr:
+            #     raise error.SSHError(self.stderr)
 
         return (self.stdout, self.stderr)
