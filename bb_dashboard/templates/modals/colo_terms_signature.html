@@ -1,0 +1,18 @@
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="terms_agreement_signature">
+
+    <div class="modal-dialog modal-xl" style="transform: translate(0, 0)">
+        <div class="modal-content">
+            <div class="modal-body">
+                After you have read the following terms and conditions, please click the "I agree" button to confirm your acceptance.
+
+                <iframe src="https://os-imgs.nyc3.digitaloceanspaces.com/agreements_templates/bb_colo_and_nondisclosure_v0.pdf" width="100%" style="border: none; min-height: 80vh !important;"></iframe>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-client="{{ request.user.id }}" id="confirm_button">I agree</button>
+            </div>
+        </div>
+    </div>
+
+</div>

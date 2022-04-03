@@ -1,0 +1,115 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Colocation {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<div class="row">
+
+    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+        <div class="card">
+
+            <div class="card-header">
+                <h4 class="card-title">1 | Term Agreement</h4>
+            </div>
+
+            <div class="card-body">
+                <p class="card-text">
+                    Please read the following terms and conditions carefully.
+                </p>
+            </div>
+
+            <div class="card-footer text-center">
+                {% if first_colo.term_agreement %}
+                <button type="button" class="btn btn-success" onclick="TermsAgreement()" disabled> Terms Accepted </button>
+                {% else %}
+                <button type="button" class="btn btn-success" onclick="TermsAgreement()"> View Terms </button>
+
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+        <div class="card">
+
+            <div class="card-header">
+                <h4 class="card-title">2 | Payout Info</h4>
+            </div>
+
+            <div class="card-body">
+                <p class="card-text">
+                    Please provide the account information for where you would like to receive your payout.
+                    <br>
+                    Stripe - USD Payments
+                    <br>
+                    ETH - Cypto Payments
+                </p>
+            </div>
+
+            <div class="card-footer text-center">
+                {% if stripe_link_url is not False %}
+                <a href="{{ stripe_link_url }}">
+                    <button type="button" class="btn btn-success"> Connect Stripe </button>
+                </a>
+                {% else %}
+                <button type="button" class="btn btn-success" disabled> Stripe Connected </button>
+                {% endif %}
+
+                {% if first_colo.eth_deposit_address is None %}
+                <button type="button" class="btn btn-success" onclick="ETH_Address()"> ETH Address </button>
+                {% else %}
+                <button type="button" class="btn btn-success" disabled> ETH Address </button>
+                {% endif %}
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+        <div class="card">
+
+            <div class="card-header">
+                <h4 class="card-title">3 | Place Equipment Order</h4>
+            </div>
+
+            <div class="card-body">
+                <p class="card-text">
+                    You will be purchasing equipment directly from our supplier, the following is the information you will need to complete the order.
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+        <div class="card">
+
+            <div class="card-header">
+                <h4 class="card-title">4 | Confirm Insurance</h4>
+            </div>
+
+            <div class="card-body">
+                <p class="card-text">
+                    As stated in the agreement, you will be required to provide us with a valid insurance policy for the equipment.
+                    <br>
+                    You can either go through our insurance provider or upload a copy of your proof of insurance.
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+{% include "modals/colo_terms_signature.html" %}
+{% include "modals/colo_eth_address.html" %}
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
