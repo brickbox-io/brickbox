@@ -1,4 +1,5 @@
 ''' Tasks that support overall system operations. '''
+# pylint: disable=C0103
 
 from celery import shared_task
 import box

@@ -5,6 +5,7 @@ from django.shortcuts import render
 # from django.contrib.auth.models import User, Group
 
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
 
 from bb_api.serializers import (
     # UserSerializer, GroupSerializer,
@@ -20,7 +21,6 @@ from bb_data.models import (
 
 from bb_vm.models import VMLog, VirtualBrick
 
-from rest_framework.permissions import IsAuthenticated
 
 def docs(request):
     '''
