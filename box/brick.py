@@ -184,11 +184,18 @@ class Brick:
             )
 
         if set_state == "off" and self.is_running():
-            host.connect(
-                ssh_command = f"""sudo virsh shutdown {self.brick_id} \
-                                    && sudo virsh autostart {self.brick_id} --disable
-                                """
-            )
+            try:
+                host.connect(
+                    ssh_command = f"""sudo virsh shutdown --mode=agent {self.brick_id} \
+                                        && sudo virsh autostart {self.brick_id} --disable
+                                    """
+                )
+            except subprocess.CalledProcessError:
+                host.connect(
+                    ssh_command = f"""sudo virsh destroy {self.brick_id} \
+                                        && sudo virsh autostart {self.brick_id} --disable
+                                    """
+                )
 
 
     # ---------------------------------- Reboot ---------------------------------- #

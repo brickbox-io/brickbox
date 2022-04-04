@@ -5,12 +5,12 @@ from django.shortcuts import render
 # from django.contrib.auth.models import User, Group
 
 from rest_framework import viewsets
-# from rest_framework import permissions
 
 from bb_api.serializers import (
     # UserSerializer, GroupSerializer,
     ColocationClientSerializer, CryptoSnapshotSerializer, FiatSnapshotSerializer,
-    CryptoPayoutSerializer, FiatPayoutSerializer, VMLoggingSerializer
+    CryptoPayoutSerializer, FiatPayoutSerializer, VMLoggingSerializer,
+    VirtualBrickSerializer,
 )
 
 from bb_data.models import (
@@ -18,7 +18,9 @@ from bb_data.models import (
         CryptoPayout, FiatPayout
     )
 
-from bb_vm.models import VMLog
+from bb_vm.models import VMLog, VirtualBrick
+
+from rest_framework.permissions import IsAuthenticated
 
 def docs(request):
     '''
@@ -89,3 +91,14 @@ class VMLoggingViewSet(viewsets.ModelViewSet):
     '''
     queryset = VMLog.objects.all()
     serializer_class = VMLoggingSerializer
+
+
+# ------------------------------------ VMs ----------------------------------- #
+class VirtualBrickViewSet(viewsets.ModelViewSet):
+    '''
+    API endpoint to manage VM instances.
+    '''
+    permission_classes = [IsAuthenticated]
+
+    queryset = VirtualBrick.objects.all()
+    serializer_class = VirtualBrickSerializer
