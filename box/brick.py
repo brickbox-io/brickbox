@@ -24,7 +24,7 @@ class Brick:
 
     META_DATA = {}
 
-    USER_DATA = {}
+    user_data = {}
 
     VENDOR_DATA = {
         "packages": [
@@ -88,11 +88,11 @@ class Brick:
         # USER-DATA
         host.connect(
             # ssh_command = f"""sudo bash -c \
-            #                     'echo \"#cloud-config\n\n{yaml.dump(self.USER_DATA)}\" \
+            #                     'echo \"#cloud-config\n\n{yaml.dump(self.user_data)}\" \
             #                     > {self.image_directory}{self.brick_id}/user-data'
             #                 """
             ssh_command = f"""sudo bash -c \
-                                'echo \"{self.USER_DATA}\" \
+                                'echo \"{self.user_data}\" \
                                 > {self.image_directory}{self.brick_id}/user-data'
                             """
         )
