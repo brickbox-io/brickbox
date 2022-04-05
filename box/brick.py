@@ -1,4 +1,5 @@
 ''' box - brick.py '''
+# pylint disable=R0902
 
 import time
 import subprocess
@@ -24,7 +25,7 @@ class Brick:
 
     META_DATA = {}
 
-    USER_DATA = {}
+    user_data = {}
 
     VENDOR_DATA = {
         "packages": [
@@ -88,11 +89,11 @@ class Brick:
         # USER-DATA
         host.connect(
             # ssh_command = f"""sudo bash -c \
-            #                     'echo \"#cloud-config\n\n{yaml.dump(self.USER_DATA)}\" \
+            #                     'echo \"#cloud-config\n\n{yaml.dump(self.user_data)}\" \
             #                     > {self.image_directory}{self.brick_id}/user-data'
             #                 """
             ssh_command = f"""sudo bash -c \
-                                'echo \"{self.USER_DATA}\" \
+                                'echo \"{self.user_data}\" \
                                 > {self.image_directory}{self.brick_id}/user-data'
                             """
         )
@@ -184,11 +185,18 @@ class Brick:
             )
 
         if set_state == "off" and self.is_running():
-            host.connect(
-                ssh_command = f"""sudo virsh shutdown {self.brick_id} \
-                                    && sudo virsh autostart {self.brick_id} --disable
-                                """
-            )
+            try:
+                host.connect(
+                    ssh_command = f"""sudo virsh shutdown --mode=agent {self.brick_id} \
+                                        && sudo virsh autostart {self.brick_id} --disable
+                                    """
+                )
+            except subprocess.CalledProcessError:
+                host.connect(
+                    ssh_command = f"""sudo virsh destroy {self.brick_id} \
+                                        && sudo virsh autostart {self.brick_id} --disable
+                                    """
+                )
 
 
     # ---------------------------------- Reboot ---------------------------------- #

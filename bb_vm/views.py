@@ -53,7 +53,7 @@ def clone_img(request):
             response_data['error'] = "Max Strikes Reached"
             return JsonResponse(response_data, status=200, safe=False)
 
-    for gpu in GPU.objects.filter(model=selected_gpu, host__is_ready=True):
+    for gpu in GPU.objects.filter(model=selected_gpu, host__is_ready=True, is_enabled=True):
         if RentedGPU.objects.filter(gpu=gpu).count() < 1:
             designated_gpu_xml = gpu.xml
 
