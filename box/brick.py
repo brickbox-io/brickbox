@@ -1,4 +1,5 @@
 ''' box - brick.py '''
+# pylint disable=R0902
 
 import time
 import subprocess
