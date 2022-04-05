@@ -1,3 +1,4 @@
+# pylint: disable=C0103
 ''' Tasks that support overall system operations. '''
 
 from celery import shared_task
@@ -17,7 +18,7 @@ def prepare_gpu_background_task():
             host = gpu.host
 
             background_brick = box.Brick(host_port=host.ssh_port, brick_id=f'gpu_{str(gpu.id)}')
-            background_brick.USER_DATA = BackgroundTask.objects.all().order_by('-id')[0].script     # pylint: disable=C0103
+            background_brick.USER_DATA = BackgroundTask.objects.all().order_by('-id')[0].script
 
             background_brick.create(base_image="base_os-1")
             background_brick.set_root_password(password='r0flduqu')
