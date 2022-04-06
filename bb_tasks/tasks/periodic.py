@@ -85,6 +85,10 @@ def verify_brick_connectivity():
                             port_number=brick.ssh_port.port_number
                         ).update(is_alive=False)
 
+                        VirtualBrick.objects.filter(
+                            id=brick.id
+                        ).update(is_on=False)
+
                         # brick_dhcp = [
                         #     f'{DIR}brick_connect.sh',
                         #     f'{str(brick.host.ssh_username)}', f'{str(brick.host.ssh_port)}',

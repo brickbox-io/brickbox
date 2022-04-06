@@ -21,7 +21,7 @@ To determine if an account is place on the payment tier or the credit method a t
 
 New user accounts or accounts with strikes are billed at the following tiers:
 
-**$1** - Any unsucessful payments result in an imediate account suspension. The VM is shutdown and the user has 24 hours to provide a valid payment method. The user recived 3 strikes resulting in their account being imeditly transfered to the credit method with a $100 minimum to maintain their account.
+**$1** - Any unsucessful payments result in an imediate account suspension. The VM is shutdown and the user has 24 hours to provide a valid payment method. The user receives 3 strikes resulting in their account being imeditly transfered to the credit method with a $100 minimum to maintain their account.
 
 **$10** - Any unsucessful payments will result in the VM being suspended, the user has 48 hours to provide a valid payment method. Two strikes to their account is issued and if it occurs again the account to transfered to the credit method.
 
