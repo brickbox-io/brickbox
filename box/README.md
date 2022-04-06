@@ -65,3 +65,18 @@ vm_box = box.Connect(
             host_port = #
         )
 ```
+
+## Custimization
+
+The message of the day (motd) can be customized with [ASCI text](https://patorjk.com/software/taag/#p=testall&f=Big%20Money-nw&t=brickbox.io).
+
+```bash
+cd /etc/update-motd.d/
+```
+
+
+Retreave system serial https://kb.mit.edu/confluence/pages/viewpage.action?pageId=152578725
+
+https://serverfault.com/questions/401704/how-do-i-make-a-persistent-domain-with-virsh
+
+https://askubuntu.com/questions/1166317/module-nvidia-is-in-use-but-there-are-no-processes-running-on-the-gpu https://linuxconfig.org/how-to-disable-blacklist-nouveau-nvidia-driver-on-ubuntu-20-04-focal-fossa-linux
