@@ -1,0 +1,5 @@
+- [GPUEASTER](https://gpueater.com/)
+- [GenesisCloud](https://www.genesiscloud.com/)
+- [puzl.ee](https://puzl.ee/gpu-cloud)
+- [Q Blocks](https://www.qblocks.cloud/)
+- [VectorDash](https://vectordash.com/)

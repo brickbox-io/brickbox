@@ -53,7 +53,7 @@ def clone_img(request):
             response_data['error'] = "Max Strikes Reached"
             return JsonResponse(response_data, status=200, safe=False)
 
-    for gpu in GPU.objects.filter(model=selected_gpu, host__is_ready=True):
+    for gpu in GPU.objects.filter(model=selected_gpu, host__is_ready=True, is_enabled=True):
         if RentedGPU.objects.filter(gpu=gpu).count() < 1:
             designated_gpu_xml = gpu.xml
 
@@ -147,7 +147,6 @@ def brick_pause(request):
     brick.is_on = False
     brick.save()
 
-    # pause_vm_subprocess.delay(vm_id)
     pause_vm_subprocess.apply_async((vm_id,), queue='ssh_queue')
 
     return HttpResponse(status=200)

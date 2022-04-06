@@ -40,12 +40,12 @@ class VirtualBrick(models.Model):
     img_cloned = models.BooleanField(default = False) # True when img clone verified
     is_booting = models.BooleanField(default = True) # True when VM is booting
     is_rebooting = models.BooleanField(default = False)
-    is_on = models.BooleanField(default = False)
+    is_on = models.BooleanField(default = False) # True when VM is running
 
     @property
     def is_online(self):
         '''
-        Returns True if the VM is connected to the host.
+        Returns True if the VM is accessible via SSH port.
         '''
         return self.ssh_port.is_alive
 

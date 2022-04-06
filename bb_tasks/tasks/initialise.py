@@ -36,7 +36,7 @@ def new_vm_subprocess(instance_id, root_pass):
     try:
         # ------------------------------------- 1 ------------------------------------ #
         if brick.user_data is not None:
-            virtual_machine.USER_DATA = brick.user_data.script
+            virtual_machine.user_data = brick.user_data.script
 
         virtual_machine.create(base_image="base_os-1")
 

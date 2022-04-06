@@ -8,7 +8,7 @@ from bb_data.models import (
         CryptoPayout, FiatPayout
     )
 
-from bb_vm.models import VMLog
+from bb_vm.models import VMLog, VirtualBrick
 
 # class UserSerializer(serializers.HyperlinkedModelSerializer):
 #     '''
@@ -85,4 +85,15 @@ class VMLoggingSerializer(serializers.ModelSerializer):
         fields = [
                     'timestamp', 'level', 'host', 'virt_brick',
                     'message', 'command', 'command_output'
+                ]
+
+# ------------------------------------ VMs ----------------------------------- #
+class VirtualBrickSerializer(serializers.ModelSerializer):
+    '''
+    Serializer for the VirtualBrick Model.
+    '''
+    class Meta:
+        model = VirtualBrick
+        fields = [
+                    'name',
                 ]

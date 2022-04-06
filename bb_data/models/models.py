@@ -56,7 +56,9 @@ class UserProfile(models.Model):
     threshold = models.DecimalField(max_digits=8, decimal_places=2, default=1.00)
 
     # Used to mark problematic users, including failed payments.
+    # 3+ strikes indicates the account is on the pre-credit system.
     strikes = models.IntegerField(default=0)
+    credit_balance = models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
 
     def __str__(self):
         return f"{self.user.get_full_name()} ({self.user})"

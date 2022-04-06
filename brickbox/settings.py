@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'compressor',               # https://github.com/django-compressor/django-compressor
     'rest_framework',           # https://www.django-rest-framework.org/#installation
     'rest_framework.authtoken', # https://www.django-rest-framework.org/api-guide/authentication/
+    "rest_framework_api_key",   # https://florimondmanca.github.io/djangorestframework-api-key/
     'oauth2_provider',          # https://django-oauth-toolkit.readthedocs.io/en/latest/install.html
     'django_celery_beat',       # https://github.com/celery/django-celery-beat
     'django_celery_results',    # https://github.com/celery/django-celery-results
@@ -117,6 +118,15 @@ AUTHENTICATION_BACKENDS = [
     # `allauth` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
+
 
 WSGI_APPLICATION = 'brickbox.wsgi.application'
 
