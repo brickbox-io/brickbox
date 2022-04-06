@@ -51,6 +51,7 @@ def invoice_event(request):
             tracking.stripe_transaction = invoice.charge
             tracking.save()
 
+            # Update threshold limit
             if 0.00 < user_profile.threshold < 1000.00:
                 user_profile.threshold = user_profile.threshold*10
             else:
