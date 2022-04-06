@@ -4,31 +4,32 @@ import json
 import stripe
 
 from django.shortcuts import HttpResponse
-
 from django.views.decorators.csrf import csrf_exempt
+
+from bb_tasks.tasks import(pause_vm_subprocess)
 
 from bb_data.models import (
     UserProfile, ResourceTimeTracking, BillingHistory
+)
+from bb_vm.models import (
+    VirtualBrickOwner,
 )
 
 @csrf_exempt
 def invoice_event(request):
     '''
     URL: /stripe/invoice
-    Processes invoice events from stripe.
+    Processes invoice events from stripe webhooks.
     '''
-    payload = request.body
-    event = None
-
     try:
+        payload = request.body
+        event = None
         event = stripe.Event.construct_from(
-            json.loads(payload), stripe.api_key
-        )
+                    json.loads(payload), stripe.api_key
+                )
     except ValueError:
-        # Invalid payload
-        return HttpResponse(status=400)
+        return HttpResponse(status=400) # Invalid payload
 
-    # Handle the event
     if event.type == 'invoice.payment_succeeded':
         invoice = event.data.object
         customer = UserProfile.objects.get(cus_id=invoice.customer)
@@ -41,10 +42,7 @@ def invoice_event(request):
 
         if created:
             bill.amount_alt = invoice.amount_due / 100
-
-        bill.save()
-
-        if not created:
+        else:
             tracking = ResourceTimeTracking.objects.get(id=bill.usage.id)
             user_profile = UserProfile.objects.get(user=tracking.user)
 
@@ -52,27 +50,31 @@ def invoice_event(request):
             tracking.stripe_transaction = invoice.charge
             tracking.save()
 
-            if user_profile.threshold == 1.00:
-                user_profile.threshold = 10.00
-
-            elif user_profile.threshold == 10.00:
-                user_profile.threshold = 100.00
-
-            elif user_profile.threshold == 100.00:
-                user_profile.threshold = 1000.00
-
-            elif user_profile.threshold == 1000.00:
+            # Update threshold limit
+            if 0.00 < user_profile.threshold < 1000.00:
+                user_profile.threshold = user_profile.threshold*10
+            else:
                 user_profile.threshold = 0.00
 
             user_profile.save()
 
+        bill.save()
 
     elif event.type == 'invoice.payment_failed':
         invoice = event.data.object
         customer = UserProfile.objects.get(cus_id=invoice.customer)
 
+        # ------------------------------- $1 Threshold ------------------------------- #
         if customer.threshold == 1.00:
             customer.strikes = customer.strikes + 3
+            owned_bricks = VirtualBrickOwner.objects.filter(owner=customer)
+            for brick in owned_bricks:
+                pause_vm_subprocess.apply_async(
+                    (brick.virt_brick.id,),
+                    queue='ssh_queue'
+                )
+                brick.virt_brick.is_on=False
+                brick.virt_brick.save()
 
         if customer.threshold == 10.00:
             customer.strikes = customer.strikes + 2
