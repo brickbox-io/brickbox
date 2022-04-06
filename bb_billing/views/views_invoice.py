@@ -21,18 +21,15 @@ def invoice_event(request):
     URL: /stripe/invoice
     Processes invoice events from stripe webhooks.
     '''
-    payload = request.body
-    event = None
-
     try:
+        payload = request.body
+        event = None
         event = stripe.Event.construct_from(
-            json.loads(payload), stripe.api_key
-        )
+                    json.loads(payload), stripe.api_key
+                )
     except ValueError:
-        # Invalid payload
-        return HttpResponse(status=400)
+        return HttpResponse(status=400) # Invalid payload
 
-    # Handle the event
     if event.type == 'invoice.payment_succeeded':
         invoice = event.data.object
         customer = UserProfile.objects.get(cus_id=invoice.customer)
@@ -45,10 +42,8 @@ def invoice_event(request):
 
         if created:
             bill.amount_alt = invoice.amount_due / 100
-
-        bill.save()
-
-        if not created:
+            bill.save()
+        else:
             tracking = ResourceTimeTracking.objects.get(id=bill.usage.id)
             user_profile = UserProfile.objects.get(user=tracking.user)
 
@@ -56,20 +51,12 @@ def invoice_event(request):
             tracking.stripe_transaction = invoice.charge
             tracking.save()
 
-            if user_profile.threshold == 1.00:
-                user_profile.threshold = 10.00
-
-            elif user_profile.threshold == 10.00:
-                user_profile.threshold = 100.00
-
-            elif user_profile.threshold == 100.00:
-                user_profile.threshold = 1000.00
-
-            elif user_profile.threshold == 1000.00:
+            if 0.00 < user_profile.threshold < 1000.00:
+                user_profile.threshold = user_profile.threshold*10
+            else:
                 user_profile.threshold = 0.00
 
             user_profile.save()
-
 
     elif event.type == 'invoice.payment_failed':
         invoice = event.data.object
