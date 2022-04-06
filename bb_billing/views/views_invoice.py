@@ -42,7 +42,6 @@ def invoice_event(request):
 
         if created:
             bill.amount_alt = invoice.amount_due / 100
-            bill.save()
         else:
             tracking = ResourceTimeTracking.objects.get(id=bill.usage.id)
             user_profile = UserProfile.objects.get(user=tracking.user)
@@ -58,6 +57,8 @@ def invoice_event(request):
                 user_profile.threshold = 0.00
 
             user_profile.save()
+
+        bill.save()
 
     elif event.type == 'invoice.payment_failed':
         invoice = event.data.object
