@@ -67,7 +67,10 @@ def threshold_resource_invoicing():
                 description="Monthly Resource Usage Invoice",
             )
 
-            stripe.Invoice.pay(invoice.id)
+            try:
+                stripe.Invoice.pay(invoice.id)
+            except stripe.error.CardError as err:
+                print(err)
 
             billing_record = BillingHistory(
                                 user = invoice_due.user,

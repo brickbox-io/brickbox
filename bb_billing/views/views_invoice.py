@@ -4,18 +4,22 @@ import json
 import stripe
 
 from django.shortcuts import HttpResponse
-
 from django.views.decorators.csrf import csrf_exempt
+
+from bb_tasks.tasks import(pause_vm_subprocess)
 
 from bb_data.models import (
     UserProfile, ResourceTimeTracking, BillingHistory
+)
+from bb_vm.models import (
+    VirtualBrickOwner,
 )
 
 @csrf_exempt
 def invoice_event(request):
     '''
     URL: /stripe/invoice
-    Processes invoice events from stripe.
+    Processes invoice events from stripe webhooks.
     '''
     payload = request.body
     event = None
@@ -71,8 +75,17 @@ def invoice_event(request):
         invoice = event.data.object
         customer = UserProfile.objects.get(cus_id=invoice.customer)
 
+        # ------------------------------- $1 Threshold ------------------------------- #
         if customer.threshold == 1.00:
             customer.strikes = customer.strikes + 3
+            owned_bricks = VirtualBrickOwner.objects.filter(owner=customer)
+            for brick in owned_bricks:
+                pause_vm_subprocess.apply_async(
+                    (brick.virt_brick.id,),
+                    queue='ssh_queue'
+                )
+                brick.virt_brick.is_on=False
+                brick.virt_brick.save()
 
         if customer.threshold == 10.00:
             customer.strikes = customer.strikes + 2

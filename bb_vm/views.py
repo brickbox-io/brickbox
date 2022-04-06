@@ -147,7 +147,6 @@ def brick_pause(request):
     brick.is_on = False
     brick.save()
 
-    # pause_vm_subprocess.delay(vm_id)
     pause_vm_subprocess.apply_async((vm_id,), queue='ssh_queue')
 
     return HttpResponse(status=200)
