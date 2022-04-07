@@ -440,25 +440,6 @@ h6,
   font-size: 0.75rem;
 }
 
-.developer-card {
-  display: flex; 
-  justify-content: space-around;
-}
-
-.scripts-card-container {
-  width: 48%;
-}
-
-@media (max-width: 1300px) {
-  .developer-card {
-    flex-wrap: wrap;
-  }
-
-  .scripts-card-container {
-    width: 95%;
-  }
-}
-
 .lead {
   font-size: 0.78125rem;
   font-weight: 300;
@@ -20387,4 +20368,42 @@ Copyright (c) 2015 Daniel Eden
 .card-plain:not(.card-subcategories).card-body {
   padding-left: 0;
   padding-right: 0;
+}
+
+.tool {
+  position: relative;
+  display: inline-block;
+}
+
+.tool .tooltext {
+  visibility: hidden;
+  width: 140px;
+  background-color: WHITE;
+  color: BLACK;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -75px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tool .tooltext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tool:hover .tooltext {
+  visibility: visible;
+  opacity: 1;
 }
