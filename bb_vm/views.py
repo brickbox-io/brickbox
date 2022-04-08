@@ -41,6 +41,10 @@ def clone_img(request):
 
     if not request.user.is_superuser:
 
+        if not profile.brick_access:
+            response_data['error'] = 'Account does not have access to bricks.'
+            return JsonResponse(response_data)
+
         if cards_available<1:
             if profile.is_beta and rented >= 2:
                 response_data['error'] = "Max Beta VMs Reached"
