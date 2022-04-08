@@ -1,4 +1,5 @@
 ''' bb_vm views.py '''
+# pylint: disable=R0911
 
 import subprocess
 import urllib.parse
@@ -43,7 +44,7 @@ def clone_img(request):
 
         if not profile.brick_access:
             response_data['error'] = 'Account does not have access to bricks.'
-            return JsonResponse(response_data)
+            return JsonResponse(response_data, status=200, safe=False)
 
         if cards_available<1:
             if profile.is_beta and rented >= 2:
