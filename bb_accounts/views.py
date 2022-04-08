@@ -5,17 +5,12 @@ from google.auth.transport import requests
 
 from allauth.socialaccount.models import SocialAccount
 
-from django.views.decorators.csrf import csrf_exempt
-
-from django.shortcuts import render, redirect
-
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseServerError
-
 from django.conf import settings
-
-from django.contrib.auth import login, authenticate, get_user_model
-
+from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login, authenticate, get_user_model
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseServerError
 
 from bb_accounts.forms import RegistrationForm
 
@@ -65,7 +60,7 @@ def account_registration(request):
 
             user_profile = UserProfile(
                                 user = request.user,
-                                brick_access = True,
+                                brick_access = not settings.DEBUG,
                                 is_beta = False,
                             )
             user_profile.save()
@@ -151,7 +146,7 @@ def token_signin(request):
 
         user_profile = UserProfile(
                             user = new_user,
-                            brick_access = True,
+                            brick_access = not settings.DEBUG,
                             is_beta = False,
                         )
         user_profile.save()
