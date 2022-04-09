@@ -46,7 +46,7 @@ function KeyNotice(from, align, notice, color = 1) {
     });
 }
 
-function myFunction() {
+function copyApi() {
     var copyText = document.getElementById("myInput");
     copyText.select();
     copyText.setSelectionRange(0, 99999);
