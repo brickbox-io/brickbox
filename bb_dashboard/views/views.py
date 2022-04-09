@@ -10,6 +10,8 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
+from rest_framework.authtoken.models import Token
+
 from bb_data.models import ( UserProfile, CryptoPayout, FiatPayout,
                             ColocationClient, ResourceTimeTracking, BillingHistory,
                             CustomScript
@@ -128,6 +130,11 @@ def pages(request):
             tracker.save()
 
         context['tracker'] = tracker
+
+        # --------------------------------- API Token -------------------------------- #
+        token, created = Token.objects.get_or_create(user=request.user)
+        print(created)
+        context['API_Token'] = token.key
 
         html_template = loader.get_template( f'{load_template}.html' )
         return HttpResponse(html_template.render(context, request))
