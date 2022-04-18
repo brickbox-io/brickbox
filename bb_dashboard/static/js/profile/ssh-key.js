@@ -47,16 +47,16 @@ function KeyNotice(from, align, notice, color = 1) {
 }
 
 function copyApi() {
-    var copyText = document.getElementById("myInput");
+    var copyText = document.getElementById("apiInput");
     copyText.select();
     copyText.setSelectionRange(0, 99999);
     navigator.clipboard.writeText(copyText.value);
     
-    var tooltip = document.getElementById("myTooltip");
+    var tooltip = document.getElementById("apiTooltip");
     tooltip.innerHTML = "Copied API Key ";
   }
   
   function outFunc() {
-    var tooltip = document.getElementById("myTooltip");
+    var tooltip = document.getElementById("apiTooltip");
     tooltip.innerHTML = "Copy to clipboard";
   }
