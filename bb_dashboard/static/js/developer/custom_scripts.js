@@ -3,6 +3,10 @@ function AddScript() {
     $("#add_script").modal('toggle');
 }
 
+function DeleteScriptModal() {
+    $("#delete_script").modal('toggle');
+}
+
 function AddNewScript() {
     var script_name = document.getElementById("script_name").value;
     var script_description = document.getElementById("script_description").value;
@@ -25,3 +29,4 @@ function AddNewScript() {
     xhttp.setRequestHeader("X-CSRFToken", csrftoken);
     xhttp.send(formData);
 }
+
