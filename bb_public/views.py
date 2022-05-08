@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from bb_public.models import EmailUpdateList
 
 # ------------------------------- Landing Page ------------------------------- #
-def landing(request):
+def landing_page(request):
     '''
     URL: brickbox.io
     '''

@@ -7,7 +7,7 @@ from bb_public import views
 app_name = 'bb_public'
 
 urlpatterns = [
-    path('', views.landing, name='landing_page'),    # Landing/Home Page
+    path('', views.landing_page, name='landing_page'),    # Landing/Home Page
     path('legal', views.legal, name='legal_page'),   # Legal Page
 
     # ------------------------------------ PWA ----------------------------------- #

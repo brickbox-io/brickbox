@@ -25,4 +25,13 @@ class TestUrls(TestCase):
         self.assertEqual(url_offline_page, '/offline/')
 
         url_forms_email_list = reverse('bb_public:forms_email_list')
-        self.assertEqual(url_forms_email_list, '/forms/email-list')
+        self.assertEqual(url_forms_email_list, '/forms/email_list')
+
+    def test_resolver_urls(self):
+        '''
+        Test that the correct view is used for the URL request.
+        '''
+        resolver_landing_page = resolve('/')
+        self.assertEqual(resolver_landing_page.func.__name__, 'landing_page')
+        self.assertEqual(resolver_landing_page.args, ('request',))
+        self.assertEqual(resolver_landing_page.view_name, 'bb_public:landing_page')
