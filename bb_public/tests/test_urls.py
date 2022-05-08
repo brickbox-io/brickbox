@@ -19,4 +19,10 @@ class TestUrls(TestCase):
         self.assertEqual(url_landing_page, '/')
 
         url_legal_page = reverse('bb_public:legal_page')
-        self.assertEqual(url_legal_page, '/legal/')
+        self.assertEqual(url_legal_page, '/legal')
+
+        url_offline_page = reverse('bb_public:pwa_offline')
+        self.assertEqual(url_offline_page, '/offline/')
+
+        url_forms_email_list = reverse('bb_public:forms_email_list')
+        self.assertEqual(url_forms_email_list, '/forms/email-list')
