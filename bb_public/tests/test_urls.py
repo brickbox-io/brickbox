@@ -35,5 +35,5 @@ class TestUrls(TestCase):
         self.assertEqual(resolver_landing_page.func.__name__, 'landing_page')
         self.assertEqual(resolver_landing_page.args, ())
         self.assertEqual(resolver_landing_page.kwargs, {})
-        self.assertEqual(resolver_landing_page.url_name, '/')
+        self.assertEqual(resolver_landing_page.url_name, 'landing_page')
         self.assertEqual(resolver_landing_page.view_name, 'bb_public:landing_page')
