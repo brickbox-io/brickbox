@@ -21,7 +21,7 @@ class TestUrls(TestCase):
         self.assertEqual(url_stripe_account, '/stripe/account')
 
         # Stripe Payment Method
-        url_stripe_payment_method = reverse('bb_billing:webhook_stripe_payment_method')
+        url_stripe_payment_method = reverse('bb_billing:webhook_stripe_pay_method')
         self.assertEqual(url_stripe_payment_method, '/stripe/payment_method')
 
         # Stripe Invoice
@@ -52,9 +52,9 @@ class TestUrls(TestCase):
         self.assertEqual(resolve_stripe_payment_method.func.__name__, 'payment_method_event')
         self.assertEqual(resolve_stripe_payment_method.args, ())
         self.assertEqual(resolve_stripe_payment_method.kwargs, {})
-        self.assertEqual(resolve_stripe_payment_method.url_name, 'webhook_stripe_payment_method')
+        self.assertEqual(resolve_stripe_payment_method.url_name, 'webhook_stripe_pay_method')
         self.assertEqual(resolve_stripe_payment_method.view_name,
-                         'bb_billing:webhook_stripe_payment_method')
+                         'bb_billing:webhook_stripe_pay_method')
 
         #Stripe Invoice
         resolve_stripe_invoice = resolve('/stripe/invoice')
