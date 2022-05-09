@@ -38,3 +38,11 @@ class TestUrls(TestCase):
         self.assertEqual(resolve_register.kwargs, {})
         self.assertEqual(resolve_register.url_name, 'register')
         self.assertEqual(resolve_register.view_name, 'bb_accounts:register')
+
+        # Token URL
+        resolve_tokensignin = resolve('/tokensignin/')
+        self.assertEqual(resolve_tokensignin.func.__name__, 'token_signin')
+        self.assertEqual(resolve_tokensignin.args, ())
+        self.assertEqual(resolve_tokensignin.kwargs, {})
+        self.assertEqual(resolve_tokensignin.url_name, 'tokensignin')
+        self.assertEqual(resolve_tokensignin.view_name, 'bb_accounts:tokensignin')
