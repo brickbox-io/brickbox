@@ -304,7 +304,7 @@
     <!-- Specific Page JS goes HERE  -->
     {% block javascripts %}
 
-    <script>
+    <script> nonce = "{{request.csp_nonce}}"
         window.onload = function () {
             $(document).ready(function () {
                 // Javascript method's body can be found in assets/js/demos.js
