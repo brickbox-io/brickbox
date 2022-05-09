@@ -82,6 +82,7 @@ INSTALLED_APPS = [
 
 # -------------------------------- Middleware -------------------------------- #
 MIDDLEWARE = [
+    'csp.middleware.CSPMiddleware',                         # https://django-csp.readthedocs.io/
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -336,18 +337,56 @@ PWA_APP_LANG = 'en-US'
 # https://dev.to/rubyflewtoo/upgrading-to-django-3-2-and-fixing-defaultautofield-warnings-518n
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
+# ---------------------------------------------------------------------------- #
+#                            Content Security Policy                           #
+# ---------------------------------------------------------------------------- #
+CSP_DEFAULT_SRC =   ("'self'",)
+
+CSP_STYLE_SRC =     (
+                        "'self'", "'unsafe-inline'",
+                        'fonts.googleapis.com', 'use.fontawesome.com',
+                        'accounts.google.com'
+                    )
+
+CSP_SCRIPT_SRC =    (
+                        "'self'", "'unsafe-inline'",
+                        'kit.fontawesome.com', 'fonts.googleapis.com',
+                        '*.googletagmanager.com',
+                        'accounts.google.com', 'apis.google.com',
+                        'js.stripe.com'
+                    )
+
+CSP_FONT_SRC =      (
+                        "'self'",
+                        'fonts.gstatic.com', 'use.fontawesome.com', 'ka-f.fontawesome.com',
+                    )
+
+CSP_CONNECT_SRC =   (   "'self'",
+                        'ka-f.fontawesome.com',
+                        '*.google-analytics.com', '*.analytics.google.com',
+                        '*.googletagmanager.com', 'accounts.google.com',
+                    )
+
+CSP_IMG_SRC =       (
+                        "'self'",
+                        "*.googletagmanager.com","*.google-analytics.com"
+                    )
+
+CSP_FRAME_SRC = ("'self'", 'js.stripe.com', 'accounts.google.com',)
+
+CSP_MANIFEST_SRC = ("'self'",)
+
+# CSP_INCLUDE_NONCE_IN = ['script-src']
 
 # ---------------------------------------------------------------------------- #
 #                                    Celery                                    #
 # ---------------------------------------------------------------------------- #
-
 CELERY_RESULT_BACKEND = 'django-db'
 
 
 # ---------------------------------------------------------------------------- #
 #                                  VM Settings                                 #
 # ---------------------------------------------------------------------------- #
-
 if DEBUG:
     SSH_URL = '134.209.214.111'
 else:
