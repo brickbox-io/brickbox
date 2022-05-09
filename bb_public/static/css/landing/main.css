@@ -323,6 +323,10 @@ nav {
 	.header-links ul {
 		width: 100%;
 	}
+	
+	nav {
+		padding-bottom: 20px;
+	}
 
 	nav li {
 		width: 100%;
@@ -388,8 +392,13 @@ nav {
 
   }
   
+  @media only screen and (max-width: 550px) {
+	header {
+		padding: 40px 40px;
+	}
+  }
   
-  @media only screen and (max-width: 433px) {
+  @media only screen and (max-width: 476px) {
 	h1 {
 		font-size: 48px;
 	}
@@ -399,9 +408,19 @@ nav {
 	}
   }
 
-  @media only screen and (max-width: 315px) {
+  @media only screen and (max-width: 370px) {
 	h1 {
-		font-size: 40px;
+		font-size: 36px;
+	}
+
+	.header-statistics {
+		flex-wrap: wrap;
+	}
+
+	.static-container {
+		width: 100%;
+		padding-bottom: 5px;
+		padding-top: 5px;
 	}
   }
 
