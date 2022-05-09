@@ -32,6 +32,7 @@ def threshold_resource_invoicing():
     for invoice_due in invoices_due:
         user_profile = UserProfile.objects.get(user=invoice_due.user)
 
+        # Indicates the user is month to month or on the credit system.
         if user_profile.threshold == 0 or user_profile.strikes >= 3:
             continue
 

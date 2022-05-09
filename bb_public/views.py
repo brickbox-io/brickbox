@@ -6,14 +6,14 @@ from django.http import HttpResponse
 from bb_public.models import EmailUpdateList
 
 # ------------------------------- Landing Page ------------------------------- #
-def landing(request):
+def landing_page(request):
     '''
     URL: brickbox.io
     '''
     return render(request, 'landing.html')
 
 # -------------------------------- Legal Page -------------------------------- #
-def legal(request):
+def legal_page(request):
     '''
     URL: brickbox.io/legal
     '''
@@ -23,7 +23,7 @@ def legal(request):
 #                                     Forms                                    #
 # ---------------------------------------------------------------------------- #
 
-def forms_email_list(request):
+def email_list_form(request):
     '''
     URL: brickbox.io/forms/email_list/
     '''
