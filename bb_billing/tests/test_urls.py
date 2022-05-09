@@ -17,15 +17,15 @@ class TestUrls(TestCase):
         '''
         # ------------------------- Stripe Webhook Endpoints ------------------------- #
         # Stripe Account
-        url_stripe_account = reverse('bb_billing:webhook_stripe_account')
+        url_stripe_account = reverse('bb_billing:stripe_account_event')
         self.assertEqual(url_stripe_account, '/stripe/account')
 
         # Stripe Payment Method
-        url_stripe_payment_method = reverse('bb_billing:webhook_stripe_pay_method')
+        url_stripe_payment_method = reverse('bb_billing:stripe_payment_method_event')
         self.assertEqual(url_stripe_payment_method, '/stripe/payment_method')
 
         # Stripe Invoice
-        url_stripe_invoice = reverse('bb_billing:webhook_stripe_invoice')
+        url_stripe_invoice = reverse('bb_billing:stripe_invoice_event')
         self.assertEqual(url_stripe_invoice, '/stripe/invoice')
 
         # ------------------------- Billing Function Endpoint ------------------------ #
@@ -44,25 +44,25 @@ class TestUrls(TestCase):
         self.assertEqual(resolve_stripe_account.func.__name__, 'account_event')
         self.assertEqual(resolve_stripe_account.args, ())
         self.assertEqual(resolve_stripe_account.kwargs, {})
-        self.assertEqual(resolve_stripe_account.url_name, 'webhook_stripe_account')
-        self.assertEqual(resolve_stripe_account.view_name, 'bb_billing:webhook_stripe_account')
+        self.assertEqual(resolve_stripe_account.url_name, 'stripe_account_event')
+        self.assertEqual(resolve_stripe_account.view_name, 'bb_billing:stripe_account_event')
 
         # Stripe Payment Method
         resolve_stripe_payment_method = resolve('/stripe/payment_method')
         self.assertEqual(resolve_stripe_payment_method.func.__name__, 'payment_method_event')
         self.assertEqual(resolve_stripe_payment_method.args, ())
         self.assertEqual(resolve_stripe_payment_method.kwargs, {})
-        self.assertEqual(resolve_stripe_payment_method.url_name, 'webhook_stripe_pay_method')
+        self.assertEqual(resolve_stripe_payment_method.url_name, 'stripe_payment_method_event')
         self.assertEqual(resolve_stripe_payment_method.view_name,
-                         'bb_billing:webhook_stripe_pay_method')
+                         'bb_billing:stripe_payment_method_event')
 
         #Stripe Invoice
         resolve_stripe_invoice = resolve('/stripe/invoice')
         self.assertEqual(resolve_stripe_invoice.func.__name__, 'invoice_event')
         self.assertEqual(resolve_stripe_invoice.args, ())
         self.assertEqual(resolve_stripe_invoice.kwargs, {})
-        self.assertEqual(resolve_stripe_invoice.url_name, 'webhook_stripe_invoice')
-        self.assertEqual(resolve_stripe_invoice.view_name, 'bb_billing:webhook_stripe_invoice')
+        self.assertEqual(resolve_stripe_invoice.url_name, 'stripe_invoice_event')
+        self.assertEqual(resolve_stripe_invoice.view_name, 'bb_billing:stripe_invoice_event')
 
         # ------------------------- Billing Function Endpoint ------------------------ #
         # Manual Payment
