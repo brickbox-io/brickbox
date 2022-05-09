@@ -340,19 +340,30 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 # ---------------------------------------------------------------------------- #
 #                            Content Security Policy                           #
 # ---------------------------------------------------------------------------- #
-CSP_DEFAULT_SRC = ("'self'", 'ka-f.fontawesome.com',)
-CSP_STYLE_SRC = (
-                    "'self'", "'unsafe-inline'",'fonts.googleapis.com',
-                    'use.fontawesome.com'
-                )
-CSP_SCRIPT_SRC = (
-                    "'self'", "'unsafe-inline'",
-                    'kit.fontawesome.com', 'fonts.googleapis.com',
-                    'www.googletagmanager.com', 'accounts.google.com', 'js.stripe.com'
-                )
+CSP_DEFAULT_SRC =   (
+                        "'self'",
+                        'ka-f.fontawesome.com',
+                        'www.google-analytics.com', 'accounts.google.com'
+                    )
+
+CSP_STYLE_SRC =     (
+                        "'self'", "'unsafe-inline'",
+                        'fonts.googleapis.com', 'use.fontawesome.com',
+                        'accounts.google.com'
+                    )
+
+CSP_SCRIPT_SRC =    (
+                        "'self'", "'unsafe-inline'",
+                        'kit.fontawesome.com', 'fonts.googleapis.com',
+                        'www.google-analytics.com', 'www.googletagmanager.com',
+                        'accounts.google.com', 'apis.google.com',
+                        'js.stripe.com'
+                    )
+
 CSP_FONT_SRC = ("'self'", 'fonts.gstatic.com', 'use.fontawesome.com', 'ka-f.fontawesome.com',)
 CSP_IMG_SRC = ("'self'",)
-CSP_FRAME_SRC = ("'self'", 'js.stripe.com')
+
+CSP_FRAME_SRC = ("'self'", 'js.stripe.com', 'accounts.google.com',)
 
 
 
