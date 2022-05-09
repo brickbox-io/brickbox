@@ -237,9 +237,10 @@ def resource_time_track():
 
                 tracker.save()
         except  VirtualBrickOwner.DoesNotExist:
-            return {
-                "Brick Owner DNE": f"{str(brick.id)}"
-            }
+            print(f"{brick} has no owner")
+            # return {
+            #     "Brick Owner DNE": f"{str(brick.id)}"
+            # }
 
         # return {
         #         "Brick Owner": f"{str(brick.id)}"
