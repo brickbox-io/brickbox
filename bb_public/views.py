@@ -13,7 +13,7 @@ def landing_page(request):
     return render(request, 'landing.html')
 
 # -------------------------------- Legal Page -------------------------------- #
-def legal(request):
+def legal_page(request):
     '''
     URL: brickbox.io/legal
     '''
@@ -23,7 +23,7 @@ def legal(request):
 #                                     Forms                                    #
 # ---------------------------------------------------------------------------- #
 
-def forms_email_list(request):
+def email_list_form(request):
     '''
     URL: brickbox.io/forms/email_list/
     '''
