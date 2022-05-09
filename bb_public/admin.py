@@ -3,7 +3,7 @@
 from django.contrib import admin
 
 from bb_public.models import (
-    EmailUpdateList
+    EmailUpdateList, ContactUs
 )
 
 class EmailUpdateListAdmin(admin.ModelAdmin):
@@ -12,4 +12,9 @@ class EmailUpdateListAdmin(admin.ModelAdmin):
     list_filter = ('created_at', 'updated_at')
     search_fields = ('email',)
 
+class ContactUsAdmin(admin.ModelAdmin):
+    ''' ContactUsAdmin '''
+    list_display = ('name', 'email', 'message')
+
 admin.site.register(EmailUpdateList, EmailUpdateListAdmin)
+admin.site.register(ContactUs, ContactUsAdmin)

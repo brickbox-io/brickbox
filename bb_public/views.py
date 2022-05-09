@@ -1,9 +1,13 @@
 '''views.py for bb_public'''
 
+import email
+from email import message
+from hashlib import new
+from unicodedata import name
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from bb_public.models import EmailUpdateList
+from bb_public.models import EmailUpdateList, ContactUs
 
 # ------------------------------- Landing Page ------------------------------- #
 def landing_page(request):
@@ -27,8 +31,6 @@ def email_list_form(request):
     '''
     URL: brickbox.io/forms/email_list/
     '''
-    print(request.POST)
-
     new_email = EmailUpdateList(
         email=request.POST['email']
     )
@@ -36,6 +38,22 @@ def email_list_form(request):
 
     # return redirect('/')
     return HttpResponse('Email Submitted, Thank You', status=200)
+
+def contact_us_form(request):
+    '''
+    URL: brickbox.io/forms/contact/
+    Method: POST
+    Args: name, email, message
+    Recives and saves messages from the contact us form.
+    '''
+    new_message = ContactUs(
+        name = request.POST.get('name'),
+        email = request.POST.get('email'),
+        message = request.POST.get('message')
+    )
+    new_message.save()
+
+    return HttpResponse('Message Submitted, Thank You', status=200)
 
 # ---------------------------------------------------------------------------- #
 #                                      PWA                                     #
