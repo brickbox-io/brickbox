@@ -24,7 +24,7 @@ git pull --no-edit
 python -m pip install --upgrade pip
 
 # Install or Update Required Packages
-pip install --force-reinstall --upgrade -r requirements.txt
+/opt/brickbox/bbenv/bin/python3.10 pip install --force-reinstall --upgrade -r requirements.txt
 
 
 # ---------------------------------------------------------------------------- #
