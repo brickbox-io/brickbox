@@ -14,5 +14,6 @@ urlpatterns = [
     path('offline/', views.pwa_offline, name='pwa_offline'),    # Offline Page
 
     # ----------------------------------- Forms ---------------------------------- #
-    path('forms/email_list', views.email_list_form, name='email_list_form'),
+    path('forms/email_list', views.email_list_form, name='email_list_form'),    # Email List Form
+    path('forms/contact_us', views.contact_us_form, name='contact_us_form'),    # Contact Us Form
 ]

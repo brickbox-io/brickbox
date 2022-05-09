@@ -31,6 +31,10 @@ class TestUrls(TestCase):
         url_forms_email_list = reverse('bb_public:email_list_form')
         self.assertEqual(url_forms_email_list, '/forms/email_list')
 
+        # Contact Us Form
+        url_forms_contact_us = reverse('bb_public:contact_us_form')
+        self.assertEqual(url_forms_contact_us, '/forms/contact_us')
+
     def test_resolve_urls(self):
         '''
         Test that the correct view is used for the URL request.
@@ -66,3 +70,11 @@ class TestUrls(TestCase):
         self.assertEqual(resolve_email_form.kwargs, {})
         self.assertEqual(resolve_email_form.url_name, 'email_list_form')
         self.assertEqual(resolve_email_form.view_name, 'bb_public:email_list_form')
+
+        # Contact Us Form
+        resolve_contact_us_form = resolve('/forms/contact_us')
+        self.assertEqual(resolve_contact_us_form.func.__name__, 'contact_us_form')
+        self.assertEqual(resolve_contact_us_form.args, ())
+        self.assertEqual(resolve_contact_us_form.kwargs, {})
+        self.assertEqual(resolve_contact_us_form.url_name, 'contact_us_form')
+        self.assertEqual(resolve_contact_us_form.view_name, 'bb_public:contact_us_form')
