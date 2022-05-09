@@ -7,8 +7,9 @@ from bb_accounts import views
 app_name = 'bb_accounts'
 
 urlpatterns = [
-    path('', include('django.contrib.auth.urls')),
-    path('register/', views.account_registration, name='register'),
+    path('', include('django.contrib.auth.urls')),                  # login/logout
 
-    path('tokensignin/', views.token_signin, name='tokensignin'),
+    path('register/', views.account_registration, name='register'), # New Account (Registration)
+
+    path('tokensignin/', views.token_signin, name='tokensignin'),   # Token Signin (oauth2)
 ]

@@ -117,6 +117,9 @@ def token_signin(request):
             return HttpResponseServerError('No email returned.')
 
         try:
+            if User.objects.filter(username=idinfo['email']).exists():
+                raise ValueError('Email already in use.')
+
             new_user = User.objects.create_user(
                 username = idinfo['email'],
                 first_name = idinfo['given_name'],
