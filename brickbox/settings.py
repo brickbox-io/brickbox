@@ -340,11 +340,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 # ---------------------------------------------------------------------------- #
 #                            Content Security Policy                           #
 # ---------------------------------------------------------------------------- #
-CSP_DEFAULT_SRC =   (
-                        "'self'",
-                        'ka-f.fontawesome.com',
-                        'www.google-analytics.com', 'accounts.google.com'
-                    )
+CSP_DEFAULT_SRC =   ("'self'",)
 
 CSP_STYLE_SRC =     (
                         "'self'", "'unsafe-inline'",
@@ -355,17 +351,32 @@ CSP_STYLE_SRC =     (
 CSP_SCRIPT_SRC =    (
                         "'self'", "'unsafe-inline'",
                         'kit.fontawesome.com', 'fonts.googleapis.com',
-                        'www.google-analytics.com', 'www.googletagmanager.com',
+                        '*.googletagmanager.com',
                         'accounts.google.com', 'apis.google.com',
                         'js.stripe.com'
                     )
 
-CSP_FONT_SRC = ("'self'", 'fonts.gstatic.com', 'use.fontawesome.com', 'ka-f.fontawesome.com',)
-CSP_IMG_SRC = ("'self'",)
+CSP_FONT_SRC =      (
+                        "'self'",
+                        'fonts.gstatic.com', 'use.fontawesome.com', 'ka-f.fontawesome.com',
+                    )
+
+CSP_CONNECT_SRC =   (   "'self'",
+                        'ka-f.fontawesome.com',
+                        '*.google-analytics.com', '*.analytics.google.com',
+                        '*.googletagmanager.com', 'accounts.google.com',
+                    )
+
+CSP_IMG_SRC =       (
+                        "'self'",
+                        "*.googletagmanager.com","*.google-analytics.com"
+                    )
 
 CSP_FRAME_SRC = ("'self'", 'js.stripe.com', 'accounts.google.com',)
 
+CSP_MANIFEST_SRC = ("'self'",)
 
+# CSP_INCLUDE_NONCE_IN = ['script-src']
 
 # ---------------------------------------------------------------------------- #
 #                                    Celery                                    #
