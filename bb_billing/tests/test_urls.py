@@ -31,7 +31,7 @@ class TestUrls(TestCase):
         # ------------------------- Billing Function Endpoint ------------------------ #
         # Manual Payment
         url_manual_payment = reverse('bb_billing:manual_payment')
-        self.assertEqual(url_manual_payment, 'bb_billing/manual_payment')
+        self.assertEqual(url_manual_payment, '/bb_billing/manual_payment')
 
 
     def test_resolve_urls(self):
@@ -66,7 +66,7 @@ class TestUrls(TestCase):
 
         # ------------------------- Billing Function Endpoint ------------------------ #
         # Manual Payment
-        resolve_manual_payment = resolve('bb_billing/manual_payment')
+        resolve_manual_payment = resolve('/bb_billing/manual_payment')
         self.assertEqual(resolve_manual_payment.func.__name__, 'manual_payment')
         self.assertEqual(resolve_manual_payment.args, ())
         self.assertEqual(resolve_manual_payment.kwargs, {})
