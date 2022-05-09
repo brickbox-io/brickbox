@@ -1,10 +1,11 @@
 {% load static %}
 
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1," />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="brickbox.io is a marketplace complete with the GPU computing services you need,
         with accessible pricing, developer-friendly features, and scalability for deep learning and AI.">
-<link rel="stylesheet" href="{% static 'css/landing/main.css' %}" />
+<link nonce="{{request.csp_nonce}}" rel="preconnect, stylesheet" href="{% static 'css/landing/main.css' %}" />
+
 <noscript>
     <link rel="stylesheet" href="{% static 'css/landing/noscript.css' %}" />
 </noscript>
@@ -27,20 +28,22 @@
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="msapplication-TileImage" content="{% static 'brickbox_icon/ms-icon-144x144.png' %}">
 <meta name="theme-color" content="#ffffff">
-<script src="https://kit.fontawesome.com/4378fd235d.js" crossorigin="anonymous"></script>
+<script nonce="{{request.csp_nonce}}" src="https://kit.fontawesome.com/4378fd235d.js" crossorigin="anonymous" async></script>
 
 
 
 
 
 <!-- START - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QZQPQ7EV5P"></script>
-<script>
+<!-- <script nonce="{{request.csp_nonce}}" async src="https://www.googletagmanager.com/gtag/js?id=G-QZQPQ7EV5P"></script>
+<script> nonce = "{{request.csp_nonce}}"
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-QZQPQ7EV5P', { cookie_flags: 'SameSite=None;Secure' });
-</script>
+</script> -->
 <!-- END - Google Analytics -->
 
-<script id="mcjs">!function (c, h, i, m, p) { m = c.createElement(h), p = c.getElementsByTagName(h)[0], m.async = 1, m.src = i, p.parentNode.insertBefore(m, p) }(document, "script", "https://chimpstatic.com/mcjs-connected/js/users/a626d38bfb20209717cccbbe3/96eabc780208eb0d6c7af5c15.js");</script>
+<!-- START - Mailchip Script -->
+<!-- <script id="mcjs">!function (c, h, i, m, p) { m = c.createElement(h), p = c.getElementsByTagName(h)[0], m.async = 1, m.src = i, p.parentNode.insertBefore(m, p) }(document, "script", "https://chimpstatic.com/mcjs-connected/js/users/a626d38bfb20209717cccbbe3/96eabc780208eb0d6c7af5c15.js");</script> -->
+<!-- END - Mailchip Script -->
