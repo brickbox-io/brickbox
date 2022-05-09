@@ -1,8 +1,5 @@
 ''' models.py for bb_public '''
 
-import email
-from email import message
-from tabnanny import verbose
 from django.db import models
 
 # -------------------------- Email Update List Form -------------------------- #

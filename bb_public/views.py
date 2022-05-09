@@ -1,9 +1,5 @@
 '''views.py for bb_public'''
 
-import email
-from email import message
-from hashlib import new
-from unicodedata import name
 from django.shortcuts import render
 from django.http import HttpResponse
 
