@@ -22,8 +22,6 @@ class PaymentMethod(models.Model):
     brand = models.CharField(max_length=32, blank=True, null=True)
     last4 = models.IntegerField(blank=True, null=True)
 
-    fingerprint = models.CharField(max_length=100, blank=True, null=True, unique=True)
-
     #Flags
     is_default = models.BooleanField(default=False)
 

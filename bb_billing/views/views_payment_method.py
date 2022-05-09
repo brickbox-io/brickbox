@@ -7,8 +7,6 @@ from django.shortcuts import HttpResponse
 
 from django.views.decorators.csrf import csrf_exempt
 
-from django.core.exceptions import ValidationError
-
 from bb_data.models import (
     UserProfile, PaymentMethod,
     PaymentMethodOwner)
@@ -31,29 +29,20 @@ def payment_method_event(request):
 
     # Handle the event
     if event.type == 'payment_method.attached':
-        stripe_payment_method = event.data.object
-        profile = UserProfile.objects.get(cus_id=stripe_payment_method.customer)
+        payment_method = event.data.object
+        print(payment_method)
 
-        try:
-            # New card will be validated, then set as default
-            payment_method = PaymentMethod(
-                user = profile.user,
-                pm_id = stripe_payment_method.id,
-                brand = stripe_payment_method.card.brand,
-                last4 = stripe_payment_method.card.last4,
-                fingerprint = stripe_payment_method.card.fingerprint,
-                is_default = True
-            )
+        profile = UserProfile.objects.get(cus_id=payment_method.customer)
 
-            payment_method.full_clean()
+        # New card will be set as default
+        payment_method = PaymentMethod(
+            user = profile.user,
+            pm_id = payment_method.id,
+            brand = payment_method.card.brand,
+            last4 = payment_method.card.last4,
+            is_default = True
+        )
 
-        except ValidationError:
-            stripe.PaymentMethod.detach(
-                stripe_payment_method.id
-            )
-            return HttpResponse(status=200)
-
-        # Remove previous default payment method
         PaymentMethod.objects.filter(
             user = profile.user,
             is_default = True
@@ -61,7 +50,6 @@ def payment_method_event(request):
 
         payment_method.save()
 
-        # Assign payment method to user
         PaymentMethodOwner.objects.create(
             user = profile.user,
             profile = profile,
