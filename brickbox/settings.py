@@ -341,12 +341,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 #                            Content Security Policy                           #
 # ---------------------------------------------------------------------------- #
 CSP_DEFAULT_SRC = (
-                    "'self'", "'unsafe-inline'", 'kit.fontawesome.com',
+                    "'self'", 'kit.fontawesome.com',
                     'fonts.googleapis.com', 'www.googletagmanager.com', 'ka-f.fontawesome.com',
                     'www.google-analytics.com'
                 )
 CSP_STYLE_SRC = (
-                    "'self'", "'unsafe-inline'", 'fonts.googleapis.com',
+                    "'self'", "'unsafe-inline'",'fonts.googleapis.com',
                     'ka-f.fontawesome.com', 'use.fontawesome.com'
                 )
 CSP_SCRIPT_SRC = (
@@ -357,6 +357,12 @@ CSP_SCRIPT_SRC = (
 CSP_FONT_SRC = ("'self'", 'fonts.gstatic.com', 'ka-f.fontawesome.com', 'use.fontawesome.com')
 CSP_IMG_SRC = ("'self'",)
 CSP_FRAME_SRC = ("'self'", 'js.stripe.com')
+CSP_INCLUDE_NONCE_IN=(
+                    "'self'",
+                    'kit.fontawesome.com', 'fonts.googleapis.com',
+                    'www.googletagmanager.com', 'accounts.google.com', 'js.stripe.com'
+                )
+
 
 # ---------------------------------------------------------------------------- #
 #                                    Celery                                    #
