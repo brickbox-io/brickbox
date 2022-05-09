@@ -376,7 +376,7 @@ CSP_FRAME_SRC = ("'self'", 'js.stripe.com', 'accounts.google.com',)
 
 CSP_MANIFEST_SRC = ("'self'",)
 
-# CSP_INCLUDE_NONCE_IN = ['script-src']
+# CSP_INCLUDE_NONCE_IN = ['script-src', 'connect-src']
 
 # ---------------------------------------------------------------------------- #
 #                                    Celery                                    #
