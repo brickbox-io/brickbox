@@ -342,7 +342,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 # ---------------------------------------------------------------------------- #
 CSP_DEFAULT_SRC = (
                     "'self'", "'unsafe-inline'", 'kit.fontawesome.com',
-                    'fonts.googleapis.com', 'www.googletagmanager.com', 'ka-f.fontawesome.com'
+                    'fonts.googleapis.com', 'www.googletagmanager.com', 'ka-f.fontawesome.com',
+                    'www.google-analytics.com'
                 )
 CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", 'fonts.googleapis.com', 'ka-f.fontawesome.com', 'use.fontawesome.com')
 CSP_SCRIPT_SRC = (
