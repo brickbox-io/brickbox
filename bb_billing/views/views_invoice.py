@@ -1,5 +1,7 @@
 ''' bb_billing - views_invoice.py '''
 
+# pylint: disable=R0912,R0915
+
 import json
 import stripe
 
