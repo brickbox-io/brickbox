@@ -77,6 +77,8 @@ class ResourceTimeTracking(models.Model):
     balance_paid = models.BooleanField(default=False)
     stripe_transaction = models.CharField(max_length=100, blank=True, null=True) # Transaction ID
 
+    destroy_vms_countdown_started = models.BooleanField(default=False)
+
     @property
     def cycle_total(self):
         '''

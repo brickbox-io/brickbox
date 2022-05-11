@@ -6,8 +6,9 @@ from celery import shared_task
 
 import box
 
+from bb_data.models import UserProfile, ResourceTimeTracking
 from bb_vm.models import (
-    PortTunnel, VirtualBrick, HostFoundation
+    PortTunnel, VirtualBrick, HostFoundation, VirtualBrickOwner
 )
 
 
@@ -72,3 +73,18 @@ def close_ssh_port(port_number):
     Called when a VM is being destryed, a delay is set before the port becomes available again.
     '''
     PortTunnel.objects.filter(port_number=port_number).delete()
+
+# ------------------------ Destroy VMs With Open Tabs ------------------------ #
+@shared_task
+def destroy_vm_with_open_tabs(resource_usage_id):
+    '''
+    Started with a countdown timer when a payment fails.
+    If the balance remains unpaid after the timer expires, the VM is destroyed.
+    '''
+    resource_usage = ResourceTimeTracking.objects.get(id=resource_usage_id)
+    user_profile = UserProfile.objects.get(user=resource_usage.user)
+
+    if not resource_usage.balance_paid and not resource_usage.user.is_superuser:
+        owned_bricks = VirtualBrickOwner.objects.filter(owner=user_profile)
+        for brick in owned_bricks:
+            destroy_vm_subprocess.apply_async((brick.virt_brick.id,), queue='ssh_queue')
