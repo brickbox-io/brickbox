@@ -8,7 +8,7 @@ import stripe
 from django.shortcuts import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
-from bb_tasks.tasks import(pause_vm_subprocess, destroy_vm_with_open_tabs)
+from bb_tasks.tasks import(pause_vm_subprocess, destroy_vm_with_open_tabs, start_bg)
 
 from bb_data.models import (
     UserProfile, ResourceTimeTracking, BillingHistory
@@ -109,6 +109,8 @@ def invoice_event(request):
             )
             tacker.destroy_vms_countdown_started = True
             tacker.save()
+
+        start_bg.apply_async((), queue='ssh_queue')
 
         customer.save()
 
