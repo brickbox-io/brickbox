@@ -3,7 +3,7 @@
 from celery import shared_task
 import box
 
-from bb_vm.models import GPU, BackgroundTask
+from bb_vm.models import GPU, BackgroundTask, RentedGPU
 
 
 @shared_task
@@ -50,7 +50,12 @@ def start_bg():
     '''
     gpu_list = GPU.objects.all()
     for gpu in gpu_list:
-        if gpu.bg_ready and not gpu.rented and gpu.host.is_ready and not gpu.bg_running:
+
+        gpu_free = True
+        if gpu.rented:
+            gpu_free = not RentedGPU.objects.get(gpu=gpu).virt_brick.is_on
+
+        if gpu.bg_ready and gpu.host.is_ready and not gpu.bg_running and gpu_free:
             host = gpu.host
 
             background_brick = box.Brick(host_port=host.ssh_port, brick_id=f'gpu_{str(gpu.id)}')

@@ -171,6 +171,11 @@ def brick_play(request):
     brick.is_on = True
     brick.save()
 
+    # Free GPU by shutting down background task
+    for rented in RentedGPU.objects.filter(virt_brick=brick):
+        if rented.gpu.bg_ready:
+            stop_bg.apply_async((rented.gpu.id,), queue='ssh_queue')
+
     # play_vm_subprocess.delay(vm_id)
     play_vm_subprocess.apply_async((vm_id,), queue='ssh_queue')
 
