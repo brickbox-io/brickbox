@@ -53,7 +53,7 @@ def start_bg():
 
         gpu_free = True
         if gpu.rented:
-                gpu_free = not RentedGPU.objects.get(gpu=gpu).virt_brick.is_on
+            gpu_free = not RentedGPU.objects.get(gpu=gpu).virt_brick.is_on
 
         if gpu.bg_ready and gpu.host.is_ready and not gpu.bg_running and gpu_free:
             host = gpu.host
