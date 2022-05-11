@@ -90,12 +90,13 @@ def invoice_event(request):
         if customer.threshold < 1000.00:
             owned_bricks = VirtualBrickOwner.objects.filter(owner=customer)
             for brick in owned_bricks:
-                pause_vm_subprocess.apply_async(
-                    (brick.virt_brick.id,),
-                    queue='ssh_queue'
-                )
-                brick.virt_brick.is_on=False
-                brick.virt_brick.save()
+                if brick.virt_brick.is_on:
+                    pause_vm_subprocess.apply_async(
+                        (brick.virt_brick.id,),
+                        queue='ssh_queue'
+                    )
+                    brick.virt_brick.is_on=False
+                    brick.virt_brick.save()
 
         # -------------------------------- Destroy VMs ------------------------------- #
         bill = BillingHistory.objects.get(invoice_id=invoice.id)
