@@ -66,7 +66,6 @@ def invoice_event(request):
         invoice = event.data.object
         customer = UserProfile.objects.get(cus_id=invoice.customer)
 
-
         # ------------------------------- $1 Threshold ------------------------------- #
         if customer.threshold == 1.00:
             customer.strikes = customer.strikes + 3
