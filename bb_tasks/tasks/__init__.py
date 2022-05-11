@@ -13,7 +13,10 @@ from .system import (
     prepare_gpu_background_task, stop_bg, start_bg,
 )
 
-from .billing import threshold_resource_invoicing, monthly_resource_invoicing
+from .billing import (
+    threshold_resource_invoicing,
+    monthly_resource_invoicing, destroy_vm_with_open_tabs
+)
 
 __all__ = [
     'verify_host_connectivity', 'reconnect_host', 'host_cleanup',
@@ -22,4 +25,5 @@ __all__ = [
     'catch_clone_errors', 'remove_stale_clone',
     'prepare_gpu_background_task', 'stop_bg', 'start_bg',
     'threshold_resource_invoicing', 'monthly_resource_invoicing',
+    'destroy_vm_with_open_tabs'
 ]
