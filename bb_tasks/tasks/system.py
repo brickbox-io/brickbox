@@ -13,7 +13,7 @@ def prepare_gpu_background_task():
     '''
     gpu_list = GPU.objects.all()
     for gpu in gpu_list:
-        if not gpu.bg_ready and not gpu.rented and gpu.host.is_ready:
+        if not gpu.bg_ready and not gpu.rented and gpu.host.is_ready and gpu.host.is_enabled:
             host = gpu.host
 
             background_brick = box.Brick(host_port=host.ssh_port, brick_id=f'gpu_{str(gpu.id)}')
