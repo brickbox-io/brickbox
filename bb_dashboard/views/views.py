@@ -122,12 +122,12 @@ def pages(request):
                                         balance_paid = False,
                                         billing_cycle_end__gte=datetime.datetime.today()
                                     )
-        context['billing_history'] = BillingHistory.objects.filter(
-                                        user=context['profile'].user).order_by('-id')
-
         if created:
             tracker.billing_cycle_end = tracker.billing_cycle_start + datetime.timedelta(days=30)
             tracker.save()
+
+        context['billing_history'] = BillingHistory.objects.filter(
+                                        user=context['profile'].user).order_by('-id')
 
         context['tracker'] = tracker
 
