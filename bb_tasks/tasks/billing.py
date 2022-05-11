@@ -11,6 +11,7 @@ from celery import shared_task
 
 from bb_data.models import UserProfile, ResourceRates, ResourceTimeTracking, BillingHistory
 
+
 if settings.DEBUG is False:
     stripe.api_key = settings.STRIPE_SECRET_KEY
     stripePubKey = settings.STRIPE_PUBLISHABLE_KEY
