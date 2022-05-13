@@ -186,7 +186,7 @@ def brick_play(request):
     response_data = {}
     # Prevent starting VM if user has unpaid blance and 3+ strikes.
     if profile.strikes >= 3 and tracker.cycle_total > 0:
-        response_data['error'] = "Unpaid account balance, update payment method to avoid interuptions."
+        response_data['error'] = "Unpaid balance, update payment method to avoid interuptions."
         return JsonResponse(response_data, status=200, safe=False)
 
     # Free GPU by shutting down background task
