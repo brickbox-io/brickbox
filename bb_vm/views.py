@@ -185,6 +185,10 @@ def brick_play(request):
         response_data['error'] = "Unpaid balance, update payment method to avoid interuptions."
         return JsonResponse(response_data, status=200, safe=False)
 
+    brick = VirtualBrick.objects.get(id=vm_id)
+    brick.is_on = True
+    brick.save()
+
     # Free GPU by shutting down background task
     for rented in RentedGPU.objects.filter(virt_brick=brick):
         if rented.gpu.bg_ready:
@@ -192,10 +196,6 @@ def brick_play(request):
 
     # play_vm_subprocess.delay(vm_id)
     play_vm_subprocess.apply_async((vm_id,), queue='ssh_queue')
-
-    brick = VirtualBrick.objects.get(id=vm_id)
-    brick.is_on = True
-    brick.save()
 
     return HttpResponse(status=200)
 
