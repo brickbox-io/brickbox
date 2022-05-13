@@ -179,10 +179,6 @@ def brick_play(request):
         tracker.billing_cycle_end = tracker.billing_cycle_start + datetime.timedelta(days=30)
         tracker.save()
 
-    brick = VirtualBrick.objects.get(id=vm_id)
-    brick.is_on = True
-    brick.save()
-
     response_data = {}
     # Prevent starting VM if user has unpaid blance and 3+ strikes.
     if profile.strikes >= 3 and tracker.cycle_total > 0:
@@ -196,6 +192,10 @@ def brick_play(request):
 
     # play_vm_subprocess.delay(vm_id)
     play_vm_subprocess.apply_async((vm_id,), queue='ssh_queue')
+
+    brick = VirtualBrick.objects.get(id=vm_id)
+    brick.is_on = True
+    brick.save()
 
     return HttpResponse(status=200)
 
