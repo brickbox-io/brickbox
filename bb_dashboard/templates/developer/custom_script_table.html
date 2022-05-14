@@ -6,13 +6,13 @@
 
     <td class="text-center">
 
-        <i class="material-icons">edit</i>
+        <i class="material-icons" onclick="EditScript({{ script.id }});">edit</i>
 
     </td>
 
     <td class="text-center">
 
-        <i onclick="DeleteScriptModal();" class="material-icons">delete</i>
+        <i onclick="DeleteScriptModal({{ script.id }}, '{{ script.name}}');" class="material-icons">delete</i>
 
     </td>
 

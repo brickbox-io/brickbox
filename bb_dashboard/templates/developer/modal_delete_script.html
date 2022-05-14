@@ -4,11 +4,14 @@
         <div class="modal-content">
             <div class="modal-body">
 
-               <h2 style="color: #32325d !important;">Are you sure you want to delete?</h2>
+                <h2 style="color: #32325d !important;">Are you sure you want to delete?</h2>
+
+                <h3 style="color: #32325d !important; text-align:center;" id="script_name_confirmation"></h3>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
-                <button type="button" class="btn btn-primary" id="delete_button" onclick="">Delete</button>
+                <button type="button" class="btn btn-primary" id="delete_script_button" onclick="DeleteScript(this.dataset.script_id)">Delete</button>
             </div>
         </div>
     </div>
