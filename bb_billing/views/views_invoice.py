@@ -1,12 +1,14 @@
 ''' bb_billing - views_invoice.py '''
 
+# pylint: disable=R0912,R0915
+
 import json
 import stripe
 
 from django.shortcuts import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
-from bb_tasks.tasks import(pause_vm_subprocess)
+from bb_tasks.tasks import(pause_vm_subprocess, destroy_vm_with_open_tabs, start_bg)
 
 from bb_data.models import (
     UserProfile, ResourceTimeTracking, BillingHistory
@@ -67,17 +69,48 @@ def invoice_event(request):
         # ------------------------------- $1 Threshold ------------------------------- #
         if customer.threshold == 1.00:
             customer.strikes = customer.strikes + 3
-            owned_bricks = VirtualBrickOwner.objects.filter(owner=customer)
-            for brick in owned_bricks:
-                pause_vm_subprocess.apply_async(
-                    (brick.virt_brick.id,),
-                    queue='ssh_queue'
-                )
-                brick.virt_brick.is_on=False
-                brick.virt_brick.save()
+            countdown_time=86400 # VMs destroyed if balance is not paid within 24 hours
 
+        # ------------------------------- $10 Threshold ------------------------------- #
         if customer.threshold == 10.00:
             customer.strikes = customer.strikes + 2
+            countdown_time=172800 # VMs destroyed if balance is not paid within 48 hours
+
+        # ------------------------------ $100 Threshold ------------------------------ #
+        if customer.threshold == 100.00:
+            customer.strikes = customer.strikes + 1
+            countdown_time=432000 # VMs destroyed if balance is not paid within 5 days
+
+        # ----------------------------- $1,000 Threshold ----------------------------- #
+        if customer.threshold == 1000.00:
+            countdown_time=259200 # VMs destroyed if balance is not paid within 3 days
+
+
+        # -------------------------------- Suspend VMs ------------------------------- #
+        if customer.threshold < 1000.00:
+            owned_bricks = VirtualBrickOwner.objects.filter(owner=customer)
+            for brick in owned_bricks:
+                if brick.virt_brick.is_on:
+                    pause_vm_subprocess.apply_async(
+                        (brick.virt_brick.id,),
+                        queue='ssh_queue'
+                    )
+                    brick.virt_brick.is_on=False
+                    brick.virt_brick.save()
+
+        # -------------------------------- Destroy VMs ------------------------------- #
+        bill = BillingHistory.objects.get(invoice_id=invoice.id)
+        tacker = ResourceTimeTracking.objects.get(id=bill.usage.id)
+        if not tacker.destroy_vms_countdown_started:
+            destroy_vm_with_open_tabs.apply_async(
+                (tacker.id,),
+                countdown=countdown_time,
+                queue='ssh_queue'
+            )
+            tacker.destroy_vms_countdown_started = True
+            tacker.save()
+
+        start_bg.apply_async((), queue='ssh_queue')
 
         customer.save()
 

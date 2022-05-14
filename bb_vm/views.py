@@ -1,6 +1,7 @@
 ''' bb_vm views.py '''
 # pylint: disable=R0911
 
+import datetime
 import subprocess
 import urllib.parse
 
@@ -10,7 +11,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
 
-from bb_data.models import UserProfile, PaymentMethod, CustomScript
+from bb_data.models import UserProfile, PaymentMethod, CustomScript, ResourceTimeTracking
 from bb_vm.models import PortTunnel, VirtualBrick, VirtualBrickOwner, GPU, RentedGPU
 
 from bb_tasks.tasks import(
@@ -166,10 +167,32 @@ def brick_play(request):
     Play/Start a paused instance.
     '''
     vm_id = request.POST.get('brick_id')
+    profile = UserProfile.objects.get(user=request.user)
+
+     # ------------------------------ Cycyle Balance ------------------------------ #
+    tracker, created = ResourceTimeTracking.objects.get_or_create(
+                                    user = request.user,
+                                    balance_paid = False,
+                                    billing_cycle_end__gte=datetime.datetime.today()
+                                )
+    if created:
+        tracker.billing_cycle_end = tracker.billing_cycle_start + datetime.timedelta(days=30)
+        tracker.save()
+
+    response_data = {}
+    # Prevent starting VM if user has unpaid blance and 3+ strikes.
+    if profile.strikes >= 3 and tracker.cycle_total > 0:
+        response_data['error'] = "Unpaid balance, update payment method to avoid interuptions."
+        return JsonResponse(response_data, status=200, safe=False)
 
     brick = VirtualBrick.objects.get(id=vm_id)
     brick.is_on = True
     brick.save()
+
+    # Free GPU by shutting down background task
+    for rented in RentedGPU.objects.filter(virt_brick=brick):
+        if rented.gpu.bg_ready:
+            stop_bg.apply_async((rented.gpu.id,), queue='ssh_queue')
 
     # play_vm_subprocess.delay(vm_id)
     play_vm_subprocess.apply_async((vm_id,), queue='ssh_queue')
