@@ -11,48 +11,49 @@
 
     <!-- ----------------------- START - Custom Scripts ------------------------ -->
     <div class="card">
-            <div class="card-header">
-                <h3 class="title">Custom Scripts</h3>
-            </div>
-
-            <div class="card-body">
-                <div class="table-responsive">
-
-                    <table class="table">
-
-                        <!-- Table Head -->
-                        <thead>
-                            <tr>
-                                <!-- <th class="text-center">#</th> -->
-                                <th>Script Name</th>
-                                <th>Description</th>
-                                <th class="text-center">Edit</th>
-                                <th class="text-center">Delete</th>
-                            </tr>
-                        </thead>
-
-                        <!-- Table Body -->
-                        <tbody id="brick_wall">
-                            {% include "developer/custom_script_table.html" %}
-                        </tbody>
-
-                    </table>
-
-                </div>
-            </div>
-
-            <div class="card-footer text-center">
-                <button type="button" class="btn btn-success" onclick="AddScript();"> + Add Script </button>
-            </div>
-
+        <div class="card-header">
+            <h3 class="title">Custom Scripts</h3>
         </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+
+                <table class="table">
+
+                    <!-- Table Head -->
+                    <thead>
+                        <tr>
+                            <!-- <th class="text-center">#</th> -->
+                            <th>Script Name</th>
+                            <th>Description</th>
+                            <th class="text-center">Edit</th>
+                            <th class="text-center">Delete</th>
+                        </tr>
+                    </thead>
+
+                    <!-- Table Body -->
+                    <tbody id="brick_wall">
+                        {% include "developer/custom_script_table.html" %}
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+
+        <div class="card-footer text-center">
+            <button type="button" class="btn btn-success" onclick="AddScript();"> + Add Script </button>
+        </div>
+
     </div>
-    <!-- ----------------------- END - Custom Scripts ------------------------ -->
+</div>
+<!-- ----------------------- END - Custom Scripts ------------------------ -->
 
 </div>
 
 {% include "developer/modal_new_script.html" %}
-{% include "developer/delete-modal.html" %}
+{% include "developer/modal_delete_script.html" %}
+{% include "developer/modal_edit_script.html" %}
 
 {% endblock content %}
 

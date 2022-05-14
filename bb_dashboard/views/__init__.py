@@ -4,4 +4,4 @@ from .views import dashboard, pages
 
 from .views_colo import onboarding
 
-from .views_tab_developer import add_new_script
+from .views_tab_developer import add_new_script, edit_script, update_script, delete_script
