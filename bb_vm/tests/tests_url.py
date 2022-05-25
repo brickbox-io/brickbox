@@ -34,5 +34,5 @@ class TestUrls(TestCase):
         self.assertEqual(resolve_host_onboard.func.__name__, 'host_onboarding')
         self.assertEqual(resolve_host_onboard.args, ())
         self.assertEqual(resolve_host_onboard.kwargs['host_serial'], '1234567890')
-        self.assertEqual(resolve_host_onboard.url_name, 'host_onboarding')
+        self.assertEqual(resolve_host_onboard.url_name, 'onboarding')
         self.assertEqual(resolve_host_onboard.view_name, 'bb_vm:host_onboarding')
