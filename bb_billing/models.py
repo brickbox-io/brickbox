@@ -1,6 +1,5 @@
 ''' bb_billing | models.py '''
 
-from tabnanny import verbose
 from bb_data.models import BillingHistory
 
 class BillingHistoryProxy(BillingHistory):
