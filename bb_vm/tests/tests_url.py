@@ -41,7 +41,7 @@ class TestUrls(TestCase):
         self.assertEqual(resolve_host_onboard.func.__name__, 'onboarding')
         self.assertEqual(resolve_host_onboard.args, ())
         self.assertEqual(resolve_host_onboard.kwargs['host_serial'], '1234567890')
-        self.assertEqual(resolve_host_onboard.url_name, 'onboarding')
+        self.assertEqual(resolve_host_onboard.url_name, 'host_onboarding')
         self.assertEqual(resolve_host_onboard.view_name, 'bb_vm:host_onboarding')
 
         # Host Onboard Public Key
@@ -49,5 +49,5 @@ class TestUrls(TestCase):
         self.assertEqual(resolve_host_onboard_pubkey.func.__name__, 'onboarding_pubkey')
         self.assertEqual(resolve_host_onboard_pubkey.args, ())
         self.assertEqual(resolve_host_onboard_pubkey.kwargs['host_serial'], '1234567890')
-        self.assertEqual(resolve_host_onboard_pubkey.url_name, 'onboarding_pubkey')
+        self.assertEqual(resolve_host_onboard_pubkey.url_name, 'host_onboarding_pubkey')
         self.assertEqual(resolve_host_onboard_pubkey.view_name, 'bb_vm:host_onboarding_pubkey')
