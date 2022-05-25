@@ -15,5 +15,5 @@ class TestUrls(TestCase):
         Reverse lookup tests for each URL.
         '''
         # Host Onboard
-        url_host_onboard = reverse('bb_vm:host_onboarding')
+        url_host_onboard = reverse('bb_vm:host_onboarding', kwargs={'host_serial': '1234567890'})
         self.assertEqual(url_host_onboard, 'vm/host/oboarding/')
