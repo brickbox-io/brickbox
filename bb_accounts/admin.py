@@ -1,3 +1,5 @@
+''' bb_accounts | admin.py'''
+
 from django.contrib import admin
 
 from bb_accounts.models import UserProxy, UserProfileProxy

@@ -115,7 +115,7 @@ def invoice_event(request):
 
             customer.save()
         except BillingHistory.DoesNotExist:
-            print('No billing history found for invoice: {}'.format(invoice.id))
+            print(f'No billing history found for invoice: {invoice.id}')
 
     else:
         print(f'Unhandled event type {event.type}')

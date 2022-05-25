@@ -14,6 +14,7 @@ class UserProxy(User):
         verbose_name_plural = 'A - Users'
 
 class UserProfileProxy(UserProfile):
+    ''' Proxy to display user profiles under bb_accounts'''
     class Meta:
         proxy = True
         verbose_name = 'User Profile'
