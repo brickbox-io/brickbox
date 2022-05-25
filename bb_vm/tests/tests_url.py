@@ -25,6 +25,13 @@ class TestUrls(TestCase):
                                     )
         self.assertEqual(url_host_onboard_pubkey, '/vm/host/onboarding/pubkey/1234567890/')
 
+        # Host Onboard SSH Port
+        url_host_onboard_sshport = reverse(
+                                        'bb_vm:host_onboarding_ssh',
+                                        kwargs={'host_serial': '1234567890'}
+                                    )
+        self.assertEqual(url_host_onboard_sshport, '/vm/host/onboarding/sshport/1234567890/')
+
     def test_resolve_urls(self):
         '''
         Test that the correct view is used for the URL request.
@@ -36,3 +43,11 @@ class TestUrls(TestCase):
         self.assertEqual(resolve_host_onboard.kwargs['host_serial'], '1234567890')
         self.assertEqual(resolve_host_onboard.url_name, 'onboarding')
         self.assertEqual(resolve_host_onboard.view_name, 'bb_vm:host_onboarding')
+
+        # Host Onboard Public Key
+        resolve_host_onboard_pubkey = resolve('/vm/host/onboarding/pubkey/1234567890/')
+        self.assertEqual(resolve_host_onboard_pubkey.func.__name__, 'host_onboarding_pubkey')
+        self.assertEqual(resolve_host_onboard_pubkey.args, ())
+        self.assertEqual(resolve_host_onboard_pubkey.kwargs['host_serial'], '1234567890')
+        self.assertEqual(resolve_host_onboard_pubkey.url_name, 'onboarding_pubkey')
+        self.assertEqual(resolve_host_onboard_pubkey.view_name, 'bb_vm:host_onboarding_pubkey')
