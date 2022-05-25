@@ -16,7 +16,7 @@ from bb_data.models import ( UserProfile, CryptoPayout, FiatPayout,
                             ColocationClient, ResourceTimeTracking, BillingHistory,
                             CustomScript
 )
-from bb_vm.models import VirtualBrickOwner, GPU, RentedGPU
+from bb_vm.models import VirtualBrickOwner, GPU, RentedGPU, CloudImage
 
 if settings.DEBUG:
     stripe_pk = settings.STRIPE_PUBLISHABLE_KEY_TEST
@@ -89,6 +89,9 @@ def pages(request):
         load_template      = request.path.split('/')[-1]
         context['segment'] = load_template
 
+        # -------------------------- Brick Instance Options -------------------------- #
+        context['operating_system'] = CloudImage.objects.all().order_by('-id')[0]
+
         context['profile'] = UserProfile.objects.get(user = request.user)
         context['bricks'] = VirtualBrickOwner.objects.filter(owner=context['profile'])
         context['scripts'] = CustomScript.objects.filter(user = request.user)
@@ -132,8 +135,8 @@ def pages(request):
         context['tracker'] = tracker
 
         # --------------------------------- API Token -------------------------------- #
-        token, created = Token.objects.get_or_create(user=request.user)
-        print(created)
+        token = Token.objects.get_or_create(user=request.user)[0]
+
         context['API_Token'] = token.key
 
         html_template = loader.get_template( f'{load_template}.html' )
