@@ -99,20 +99,23 @@ def invoice_event(request):
                     brick.virt_brick.save()
 
         # -------------------------------- Destroy VMs ------------------------------- #
-        bill = BillingHistory.objects.get(invoice_id=invoice.id)
-        tacker = ResourceTimeTracking.objects.get(id=bill.usage.id)
-        if not tacker.destroy_vms_countdown_started:
-            destroy_vm_with_open_tabs.apply_async(
-                (tacker.id,),
-                countdown=countdown_time,
-                queue='ssh_queue'
-            )
-            tacker.destroy_vms_countdown_started = True
-            tacker.save()
+        try:
+            bill = BillingHistory.objects.get(invoice_id=invoice.id)
+            tacker = ResourceTimeTracking.objects.get(id=bill.usage.id)
+            if not tacker.destroy_vms_countdown_started:
+                destroy_vm_with_open_tabs.apply_async(
+                    (tacker.id,),
+                    countdown=countdown_time,
+                    queue='ssh_queue'
+                )
+                tacker.destroy_vms_countdown_started = True
+                tacker.save()
 
-        start_bg.apply_async((), queue='ssh_queue')
+            start_bg.apply_async((), queue='ssh_queue')
 
-        customer.save()
+            customer.save()
+        except BillingHistory.DoesNotExist:
+            print(f'No billing history found for invoice: {invoice.id}')
 
     else:
         print(f'Unhandled event type {event.type}')

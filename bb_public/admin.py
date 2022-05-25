@@ -14,7 +14,7 @@ class EmailUpdateListAdmin(admin.ModelAdmin):
 
 class ContactUsAdmin(admin.ModelAdmin):
     ''' ContactUsAdmin '''
-    list_display = ('name', 'email', 'message')
+    list_display = ('name', 'email', 'message', 'is_closed')
 
 admin.site.register(EmailUpdateList, EmailUpdateListAdmin)
 admin.site.register(ContactUs, ContactUsAdmin)

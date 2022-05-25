@@ -1,11 +1,10 @@
-''' models.py for bb_public '''
+''' bb_public | models.py '''
 
 from django.db import models
 
 # -------------------------- Email Update List Form -------------------------- #
 class EmailUpdateList(models.Model):
     '''
-    EmailUpdateList model
     Used to store emails collected from the landing page.
     '''
     email = models.EmailField(max_length=254)
@@ -15,7 +14,7 @@ class EmailUpdateList(models.Model):
     class Meta:
         ''' Meta class '''
         verbose_name = 'Email Update List'
-        verbose_name_plural = 'Email List'
+        verbose_name_plural = 'A - Email List'
 
 # ------------------------------ Contact Us Form ----------------------------- #
 class ContactUs(models.Model):
@@ -26,7 +25,9 @@ class ContactUs(models.Model):
     email = models.EmailField(max_length=254)
     message = models.TextField()
 
+    is_closed = models.BooleanField(default=False) # Set to True after message viewed.
+
     class Meta:
         ''' Meta class '''
         verbose_name = 'Contact Us'
-        verbose_name_plural = 'Contact Us'
+        verbose_name_plural = 'B - Contact Us'
