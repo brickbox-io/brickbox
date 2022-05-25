@@ -36,7 +36,7 @@ class HostFoundation(models.Model):
         return f"{self.serial_number}"
 
     class Meta:
-        verbose_name_plural = "Hosts"
+        verbose_name_plural = "A - Hosts"
 
 # --------------------------- Host Port Allocation --------------------------- #
 @receiver(pre_save, sender=HostFoundation)
@@ -116,7 +116,7 @@ class GPU(models.Model):
     bg_running = models.BooleanField(default = False) # Background task running
 
     class Meta:
-        verbose_name_plural = "GPUs"
+        verbose_name_plural = "B - GPUs"
 
 
 # -------------------------------- Rented GPUs ------------------------------- #
