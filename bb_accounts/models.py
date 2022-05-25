@@ -1,5 +1,7 @@
 ''' bbaccounts | model.py'''
 
+# pylint: disable=R0903
+
 from django.contrib.auth import get_user_model
 
 from bb_data.models import UserProfile
