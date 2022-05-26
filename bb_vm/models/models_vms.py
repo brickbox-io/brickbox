@@ -50,7 +50,7 @@ class VirtualBrick(models.Model):
         return self.ssh_port.is_alive
 
     class Meta:
-        verbose_name_plural = "Virtual Bricks/Machines"
+        verbose_name_plural = "C - Virtual Machines (Bricks)"
 
 # ------------------------------- Brick Hstory ------------------------------- #
 @receiver(post_save, sender=VirtualBrick)
