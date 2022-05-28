@@ -3,7 +3,14 @@
     <!-- <td class="text-center">1</td> -->
 
     <!-- Brick Name -->
-    <td>{{ brick.virt_brick.name }}</td>
+    <td>{{ brick.virt_brick.name }}
+        <button type="button" rel="tooltip" class="btn btn-default btn-link btn-icon btn-sm" data-brickid="{{ brick.virt_brick.id }}" onclick="OpenConfiguration(this.dataset.brickid)">
+            <i class="material-icons">
+                tune
+                </span>
+
+            </i>
+    </td>
 
     {% if brick.virt_brick.ssh_port != None %}
 
@@ -24,13 +31,13 @@
     <!-- RUNNING - Brick Actions -->
     <td class="td-actions text-right">
         <button type="button" rel="tooltip" class="btn btn-info btn-link btn-icon btn-sm" id="reboot_button" data-brickid="{{ brick.virt_brick.id }}" onclick="BrickReboot(this.dataset.brickid)">
-            <i class="tim-icons icon-refresh-01"></i>
+            <i class="material-icons">restart_alt</i>
         </button>
         <button type="button" rel="tooltip" class="btn btn-success btn-link btn-icon btn-sm" id="power_button" data-brickid="{{ brick.virt_brick.id }}" onclick="BrickPause(this.dataset.brickid)">
-            <i class="tim-icons icon-button-pause"></i>
+            <i class="material-icons">pause</i>
         </button>
         <button type="button" rel="tooltip" class="btn btn-danger btn-link btn-icon btn-sm" data-brickid="{{ brick.virt_brick.id }}" data-brickname="{{ brick.virt_brick.name }}" onclick="BrickDestroy(this.dataset.brickid, this.dataset.brickname)">
-            <i class="tim-icons icon-trash-simple"></i>
+            <i class="material-icons">delete_forever</i>
         </button>
     </td>
 
@@ -41,13 +48,13 @@
     <!-- REBOOTING - Brick Actions -->
     <td class="td-actions text-right">
         <button type="button" rel="tooltip" class="btn btn-info btn-link btn-icon btn-sm" disabled>
-            <i class="tim-icons icon-refresh-01"></i>
+            <i class="material-icons">restart_alt</i>
         </button>
         <button type="button" rel="tooltip" class="btn btn-success btn-link btn-icon btn-sm" disabled>
-            <i class="tim-icons icon-button-pause"></i>
+            <i class="material-icons">pause</i>
         </button>
         <button type="button" rel="tooltip" class="btn btn-danger btn-link btn-icon btn-sm" data-brickid="{{ brick.virt_brick.id }}" data-brickname="{{ brick.virt_brick.name }}" onclick="BrickDestroy(this.dataset.brickid, this.dataset.brickname)">
-            <i class="tim-icons icon-trash-simple"></i>
+            <i class="material-icons">delete_forever</i>
         </button>
     </td>
 
@@ -58,13 +65,13 @@
     <!-- BOOTING - Brick Actions -->
     <td class="td-actions text-right">
         <button type="button" rel="tooltip" class="btn btn-info btn-link btn-icon btn-sm" disabled>
-            <i class="tim-icons icon-refresh-01"></i>
+            <i class="material-icons">restart_alt</i>
         </button>
         <button type="button" rel="tooltip" class="btn btn-success btn-link btn-icon btn-sm" disabled>
-            <i class="tim-icons icon-button-pause"></i>
+            <i class="material-icons">pause</i>
         </button>
         <button type="button" rel="tooltip" class="btn btn-danger btn-link btn-icon btn-sm" data-brickid="{{ brick.virt_brick.id }}" data-brickname="{{ brick.virt_brick.name }}" onclick="BrickDestroy(this.dataset.brickid, this.dataset.brickname)">
-            <i class="tim-icons icon-trash-simple"></i>
+            <i class="material-icons">delete_forever</i>
         </button>
     </td>
 
@@ -76,13 +83,13 @@
     <!-- OFFLINE - Brick Actions -->
     <td class="td-actions text-right">
         <button type="button" rel="tooltip" class="btn btn-info btn-link btn-icon btn-sm" disabled>
-            <i class="tim-icons icon-refresh-01"></i>
+            <i class="material-icons">restart_alt</i>
         </button>
         <button type="button" rel="tooltip" class="btn btn-success btn-link btn-icon btn-sm" disabled>
-            <i class="tim-icons icon-button-pause"></i>
+            <i class="material-icons">pause</i>
         </button>
         <button type="button" rel="tooltip" class="btn btn-danger btn-link btn-icon btn-sm" disabled>
-            <i class="tim-icons icon-trash-simple"></i>
+            <i class="material-icons">delete_forever</i>
         </button>
     </td>
 
@@ -93,13 +100,13 @@
     <!-- PAUSED - Brick Actions -->
     <td class="td-actions text-right">
         <button type="button" rel="tooltip" class="btn btn-info btn-link btn-icon btn-sm" id="reboot_button" disabled>
-            <i class="tim-icons icon-refresh-01"></i>
+            <i class="material-icons">restart_alt</i>
         </button>
         <button type="button" rel="tooltip" class="btn btn-success btn-link btn-icon btn-sm" id="power_button" data-brickid="{{ brick.virt_brick.id }}" onclick="BrickPlay(this.dataset.brickid)">
-            <i class="tim-icons icon-triangle-right-17"></i>
+            <i class="material-icons">play_arrow</i>
         </button>
         <button type="button" rel="tooltip" class="btn btn-danger btn-link btn-icon btn-sm" data-brickid="{{ brick.virt_brick.id }}" data-brickname="{{ brick.virt_brick.name }}" onclick="BrickDestroy(this.dataset.brickid, this.dataset.brickname)">
-            <i class="tim-icons icon-trash-simple"></i>
+            <i class="material-icons">delete_forever</i>
         </button>
     </td>
 
@@ -123,13 +130,13 @@
     <td class="text-right"> Provisioning </td>
     <td class="td-actions text-right">
         <button type="button" rel="tooltip" class="btn btn-info btn-link btn-icon btn-sm" disabled>
-            <i class="tim-icons icon-refresh-01"></i>
+            <i class="material-icons">restart_alt</i>
         </button>
         <button type="button" rel="tooltip" class="btn btn-success btn-link btn-icon btn-sm" disabled>
-            <i class="tim-icons icon-button-pause"></i>
+            <i class="material-icons">pause</i>
         </button>
         <button type="button" rel="tooltip" class="btn btn-danger btn-link btn-icon btn-sm" disabled>
-            <i class="tim-icons icon-trash-simple"></i>
+            <i class="material-icons">delete_forever</i>
         </button>
     </td>
 
