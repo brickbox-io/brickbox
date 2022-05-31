@@ -271,13 +271,13 @@ def brick_info(request):
     '''
     brick = VirtualBrick.objects.get(id=request.POST.get('brick_id'))
 
-    brick_info = {}
-    brick_info['name'] = brick.name
-    brick_info['gpu_count'] = brick.assigned_gpus.count()
-    brick_info['cpu_count'] = brick.cpu_count
-    brick_info['memory_quantity'] = brick.memory_quantity
+    brick_data = {}
+    brick_data['name'] = brick.name
+    brick_data['gpu_count'] = brick.assigned_gpus.count()
+    brick_data['cpu_count'] = brick.cpu_count
+    brick_data['memory_quantity'] = brick.memory_quantity
 
-    return JsonResponse(brick_info, status=200, safe=False)
+    return JsonResponse(brick_data, status=200, safe=False)
 
 def update_brick_resources(request):
     '''
