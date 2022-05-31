@@ -1,6 +1,5 @@
 ''' Manages the availability of resources. '''
 
-from faulthandler import is_enabled
 from bb_vm.models import HostFoundation, GPU
 
 def available_gpus(host_id=None):

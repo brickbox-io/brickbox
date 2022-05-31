@@ -11,10 +11,10 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
 
-from bb_vm.utilities import resource_manager
-
 from bb_data.models import UserProfile, PaymentMethod, CustomScript, ResourceTimeTracking
 from bb_vm.models import PortTunnel, VirtualBrick, VirtualBrickOwner, GPU, RentedGPU
+
+from bb_vm.utilities import resource_manager
 
 from bb_tasks.tasks import(
         new_vm_subprocess, destroy_vm_subprocess, close_ssh_port,
