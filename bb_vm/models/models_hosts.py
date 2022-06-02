@@ -1,5 +1,6 @@
 ''' bb_vm - models_hosts.py '''
 
+from multiprocessing import cpu_count
 from django.db import models
 from django.dispatch import receiver
 from django.db.models.signals import pre_save, post_save, post_delete
@@ -15,7 +16,6 @@ class HostFoundation(models.Model):
     Recivers(s): assign_host_ssh_port
     '''
     vpn_ip = models.GenericIPAddressField(unique=True, null=True, blank=True) # OpenVPN IP
-
     serial_number = models.CharField(max_length=64, null=True, unique=True)  # Host serial number
 
     # SSH Tunnel
@@ -26,6 +26,10 @@ class HostFoundation(models.Model):
 
     # Root User
     ssh_username = models.CharField(max_length = 64, default="bb_root")
+
+    # Available Resources
+    cpu_cores = models.IntegerField(default=12) # Real Cores
+    memory = models.IntegerField(default=12)    # GB
 
     # Flags
     is_enabled = models.BooleanField(default=False)      # Enabled/Disabled for use
