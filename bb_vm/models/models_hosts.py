@@ -4,6 +4,8 @@ from django.db import models
 from django.dispatch import receiver
 from django.db.models.signals import pre_save, post_save, post_delete
 
+import box
+
 from bb_data.models import ColocationClient
 
 # ----------------------------------- Hosts ---------------------------------- #
@@ -13,7 +15,6 @@ class HostFoundation(models.Model):
     Recivers(s): assign_host_ssh_port
     '''
     vpn_ip = models.GenericIPAddressField(unique=True, null=True, blank=True) # OpenVPN IP
-
     serial_number = models.CharField(max_length=64, null=True, unique=True)  # Host serial number
 
     # SSH Tunnel
@@ -24,6 +25,10 @@ class HostFoundation(models.Model):
 
     # Root User
     ssh_username = models.CharField(max_length = 64, default="bb_root")
+
+    # Available Resources
+    cpu_cores = models.IntegerField(default=12) # Real Cores
+    memory = models.IntegerField(default=12)    # GB
 
     # Flags
     is_enabled = models.BooleanField(default=False)      # Enabled/Disabled for use
@@ -36,7 +41,7 @@ class HostFoundation(models.Model):
         return f"{self.serial_number}"
 
     class Meta:
-        verbose_name_plural = "Hosts"
+        verbose_name_plural = "A - Hosts"
 
 # --------------------------- Host Port Allocation --------------------------- #
 @receiver(pre_save, sender=HostFoundation)
@@ -65,7 +70,8 @@ class EquipmentOwner(models.Model):
     server = models.ForeignKey('HostFoundation', on_delete=models.PROTECT)
     date_ordered = models.DateField(blank=True, null=True)
 
-
+    class Meta:
+        verbose_name_plural = "K - Equipment Owners"
 
 # ----------------------------------- Ports ---------------------------------- #
 class PortTunnel(models.Model):
@@ -78,6 +84,9 @@ class PortTunnel(models.Model):
 
     def __str__(self):
         return f"{self.port_number}"
+
+    class Meta:
+        verbose_name_plural = "G - Tunnel Ports"
 
 # ------------------------------ Port Allocation ----------------------------- #
 @receiver(pre_save, sender=PortTunnel)
@@ -110,13 +119,35 @@ class GPU(models.Model):
     xml = models.TextField(null=True)
 
     rented = models.BooleanField(default = False)
+    attached_to = models.ForeignKey('VirtualBrick', null=True, blank=True, on_delete=models.PROTECT)
 
     # Background Tasks
     bg_ready = models.BooleanField(default = False) # Indicates that an img is ready for the GPU
     bg_running = models.BooleanField(default = False) # Background task running
 
     class Meta:
-        verbose_name_plural = "GPUs"
+        verbose_name_plural = "B - GPUs"
+
+@receiver(pre_save, sender=GPU)
+def toggle_bg_task(sender, instance, **kwargs):
+    '''
+    Toggles background task before saving.
+    '''
+    print(sender)
+    if instance.rented and instance.bg_ready:
+        box.Brick(
+            host_port = instance.host.ssh_port,
+            brick_id = f'gpu_{str(instance.id)}'
+        ).toggle_state(set_state="off")
+        instance.bg_running = False
+
+    elif not instance.rented and instance.bg_ready:
+        box.Brick(
+            host_port = instance.host.ssh_port,
+            brick_id = f'gpu_{str(instance.id)}'
+        ).toggle_state(set_state="on")
+        instance.bg_running = True
+
 
 
 # -------------------------------- Rented GPUs ------------------------------- #
@@ -125,11 +156,11 @@ class RentedGPU(models.Model):
     Allocates a GPU to a virtual machine.
     Reciver(s): update_rent_status, update_rent_status_available
     '''
-    gpu = models.ForeignKey('GPU', on_delete=models.PROTECT, null=True)
+    gpu = models.OneToOneField('GPU', on_delete=models.PROTECT, null=True)
     virt_brick = models.ForeignKey('VirtualBrick', on_delete=models.CASCADE, blank=True, null=True)
 
     class Meta:
-        verbose_name_plural = "Rented GPUs"
+        verbose_name_plural = "D - Rented GPUs"
 
 # ----------------------------- GPU Rented Status ---------------------------- #
 @receiver(post_save, sender=RentedGPU)

@@ -337,3 +337,22 @@ class Brick:
         )
 
         return host.stdout.decode('utf-8').replace("'", '').rstrip("\n")
+
+    # ---------------------------------------------------------------------------- #
+    #                                Edit Resources                                #
+    # ---------------------------------------------------------------------------- #
+
+    def add_gpu(self, xml_data=None):
+        '''
+        Powers off the VM, adds the GPU, then powers on the VM.
+        '''
+        was_running = self.is_running()
+
+        time.sleep(15)
+        self.toggle_state(set_state="off")
+        time.sleep(3)
+
+        self.attach_gpu(xml_data=xml_data)
+
+        if was_running:
+            self.toggle_state(set_state="on")

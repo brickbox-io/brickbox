@@ -8,7 +8,7 @@ import box
 
 from bb_data.models import UserProfile, ResourceTimeTracking
 from bb_vm.models import (
-    PortTunnel, VirtualBrick, HostFoundation, VirtualBrickOwner
+    PortTunnel, VirtualBrick, HostFoundation, VirtualBrickOwner, GPU
 )
 
 
@@ -65,6 +65,20 @@ def destroy_vm_subprocess(instance_id, host_id=None):
 
     if host_id is None:
         brick.delete()
+
+# -------------------------- Attatch Additional GPU -------------------------- #
+@shared_task
+def attach_gpu_subprocess(instance_id, gpu_id):
+    '''
+    Attatch a GPU to a VM.
+    '''
+    brick = VirtualBrick.objects.get(id=instance_id)
+    host = brick.host
+
+    virtual_machine = box.Brick(host_port=host.ssh_port, brick_id=f'{str(instance_id)}')
+
+    gpu_xml = GPU.objects.get(id=gpu_id).xml
+    virtual_machine.add_gpu(xml_data=f'{str(gpu_xml)}')
 
 # ---------------------------- Terminate SSH Port ---------------------------- #
 @shared_task

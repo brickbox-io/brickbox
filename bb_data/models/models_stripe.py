@@ -87,7 +87,7 @@ class ResourceTimeTracking(models.Model):
         total_3070 = int(self.minutes_3070/60) * float(self.rate_3070)
         total_3090 = int(self.minutes_3090/60) * float(self.rate_3090)
 
-        return "%0.2f" % round((total_3070+total_3090), 2) #pylint: disable=consider-using-f-string
+        return float("%0.2f" % round((total_3070+total_3090), 2)) #pylint: disable=consider-using-f-string
 
     class Meta:
         verbose_name_plural = "Resource Time Tracking"
@@ -102,8 +102,9 @@ class BillingHistory(models.Model):
     usage = models.ForeignKey(ResourceTimeTracking, on_delete=models.CASCADE, blank=True,null=True)
     amount_alt = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
 
+    invoice_number = models.CharField(max_length=100, blank=True, null=True) # Stripe Invoice No.
     invoice_link = models.TextField(blank=True, null=True)
-    invoice_id = models.CharField(max_length=100, blank=True, null=True) # Stripe Invoice ID
+    invoice_id = models.CharField(max_length=100, blank=True, null=True)     # Stripe Invoice ID
 
     status = models.CharField(max_length=32, choices=invoice_status_choices, default='unpaid')
 

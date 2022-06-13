@@ -9,3 +9,4 @@ class BbPublicConfig(AppConfig):
     '''
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'bb_public'
+    verbose_name: str = '01 | PUBLIC FORMS'
