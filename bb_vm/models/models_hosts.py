@@ -1,6 +1,5 @@
 ''' bb_vm - models_hosts.py '''
 
-from multiprocessing import cpu_count
 from django.db import models
 from django.dispatch import receiver
 from django.db.models.signals import pre_save, post_save, post_delete
