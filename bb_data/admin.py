@@ -15,7 +15,7 @@ class ColocationClientOwnerAdmin(admin.ModelAdmin):
     '''
     Admin configuration for ColocationClientOwner model.
     '''
-    list_display = ('owner_profile', 'client_account')
+    list_display = ('owner_profile', 'client_account',)
 
 class CryptoSnapshotAdmin(admin.ModelAdmin):
     '''
