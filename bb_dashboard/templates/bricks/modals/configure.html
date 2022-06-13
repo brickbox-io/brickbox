@@ -24,19 +24,20 @@
                         </td>
                     </tr>
 
+
                     <!-- Add/Remove vCPUs -->
                     <tr>
                         <td>
                             vCPUs
                         </td>
                         <td>
-                            <button type="button" class="btn btn-default btn-link btn-icon btn-sm" onclick="DecreaseResourceCount('cpu')">
+                            <button type="button" class="btn btn-default btn-link btn-icon btn-sm" onclick="DecreaseResourceCount('cpu')" disabled>
                                 <i class="material-icons">indeterminate_check_box</i>
                             </button>
 
                             <span id="config-current_cpu"></span>
 
-                            <button type="button" class="btn btn-default btn-link btn-icon btn-sm" onclick="IncreaseResourceCount('cpu')">
+                            <button type="button" class="btn btn-default btn-link btn-icon btn-sm" onclick="IncreaseResourceCount('cpu')" disabled>
                                 <i class="material-icons">add_box</i>
                             </button>
                         </td>
@@ -48,18 +49,19 @@
                             Memory
                         </td>
                         <td>
-                            <button type="button" class="btn btn-default btn-link btn-icon btn-sm" onclick="DecreaseResourceCount('memory')">
+                            <button type="button" class="btn btn-default btn-link btn-icon btn-sm" onclick="DecreaseResourceCount('memory')" disabled>
                                 <i class="material-icons">indeterminate_check_box</i>
                             </button>
 
                             <span id="config-current_memory"></span>
                             <span id="config-current_memory">GB</span>
 
-                            <button type="button" class="btn btn-default btn-link btn-icon btn-sm" onclick="IncreaseResourceCount('memory')">
+                            <button type="button" class="btn btn-default btn-link btn-icon btn-sm" onclick="IncreaseResourceCount('memory')" disabled>
                                 <i class="material-icons">add_box</i>
                             </button>
                         </td>
                     </tr>
+
 
                 </table>
 
