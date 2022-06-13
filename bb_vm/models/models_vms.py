@@ -20,7 +20,6 @@ class VirtualBrick(models.Model):
 
     name = models.CharField(max_length = 36, null=True)         # Arbitrary Name
     domain_uuid = models.UUIDField(max_length = 36, null=True)  # UUID of the VM (serial="domain")
-    assigned_gpus = models.ManyToManyField('GPU', through='RentedGPU', related_name='assigned_gpus')
     ssh_port = models.ForeignKey('bb_vm.PortTunnel', on_delete=models.PROTECT, null=True)
     sshtunnel_public_key = models.TextField(blank=True, null=True)  # Key to establish SSH tunnel
 
@@ -37,6 +36,11 @@ class VirtualBrick(models.Model):
                     related_name='brick_owner'
                 )
 
+    # Resources
+    assigned_gpus = models.ManyToManyField('GPU', through='RentedGPU', related_name='assigned_gpus')
+    cpu_count = models.IntegerField(default=4)
+    memory_quantity = models.IntegerField(default=12) # in GB
+
     img_cloned = models.BooleanField(default = False) # True when img clone verified
     is_booting = models.BooleanField(default = True) # True when VM is booting
     is_rebooting = models.BooleanField(default = False)
@@ -50,7 +54,7 @@ class VirtualBrick(models.Model):
         return self.ssh_port.is_alive
 
     class Meta:
-        verbose_name_plural = "Virtual Bricks/Machines"
+        verbose_name_plural = "C - Virtual Machines (Bricks)"
 
 # ------------------------------- Brick Hstory ------------------------------- #
 @receiver(post_save, sender=VirtualBrick)
@@ -75,7 +79,7 @@ class VirtualBrickOwner(models.Model):
     virt_brick = models.ForeignKey(VirtualBrick, on_delete=models.PROTECT)
 
     class Meta:
-        verbose_name_plural = "VM Owners"
+        verbose_name_plural = "J - VM Owners"
 
 @receiver(post_save, sender=VirtualBrickOwner)
 def update_vm_owner_history(sender, instance, created, **kwargs):
@@ -100,7 +104,7 @@ class VirtualBrickHistory(models.Model):
     date_destroyed = models.DateTimeField(null=True, blank=True)
 
     class Meta:
-        verbose_name_plural = "Virtual Brick History"
+        verbose_name_plural = "H - VM History"
 
 
 # ---------------------------------- Logging --------------------------------- #
@@ -128,4 +132,4 @@ class VMLog(models.Model):
     command_output = models.TextField(null=True)    # Output of the command
 
     class Meta:
-        verbose_name_plural = "VM Logs"
+        verbose_name_plural = "I - VM Logs"

@@ -14,10 +14,12 @@ from django.template.loader import render_to_string
 from bb_data.models import UserProfile, PaymentMethod, CustomScript, ResourceTimeTracking
 from bb_vm.models import PortTunnel, VirtualBrick, VirtualBrickOwner, GPU, RentedGPU
 
+from bb_vm.utilities import resource_manager
+
 from bb_tasks.tasks import(
         new_vm_subprocess, destroy_vm_subprocess, close_ssh_port,
         pause_vm_subprocess, play_vm_subprocess, reboot_vm_subprocess,
-        stop_bg, host_cleanup, start_bg
+        stop_bg, host_cleanup, start_bg, attach_gpu_subprocess
     )
 
 DIR = '/opt/brickbox/bb_vm/bash_scripts/'
@@ -259,6 +261,45 @@ def brick_destroy(request):
         return HttpResponse("Brick Deleted", status=200)
 
     return JsonResponse(response_data, status=200, safe=False)
+
+
+def brick_info(request):
+    '''
+    URL:/vm/brick/info
+    Method: POST
+    Returns a summary of the selected brick.
+    '''
+    brick = VirtualBrick.objects.get(id=request.POST.get('brick_id'))
+
+    brick_data = {}
+    brick_data['name'] = brick.name
+    brick_data['gpu_count'] = brick.assigned_gpus.count()
+    brick_data['cpu_count'] = brick.cpu_count
+    brick_data['memory_quantity'] = brick.memory_quantity
+
+    return JsonResponse(brick_data, status=200, safe=False)
+
+def update_brick_resources(request):
+    '''
+    URL: /vm/brick/update_resources
+    Method: POST
+    Adds or removes resources from the selected VM.
+    '''
+    brick = VirtualBrick.objects.get(id=request.POST.get('brick_id'))
+
+    if int(request.POST.get('gpu_count')) > brick.assigned_gpus.count():
+        assigned_gpu = resource_manager.get_assigned_gpu(brick.host.id)
+        attach_gpu_subprocess.apply_async((brick.id, assigned_gpu.id), queue='ssh_queue')
+
+        assigned_gpu.attached_to = brick
+        assigned_gpu.save()
+
+        RentedGPU(
+            gpu = assigned_gpu,
+            virt_brick = brick,
+        ).save()
+
+    return HttpResponse(status=200)
 
 
 # ---------------------------------------------------------------------------- #

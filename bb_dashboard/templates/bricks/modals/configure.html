@@ -1,0 +1,76 @@
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ConfigureBrick" aria-hidden="true" id="brick_configure">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-body">
+                Configure Brick
+
+                <table>
+
+                    <!-- Add/Remove GPUs -->
+                    <tr>
+                        <td>
+                            GPUs
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-default btn-link btn-icon btn-sm" onclick="DecreaseResourceCount('gpu')">
+                                <i class=" material-icons">indeterminate_check_box</i>
+                            </button>
+
+                            <span id="config-current_gpu"></span>
+
+                            <button type="button" class="btn btn-default btn-link btn-icon btn-sm" onclick="IncreaseResourceCount('gpu')">
+                                <i class="material-icons">add_box</i>
+                            </button>
+                        </td>
+                    </tr>
+
+
+                    <!-- Add/Remove vCPUs -->
+                    <tr>
+                        <td>
+                            vCPUs
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-default btn-link btn-icon btn-sm" onclick="DecreaseResourceCount('cpu')" disabled>
+                                <i class="material-icons">indeterminate_check_box</i>
+                            </button>
+
+                            <span id="config-current_cpu"></span>
+
+                            <button type="button" class="btn btn-default btn-link btn-icon btn-sm" onclick="IncreaseResourceCount('cpu')" disabled>
+                                <i class="material-icons">add_box</i>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <!-- Increase/Decrease Memory -->
+                    <tr>
+                        <td>
+                            Memory
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-default btn-link btn-icon btn-sm" onclick="DecreaseResourceCount('memory')" disabled>
+                                <i class="material-icons">indeterminate_check_box</i>
+                            </button>
+
+                            <span id="config-current_memory"></span>
+                            <span id="config-current_memory">GB</span>
+
+                            <button type="button" class="btn btn-default btn-link btn-icon btn-sm" onclick="IncreaseResourceCount('memory')" disabled>
+                                <i class="material-icons">add_box</i>
+                            </button>
+                        </td>
+                    </tr>
+
+
+                </table>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="SaveResourceChanges" onclick="SaveResourceChanges(this.dataset.brick_id)">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

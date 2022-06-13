@@ -28,18 +28,18 @@ class HostFoundationAdmin(admin.ModelAdmin):
     Admin configuration for HostFoundation model.
     '''
     list_display = ('vpn_ip', 'ssh_port', 'is_enabled', 'is_online', 'is_ready')
-    readonly_fields = ['is_online', 'is_ready']
+    readonly_fields = ['ssh_port', 'sshtunnel_public_key', 'ssh_username', 'is_online', 'is_ready']
 
 class GPUAdmin(admin.ModelAdmin):
     '''
     Admin configuration for GPU model.
     '''
     list_display = (
-                        'id', 'host', 'model',
-                        'pcie', 'device', 'is_enabled',
-                        'rented', 'bg_ready', 'bg_running'
+                        'id', 'host', 'model', 'pcie', 'device',
+                        'is_enabled', 'rented', 'attached_to',
+                        'bg_ready', 'bg_running'
                     )
-    readonly_fields = ('rented',)
+    readonly_fields = ('rented', 'attached_to', 'bg_ready', 'bg_running')
 
 class RentedGPUAdmin(admin.ModelAdmin):
     '''

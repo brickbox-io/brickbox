@@ -7,7 +7,7 @@ from .periodic import verify_host_connectivity, reconnect_host, host_cleanup
 from .callable import (
     pause_vm_subprocess, play_vm_subprocess,
     reboot_vm_subprocess, destroy_vm_subprocess, close_ssh_port,
-    destroy_vm_with_open_tabs,
+    destroy_vm_with_open_tabs, attach_gpu_subprocess
 )
 
 from .system import (
@@ -25,5 +25,5 @@ __all__ = [
     'catch_clone_errors', 'remove_stale_clone',
     'prepare_gpu_background_task', 'stop_bg', 'start_bg',
     'threshold_resource_invoicing', 'monthly_resource_invoicing',
-    'destroy_vm_with_open_tabs'
+    'destroy_vm_with_open_tabs', 'attach_gpu_subprocess'
 ]
