@@ -54,4 +54,9 @@ urlpatterns = [
     path('brick/reboot/', views.brick_reboot, name='brick_reboot'),     # Reboot VM
 
     path('brick/destroy/', views.brick_destroy, name='brick_destroy'),  # Destroy VM
+
+    # -------------------------------- Brick Info -------------------------------- #
+    path('brick/info', views.brick_info, name='brick_info'),
+
+    path('brick/update_resources', views.update_brick_resources, name='update_brick_resources'),
 ]

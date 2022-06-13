@@ -20,7 +20,7 @@ class CloudImage(models.Model):
         return f"{self.distribution} - {self.version}"
 
     class Meta:
-        verbose_name_plural = "Cloud Images"
+        verbose_name_plural = "E - Cloud Images"
 
 
 # ------------------------- Background Tasks/Scritps ------------------------- #
@@ -33,3 +33,6 @@ class BackgroundTask(models.Model):
     script = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name_plural = "F - Background Tasks"
