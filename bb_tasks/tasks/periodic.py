@@ -60,16 +60,14 @@ def verify_brick_connectivity():
     '''
     bricks = VirtualBrick.objects.all()
 
-    port_result = False
     script = False
-    command = "No Command Ran"
 
     for brick in bricks:
         try:
             if brick.ssh_port.port_number is not None:
                 command = ['lsof', '-i', f'tcp:{brick.ssh_port.port_number}']
-                with Popen(command, stdout=PIPE) as script:
 
+                with Popen(command, stdout=PIPE) as script:
                     port_result = f"{script.stdout.read().decode('ascii')}"
 
                     if port_result and not brick.is_online:
@@ -105,6 +103,7 @@ def verify_brick_connectivity():
                         ).update(is_rebooting=False)
         except AttributeError as err:
             port_result = f"{err}"
+            command = "No Command Ran"
 
 
     return {

@@ -285,7 +285,10 @@ def update_brick_resources(request):
     Method: POST
     Adds or removes resources from the selected VM.
     '''
-    brick = VirtualBrick.objects.get(id=request.POST.get('brick_id'))
+    try:
+        brick = VirtualBrick.objects.get(id=request.POST.get('brick_id'))
+    except VirtualBrick.DoesNotExist:
+        return HttpResponse("Brick Does Not Exist", status=200)
 
     if int(request.POST.get('gpu_count')) > brick.assigned_gpus.count():
         assigned_gpu = resource_manager.get_assigned_gpu(brick.host.id)
