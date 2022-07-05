@@ -4,12 +4,11 @@
 
     <!-- Brick Name -->
     <td>{{ brick.virt_brick.name }}
+        {% if brick.virt_brick.is_online and not brick.virt_brick.is_rebooting and brick.virt_brick.is_online %}
         <button type="button" rel="tooltip" class="btn btn-default btn-link btn-icon btn-sm" data-brickid="{{ brick.virt_brick.id }}" onclick="OpenConfiguration(this.dataset.brickid)">
-            <i class="material-icons">
-                tune
-                </span>
-
-            </i>
+            <i class="material-icons">tune</i>
+        </button>
+        {% endif %}
     </td>
 
     {% if brick.virt_brick.ssh_port != None %}
@@ -24,7 +23,7 @@
     <!-- <td>2013</td> -->
 
     <!-- Brick Status -->
-    {% if brick.virt_brick.is_on and not brick.virt_brick.is_rebooting and brick.virt_brick.is_online %}
+    {% if brick.virt_brick.is_online and not brick.virt_brick.is_rebooting and brick.virt_brick.is_online %}
 
     <td class="text-right" id="status_text">Running</td>
 
@@ -41,7 +40,7 @@
         </button>
     </td>
 
-    {% elif brick.virt_brick.is_rebooting and brick.virt_brick.is_on and brick.virt_brick.is_online%}
+    {% elif brick.virt_brick.is_rebooting and brick.virt_brick.is_online and brick.virt_brick.is_online%}
 
     <td class="text-right" id="status_text">Rebooting</td>
 
