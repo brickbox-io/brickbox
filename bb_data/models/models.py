@@ -258,30 +258,31 @@ def grab_crypto_price(sender, instance, created, **kwargs):
     if created:
 
         eth_price = 0
+        etherscane_url = 'https://api.etherscan.io/api?module=stats&action=ethprice'
 
         try:
-            eth_result = requests.get('https://api.etherscan.io/api?module=stats&action=ethprice')
+            eth_result = requests.get(etherscane_url, timeout=5)
 
             eth = json.loads(eth_result.text)
             eth_price = eth['result']['ethusd']
 
         except TypeError:
             time.sleep(60)
-            eth_result = requests.get('https://api.etherscan.io/api?module=stats&action=ethprice')
+            eth_result = requests.get(etherscane_url, timeout=5)
 
             eth = json.loads(eth_result.text)
             eth_price = eth['result']['ethusd']
 
         except requests.exceptions.SSLError:
             time.sleep(60)
-            eth_result = requests.get('https://api.etherscan.io/api?module=stats&action=ethprice')
+            eth_result = requests.get(etherscane_url, timeout=5)
 
             eth = json.loads(eth_result.text)
             eth_price = eth['result']['ethusd']
 
         except json.JSONDecodeError:
             time.sleep(60)
-            eth_result = requests.get('https://api.etherscan.io/api?module=stats&action=ethprice')
+            eth_result = requests.get(etherscane_url, timeout=5)
 
             eth = json.loads(eth_result.text)
             eth_price = eth['result']['ethusd']
