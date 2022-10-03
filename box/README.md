@@ -4,9 +4,13 @@ Internal package that provides an API layer for managing hosts and virtual machi
 
 Assume sucess unless error.
 
-## Background
+## Background (Celery)
 
 Celery is used to manage the background tasks that include creating SSH connections. Each host should have its own celery worker process.
+
+box does not create the celery work but does expect the celery worker to be running and formatted as follows:
+
+
 
 ## Objects and Methods
 
