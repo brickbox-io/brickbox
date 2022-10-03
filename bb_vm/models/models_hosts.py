@@ -134,6 +134,9 @@ def toggle_bg_task(sender, instance, **kwargs):
     Toggles background task before saving.
     '''
     print(sender)
+    if not instance.host.is_online:
+        return
+
     if instance.rented and instance.bg_ready:
         box.Brick(
             host_port = instance.host.ssh_port,
@@ -148,7 +151,7 @@ def toggle_bg_task(sender, instance, **kwargs):
         ).toggle_state(set_state="on")
         instance.bg_running = True
 
-
+    return
 
 # -------------------------------- Rented GPUs ------------------------------- #
 class RentedGPU(models.Model):
