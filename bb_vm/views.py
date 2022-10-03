@@ -183,7 +183,7 @@ def brick_play(request):
 
     response_data = {}
     # Prevent starting VM if user has unpaid blance and 3+ strikes.
-    if profile.strikes >= 3 and tracker.cycle_total > 0:
+    if profile.strikes >= 3 and int(tracker.cycle_total) > 0:
         response_data['error'] = "Unpaid balance, update payment method to avoid interuptions."
         return JsonResponse(response_data, status=200, safe=False)
 
@@ -285,7 +285,10 @@ def update_brick_resources(request):
     Method: POST
     Adds or removes resources from the selected VM.
     '''
-    brick = VirtualBrick.objects.get(id=request.POST.get('brick_id'))
+    try:
+        brick = VirtualBrick.objects.get(id=request.POST.get('brick_id'))
+    except VirtualBrick.DoesNotExist:
+        return HttpResponse("Brick Does Not Exist", status=200)
 
     if int(request.POST.get('gpu_count')) > brick.assigned_gpus.count():
         assigned_gpu = resource_manager.get_assigned_gpu(brick.host.id)

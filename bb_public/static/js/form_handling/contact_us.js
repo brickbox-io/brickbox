@@ -3,6 +3,11 @@ function submit_message() {
     var email = document.getElementById("contact_us_email").value;
     var message = document.getElementById("contact_us_message").value;
 
+    if (name == "" || email == "" || message == "") {
+        alert("Please fill in all fields");
+        return false;
+    }
+
     var formData = new FormData();
     var xhttp = new XMLHttpRequest();
     var url = '/forms/contact_us';
