@@ -27,10 +27,11 @@ def email_list_form(request):
     '''
     URL: brickbox.io/forms/email_list/
     '''
-    new_email = EmailUpdateList(
-        email=request.POST['email']
-    )
-    new_email.save()
+    if request.POST['email'] is not None:
+        new_email = EmailUpdateList(
+            email=request.POST['email']
+        )
+        new_email.save()
 
     # return redirect('/')
     return HttpResponse('Email Submitted, Thank You', status=200)
