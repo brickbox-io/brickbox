@@ -1,8 +1,9 @@
 ''' Tasks that support overall system operations. '''
 
 from celery import shared_task
-import box
 import environ
+
+import box
 
 from bb_vm.models import GPU, BackgroundTask, RentedGPU
 
