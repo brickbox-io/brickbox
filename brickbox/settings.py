@@ -152,7 +152,7 @@ SOCIALACCOUNT_PROVIDERS = {
         ],
         'APP': {
             'client_id': env('SOCIAL_AUTH_GOOGLE_client_id'),
-            'secret': env('SOCIAL_AUTH_GOOGLE_secrect'),
+            'secret': env('SOCIAL_AUTH_GOOGLE_secret'),
             'key': ''
         }
     }
