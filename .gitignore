@@ -2,6 +2,7 @@
 brickbox-env/*
 bbenv/*
 env/*
+.env
 
 # python
 */__pycache__/*
