@@ -17,6 +17,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Step 0 | Set Environment Variables
+        run: |
+          echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> $GITHUB_ENV
+
       # Step 1, add the IP address
       - name: Add IP address to trusted source (managed database)
         uses: GarreauArthur/manage-digital-ocean-managed-database-trusted-sources-gh-action@main
@@ -35,7 +39,6 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          echo ${{ secrets.SECRET_KEY }}
           python3 -m pip install --upgrade pip
           pip install -r requirements.txt
 
