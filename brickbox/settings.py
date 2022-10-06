@@ -2,6 +2,11 @@
 
 import os
 import sys
+import environ
+
+# Environment variables
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -11,7 +16,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '*k*!&5jkh4%)5$y&g48l9msx+mnzuto5cld*%y92krq*&5uo)c'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -146,8 +151,8 @@ SOCIALACCOUNT_PROVIDERS = {
             'email',
         ],
         'APP': {
-            'client_id': '918414840239-qljh31euklmcem5ec7s72a726r3aofsr.apps.googleusercontent.com',
-            'secret': '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',
+            'client_id': env('SOCIAL_AUTH_GOOGLE_client_id'),
+            'secret': env('SOCIAL_AUTH_GOOGLE_secrect'),
             'key': ''
         }
     }
@@ -163,11 +168,11 @@ SOCIALACCOUNT_PROVIDERS = {
 if DEBUG:
     DB_NAME = 'debug-brickbox-db'
     DB_USER = 'doadmin'
-    DB_PASSWORD = 'dadi8xb2jd71ffx9'
+    DB_PASSWORD = env('DEBUG_DB_PASSWORD')
 else:
     DB_NAME = 'brickbox-db'
     DB_USER = 'doadmin'
-    DB_PASSWORD = 'dadi8xb2jd71ffx9'
+    DB_PASSWORD = env('DB_PASSWORD')
 
 if 'test' in sys.argv:
     DATABASES = {
@@ -175,7 +180,7 @@ if 'test' in sys.argv:
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'brickbox-ci',
             'USER': 'GitHub-Action',
-            'PASSWORD': '4kXOjCvhh5a3wWV7',
+            'PASSWORD': env('TEST_DB_PASSWORD'),
             'HOST': 'brickbox-db-postgresql-do-user-9465762-0.b.db.ondigitalocean.com',
             'PORT': '25060',
             'TEST': {'NAME': 'brickbox-ci'},
@@ -288,9 +293,9 @@ SERVER_EMAIL = 'info@brickbox.io'
 EMAIL_USE_TLS = True
 
 if DEBUG:
-    EMAIL_HOST_PASSWORD = 'r0flduqu' #Secure Single App Password
+    EMAIL_HOST_PASSWORD = env('EMAIL_PASSWORD') #Secure Single App Password
 else:
-    EMAIL_HOST_PASSWORD = 'r0flduqu'
+    EMAIL_HOST_PASSWORD = env('EMAIL_PASSWORD')
 
 PASSWORD_RESET_MAIL_FROM_USER = 'info@brickbox.io'    #CRM
 
@@ -398,19 +403,19 @@ else:
 # ---------------------------------------------------------------------------- #
 
 # ----------------------- Stripe Debug/Test Credentials ---------------------- #
-CLIENT_ID_TEST = 'ca_KbUZTFe8KqC56Ngh7b4hQUBu0fifyban'
+CLIENT_ID_TEST = env('STRIPE_CLIENT_ID_TEST')
 
-STRIPE_SECRET_KEY_TEST = 'sk_test_51Jb9T1AFJmW5oMdbI6NszFIEwIHNynAa1pHqeUkBRMWAqFUj2XguaLzfFqspuarRB5uqVZPuFkyDb4f5k7WuJ3EE00OqwKdoI4' # pylint: disable=line-too-long
+STRIPE_SECRET_KEY_TEST = env('STRIPE_SECRET_KEY_TEST')
 
-STRIPE_PUBLISHABLE_KEY_TEST = 'pk_test_51Jb9T1AFJmW5oMdbOtpNv8mEKgXZZjdVScjhh1l7wMJ4h2UynWpnIl1tlsmX0Hgt33lE8hyoiKer85GgfHnNjagK00aZMtPtzX' # pylint: disable=line-too-long
+STRIPE_PUBLISHABLE_KEY_TEST = env('STRIPE_PUBLISHABLE_KEY_TEST')
 
 # ---------------------------- Stripe Credentials ---------------------------- #
-CLIENT_ID = 'ca_KbUZatPIraDbaExd7VA0jkTR6Cb2et76'
+CLIENT_ID = env('STRIPE_CLIENT_ID')
 
-STRIPE_SECRET_KEY = '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' # pylint: disable=line-too-long
+STRIPE_SECRET_KEY = env('STRIPE_SECRET_KEY')
 
-STRIPE_PUBLISHABLE_KEY = 'pk_live_51Jb9T1AFJmW5oMdb3WcUDAIySK9NYUmd3JrP4rb7NvDupmnM8HfVYdpWHxoNf1HFLcwTAcXGmM23D9VKjfu2vTnz00LAAcLjtx' # pylint: disable=line-too-long
+STRIPE_PUBLISHABLE_KEY = env('STRIPE_PUBLISHABLE_KEY')
 
 # ---------------------- DigitalOcean Spaces Credentials --------------------- #
-DO_SPACES_KEY = 'OU6N4IAG7LSM7B7SZHM7'
-DO_SPACES_SECRET = 'Rx93aM8pMDXOh8IKtPFIJv5egFg8/Gbqr1AEtA7XUr0'
+DO_SPACES_KEY = env('DO_SPACES_KEY')
+DO_SPACES_SECRET = env('DO_SPACES_SECRET')
