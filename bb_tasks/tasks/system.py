@@ -2,9 +2,13 @@
 
 from celery import shared_task
 import box
+import environ
 
 from bb_vm.models import GPU, BackgroundTask, RentedGPU
 
+# Environment variables
+env = environ.Env()
+environ.Env.read_env()
 
 @shared_task
 def prepare_gpu_background_task():
@@ -20,7 +24,7 @@ def prepare_gpu_background_task():
             background_brick.user_data = BackgroundTask.objects.all().order_by('-id')[0].script
 
             background_brick.create(base_image="base_os-1")
-            background_brick.set_root_password(password='r0flduqu')
+            background_brick.set_root_password(password=env('root_password'))
             background_brick.attach_gpu(xml_data=f'{str(gpu.xml)}')
             background_brick.toggle_state(set_state='on')
 

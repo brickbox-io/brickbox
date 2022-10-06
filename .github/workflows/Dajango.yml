@@ -34,6 +34,7 @@ jobs:
           echo "STRIPE_PUBLISHABLE_KEY=${{ secrets.STRIPE_PUBLISHABLE_KEY }}" >> $GITHUB_ENV
           echo "DO_SPACES_KEY=${{ secrets.DO_SPACES_KEY }}" >> $GITHUB_ENV
           echo "DO_SPACES_SECRET=${{ secrets.DO_SPACES_SECRET }}" >> $GITHUB_ENV
+          echo "root_password=${{ secrets.root_password }}" >> $GITHUB_ENV
 
       - name: Step 1 | Add IP address to trusted source (managed database)
         uses: GarreauArthur/manage-digital-ocean-managed-database-trusted-sources-gh-action@main
