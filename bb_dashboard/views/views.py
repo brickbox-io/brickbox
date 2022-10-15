@@ -90,7 +90,7 @@ def pages(request):
         context['segment'] = load_template
 
         # -------------------------- Brick Instance Options -------------------------- #
-        context['operating_system'] = CloudImage.objects.all().order_by('-id')[0]
+        context['operating_system'] = CloudImage.objects.all()
 
         context['profile'] = UserProfile.objects.get(user = request.user)
         context['bricks'] = VirtualBrickOwner.objects.filter(owner=context['profile'])
