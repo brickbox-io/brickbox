@@ -19,7 +19,7 @@ DIR = '/opt/brickbox/bb_vm/bash_scripts/'
 
 # ---------------------------------- New VM ---------------------------------- #
 @shared_task
-def new_vm_subprocess(instance_id, root_pass):
+def new_vm_subprocess(instance_id, root_pass, os_version=1):
     '''
     Called to start the creation of a VM in the background.
     1) Create base VM image
@@ -38,7 +38,7 @@ def new_vm_subprocess(instance_id, root_pass):
         if brick.user_data is not None:
             virtual_machine.user_data = brick.user_data.script
 
-        virtual_machine.create(base_image="base_os-1")
+        virtual_machine.create(base_image=f"base_os-{os_version}")
 
         brick.domain_uuid = virtual_machine.domuuid()
         brick.img_cloned = True
