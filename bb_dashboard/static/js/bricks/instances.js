@@ -7,7 +7,7 @@ function SetRootPassword(selected_gpu) {
 function CreateNewBrick(selected_gpu) {
     var root_pass = document.getElementById("root_password").value;
     var custom_script = document.getElementById("custom_script").value;
-    var os_version = document.getElementById("os_selector").value;
+    var os_version = document.getElementById("os_selector_"+selected_gpu).value;
     $("#set_root_password").modal('toggle');
     var formData = new FormData();
     var xhttp = new XMLHttpRequest();
