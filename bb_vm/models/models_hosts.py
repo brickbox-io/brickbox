@@ -119,7 +119,7 @@ class GPU(models.Model):
     xml = models.TextField(null=True)
 
     rented = models.BooleanField(default = False)
-    attached_to = models.ForeignKey('VirtualBrick', null=True, blank=True, on_delete=models.PROTECT)
+    attached_to = models.ForeignKey('VirtualBrick', null=True, blank=True, on_delete=models.SET_NULL)
 
     # Background Tasks
     bg_ready = models.BooleanField(default = False) # Indicates that an img is ready for the GPU
