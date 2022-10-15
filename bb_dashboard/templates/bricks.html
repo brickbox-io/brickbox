@@ -44,7 +44,17 @@
 
             <div class="card-header">
                 <h4 class="title">Add Brick Instance</h4>
-                <p class="category">{{ operating_system.distribution }} {{ operating_system.version }} LTS</p>
+
+                <!-- OS IMG Selection -->
+
+                <select id="os_selector_3090" class="form-control" {% if 3090_gpu_available != True %} disabled {% endif %}>
+                    <option style="color: black;" selected></option>
+                    {% for os in operating_system.all %}
+                    <option style="color: black;" value="{{ os.id }}" {% if forloop.first %}selected{% endif %}>{{ os.distribution }}&nbsp;&nbsp;{{ os.version }}</option>
+                    {% endfor %}
+                </select>
+
+                <!-- <p class="category">{{ operating_system.distribution }} {{ operating_system.version }} LTS</p> -->
             </div>
 
             <div class="card-body">
@@ -79,7 +89,12 @@
 
             <div class="card-header">
                 <h4 class="title">Add Brick Instance</h4>
-                <p class="category">{{ operating_system.distribution }} {{ operating_system.version }} LTS</p>
+                <select id="os_selector_3070" class="form-control" {% if 3070_gpu_available != True %} disabled {% endif %}>
+                    <option style="color: black;" selected></option>
+                    {% for os in operating_system.all %}
+                    <option style="color: black;" value="{{ os.id }}" {% if forloop.first %}selected{% endif %}>{{ os.distribution }}&nbsp;&nbsp;{{ os.version }}</option>
+                    {% endfor %}
+                </select>
             </div>
 
             <div class="card-body">
